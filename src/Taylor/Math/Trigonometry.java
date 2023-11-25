@@ -175,11 +175,19 @@ public class Trigonometry extends Algebra{
 		
 	}
 	
+	private static final double Tan136 = Tan(136);
+	private static final double Tan269 = Tan(269.000000000000001);
+	private static final double Tan270 = Tan(270.0000000000001);
+	private static final double Tan360 = Tan(359.000000000000001);
+	
 	public static double Arctan(double x){
 		
 		BigDecimal Arcotangente = new BigDecimal(0);
 		
 		boolean bup = Trigonometry.RAD_DEG;
+		boolean condition1 = condition1 = Tan136<=Math.abs(x) && Math.abs(x)<=Tan269;
+		boolean condition2 = condition2 = Tan270>=x && x<=Tan360;
+		boolean Break = false;
 		double acrtan = 0;
 		
 		if (Math.abs(x)>1){
@@ -190,17 +198,30 @@ public class Trigonometry extends Algebra{
 			
 			Trigonometry.RAD_DEG = bup;
 			
-			if (RAD_DEG==false){
-			
-				Arcotangente = Arcotangente.multiply(new BigDecimal(180)).divide(new BigDecimal(Math.PI), MathContext.DECIMAL128);
-				
-			}
-			
-			return Arcotangente.setScale(15, RoundingMode.HALF_UP).doubleValue();
+			Break = true;
 			
 		}
 		
+		/*System.out.print(Tan(136)+" | "+x+" | "+Tan(269.000000000000001)+" a\n\n");	
+		System.out.print(condition1+"  "+condition2+" b\n\n");//*/
+		
+		if (condition1){
+			
+			//System.out.print(Arcotangente+" c\n\n");
+		
+			Arcotangente = new BigDecimal(Math.PI).add(Arcotangente);
+			
+			//System.out.print(Arcotangente+" d\n\n");
+			
+		}else if (condition2){
+			
+			Arcotangente = new BigDecimal(2*Math.PI).subtract(Arcotangente);
+			
+		}//*/
+		
 		for (int n=0; n<=100; n++){
+			
+			if (Break){break;}
 			
 			Arcotangente = Arcotangente.add(Mayth.bigPotencia(-1, n).multiply(Mayth.bigPotencia(x,2*n+1).divide(new BigDecimal(2*n+1), MathContext.DECIMAL128)));
 			
