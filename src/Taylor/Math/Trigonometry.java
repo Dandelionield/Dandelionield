@@ -54,6 +54,12 @@ public class Trigonometry extends Algebra{
 	
 	public static double Arcsen(double x){
 		
+		if (Double.isNaN(x) || Double.isInfinite(x)){
+			
+			return x;
+			
+		}
+		
 		BigDecimal Arcoseno = new BigDecimal(0);
 		
 		int limite = 0;
@@ -74,17 +80,13 @@ public class Trigonometry extends Algebra{
 			
 			if (RAD_DEG==false){
 				
-				return 270;
+				return -90;
 				
 			}else{
 				
-				return 3*Math.PI/2;
+				return -Math.PI/2;
 				
 			}
-			
-		}else if (x==0){
-			
-			return 0;
 			
 		}
 		
@@ -92,7 +94,17 @@ public class Trigonometry extends Algebra{
 		
 		Trigonometry.RAD_DEG = true;
 		
-		Arcoseno = new BigDecimal(Trigonometry.Arctan(x/Math.sqrt(1-x*x)));
+		try{
+			
+			Arcoseno = new BigDecimal(Trigonometry.Arctan(x/Math.sqrt(1-x*x)));
+			
+		}catch(Exception e){
+			
+			Trigonometry.RAD_DEG = bup;
+			
+			return x;
+			
+		}
 		
 		Trigonometry.RAD_DEG = bup;
 		
@@ -128,22 +140,13 @@ public class Trigonometry extends Algebra{
 	
 	public static double Arccos(double x){
 		
-		if (x==-1){
+		if (Double.isNaN(x) || Double.isInfinite(x)){
 			
-			if (RAD_DEG==false){
-				
-				return 180;
-				
-			}else{
-				
-				return Math.PI;
-				
-			}
+			return x;
 			
 		}
 		
 		boolean bup = Trigonometry.RAD_DEG;
-		boolean condition = Math.abs(x)>0.984807753012208 && Math.abs(x)<1;
 		
 		Trigonometry.RAD_DEG = true;
 		
@@ -175,20 +178,19 @@ public class Trigonometry extends Algebra{
 		
 	}
 	
-	private static final double Tan136 = Tan(136);
-	private static final double Tan269 = Tan(269.000000000000001);
-	private static final double Tan270 = Tan(270.0000000000001);
-	private static final double Tan360 = Tan(359.000000000000001);
-	
 	public static double Arctan(double x){
+		
+		if (Double.isNaN(x) || Double.isInfinite(x)){
+			
+			return x;
+			
+		}
 		
 		BigDecimal Arcotangente = new BigDecimal(0);
 		
 		boolean bup = Trigonometry.RAD_DEG;
-		boolean condition1 = condition1 = Tan136<=Math.abs(x) && Math.abs(x)<=Tan269;
-		boolean condition2 = condition2 = Tan270>=x && x<=Tan360;
+		boolean condition1 = x<=-1.0000000000000013 && x>=-572.957213354061;
 		boolean Break = false;
-		double acrtan = 0;
 		
 		if (Math.abs(x)>1){
 			
@@ -202,22 +204,11 @@ public class Trigonometry extends Algebra{
 			
 		}
 		
-		/*System.out.print(Tan(136)+" | "+x+" | "+Tan(269.000000000000001)+" a\n\n");	
-		System.out.print(condition1+"  "+condition2+" b\n\n");//*/
-		
 		if (condition1){
 			
-			//System.out.print(Arcotangente+" c\n\n");
-		
-			Arcotangente = new BigDecimal(Math.PI).add(Arcotangente);
+			Arcotangente = Arcotangente.subtract(new BigDecimal(Math.PI));
 			
-			//System.out.print(Arcotangente+" d\n\n");
-			
-		}else if (condition2){
-			
-			Arcotangente = new BigDecimal(2*Math.PI).subtract(Arcotangente);
-			
-		}//*/
+		}
 		
 		for (int n=0; n<=100; n++){
 			
