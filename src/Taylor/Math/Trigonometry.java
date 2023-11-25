@@ -44,7 +44,7 @@ public class Trigonometry extends Algebra{
 		
 		for (int n=0; n<=100; n++){
 			
-			Seno = Seno.add(Mayth.bigPotencia(-1, n).multiply(Mayth.bigPotencia(x,2*n+1).divide(bigFactorial(2*n+1), 100, RoundingMode.HALF_UP)));
+			Seno = Seno.add(bigPotencia(-1, n).multiply(bigPotencia(x,2*n+1).divide(bigFactorial(2*n+1), 100, RoundingMode.HALF_UP)));
 			
 		}
 		
@@ -130,7 +130,7 @@ public class Trigonometry extends Algebra{
 		
 		for (int n=0; n<=100; n++){
 			
-			Cos = Cos.add(Mayth.bigPotencia(-1, n).multiply(Mayth.bigPotencia(x,2*n).divide(bigFactorial(2*n), 100, RoundingMode.HALF_UP)));
+			Cos = Cos.add(bigPotencia(-1, n).multiply(bigPotencia(x,2*n).divide(bigFactorial(2*n), 100, RoundingMode.HALF_UP)));
 			
 		}
 		
@@ -214,7 +214,7 @@ public class Trigonometry extends Algebra{
 			
 			if (Break){break;}
 			
-			Arcotangente = Arcotangente.add(Mayth.bigPotencia(-1, n).multiply(Mayth.bigPotencia(x,2*n+1).divide(new BigDecimal(2*n+1), MathContext.DECIMAL128)));
+			Arcotangente = Arcotangente.add(bigPotencia(-1, n).multiply(bigPotencia(x,2*n+1).divide(new BigDecimal(2*n+1), MathContext.DECIMAL128)));
 			
 		}
 		
