@@ -30,9 +30,13 @@ public class Test {
 			
 		}//*/
 		
-		System.out.print(Mayth.Ln(n+Mayth.Raiz(n*n+1, 2))+" --- "+n);
+		System.out.print(Mayth.Ln(6)/Mayth.Ln(10));
 		
-		System.out.print(bup+"\n\n");
+		/*Mayth m = new Mayth(false);
+		
+		System.out.print(Mayth.Sen(60));*/
+		
+		System.out.print("\n\n");
 		
     }
     

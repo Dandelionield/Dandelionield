@@ -193,6 +193,42 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
+	public static double Log(double x, double base){//Se usa la serie Taylor para el logaritmo en base b 
+		
+		BigDecimal log = new BigDecimal(0);
+		BigDecimal ln = new BigDecimal(0);
+		boolean b = false;
+
+		if (x>0 && x<1){x=1/x;b=true;}
+
+		if (x>1 && base>0){
+			
+			ln = new BigDecimal(Ln(base));
+			
+			for (int n=1; n<=300; n++){
+				
+				log = log.add(new BigDecimal(Potencia(-1f,n-1)).multiply(bigPotencia(1/x - 1,n).divide(ln.multiply(new BigDecimal(n)), MathContext.DECIMAL128)));
+				
+			}
+			
+		}else if (x==1 && base>0){
+			
+			return 0;
+			
+		}else if (x<=0 && base<=0){return Double.NaN;}
+
+		if (b==true){log = log.multiply(new BigDecimal(-1));}
+
+		return log.multiply(new BigDecimal(-1)).setScale(15, RoundingMode.HALF_UP).doubleValue();
+		
+	}
+	
+	public static double Log(double x){
+		
+		return Log(x, 10);
+		
+	}
+	
 	public static double Factorial(double n){
 
 		if (n>0 && n%1==0){
