@@ -12,6 +12,18 @@ import java.math.MathContext;
  
 public class Mayth extends Hyperbolic{
 	
+	public Mayth(){
+		
+		super(false);
+		
+	}
+	
+	public Mayth(boolean value){
+		
+		super(value);
+		
+	}
+	
 	public static double Raiz(double x, double n){
 		
 		int signo=1;
@@ -47,6 +59,12 @@ public class Mayth extends Hyperbolic{
 			}else{return x;}
 			
 		}else{return Double.NaN;}
+		
+	}
+	
+	public static double Raiz(double x){
+		
+		return Raiz(x, 2);
 		
 	}
 

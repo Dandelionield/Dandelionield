@@ -38,6 +38,12 @@ public class Hyperbolic extends Trigonometry{
 		
 	}
 	
+	public static double Arcsenh(double x){
+		
+		return Mayth.Ln(x+Mayth.Raiz(x*x+1));
+		
+	}
+	
 	public static double Cosh(double x){
 		
 		BigDecimal Cosenoh = new BigDecimal(0);
@@ -52,9 +58,21 @@ public class Hyperbolic extends Trigonometry{
 		
 	}
 	
+	public static double Arccosh(double x){
+		
+		return Mayth.Ln(x+Mayth.Raiz(x*x-1));
+		
+	}
+	
 	public static double Tanh(double x){
 		
 		return (new BigDecimal(Senh(x)).divide(new BigDecimal(Cosh(x)), MathContext.DECIMAL128)).setScale(15, RoundingMode.HALF_UP).doubleValue();
+		
+	}
+	
+	public static double Arctanh(double x){
+		
+		return Mayth.Ln((1+x)/(1-x))/2;
 		
 	}
 	
@@ -72,6 +90,12 @@ public class Hyperbolic extends Trigonometry{
 		
 	}
 	
+	public static double Arccsch(double x){
+		
+		return Mayth.Ln((1/x)+Mayth.Raiz(1/(x*x)+1));
+		
+	}
+	
 	public static double Sech(double x){
 		
 		try {
@@ -86,6 +110,12 @@ public class Hyperbolic extends Trigonometry{
 		
 	}
 	
+	public static double Arcsech(double x){
+		
+		return Mayth.Ln((1/x)+Mayth.Raiz(1/(x*x)-1));
+		
+	}
+	
 	public static double Coth(double x){
 		
 		try {
@@ -97,6 +127,12 @@ public class Hyperbolic extends Trigonometry{
 			return Double.NaN;
 			
 		}
+		
+	}
+	
+	public static double Arccoth(double x){
+		
+		return Mayth.Ln((x+1)/(x-1))/2;
 		
 	}
 
