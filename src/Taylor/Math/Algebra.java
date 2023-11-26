@@ -8,7 +8,7 @@ package Taylor.Math;
  
 import java.math.BigDecimal;
  
-public class Algebra{
+public class Algebra extends Constants{
 	
 	private static long indiceFactorial = -3;
 	private static BigDecimal factorial = new BigDecimal(0);

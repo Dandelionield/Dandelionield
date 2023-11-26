@@ -13,6 +13,7 @@ import java.math.MathContext;
 public class Trigonometry extends Algebra{
 	
 	private static boolean RAD_DEG = false;
+	private static double PI = Pi().doubleValue();
 	
 	public Trigonometry(){
 		
@@ -38,7 +39,7 @@ public class Trigonometry extends Algebra{
 		
 		if (RAD_DEG==false){
 			
-			x = (x*Math.PI)/180;
+			x = (x*PI)/180;
 			
 		}
 		
@@ -72,7 +73,7 @@ public class Trigonometry extends Algebra{
 				
 			}else{
 				
-				return Math.PI/2;
+				return PI/2;
 				
 			}
 			
@@ -84,7 +85,7 @@ public class Trigonometry extends Algebra{
 				
 			}else{
 				
-				return -Math.PI/2;
+				return -PI/2;
 				
 			}
 			
@@ -110,7 +111,7 @@ public class Trigonometry extends Algebra{
 		
 		if (RAD_DEG==false){
 			
-			Arcoseno = Arcoseno.multiply(new BigDecimal(180)).divide(new BigDecimal(Math.PI), MathContext.DECIMAL128);
+			Arcoseno = Arcoseno.multiply(new BigDecimal(180)).divide(new BigDecimal(PI), MathContext.DECIMAL128);
 			
 		}
 		
@@ -124,7 +125,7 @@ public class Trigonometry extends Algebra{
 		
 		if (RAD_DEG==false){
 			
-			x = (x*Math.PI)/180;
+			x = (x*PI)/180;
 			
 		}
 		
@@ -150,13 +151,13 @@ public class Trigonometry extends Algebra{
 		
 		Trigonometry.RAD_DEG = true;
 		
-		BigDecimal Arcocoseno = (new BigDecimal(Math.PI/2).subtract(new BigDecimal(Arcsen(x))));
+		BigDecimal Arcocoseno = (new BigDecimal(PI/2).subtract(new BigDecimal(Arcsen(x))));
 		
 		Trigonometry.RAD_DEG = bup;
 		
 		if (RAD_DEG==false){
 			
-			Arcocoseno = Arcocoseno.multiply(new BigDecimal(180)).divide(new BigDecimal(Math.PI), MathContext.DECIMAL128);
+			Arcocoseno = Arcocoseno.multiply(new BigDecimal(180)).divide(new BigDecimal(PI), MathContext.DECIMAL128);
 			
 		}
 		
@@ -196,7 +197,7 @@ public class Trigonometry extends Algebra{
 			
 			Trigonometry.RAD_DEG = true;
 			
-			Arcotangente =  new BigDecimal(Math.PI/2-Arctan(1/x));
+			Arcotangente =  new BigDecimal(PI/2-Arctan(1/x));
 			
 			Trigonometry.RAD_DEG = bup;
 			
@@ -206,7 +207,7 @@ public class Trigonometry extends Algebra{
 		
 		if (condition1){
 			
-			Arcotangente = Arcotangente.subtract(new BigDecimal(Math.PI));
+			Arcotangente = Arcotangente.subtract(new BigDecimal(PI));
 			
 		}
 		
@@ -214,13 +215,13 @@ public class Trigonometry extends Algebra{
 			
 			if (Break){break;}
 			
-			Arcotangente = Arcotangente.add(bigPotencia(-1, n).multiply(bigPotencia(x,2*n+1).divide(new BigDecimal(2*n+1), MathContext.DECIMAL128)));
+			Arcotangente = Arcotangente.add(new BigDecimal(Mayth.Potencia(-1, n)).multiply(bigPotencia(x,2*n+1).divide(new BigDecimal(2*n+1), MathContext.DECIMAL128)));
 			
 		}
 		
 		if (RAD_DEG==false){
 			
-			Arcotangente = Arcotangente.multiply(new BigDecimal(180)).divide(new BigDecimal(Math.PI), MathContext.DECIMAL128);
+			Arcotangente = Arcotangente.multiply(new BigDecimal(180)).divide(new BigDecimal(PI), MathContext.DECIMAL128);
 			
 		}
 		
