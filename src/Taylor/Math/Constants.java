@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.math.MathContext;
  
-public class Constants{
+public class Constants extends bigFuntions{
 
 	public static BigDecimal Pi(){
 		
@@ -20,7 +20,7 @@ public class Constants{
 		
 		for (int n=0; n<=28; n++){
 			
-			pi = pi.add(new BigDecimal(Mayth.Potencia(-1, n)).multiply(Algebra.bigPotencia(x,2*n+1).divide(new BigDecimal(2*n+1), MathContext.DECIMAL128)));
+			pi = pi.add(new BigDecimal(Mayth.Potencia(-1, n)).multiply(bigPotencia(x,2*n+1).divide(new BigDecimal(2*n+1), MathContext.DECIMAL128)));
 			
 		}
 		

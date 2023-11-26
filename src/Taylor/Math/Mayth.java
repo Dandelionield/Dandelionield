@@ -124,6 +124,12 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
+	public static double Potencia(double x){
+		
+		return Potencia(x, 2);
+		
+	}
+	
 	public static double Euler(double x){
 		
 		if (x==0){
@@ -248,6 +254,28 @@ public class Mayth extends Hyperbolic{
 		}else{
 			
 			return Double.NaN;
+			
+		}
+		
+	}
+	
+	public static double Redondear(double n, int limite){
+		
+		try{
+		
+			if (Double.isNaN(n)==false && Double.isInfinite(n)==false){
+				
+				return new BigDecimal(n).setScale(limite, RoundingMode.HALF_UP).doubleValue();
+				
+			}else{
+				
+				return n;
+				
+			}
+			
+		}catch(Exception e){
+			
+			return n;
 			
 		}
 		

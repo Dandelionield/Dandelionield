@@ -10,10 +10,10 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.math.MathContext;
  
-public class Trigonometry extends Algebra{
+public class Trigonometry extends Constants{
 	
 	private static boolean RAD_DEG = false;
-	private static double PI = Pi().doubleValue();
+	public static double PI = Pi().doubleValue();
 	
 	public Trigonometry(){
 		
@@ -34,6 +34,12 @@ public class Trigonometry extends Algebra{
 	}
 
 	public static double Sen(double x){
+		
+		if (Double.isNaN(x) || Double.isInfinite(x)){
+			
+			return x;
+			
+		}
 		
 		BigDecimal Seno = new BigDecimal(0);
 		
@@ -121,6 +127,12 @@ public class Trigonometry extends Algebra{
 	
 	public static double Cos(double x){
 		
+		if (Double.isNaN(x) || Double.isInfinite(x)){
+			
+			return x;
+			
+		}
+		
 		BigDecimal Cos = new BigDecimal(0);
 		
 		if (RAD_DEG==false){
@@ -166,6 +178,12 @@ public class Trigonometry extends Algebra{
 	}
 	
 	public static double Tan(double x){
+		
+		if (Double.isNaN(x) || Double.isInfinite(x)){
+			
+			return x;
+			
+		}
 		
 		if (x!=90 && x!=270){
 			
