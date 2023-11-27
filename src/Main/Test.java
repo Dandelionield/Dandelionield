@@ -43,7 +43,7 @@ public class Test {
 			
 		}//*/
 		
-		vector a = new vector(0, 1, 2);
+		/*vector a = new vector(0, 1, 2);
 		
 		System.out.print(" Datos vector a: "
         +"\n Magnitud: "+a.getMagnitude()
@@ -59,8 +59,9 @@ public class Test {
 		+"\n Cola: "+a.getTail());//*
 		
 		System.out.print("\n\n");//*/
-
-		System.out.print(a);//*/
+		
+		//System.out.print(Mayth.bigPotencia(new BigDecimal(5), 4));//*/
+		System.out.print(Mayth.Pi());//*/
 		
 		/*for (int i=-1; i<=100; i++){
 			

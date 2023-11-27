@@ -16,11 +16,12 @@ public class Constants extends bigFuntions{
 		
 		BigDecimal a = new BigDecimal(0);
 		BigDecimal b = new BigDecimal(0);
+		BigDecimal x = new BigDecimal(1).divide(new BigDecimal(239), MathContext.DECIMAL128);
 		
 		for (int n=0; n<=10; n++){
 			
 			a = a.add(new BigDecimal(Mayth.Potencia(-1, n)).multiply(bigPotencia(1.00/5.00,2*n+1).divide(new BigDecimal(2*n+1), MathContext.DECIMAL128)));
-			b = b.add(new BigDecimal(Mayth.Potencia(-1, n)).multiply(bigPotencia(1.00/239.00,2*n+1).divide(new BigDecimal(2*n+1), MathContext.DECIMAL128)));
+			b = b.add(new BigDecimal(Mayth.Potencia(-1, n)).multiply(bigPotencia(x,2*n+1).divide(new BigDecimal(2*n+1), MathContext.DECIMAL128)));
 			
 		}
 		

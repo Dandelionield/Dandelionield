@@ -15,6 +15,12 @@ public class bigFuntions{
 	
 	public static BigDecimal bigPotencia(double base, double exponent){
 		
+		if (base==0){
+			
+			return new BigDecimal(0);
+			
+		}
+		
 		if (base==1 || exponent==0){
 			
 			return new BigDecimal(1);
@@ -25,9 +31,15 @@ public class bigFuntions{
 		
 	}
 	
-	/*public static BigDecimal bigPotencia(BigDecimal base, double exponent){
+	public static BigDecimal bigPotencia(BigDecimal base, double exponent){
 		
-		if (base.compareTo(new BigDecimal(1))==0 || base.compareTo(new BigDecimal(0))==0){
+		if (base.compareTo(new BigDecimal(0))==0){
+			
+			return new BigDecimal(0);
+			
+		}
+		
+		if (base.compareTo(new BigDecimal(1))==0 || exponent==0){
 			
 			return new BigDecimal(1);
 			
