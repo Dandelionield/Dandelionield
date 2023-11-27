@@ -14,17 +14,17 @@ public class Constants extends bigFuntions{
 
 	public static BigDecimal Pi(){
 		
-		BigDecimal pi = new BigDecimal(0);
+		BigDecimal a = new BigDecimal(0);
+		BigDecimal b = new BigDecimal(0);
 		
-		double x = 1/Mayth.Raiz(3);//0.5/Trigonometry.Sen(60);
-		
-		for (int n=0; n<=28; n++){
+		for (int n=0; n<=10; n++){
 			
-			pi = pi.add(new BigDecimal(Mayth.Potencia(-1, n)).multiply(bigPotencia(x,2*n+1).divide(new BigDecimal(2*n+1), MathContext.DECIMAL128)));
+			a = a.add(new BigDecimal(Mayth.Potencia(-1, n)).multiply(bigPotencia(1.00/5.00,2*n+1).divide(new BigDecimal(2*n+1), MathContext.DECIMAL128)));
+			b = b.add(new BigDecimal(Mayth.Potencia(-1, n)).multiply(bigPotencia(1.00/239.00,2*n+1).divide(new BigDecimal(2*n+1), MathContext.DECIMAL128)));
 			
 		}
 		
-		return pi.multiply(new BigDecimal(6)).setScale(15, RoundingMode.HALF_UP);
+		return new BigDecimal(4).multiply(new BigDecimal(4).multiply(a).subtract(b)).setScale(15, RoundingMode.HALF_UP);
 		
 	}
 	

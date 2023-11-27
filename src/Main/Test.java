@@ -58,13 +58,13 @@ public class Test {
 		+"\n Unidad: "+a.getUnity()
 		+"\n Cola: "+a.getTail());//*
 		
-		System.out.print("\n\n");//
-		
+		System.out.print("\n\n");//*/
+
 		System.out.print(a);//*/
 		
 		/*for (int i=-1; i<=100; i++){
 			
-			System.out.print(i+" | "+Mayth.isPrime(Mayth.nPrime(i))+"\n");
+			System.out.print(i+" | "+Mayth.Sen(i)+"\n");
 			
 		}//*/
 		

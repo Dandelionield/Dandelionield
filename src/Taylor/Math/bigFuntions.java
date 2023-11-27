@@ -25,6 +25,18 @@ public class bigFuntions{
 		
 	}
 	
+	/*public static BigDecimal bigPotencia(BigDecimal base, double exponent){
+		
+		if (base.compareTo(new BigDecimal(1))==0 || base.compareTo(new BigDecimal(0))==0){
+			
+			return new BigDecimal(1);
+			
+		}
+		
+		return base.multiply(bigPotencia(base, exponent-1));
+		
+	}//*/
+	
 	public static BigDecimal bigFactorial(long n){
 		
 		if (n==0 || n==1){
