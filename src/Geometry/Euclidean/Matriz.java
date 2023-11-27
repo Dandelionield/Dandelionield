@@ -375,6 +375,39 @@ public class Matriz{
 		
 	}
 	
+	public Matriz getPrimes(){
+		
+		if (State){
+			
+			return null;
+			
+		}
+		
+		final ArrayList<vector> v = new ArrayList<>();
+		vector bup;
+		
+		for (vector p : this.m){
+			
+			bup = p.getPrimes();
+			
+			if (bup!=null){
+				
+				v.add(bup);
+				
+			}
+			
+		}
+		
+		if (v.size()==0){
+			
+			return null;
+			
+		}
+		
+		return new Matriz(v);
+		
+	}
+	
 	public Matriz getNevatives(){
 		
 		if (State){
@@ -482,6 +515,33 @@ public class Matriz{
 		for (vector p : this.m){
 			
 			v.add(p.throwNevatives());
+			
+		}
+		
+		if (v.size()==0){
+			
+			return this;
+			
+		}
+		
+		return new Matriz(v);
+		
+	}
+	
+	public Matriz throwPrimes(){
+		
+		if (State){
+			
+			return null;
+			
+		}
+		
+		final ArrayList<vector> v = new ArrayList<>();
+		vector bup;
+		
+		for (vector p : this.m){
+			
+			v.add(p.throwPrimes());
 			
 		}
 		

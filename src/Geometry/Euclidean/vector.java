@@ -720,6 +720,34 @@ public class vector{
 		
 	}
 	
+	public vector getPrimes(){
+		
+		ArrayList<Double> v = new ArrayList<>();
+		
+		for (double p : this.v){
+			
+			if (p%1==0){
+				
+				if (Mayth.isPrime((long) p)){
+					
+					v.add(p);
+					
+				}
+				
+			}
+			
+		}
+		
+		if (v.size()==0){
+			
+			return null;
+			
+		}
+		
+		return new vector(v);
+		
+	}
+	
 	public vector getNevatives(){
 		
 		ArrayList<Double> v = new ArrayList<>();
@@ -811,6 +839,38 @@ public class vector{
 		for (double p : this.v){
 			
 			if (p>0){
+				
+				v.add(p);
+				
+			}
+			
+		}
+		
+		if (v.size()==0){
+			
+			return this;
+			
+		}
+		
+		return new vector(v);
+		
+	}
+	
+	public vector throwPrimes(){
+		
+		ArrayList<Double> v = new ArrayList<>();
+		
+		for (double p : this.v){
+			
+			if (p%1==0){
+				
+				if (!Mayth.isPrime((long) p)){
+					
+					v.add(p);
+					
+				}
+				
+			}else{
 				
 				v.add(p);
 				
@@ -1315,7 +1375,7 @@ public class vector{
 		
 		if (a==true){
 			
-			return new degree(Mayth.Arccos(Math.abs(c/Magnitude)));
+			return new degree(Mayth.Arccos(Mayth.abs(c/Magnitude)));
 			
 		}else{
 			

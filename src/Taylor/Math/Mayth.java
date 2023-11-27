@@ -243,9 +243,7 @@ public class Mayth extends Hyperbolic{
 			
 		}else if (n%1!=0 && n!=0){
 			
-			return 0;
-			
-			//producto = GammaEuler(n);
+			return GammaEuler(n);
 			
 		}else if (n==0){
 
@@ -256,6 +254,188 @@ public class Mayth extends Hyperbolic{
 			return Double.NaN;
 			
 		}
+		
+	}
+	
+	public static double GammaEuler(double z){
+		
+		double p = 0.99999999999980993;
+		double t = z + 7.5;
+		
+		p += 676.5203681218851 / (z + 1);
+		p -= 1259.1392167224028 / (z + 2);
+		p += 771.32342877765313 / (z + 3);
+		p -= 176.61502916214059 / (z + 4);
+		p += 12.507343278686905 / (z + 5);
+		p -= 0.13857109526572012 / (z + 6);
+		p += 9.9843695780195716e-6 / (z + 7);
+		p += 1.5056327351493116e-7 / (z + 8);
+		
+		return Raiz(2 * PI, 2) * Potencia(t, z + 0.5d) * Euler(-t) * p;
+		
+	}
+	
+	public static boolean isPrime(long n){
+		
+		if (n<=1){return false;}
+		
+		int c = 0;
+		
+		for (int i=1; i<=n; i++){
+			
+			if (n%i==0){
+				
+				c++;
+				
+			}
+			
+			if (c==3){
+				
+				return false;
+				
+			}
+			
+		}
+		
+		return true;
+		
+	}
+	
+	public static long nPrime(int indice){
+		
+		if (indice<=0){return 0;}
+		
+		long in = 0,co = 0;
+		long primo = 1;
+		boolean b = false;
+		
+		do{
+			
+			in++;
+			
+			do{
+				
+				co = 0;
+				primo++;
+				
+				for (long i=1; i<=primo; i++){
+					
+					if (primo%i==0){co++;}
+					
+					if (co>2){
+						
+						b = false;
+						
+						break;
+						
+					}else if (co==2){b = true;}
+					
+				}
+				
+			}while(b==false);
+			
+		}while(in!=indice);
+		
+		return primo;
+		
+	}
+	
+	public static double nFibonacci(int indice){
+		
+		double[] phi= new double [indice];
+		
+		for (int i=0; i<indice; i++){
+			
+			if (i==0 || i==1){
+				
+				phi[i]=1;
+				
+			}else{
+				
+				phi[i]=phi[i-1]+phi[i-2];
+				
+			}
+			
+		}
+		
+		return phi[indice-1];
+		
+	}
+	
+	public static double nBernoulli(float indice){
+		
+		double Bn=0;
+		
+		if (indice!=0 && indice>0){
+			
+			//Bn = ((Potencia(-1,indice+1) * 2 * Factorial(2*indice))/Potencia(2*Pi(),2*indice)) * ZetaReimann(2*indice);
+			
+			for (int n=0; n<=indice; n++){
+				
+				Bn += Potencia(-1,n) * nWorpitzky(indice,n)/(n+1);
+				
+			}
+			
+		}else if (indice==0){Bn=1;}else {Bn = Double.NaN;}
+		
+		return Bn;
+		
+	}
+	
+	public static double nWorpitzky(double n, int k){
+		
+		double W=0;
+		
+		for (int v=0; v<=k; v++){
+			
+			W += Potencia(-1,v+k) * Potencia(v+1,n) * Combinacion(k,v);
+			
+		}
+		
+		return W;
+		
+	}
+	
+	public static double Combinacion(double n, double k){
+		
+		return Factorial(n) / (Factorial(k)*Factorial(n-k));
+		
+	}
+	
+	public static double ZetaReimann(float s){
+		
+		double zeta=0;
+		int iteracion=1000;
+		
+		if (s%1!=0){iteracion=10;}
+		
+		if (s>1){
+		
+			for (int n=1; n<=iteracion; n++){
+				
+				zeta += 1d/Potencia(n,s);
+				
+			}
+			
+		}else{
+			
+			zeta = -1*(nBernoulli(s+1)/(s+1));
+			
+		}
+		
+		return zeta;
+		
+	}
+	
+	public static double abs(double x){
+		
+		if (x<0){
+			
+			return -x;
+			
+		}
+		
+		return x;
 		
 	}
 	

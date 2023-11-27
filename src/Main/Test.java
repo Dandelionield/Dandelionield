@@ -17,11 +17,12 @@ public class Test {
         
 		String bup = "";
 		int limite = 2;
+		int n = 2;
 		
 		System.out.print("\n\n");
 		
 		/*Matriz m = new Matriz(new double[][]{
-			{-2, 8.133221, 5, 4},
+			{-2, 8, 5, 4},
 			{5, -6, 7, -9},
 			{2, 1, 3, 8},
 			{5, -6, 2, 3}
@@ -42,7 +43,7 @@ public class Test {
 			
 		}//*/
 		
-		vector a = new vector(new vector(3.6548, 4.1234, -1.2487), new coordinate(4.47824, -5.43548, 2.45871)).doRedondear(limite);
+		vector a = new vector(0, 1, 2);
 		
 		System.out.print(" Datos vector a: "
         +"\n Magnitud: "+a.getMagnitude()
@@ -55,11 +56,17 @@ public class Test {
 		+"\n Direccion z : "+a.getDirectionZ()
         +"\n Octante: "+a.getOctant()
 		+"\n Unidad: "+a.getUnity()
-		+"\n Cola: "+a.getTail());//*/
+		+"\n Cola: "+a.getTail());//*
 		
-		System.out.print("\n\n");//*/
+		System.out.print("\n\n");//
 		
-		System.out.print(a);
+		System.out.print(a);//*/
+		
+		/*for (int i=-1; i<=100; i++){
+			
+			System.out.print(i+" | "+Mayth.isPrime(Mayth.nPrime(i))+"\n");
+			
+		}//*/
 		
 		System.out.print("\n\n");
 		
