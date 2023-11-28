@@ -1112,7 +1112,7 @@ public class Matriz{
 			
 			for (int c=0; c<m.length; c++){
 				
-				r+= (int) Mayth.Potencia(-1) * this.get(0,c) * this.getCofactor(0,c).getDetermine();
+				r+= (int) Mayth.Potencia(-1, c) * this.get(0,c) * this.getCofactor(0,c).getDetermine();
 				
 			}
 			

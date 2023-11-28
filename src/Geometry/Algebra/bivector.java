@@ -8,6 +8,7 @@ package Geometry.Algebra;
 
 import Geometry.Euclidean.vector;
 import Geometry.Euclidean.degree;
+import Taylor.Math.Mayth;
 
 public class bivector{
 	
@@ -15,6 +16,7 @@ public class bivector{
 	private final vector a;
 	private final vector b;
 	private final degree Theta;
+	private final boolean Swapped;
 	
 	public bivector(vector a, vector b){
 		
@@ -22,6 +24,7 @@ public class bivector{
 		this.b = b;
 		Theta = a.doBetweenTwo(b);
 		Magnitude = a.getMagnitude()*a.getMagnitude()*Theta.getSen();
+		Swapped = false;
 		
 	}
 	
@@ -31,6 +34,28 @@ public class bivector{
 		this.b = v[1];
 		Theta = a.doBetweenTwo(b);
 		Magnitude = a.getMagnitude()*a.getMagnitude()*Theta.getSen();
+		Swapped = false;
+		
+	}
+	
+	private bivector(bivector B, int limite){
+		
+		this.a = B.a.doRedondear(limite);
+		this.b = B.b.doRedondear(limite);
+		Theta = a.doBetweenTwo(b).doRedondear(limite);
+		Magnitude = Mayth.Redondear(B.Magnitude, limite);
+		Swapped = B.Swapped;
+		
+	}
+	
+	private bivector(bivector B, boolean value){
+		
+		Swapped = value;
+		
+		this.a = B.a;
+		this.b = B.b;
+		Theta = a.doBetweenTwo(b);
+		Magnitude = B.Magnitude;
 		
 	}
 	
@@ -72,7 +97,21 @@ public class bivector{
 	
 	public String toString(){
 		
-		return a+" ∧ "+b;
+		if (Swapped==true){
+			
+			return "-"+a.doScalar(-1)+" ∧ "+b;
+			
+		}else{
+			
+			return a+" ∧ "+b;
+			
+		}
+		
+	}
+	
+	public bivector doSwap(){
+		
+		return new bivector(this.doScalarRight(-1), true);
 		
 	}
 	
@@ -103,6 +142,12 @@ public class bivector{
 	public bivector doResta(bivector B){
 		
 		return new bivector(this.a.doResta(B.a), this.b.doResta(B.b));
+		
+	}
+	
+	public bivector doRedondear(int limite){
+		
+		return new bivector(this, limite);
 		
 	}
 

@@ -27,26 +27,20 @@ public class degree{
 
 	public degree(double deg){
 		
-		RAD.setMode(true);
-		
 		Degree = fixAngle(deg,360);
 		Radian = (Degree*Pi)/180.00;
 		Gradian = (Degree*20.00)/18.00;
 		
-		Sen = Mayth.Sen(Radian);
-		Cos = Mayth.Cos(Radian);
-		Tan = Mayth.Tan(Radian);
+		Sen = Math.sin(Radian);
+		Cos = Math.cos(Radian);
+		Tan = Math.tan(Radian);
 		Csc = 1/Sen;
 		Sec = 1/Cos;
 		Cot = 1/Tan;
 		
-		RAD.setMode(false);
-		
 	}
 	
 	public degree(double RadGrad, boolean bl){
-		
-		RAD.setMode(true);
 		
 		if (bl==true){
 			
@@ -62,14 +56,12 @@ public class degree{
 			
 		}
 		
-		Sen = Mayth.Sen(Radian);
-		Cos = Mayth.Cos(Radian);
-		Tan = Mayth.Tan(Radian);
+		Sen = Math.sin(Radian);
+		Cos = Math.cos(Radian);
+		Tan = Math.tan(Radian);
 		Csc = 1/Sen;
 		Sec = 1/Cos;
 		Cot = 1/Tan;
-		
-		RAD.setMode(false);
 		
 	}
 	
@@ -77,9 +69,9 @@ public class degree{
 		
 		double bup = 0;
 		
-		ca = Math.abs(ca);
-		co = Math.abs(co);
-		h = Math.abs(h);
+		ca = Mayth.abs(ca);
+		co = Mayth.abs(co);
+		h = Mayth.abs(h);
 		
 		if (ca!=0 && co!=0 && h!=0){
 		
@@ -90,16 +82,16 @@ public class degree{
 			Sec = h/ca;
 			Cot = ca/co;
 			
-			bup = Mayth.Arcsen(Sen);
+			bup = Math.toDegrees(Math.asin(Sen));
 			
 		}else if (ca!=0 && co!=0 && h==0){
 			
 			Tan = co/ca;
 			
-			bup = Mayth.Arctan(Tan);
+			bup = Math.toDegrees(Math.atan(Tan));
 			
-			Sen = Mayth.Sen(bup);
-			Cos = Mayth.Cos(bup);
+			Sen = Math.sin(Math.toRadians(bup));
+			Cos = Math.cos(Math.toRadians(bup));
 			Csc = 1/Sen;
 			Sec = 1/Cos;
 			Cot = 1/Tan;
@@ -108,10 +100,10 @@ public class degree{
 			
 			Cos = ca/h;
 			
-			bup = Mayth.Arccos(Cos);
+			bup = Math.toDegrees(Math.acos(Cos));
 			
-			Sen = Mayth.Sen(bup);
-			Tan = Mayth.Tan(bup);
+			Sen = Math.sin(Math.toRadians(bup));
+			Tan = Math.tan(Math.toRadians(bup));
 			Csc = 1/Sen;
 			Sec = 1/Cos;
 			Cot = 1/Tan;
@@ -120,10 +112,10 @@ public class degree{
 			
 			Sen = ca/h;
 			
-			bup = Mayth.Arcsen(Sen);
+			bup = Math.toDegrees(Math.asin(Sen));
 			
-			Cos = Mayth.Cos(bup);
-			Tan = Mayth.Tan(bup);
+			Cos = Math.cos(Math.toRadians(bup));
+			Tan = Math.tan(Math.toRadians(bup));
 			Csc = 1/Sen;
 			Sec = 1/Cos;
 			Cot = 1/Tan;
@@ -250,7 +242,7 @@ public class degree{
 	
 	public degree getDirectingAngle(degree Gamma){
 		
-		return new degree(Mayth.Arccos(Math.sqrt(1-Mayth.Potencia(this.Cos)-Mayth.Potencia(Gamma.Cos))));
+		return new degree(Math.toDegrees(Math.acos(Math.sqrt(1-Mayth.Potencia(this.Cos)-Mayth.Potencia(Gamma.Cos)))));
 		
 	}
 	

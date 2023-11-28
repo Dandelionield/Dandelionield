@@ -23,7 +23,12 @@ public class Test {
 		vector a = new vector(1, 0, 3);
 		vector b = new vector(0, 1, 3);
 		
-		System.out.print(new bivector(a, b));
+		Quaternion q = new Quaternion(2, a);
+		Quaternion p = new Quaternion(2, b);
+		
+		//System.out.print(new bivector(a, b)+"\n");
+		
+		System.out.print(q.arcQuaternion());
 		
 		System.out.print("\n\n");
 		

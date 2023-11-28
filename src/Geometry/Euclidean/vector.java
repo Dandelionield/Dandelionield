@@ -8,6 +8,7 @@ package Geometry.Euclidean;
 
 import java.util.ArrayList;
 import Taylor.Math.Mayth;
+import Geometry.Algebra.bivector;
 
 public class vector{
 	
@@ -1197,6 +1198,12 @@ public class vector{
 		
 	}
 	
+	public bivector doWedge(vector b){
+		
+		return new bivector(this, b);
+		
+	}
+	
 	public vector doHadamard(vector b){
 		
 		if (this.length<=3 && b.length<=3){
@@ -1213,7 +1220,7 @@ public class vector{
 	
 	public degree doBetweenTwo(vector b){
 		
-		return	new degree(Mayth.Arccos(this.doScalar(b)/(this.Magnitude*b.Magnitude)));
+		return	new degree(Math.acos(this.doScalar(b)/(this.Magnitude*b.Magnitude)), true);
 		
 	}
 	
@@ -1375,11 +1382,11 @@ public class vector{
 		
 		if (a==true){
 			
-			return new degree(Mayth.Arccos(Mayth.abs(c/Magnitude)));
+			return new degree(Math.acos(Mayth.abs(c/Magnitude)), true);
 			
 		}else{
 			
-			return new degree(Mayth.Arccos(c/Magnitude));
+			return new degree(Math.acos(c/Magnitude), true);
 			
 		}
 		
