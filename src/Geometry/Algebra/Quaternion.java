@@ -23,7 +23,7 @@ public class Quaternion{
 		
 		this.a = a;
 		this.v = v;
-		this.Magnitude = Math.sqrt(a*a+v.getMagnitude()*v.getMagnitude());
+		this.Magnitude = Math.sqrt(a*a+Mayth.Potencia(v.getMagnitude()));
 		this.Conjugated = false;
 		
 	}
@@ -129,7 +129,13 @@ public class Quaternion{
 	
 	public Quaternion arcQuaternion(){
 		
-		return this.doConjugate().doScalar(1/this.Magnitude*this.Magnitude);
+		return this.doConjugate().doScalar(1/Mayth.Potencia(this.Magnitude));
+		
+	}
+	
+	public Quaternion doRaiz(){
+		
+		return new Quaternion(Math.sqrt((this.Magnitude+a)/2), this.v.getUnitary().doScalar(Math.sqrt((this.Magnitude-a)/2)));
 		
 	}
 	

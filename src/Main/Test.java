@@ -26,9 +26,9 @@ public class Test {
 		Quaternion q = new Quaternion(2, a);
 		Quaternion p = new Quaternion(2, b);
 		
-		//System.out.print(new bivector(a, b)+"\n");
+		System.out.print(q+"\n\n");
 		
-		System.out.print(q.arcQuaternion());
+		System.out.print(q.doRaiz().doRedondear(3));
 		
 		System.out.print("\n\n");
 		

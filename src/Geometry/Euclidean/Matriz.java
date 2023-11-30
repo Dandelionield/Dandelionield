@@ -1058,7 +1058,7 @@ public class Matriz{
 		
 	}
 	
-	public Matriz exp(int x){
+	public Matriz doPotencia(int x){
 		
 		if (State || this.Normal==false){
 			
