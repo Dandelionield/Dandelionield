@@ -792,6 +792,20 @@ public class Matriz{
 		
 	}
 	
+	public boolean isSquare(){
+		
+		if (Normal==false || this.length!=m[0].length){
+			
+			return false;
+			
+		}else{
+			
+			return true;
+			
+		}
+		
+	}
+	
 	public void setEcuationSystemEquals(vector v){
 		
 		if (State==false){
@@ -1058,19 +1072,47 @@ public class Matriz{
 		
 	}
 	
-	public Matriz doPotencia(int x){
+	public Matriz doPotencia(int n){
 		
-		if (State || this.Normal==false){
+		if (State || this.Normal==false || this.isSquare()==false){
 			
 			return null;
 			
 		}
 		
-		Matriz mz = new Matriz(this.m);
-		
-		for (int i=1; i<=x; i++){
+		if (n==1){
 			
-			mz = mz.doProduct(mz);
+			return this;
+			
+		}else if (n==0){
+			
+			return Matriz.getIdentityMatriz(this.length);
+			
+		}else if (n<0){
+			
+			return this.doPotencia(-n).arcMatriz();
+			
+		}else{
+			
+			return this.doProduct(this.doPotencia(n-1));
+			
+		}
+		
+	}
+	
+	public Matriz doEuler(){
+		
+		if (State || this.Normal==false || this.isSquare()==false){
+			
+			return null;
+			
+		}
+		
+		Matriz mz = Matriz.getIdentityMatriz(this.length);
+		
+		for (int n=1; n<=17; n++){
+			
+			mz = mz.doSuma(this.doPotencia(n).doScalar(1.00/Mayth.Factorial(n)));
 			
 		}
 		
@@ -1095,6 +1137,26 @@ public class Matriz{
 		}
 		
 		return new Matriz(v);
+		
+	}
+	
+	public static Matriz getIdentityMatriz(int RowsColumns){
+		
+		if (RowsColumns<2){
+			
+			return null;
+			
+		}
+		
+		double[][] mz = new double[RowsColumns][RowsColumns];
+		
+		for (int i=0; i<mz.length; i++){
+			
+			mz[i][i] = 1;
+			
+		}
+		
+		return new Matriz(mz);
 		
 	}
 	

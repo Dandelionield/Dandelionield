@@ -17,6 +17,7 @@ public class Quaternion{
 	private final double a;
 	
 	private final double Magnitude;
+	private final degree Phi;
 	private final boolean Conjugated;
 	
 	public Quaternion(double a, vector v){
@@ -24,6 +25,7 @@ public class Quaternion{
 		this.a = a;
 		this.v = v;
 		this.Magnitude = Math.sqrt(a*a+Mayth.Potencia(v.getMagnitude()));
+		this.Phi = new degree(Math.acos(a/Magnitude), true);
 		this.Conjugated = false;
 		
 	}
@@ -33,6 +35,7 @@ public class Quaternion{
 		this.a = Mayth.Redondear(q.a, limite);
 		this.v = q.v.doRedondear(limite);
 		this.Magnitude = Mayth.Redondear(q.Magnitude, limite);
+		this.Phi = q.Phi.doRedondear(limite);
 		this.Conjugated = q.Conjugated;
 		
 	}
@@ -44,6 +47,7 @@ public class Quaternion{
 		this.a = q.a;
 		this.v = q.v.doScalar(-1);
 		this.Magnitude = q.Magnitude;
+		this.Phi = q.Phi;
 		
 	}
 	
@@ -62,6 +66,12 @@ public class Quaternion{
 	public double getMagnitude(){
 		
 		return this.Magnitude;
+		
+	}
+	
+	public degree getPhi(){
+		
+		return this.Phi;
 		
 	}
 	
@@ -133,9 +143,25 @@ public class Quaternion{
 		
 	}
 	
+	public Quaternion doPotencia(double x){
+		
+		double p = Mayth.Potencia(this.Magnitude, x);
+		
+		return new Quaternion(p*Phi.doScalar(x).getCos(), this.v.getUnitary().doScalar(p*Phi.doScalar(x).getSen()));
+		
+	}
+	
 	public Quaternion doRaiz(){
 		
 		return new Quaternion(Math.sqrt((this.Magnitude+a)/2), this.v.getUnitary().doScalar(Math.sqrt((this.Magnitude-a)/2)));
+		
+	}
+	
+	public Quaternion doEuler(){
+		
+		double e = Mayth.Euler(this.a); 
+		
+		return new Quaternion(e*Mayth.Cos(this.v.getMagnitude()), this.v.getUnitary().doScalar(e*Mayth.Sen(this.v.getMagnitude())));
 		
 	}
 	

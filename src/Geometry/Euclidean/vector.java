@@ -1218,6 +1218,26 @@ public class vector{
 		
 	}
 	
+	public vector doEuler(){
+		
+		return vector.getFullComponents(1, this.length).doScalar(Mayth.Cosh(this.Magnitude)).doSuma(this.getUnitary().doScalar(Mayth.Senh(this.Magnitude)));
+		
+	}
+	
+	public vector doLn(){
+		
+		ArrayList<Double> v = new ArrayList<>();
+		
+		for (double p : this.v){
+			
+			v.add(Mayth.Ln(Mayth.abs(p)));
+			
+		}
+		
+		return new vector(v);
+		
+	}
+	
 	public degree doBetweenTwo(vector b){
 		
 		return	new degree(Math.acos(this.doScalar(b)/(this.Magnitude*b.Magnitude)), true);
