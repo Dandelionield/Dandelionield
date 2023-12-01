@@ -1107,7 +1107,7 @@ public class vector{
 		
 		if (this.Magnitude!=0){
 			
-			return this.doScalar(1/this.Magnitude);
+			return this.doScalar(1.00/this.Magnitude);
 			
 		}else{
 			
@@ -1360,15 +1360,15 @@ public class vector{
 	
 	public static vector getFullComponents(double c, int length){
 		
-		double[] v = new double[length];
+		double[] vz = new double[length];
 		
-		for (int i=0; i<v.length; i++){
+		for (int i=0; i<vz.length; i++){
 			
-			v[i] = c;
+			vz[i] = c;
 			
 		}
 		
-		return new vector(v);
+		return new vector(vz);
 		
 	}
 	
@@ -1384,11 +1384,11 @@ public class vector{
 		
 	}
 	
-	private double getMagnitud(double[] v){
+	private double getMagnitud(double[] vz){
 		
 		double n = 0;
 		
-		for (double p : v){
+		for (double p : vz){
 			
 			n+= Mayth.Potencia(p);
 			
@@ -1540,13 +1540,15 @@ public class vector{
 	
 	private double[] doScalar(double[] v, double s){
 		
+		double[] vz = new double[this.length];
+		
 		for (int i=0; i<v.length; i++){
 			
-			v[i] = v[i]*s;
+			vz[i] = v[i]*s;
 			
 		}
 		
-		return v;
+		return vz;
 		
 	}
 	
@@ -1566,15 +1568,15 @@ public class vector{
 	
 	private double[] doCross(Matriz mz){
 		
-		double[] v = new double[mz.length];
+		double[] vz = new double[mz.length];
 		
 		for (int i=0; i<mz.length; i++){
 			
-			v[i] = Mayth.Potencia(-1, i)*mz.getCofactor(0, i).getDetermine();
+			vz[i] = Mayth.Potencia(-1, i)*mz.getCofactor(0, i).getDetermine();
 			
 		}
 		
-		return v;
+		return vz;
 		
 	}
 	
