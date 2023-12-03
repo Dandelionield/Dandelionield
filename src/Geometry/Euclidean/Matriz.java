@@ -1110,7 +1110,7 @@ public class Matriz{
 		
 		Matriz mz = Matriz.getIdentityMatriz(this.length);
 		
-		for (int n=1; n<=17; n++){
+		for (int n=1; n<=25; n++){
 			
 			mz = mz.doSuma(this.doPotencia(n).doScalar(1.00/Mayth.Factorial(n)));
 			
