@@ -810,9 +810,9 @@ public class Matriz{
 		
 		if (State==false){
 			
-			State = true;
-			
 			this.m = this.addColumn(v).m;
+			
+			State = true;
 			
 		}
 		

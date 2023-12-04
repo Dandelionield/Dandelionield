@@ -9,6 +9,8 @@ package Main;
 import Taylor.Math.*;
 import Geometry.Euclidean.*;
 import Geometry.Algebra.*;
+import Physics.Fundamental.*;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -20,7 +22,7 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		vector a = new vector(new double[] {2, -5, 3, -1});
+		/*vector a = new vector(new double[] {2, -5, 3, -1});
 		vector b = new vector(new double[] {-1, 0, 7, -8});
 		vector c = new vector(new double[] {9, 2, -2, -3});
 		vector d = new vector(new double[] {-4, 0, -7, 4});
@@ -28,22 +30,29 @@ public class Test {
 		Quaternion q = new Quaternion(2, a);
 		Quaternion p = new Quaternion(2, b);
 		
-		Matriz m = new Matriz(new vector[] {a, b, c, d});
+		Matriz m = new Matriz(new vector[] {a, b, c, d});//*/
 		
-		System.out.print(q.doHamilton(q.doConjugate())+"\n\n");
-		/*System.out.print(a.doEuler().doRedondear(2)+"\n\n");//*
+		distance ft3 = new distance(5, "ft^3", Mayth.Potencia(0.3048, 3));
+		distance mm2 = new distance(100000, "mm^2", Mayth.Potencia(0.001, 2));
 		
-		System.out.print(q.doRedondear(2)+"\n\n");
-		System.out.print(q.doRaiz().doRedondear(2)+"\n\n");
-		System.out.print(q.doPotencia(2).doRedondear(2)+"\n\n");
-		System.out.print(q.doRaiz().doPotencia(2).doRedondear(2)+"\n\n");//*
-		
-		System.out.print(p.getVector()+"\n\n");
-		System.out.print(q.getVector()+"\n\n");
-		System.out.print(p.doScalar(q)+"\n\n");//*/
+		System.out.print(ft3.doProduct(mm2)+"\n\n");
 		
 		System.out.print("\n\n");
 		
     }
+	
+	private static long getnthPower(String U){
+		
+		if (U.contains("^")){
+			
+			return Long.parseLong(U.substring(U.indexOf('^')+1));
+			
+		}else{
+			
+			return 1;
+			
+		}
+		
+	}
     
 }
