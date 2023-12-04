@@ -40,19 +40,5 @@ public class Test {
 		System.out.print("\n\n");
 		
     }
-	
-	private static long getnthPower(String U){
-		
-		if (U.contains("^")){
-			
-			return Long.parseLong(U.substring(U.indexOf('^')+1));
-			
-		}else{
-			
-			return 1;
-			
-		}
-		
-	}
     
 }

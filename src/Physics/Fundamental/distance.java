@@ -159,28 +159,69 @@ public class distance{
 			
 		}
 		
-		double nthMeterValue = x.toMeter().getMagnitude();
+		double nthMeterValue;
+		BigDecimal Equivalencia;
+		BigDecimal newEquivalence;
+		BigDecimal MeterValue;
+		BigDecimal powNonMeterValue;
+		BigDecimal backUpEquivalencia;
 		
-		BigDecimal MeterValue = new BigDecimal(Math.pow(nthMeterValue, 1.00/x.nth));
+		if (this.nth==x.nth){
+			
+			nthMeterValue = x.toMeter().getScalar();
+			
+			return new distance(new BigDecimal(this.Scalar).multiply(new BigDecimal(nthMeterValue).divide(this.equivalent, MathContext.DECIMAL128)).setScale(15, RoundingMode.HALF_UP).doubleValue(), getNewUnity(this.nth, x.nth), this.nth+x.nth, this.equivalent.multiply(this.equivalent));
+			
+			
+		}else if (this.nth>x.nth){
+			
+			Equivalencia = new BigDecimal(Math.pow(this.equivalent.doubleValue(), 1.00/this.nth));
 		
-		BigDecimal Equivalencia = new BigDecimal(Math.pow(this.equivalent.doubleValue(), 1.00/this.nth));
-		
-		BigDecimal powNonMeterValue = Equivalencia.multiply(MeterValue);
-		
-		BigDecimal newEquivalence = this.equivalent;
-		
-		for (long i=1; i<=x.nth; i++){
+			newEquivalence = this.equivalent;
+			
+			nthMeterValue = x.toMeter().getMagnitude();
+			
+			MeterValue = new BigDecimal(Math.pow(nthMeterValue, 1.00/x.nth));
+			
+			powNonMeterValue = MeterValue.divide(Equivalencia, MathContext.DECIMAL128);
+			
+			for (long i=2; i<=Mayth.abs(x.nth); i++){
+				
+				newEquivalence = newEquivalence.multiply(Equivalencia);
+				
+				powNonMeterValue = powNonMeterValue.multiply(powNonMeterValue);
+				
+			}
 			
 			newEquivalence = newEquivalence.multiply(Equivalencia);
 			
-			powNonMeterValue = powNonMeterValue.multiply(powNonMeterValue);
+			return new distance(new BigDecimal(s*this.Scalar).multiply(powNonMeterValue).setScale(15, RoundingMode.HALF_UP).doubleValue(), getNewUnity(this.nth, x.nth), this.nth+x.nth, newEquivalence);
+			
+		}else{
+		
+			Equivalencia = new BigDecimal(Math.pow(this.equivalent.doubleValue(), 1.00/this.nth));
+			
+			backUpEquivalencia = Equivalencia;
+			
+			newEquivalence = this.equivalent;
+			
+			nthMeterValue = x.toMeter().getMagnitude();
+			
+			for(long i=2; i<=Mayth.abs(x.nth); i++){
+				
+				newEquivalence = newEquivalence.multiply(Equivalencia);
+				
+				Equivalencia = Equivalencia.multiply(backUpEquivalencia);
+				
+			}
+			
+			newEquivalence = newEquivalence.multiply(Equivalencia);
+			
+			return new distance(new BigDecimal(s*nthMeterValue).divide(Equivalencia, MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue(), getNewUnity(this.nth, x.nth), this.nth+x.nth, newEquivalence);
 			
 		}
 		
-		return new distance(s*this.Scalar*powNonMeterValue.doubleValue(), getNewUnity(this.nth, x.nth), this.nth+x.nth, newEquivalence);
-		
-		
-	}//*/
+	}
 	
 	public distance doRedondear(int limite){
 		
@@ -193,7 +234,15 @@ public class distance{
 		
 		try{
 			
-			return this.Unity.substring(0, this.Unity.indexOf('^'))+"^"+(a+b);
+			if (this.Unity.contains("^")){
+				
+				return this.Unity.substring(0, this.Unity.indexOf('^'))+"^"+(a+b);
+				
+			}else{
+				
+				return this.Unity+"^"+(a+b);
+				
+			}
 			
 		}catch(Exception e){
 			
