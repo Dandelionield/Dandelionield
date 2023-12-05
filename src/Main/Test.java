@@ -32,12 +32,11 @@ public class Test {
 		
 		Matriz m = new Matriz(new vector[] {a, b, c, d});//*/
 		
-		distance ft3 = new distance(5, "ft^3", Mayth.Potencia(0.3048, 3));
-		distance mm2 = new distance(100000, "mm^2", Mayth.Potencia(0.001, 2));
+		time t = time.getGregorianYearValueOf(1);
+		time t2 = time.getYearValueOf(1);
 		
-		distance ft = distance.getFeetValueOf(1.70997594668).doPotencia(3).doRedondear(10);
-		
-		System.out.print(distance.getLightYearValueOf(1).toMetre()+"\n\n");
+		System.out.print(t.getSecondEquivalent()+"\n\n");
+		System.out.print(t2.getSecondEquivalent()+"\n\n");
 		
 		System.out.print("\n\n");
 		

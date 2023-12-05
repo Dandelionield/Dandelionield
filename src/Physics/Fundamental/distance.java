@@ -207,7 +207,7 @@ public class distance{
 		
 		return this.doProduct(this.doPotencia(n-1));
 		
-	}//*/
+	}
 	
 	public distance doProduct(distance x){
 		
@@ -324,7 +324,7 @@ public class distance{
 			
 			nthMeterValue = x.toMetre().getScalar();
 			
-			return new distance(new BigDecimal(this.Scalar).divide(new BigDecimal(nthMeterValue).divide(this.equivalent, MathContext.DECIMAL128), MathContext.DECIMAL128).setScale(14, RoundingMode.HALF_UP).doubleValue(), getNewUnity(this.nth, x.nth, -1), this.nth+x.nth, this.equivalent.multiply(this.equivalent));
+			return new distance(new BigDecimal(this.Scalar).divide(new BigDecimal(nthMeterValue).divide(this.equivalent, MathContext.DECIMAL128), MathContext.DECIMAL128).setScale(14, RoundingMode.HALF_UP).doubleValue(), getNewUnity(this.nth, x.nth, -1), this.nth-x.nth, this.equivalent.multiply(this.equivalent));
 			
 			
 		}else if (this.nth>x.nth){
@@ -349,7 +349,7 @@ public class distance{
 			
 			newEquivalence = newEquivalence.multiply(Equivalencia);
 			
-			return new distance(new BigDecimal(s*this.Scalar).divide(powNonMeterValue, MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue(), getNewUnity(this.nth, x.nth, -1), this.nth+x.nth, newEquivalence);
+			return new distance(new BigDecimal(s*this.Scalar).divide(powNonMeterValue, MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue(), getNewUnity(this.nth, x.nth, -1), this.nth-x.nth, newEquivalence);
 			
 		}else{
 		
@@ -371,7 +371,7 @@ public class distance{
 			
 			newEquivalence = newEquivalence.multiply(backUpEquivalencia);
 			
-			return new distance(new BigDecimal(this.Scalar).divide(new BigDecimal(nthMeterValue).divide(Equivalencia, MathContext.DECIMAL128), MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue(), getNewUnity(this.nth, x.nth, -1), this.nth+x.nth, newEquivalence);
+			return new distance(new BigDecimal(this.Scalar).divide(new BigDecimal(nthMeterValue).divide(Equivalencia, MathContext.DECIMAL128), MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue(), getNewUnity(this.nth, x.nth, -1), this.nth-x.nth, newEquivalence);
 			
 		}
 		
