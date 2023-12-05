@@ -7,6 +7,8 @@ package Taylor.Math;
  */
  
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.math.MathContext;
  
 public class bigFuntions{
 	
@@ -27,6 +29,12 @@ public class bigFuntions{
 			
 		}
 		
+		if (exponent<0){
+			
+			return new BigDecimal(1).divide(bigPotencia(base, -exponent), MathContext.DECIMAL128);
+			
+		}
+		
 		return new BigDecimal(base).multiply(bigPotencia(base, exponent-1));
 		
 	}
@@ -42,6 +50,12 @@ public class bigFuntions{
 		if (base.compareTo(new BigDecimal(1))==0 || exponent==0){
 			
 			return new BigDecimal(1);
+			
+		}
+		
+		if (exponent<0){
+			
+			return new BigDecimal(1).divide(bigPotencia(base, -exponent), MathContext.DECIMAL128);
 			
 		}
 		

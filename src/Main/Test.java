@@ -35,7 +35,9 @@ public class Test {
 		distance ft3 = new distance(5, "ft^3", Mayth.Potencia(0.3048, 3));
 		distance mm2 = new distance(100000, "mm^2", Mayth.Potencia(0.001, 2));
 		
-		System.out.print(ft3.doProduct(mm2)+"\n\n");
+		distance ft = distance.getFeetValueOf(1.70997594668).doPotencia(3).doRedondear(10);
+		
+		System.out.print(ft+"\n\n");
 		
 		System.out.print("\n\n");
 		
