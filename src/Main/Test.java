@@ -35,8 +35,8 @@ public class Test {
 		time t = time.getGregorianYearValueOf(1);
 		time t2 = time.getYearValueOf(1);
 		
-		System.out.print(t.getSecondEquivalent()+"\n\n");
-		System.out.print(t2.getSecondEquivalent()+"\n\n");
+		System.out.print(t.toSecond()+"\n\n");
+		System.out.print(t2.toSecond()+"\n\n");
 		
 		System.out.print("\n\n");
 		

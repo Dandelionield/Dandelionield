@@ -19,6 +19,9 @@ public class time{
 	private long nth;
 	private BigDecimal equivalent;
 	
+	private static final BigDecimal[] Year = {new BigDecimal(29_030_400), new BigDecimal(365).multiply(new BigDecimal(86400)).add(new BigDecimal(5).multiply(new BigDecimal(3600))).add(new BigDecimal(49).multiply(new BigDecimal(60))).add(new BigDecimal(12))};
+	private static byte y = 0;
+	
 	public time(double Scalar){
 		
 		this.Scalar = Scalar;
@@ -133,7 +136,31 @@ public class time{
 			
 		}
 		
-		return new time(new BigDecimal(this.Scalar).multiply(this.equivalent).setScale(15, RoundingMode.HALF_UP).doubleValue(), "seg"+bup, this.nth, new BigDecimal(1));
+		return new time(new BigDecimal(this.Scalar).multiply(this.equivalent).setScale(15, RoundingMode.HALF_UP).doubleValue(), "s"+bup, this.nth, new BigDecimal(1));
+		
+	}
+	
+	public static void useNormalYear(boolean b){
+		
+		time.y = (byte) 1;
+		
+		if (b==true){
+			
+			time.y = (byte) 0;
+			
+		}
+		
+	}
+	
+	public static void useGregorianYearYear(boolean b){
+		
+		time.y = (byte) 0;
+		
+		if (b==true){
+			
+			time.y = (byte) 1;
+			
+		}
 		
 	}
 	
@@ -409,19 +436,19 @@ public class time{
 	
 	public static time getKalpaValueOf(double value){
 		
-		return new time(value, "kp", new BigDecimal(4.32).multiply(Mayth.bigPotencia(10, 9)).multiply(new BigDecimal(29_030_400)));
+		return new time(value, "kp", new BigDecimal(4.32).multiply(Mayth.bigPotencia(10, 9)).multiply(Year[y]));
 		
 	}
 	
 	public static time getEonValueOf(double value){
 		
-		return new time(value, "eon", Mayth.bigPotencia(10, 9).multiply(new BigDecimal(29_030_400)));
+		return new time(value, "eon", Mayth.bigPotencia(10, 9).multiply(Year[y]));
 		
 	}
 	
 	public static time getGalacticYearValueOf(double value){
 		
-		return new time(value, "Gy", new BigDecimal(2.3).multiply(Mayth.bigPotencia(10, 8)).multiply(new BigDecimal(29_030_400)));
+		return new time(value, "Gy", new BigDecimal(2.3).multiply(Mayth.bigPotencia(10, 8)).multiply(Year[y]));
 		
 	}
 	
@@ -433,7 +460,7 @@ public class time{
 	
 	public static time getMegayearValueOf(double value){
 		
-		return new time(value, "My", Mayth.bigPotencia(10, 6).multiply(new BigDecimal(29_030_400)));
+		return new time(value, "My", Mayth.bigPotencia(10, 6).multiply(Year[y]));
 		
 	}
 	
@@ -445,25 +472,25 @@ public class time{
 	
 	public static time getAgeValueOf(double value){
 		
-		return new time(value, "Age", new BigDecimal(2.148).multiply(new BigDecimal(29_030_400)).add(new BigDecimal(2.00/3.00).multiply(new BigDecimal(29_030_400))));
+		return new time(value, "Age", new BigDecimal(2.148).multiply(Year[y]).add(new BigDecimal(2.00/3.00).multiply(Year[y])));
 		
 	}
 	
 	public static time getMillenniumValueOf(double value){
 		
-		return new time(value, "ky", Mayth.bigPotencia(10, 3).multiply(new BigDecimal(29_030_400)));
+		return new time(value, "ky", Mayth.bigPotencia(10, 3).multiply(Year[y]));
 		
 	}
 	
 	public static time getCenturyValueOf(double value){
 		
-		return new time(value, "c", Mayth.bigPotencia(10, 2).multiply(new BigDecimal(29_030_400)));
+		return new time(value, "c", Mayth.bigPotencia(10, 2).multiply(Year[y]));
 		
 	}
 	
 	public static time getJubileeValueOf(double value){
 		
-		return new time(value, "jb", new BigDecimal(50).multiply(new BigDecimal(29_030_400)));
+		return new time(value, "jb", new BigDecimal(50).multiply(Year[y]));
 		
 	}
 	
@@ -475,25 +502,25 @@ public class time{
 	
 	public static time getIndictionValueOf(double value){
 		
-		return new time(value, "id", new BigDecimal(15).multiply(new BigDecimal(29_030_400)));
+		return new time(value, "id", new BigDecimal(15).multiply(Year[y]));
 		
 	}
 	
 	public static time getDecadeValueOf(double value){
 		
-		return new time(value, "dc", new BigDecimal(10).multiply(new BigDecimal(29_030_400)));
+		return new time(value, "dc", new BigDecimal(10).multiply(Year[y]));
 		
 	}
 	
 	public static time getLustrumValueOf(double value){
 		
-		return new time(value, "lt", new BigDecimal(5).multiply(new BigDecimal(29_030_400)));
+		return new time(value, "lt", new BigDecimal(5).multiply(Year[y]));
 		
 	}
 	
 	public static time getOlimpiadValueOf(double value){
 		
-		return new time(value, "Olmp", new BigDecimal(4).multiply(new BigDecimal(29_030_400)));
+		return new time(value, "Olmp", new BigDecimal(4).multiply(Year[y]));
 		
 	}
 	
@@ -541,7 +568,7 @@ public class time{
 	
 	public static time getYearValueOf(double value){
 		
-		return new time(value, "yr", new BigDecimal(29_030_400));
+		return new time(value, "yr", Year[0]);
 		
 	}
 	
@@ -553,7 +580,7 @@ public class time{
 	
 	public static time getGregorianYearValueOf(double value){
 		
-		return new time(value, "sy", new BigDecimal(366).multiply(new BigDecimal(86400)).add(new BigDecimal(5).multiply(new BigDecimal(3600))).add(new BigDecimal(49).multiply(new BigDecimal(60))).add(new BigDecimal(12)));
+		return new time(value, "sy", Year[1]);
 		
 	}
 	
