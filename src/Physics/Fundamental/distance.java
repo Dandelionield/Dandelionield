@@ -385,7 +385,7 @@ public class distance{
 	
 	public static distance getLightYearValueOf(double value){
 		
-		return new distance(value, "ly", new BigDecimal(9.46052840488).multiply(Mayth.bigPotencia(10, 15)));
+		return new distance(value, "ly", new BigDecimal("9460730472580800"));
 		
 	}
 	

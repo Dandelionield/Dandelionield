@@ -37,7 +37,7 @@ public class Test {
 		
 		distance ft = distance.getFeetValueOf(1.70997594668).doPotencia(3).doRedondear(10);
 		
-		System.out.print(ft+"\n\n");
+		System.out.print(distance.getLightYearValueOf(1).toMetre()+"\n\n");
 		
 		System.out.print("\n\n");
 		
