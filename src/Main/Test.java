@@ -22,21 +22,32 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		/*vector a = new vector(new double[] {2, -5, 3, -1});
+		vector a = new vector(new double[] {2, -5, 3, -1});
 		vector b = new vector(new double[] {-1, 0, 7, -8});
 		vector c = new vector(new double[] {9, 2, -2, -3});
 		vector d = new vector(new double[] {-4, 0, -7, 4});
 		
+		bivector B = new bivector(c, d);
+		
+		Matriz mz = new Matriz(new vector[] {a, b, c, d});
+		
 		Quaternion q = new Quaternion(2, a);
-		Quaternion p = new Quaternion(2, b);
+		Quaternion p = new Quaternion(2, b);//*/
 		
-		Matriz m = new Matriz(new vector[] {a, b, c, d});//*/
+		distance x = distance.getMetreValueOf(5);
+		time t = time.getSecondValueOf(2);
+		mass m = mass.getGramValueOf(3);
 		
-		time t = time.getGregorianYearValueOf(1);
-		time t2 = time.getYearValueOf(1);
+		System.out.print(B+"\n\n");
 		
-		System.out.print(t.toSecond()+"\n\n");
-		System.out.print(t2.toSecond()+"\n\n");
+		System.out.print(q+"\n\n");
+		System.out.print(p+"\n\n");
+		
+		System.out.print(mz+"\n\n");//*/
+		
+		System.out.print(x+"\n\n");
+		System.out.print(t+"\n\n");
+		System.out.print(m+"\n\n");
 		
 		System.out.print("\n\n");
 		

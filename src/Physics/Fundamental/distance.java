@@ -485,7 +485,7 @@ public class distance{
 		
 	}
 	
-	public static distance getMilimetreValueOf(double value){
+	public static distance getMillimetreValueOf(double value){
 		
 		return new distance(value, "mm", Mayth.bigPotencia(10, -3));
 		
@@ -541,7 +541,7 @@ public class distance{
 	
 	public static distance getPlanckLengthValueOf(double value){
 		
-		return new distance(value, "PL", Mayth.bigPotencia(10, -35));
+		return new distance(value, "pl", Mayth.bigPotencia(10, -35));
 		
 	}
 	

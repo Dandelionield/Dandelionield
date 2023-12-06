@@ -174,11 +174,11 @@ public class time{
 		
 		if (this.equivalent.compareTo(new BigDecimal(0))==0){
 			
-			throwError("unabled to add times due to variable "+this.toString()+" has no equivalency in meters");
+			throwError("unabled to add times due to variable "+this.toString()+" has no equivalency in seconds");
 			
 		}else if (t.equivalent.compareTo(new BigDecimal(0))==0){
 			
-			throwError("unabled to add times due to variable "+t.toString()+" has no equivalency in meters");
+			throwError("unabled to add times due to variable "+t.toString()+" has no equivalency in seconds");
 			
 		}
 		
@@ -194,11 +194,11 @@ public class time{
 		
 		if (this.equivalent.compareTo(new BigDecimal(0))==0){
 			
-			throwError("unabled to subtract times due to variable "+this.toString()+" has no equivalency in meters");
+			throwError("unabled to subtract times due to variable "+this.toString()+" has no equivalency in seconds");
 			
 		}else if (t.equivalent.compareTo(new BigDecimal(0))==0){
 			
-			throwError("unabled to subtract times due to variable "+t.toString()+" has no equivalency in meters");
+			throwError("unabled to subtract times due to variable "+t.toString()+" has no equivalency in seconds");
 			
 		}
 		
@@ -240,11 +240,11 @@ public class time{
 		
 		if (this.equivalent.compareTo(new BigDecimal(0))==0){
 			
-			throwError("unabled to multiply times due to variable "+this.toString()+" has no equivalency in meters");
+			throwError("unabled to multiply times due to variable "+this.toString()+" has no equivalency in seconds");
 			
 		}else if (t.equivalent.compareTo(new BigDecimal(0))==0){
 			
-			throwError("unabled to multiply times due to variable "+t.toString()+" has no equivalency in meters");
+			throwError("unabled to multiply times due to variable "+t.toString()+" has no equivalency in seconds");
 			
 		}
 		
@@ -324,11 +324,11 @@ public class time{
 		
 		if (this.equivalent.compareTo(new BigDecimal(0))==0){
 			
-			throwError("unabled to divide times due to variable "+this.toString()+" has no equivalency in meters");
+			throwError("unabled to divide times due to variable "+this.toString()+" has no equivalency in seconds");
 			
 		}else if (t.equivalent.compareTo(new BigDecimal(0))==0){
 			
-			throwError("unabled to divide times due to variable "+t.toString()+" has no equivalency in meters");
+			throwError("unabled to divide times due to variable "+t.toString()+" has no equivalency in seconds");
 			
 		}
 		
@@ -526,7 +526,7 @@ public class time{
 	
 	public static time getLeapYearValueOf(double value){
 		
-		return new time(value, "ly", new BigDecimal(366).multiply(new BigDecimal(86400)));
+		return new time(value, "Ly", new BigDecimal(366).multiply(new BigDecimal(86400)));
 		
 	}
 	
@@ -566,21 +566,81 @@ public class time{
 		
 	}
 	
+	public static time getSideralYearValueOf(double value){
+		
+		return new time(value, "sy", new BigDecimal(366).multiply(new BigDecimal(86400)).add(new BigDecimal(6).multiply(new BigDecimal(3600))).add(new BigDecimal(9).multiply(new BigDecimal(60))).add(new BigDecimal(9.7635456)));
+		
+	}
+	
+	public static time getGregorianYearValueOf(double value){
+		
+		return new time(value, "yr", Year[1]);
+		
+	}
+	
 	public static time getYearValueOf(double value){
 		
 		return new time(value, "yr", Year[0]);
 		
 	}
 	
-	public static time getSideralYearValueOf(double value){
+	public static time getLunarYearValueOf(double value){
 		
-		return new time(value, "yr", new BigDecimal(366).multiply(new BigDecimal(86400)).add(new BigDecimal(6).multiply(new BigDecimal(3600))).add(new BigDecimal(9).multiply(new BigDecimal(60))).add(new BigDecimal(9.7635456)));
+		return new time(value, "ly", new BigDecimal(354.37).multiply(new BigDecimal(86400)));
 		
 	}
 	
-	public static time getGregorianYearValueOf(double value){
+	public static time getSemesterValueOf(double value){
 		
-		return new time(value, "sy", Year[1]);
+		return new time(value, "sixmth", new BigDecimal(18).multiply(new BigDecimal(604800)));
+		
+	}
+	
+	public static time getQuarantineValueOf(double value){
+		
+		return new time(value, "qa", new BigDecimal(40).multiply(new BigDecimal(86400)));
+		
+	}
+	
+	public static time getDecasecondValueOf(double value){
+		
+		return new time(value, "das", Mayth.bigPotencia(10, 1));
+		
+	}
+	
+	public static time getDecisecondValueOf(double value){
+		
+		return new time(value, "ds", Mayth.bigPotencia(10, -1));
+		
+	}
+	
+	public static time getCentisecondValueOf(double value){
+		
+		return new time(value, "cs", Mayth.bigPotencia(10, -2));
+		
+	}
+	
+	public static time getMillisecondValueOf(double value){
+		
+		return new time(value, "ms", Mayth.bigPotencia(10, -3));
+		
+	}
+	
+	public static time getMicrosecondValueOf(double value){
+		
+		return new time(value, "µs", Mayth.bigPotencia(10, -6));
+		
+	}
+	
+	public static time getNanosecondValueOf(double value){
+		
+		return new time(value, "ns", Mayth.bigPotencia(10, -9));
+		
+	}
+	
+	public static distance getPlanckTimeValueOf(double value){
+		
+		return new distance(value, "pt", new BigDecimal(5.39).multiply(Mayth.bigPotencia(10, -44)));
 		
 	}
 	
