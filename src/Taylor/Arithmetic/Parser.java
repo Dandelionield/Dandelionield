@@ -704,7 +704,7 @@ public class Parser extends Mayth{
 			}
 			
 		}
-		
+		System.out.print(wd+"\n\n");
 		return new BigDecimal(wd);
 		
 	}
@@ -742,6 +742,12 @@ public class Parser extends Mayth{
 	}
 	
 	public static boolean isAllowed(String wd){
+		
+		if (wd.charAt(0)=='+'){
+			
+			return false;
+			
+		}
 		
 		try{
 			
@@ -873,7 +879,7 @@ public class Parser extends Mayth{
 		
 			if (i==0){return wd.substring(0, indice);}
 			
-			if (wd.charAt(i)=='.'){continue;}
+			if (wd.charAt(i)=='.' || wd.charAt(i)=='E'){continue;}
 			
 			if (isAllowed(wd.substring(i, indice))==false){
 				

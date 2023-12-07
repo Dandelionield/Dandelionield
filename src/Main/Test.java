@@ -52,7 +52,7 @@ public class Test {
 		System.out.print(t+"\n\n");
 		System.out.print(m+"\n\n");//*/
 		
-		Parser pr = new Parser("ln(((Sen(30))√2)!)+10E9");//ln(((Sen(30))√2)!)+0.001*0.001*0.001"
+		Parser pr = new Parser("0.001*0.001*0.001+10E9");//ln(((Sen(30))√2)!)+0.001*0.001*0.001"
 		
 		System.out.print(pr.getProcess()+"\n\n");
 		
