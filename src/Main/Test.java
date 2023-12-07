@@ -7,6 +7,7 @@ package Main;
  */
 
 import Taylor.Math.*;
+import Taylor.Arithmetic.*;
 import Geometry.Euclidean.*;
 import Geometry.Algebra.*;
 import Physics.Fundamental.*;
@@ -18,7 +19,9 @@ public class Test {
 
     public static void main(String[] args){
         
-		String bup = "";
+		String bup = "(1235)";
+		
+		double n = 2;
 		
 		System.out.print("\n\n");
 		
@@ -32,7 +35,7 @@ public class Test {
 		Matriz mz = new Matriz(new vector[] {a, b, c, d});
 		
 		Quaternion q = new Quaternion(2, a);
-		Quaternion p = new Quaternion(2, b);//*/
+		Quaternion p = new Quaternion(2, b);//*
 		
 		distance x = distance.getMetreValueOf(5);
 		time t = time.getSecondValueOf(2);
@@ -43,11 +46,15 @@ public class Test {
 		System.out.print(q+"\n\n");
 		System.out.print(p+"\n\n");
 		
-		System.out.print(mz+"\n\n");//*/
+		System.out.print(mz+"\n\n");//*
 		
 		System.out.print(x+"\n\n");
 		System.out.print(t+"\n\n");
-		System.out.print(m+"\n\n");
+		System.out.print(m+"\n\n");//*/
+		
+		Parser pr = new Parser("0.001^3");
+		
+		System.out.print(pr+"\n\n");
 		
 		System.out.print("\n\n");
 		

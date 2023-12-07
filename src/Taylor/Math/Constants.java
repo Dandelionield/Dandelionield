@@ -46,7 +46,7 @@ public class Constants extends bigFuntions{
 		
 	}
 	
-	public static BigDecimal Auero(){
+	public static BigDecimal Aureo(){
 		
 		return new BigDecimal(Trigonometry.Cos(36)).multiply(new BigDecimal(2)).setScale(15, RoundingMode.HALF_UP);
 		

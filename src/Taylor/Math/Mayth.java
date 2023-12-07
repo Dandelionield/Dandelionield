@@ -178,7 +178,7 @@ public class Mayth extends Hyperbolic{
 
 		if (x>1){
 		
-			for (int n=1; n<=300; n++){
+			for (int n=1; n<=500; n++){
 				
 				x2 = x2.multiply(new BigDecimal(1/x - 1));
 				UNO = UNO.multiply(new BigDecimal(-1));
