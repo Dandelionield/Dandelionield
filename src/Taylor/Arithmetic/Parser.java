@@ -98,19 +98,27 @@ public class Parser extends Mayth{
 		
 		if (wd.contains("(")){
 			
-			for (int i=wd.length()-1; i>=0 ; i--){
+			for (int a = wd.length()-1; a>=0; a--){
 				
-				if (wd.charAt(i)=='('){
+				if (wd.charAt(a)=='('){
 					
-					return Parse(
-					
-						wd.substring(0, i)+Parse(
+					for (int b=a; b<wd.length(); b++){
 						
-							wd.substring(i+1, wd.indexOf(')'))
+						if (wd.charAt(b)==')'){
 							
-						)+wd.substring(wd.indexOf(')')+1)
+							return Parse(
+							
+								wd.substring(0, a)+Parse(
+								
+									wd.substring(a+1, b)
+									
+								)+wd.substring(b+1)
+								
+							);
+							
+						}
 						
-					);
+					}
 					
 				}
 				
