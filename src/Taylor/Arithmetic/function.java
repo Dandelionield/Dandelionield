@@ -19,7 +19,8 @@ public class function extends Mayth{
 	private String function;
 	private String name;
 	
-	private Parser p = null;
+	private ArrayList<Parser> p = new ArrayList<>();
+	private ArrayList<Double> values = new ArrayList<>();
 	private double n = Double.NaN;
 
 	public function(char variable){
@@ -62,7 +63,7 @@ public class function extends Mayth{
 		
 		this.function = function;
 		
-		this.p = null;
+		this.p.clear();
 		this.n = Double.NaN;
 		
 	}
@@ -75,37 +76,159 @@ public class function extends Mayth{
 	
 	public String toString(){
 		
-		if (Double.isNaN(this.n)){
+		String bup = "";
+		
+		Parser q;
+		
+		if (Double.isNaN(this.n)==true && this.p.size()==0){
 
 			return this.name+"("+this.variable+") = "+function;
 			
+		}else if (Double.isNaN(this.n)==false && this.p.size()==1){
+			
+			return this.name+"("+this.n+") = "+p.get(0);
+			
 		}else{
 			
-			return this.name+"("+this.n+") = "+p;
+			bup = this.name+"("+this.variable+") = "+function+"\n\n";
+			
+			for (int i=0; i<this.p.size(); i++){
+				
+				q = this.p.get(i);
+				
+				if (q!=null){
+					
+					if (q.get()!=null){
+						
+						bup+= name+"("+this.values.get(i)+") = "+this.p.get(i)+"\n";
+						
+					}else{
+						
+						bup+= name+"("+this.values.get(i)+") = "+Overwrite(this.values.get(i))+" = "+Double.NaN+"\n";
+						
+					}
+					
+				}else{
+					
+					bup+= name+"("+this.values.get(i)+") = "+Overwrite(this.values.get(i))+" = "+Double.NaN+"\n";
+					
+				}
+				
+			}
 			
 		}
+		
+		return bup;
 		
 	}
 	
 	public BigDecimal get(double n){
 		
-		this.p = new Parser(Overwrite(n));
+		this.p.add(new Parser(Overwrite(n)));
 		this.n = n;
 		
-		return this.p.get();
+		return this.p.get(0).get();
 		
 	}
 	
 	public void set(double n){
 		
-		this.p = new Parser(Overwrite(n));
+		this.p.add(new Parser(Overwrite(n)));
 		this.n = n;
+		
+	}
+	
+	public void intervalueOf(double a, double b){
+		
+		this.intervalueOf(a, b, 1);
+		
+	}
+	
+	public void intervalueOf(double a, double b, double increment){
+		
+		this.p.clear();
+		this.values.clear();
+		this.n = Double.NaN;
+		
+		long n = 0;
+		
+		do{
+			
+			if (a+(n*increment)>=b){
+				
+				values.add(b);
+				
+				try {
+					
+					this.p.add(new Parser(Overwrite(b)));
+					
+				}catch(Exception e){
+					
+					this.p.add(null);
+					
+				}
+				
+				break;
+				
+			}
+			
+			values.add(a+(n*increment));
+			
+			try {
+				
+				this.p.add(new Parser(Overwrite(values.get(values.size()-1))));
+				
+			}catch(Exception e){
+				
+				this.p.add(null);
+				
+			}
+			
+			n++;
+			
+		}while(a+(n*increment)<=b);
 		
 	}
 	
 	public String getProcess(){
 		
-		return this.toString()+"\n\n"+p.getProcess();
+		String bup = "";
+		
+		Parser q;
+		
+		if (Double.isNaN(this.n)==false && p.size()==1){
+			
+			return this.toString()+"\n\n"+p.get(0).getProcess();
+			
+		}else if (Double.isNaN(this.n)==true && this.p.size()>=1){
+			
+			for (int i=0; i<this.p.size(); i++){
+				
+				q = this.p.get(i);
+				
+				if (q!=null){
+					
+					if (q.get()!=null){
+						
+						bup+= name+"("+this.values.get(i)+") = "+this.p.get(i)+"\n\n"+p.get(i).getProcess()+"\n\n";
+						
+					}else{
+						
+						bup+= name+"("+this.values.get(i)+") = "+Overwrite(this.values.get(i))+" = "+Double.NaN+"\n\n";
+						
+					}
+					
+				}else{
+					
+					bup+= name+"("+this.values.get(i)+") = "+Overwrite(this.values.get(i))+" = "+Double.NaN+"\n\n";
+					
+				}
+				
+			}
+			
+		}
+		
+		return bup;
 		
 	}
 	

@@ -15,7 +15,6 @@ import Taylor.Math.Mayth;
  
 public class Parser extends Mayth{
 
-	private static ArrayList<String> Process = new ArrayList<>();
 	private ArrayList<String> wdProcess;
 	private BigDecimal n;
 	private String op = "";
@@ -24,21 +23,21 @@ public class Parser extends Mayth{
 		
 		super(false);
 		
-		Parser.Process.clear();
-		
 		try{
 			
-			n = Parser.Parse(wd);
+			wdProcess = new ArrayList<>();
 			
-			wdProcess = Parser.Process;
+			n = Parse(wd);
 			
 		}catch(Exception e){
 			
-			e.printStackTrace();
+			//e.printStackTrace();
 			
 			op = "Error";
 			
 			n = null;
+			
+			wdProcess = new ArrayList<>();
 			
 			wdProcess.add(op);
 			
@@ -78,15 +77,23 @@ public class Parser extends Mayth{
 	
 	public String toString(){
 		
-		return wdProcess.get(0)+" = "+n.setScale(15, RoundingMode.HALF_UP).doubleValue();
+		if (n!=null){
+			
+			return wdProcess.get(0)+" = "+n.setScale(15, RoundingMode.HALF_UP).doubleValue();
+			
+		}else{
+			
+			return wdProcess.get(0)+" = "+Double.NaN;
+			
+		}
 		
 	}
 	
-	public static BigDecimal Parse(String wd){
+	public BigDecimal Parse(String wd){
 		
 		if (isAllowed(wd)){
 			
-			Process.add(wd);
+			wdProcess.add(wd);
 			
 			return new BigDecimal(wd);
 			
@@ -94,7 +101,7 @@ public class Parser extends Mayth{
 		
 		wd = Overwrite(wd);
 		
-		Process.add(wd);
+		wdProcess.add(wd);
 		
 		if (isAllowed(wd)){return new BigDecimal(wd);}
 		

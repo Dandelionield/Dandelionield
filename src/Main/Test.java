@@ -69,11 +69,9 @@ public class Test {
 		
 		function f = new function('x', "x^2-(1/x)+x");
 		
+		f.intervalueOf(-10, 10);
+		
 		System.out.print(f+"\n\n");
-		
-		f.set(2);
-		
-		System.out.print(f.getProcess()+"\n\n");
 		
 		System.out.print("\n\n");
 		
