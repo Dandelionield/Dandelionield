@@ -46,9 +46,15 @@ public class Parser extends Mayth{
 		
 	}
 	
-	public BigDecimal getResult(){
+	public BigDecimal get(){
 		
 		return n;
+		
+	}
+	
+	public String get(int i){
+		
+		return this.wdProcess.get(i);
 		
 	}
 	

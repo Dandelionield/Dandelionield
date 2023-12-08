@@ -25,7 +25,7 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		vector a = new vector(new double[] {2, -5, 3, -1});
+		/*vector a = new vector(new double[] {2, -5, 3, -1});
 		vector b = new vector(new double[] {-1, 0, 7, -8});
 		vector c = new vector(new double[] {9, 2, -2, -3});
 		vector d = new vector(new double[] {-4, 0, -7, 4});
@@ -52,7 +52,7 @@ public class Test {
 			ln(((Sen(30))√2)!)+0.001*0.001*0.001+10E9
 			(5+8)/(2*7)
 			
-		//*/
+		//*
 		
 		System.out.print(B+"\n\n");
 		
@@ -63,9 +63,15 @@ public class Test {
 		
 		System.out.print(x+"\n\n");
 		System.out.print(t+"\n\n");
-		System.out.print(m+"\n\n");//*/
+		System.out.print(m+"\n\n");//
 		
-		System.out.print(pr+"\n\n");
+		System.out.print(pr+"\n\n");//*/
+		
+		function f = new function('x', "x+2");
+		
+		f.set(2);
+		
+		System.out.print(f+"");
 		
 		System.out.print("\n\n");
 		
