@@ -718,7 +718,7 @@ public class Parser extends Mayth{
 			}
 			
 		}
-		System.out.print(wd+"\n\n");
+
 		return new BigDecimal(wd);
 		
 	}
@@ -815,7 +815,9 @@ public class Parser extends Mayth{
 	
 	private static String ReplaceOperation(String wd, int indice, BigDecimal Result, String valueLeft, String valueRight){
 		
-		String[] parts = Separar(wd, valueLeft+""+wd.charAt(indice)+""+valueRight);
+		String bup = valueLeft+""+wd.charAt(indice)+""+valueRight;
+		
+		String[] parts = Separar(wd, bup);
 		
 		if (parts.length==0){
 			
@@ -832,6 +834,12 @@ public class Parser extends Mayth{
 				parts = new String[] {parts[0],""};
 				
 			}
+			
+		}
+		
+		if (bup.charAt(0)=='-' && Result.compareTo(new BigDecimal(0))>=0 && parts[0].equals("")==false){
+			
+			parts[0] = parts[0]+"+";
 			
 		}
 		
@@ -889,11 +897,37 @@ public class Parser extends Mayth{
 	
 	private static String getLeft(String wd, int indice){
 		
-		for (int i=indice-1; i>=0; i--){
+		boolean E = false;
 		
+		for (int i=indice-1; i>=0; i--){
+			
+			if (E==true){
+				
+				E = false;
+				
+				if (wd.charAt(i)=='E'){
+					
+					continue;
+					
+				}
+				
+			}
+			
 			if (i==0){return wd.substring(0, indice);}
 			
-			if (wd.charAt(i)=='.' || wd.charAt(i)=='E'){continue;}
+			if (wd.charAt(i)=='.'){continue;}
+			
+			if (wd.charAt(i)=='-' && wd.charAt(i-1)=='E'){
+				
+				E = true;
+				
+				continue;
+				
+			}else if (wd.charAt(i)=='-' && isAllowed(wd.charAt(i-1)+"")==true){
+				
+				return wd.substring(i, indice);
+				
+			}
 			
 			if (isAllowed(wd.substring(i, indice))==false){
 				
@@ -917,7 +951,7 @@ public class Parser extends Mayth{
 			
 			if (wd.charAt(i)=='-' && wd.charAt(i+1)=='('){
 				
-				wd = Parser.ReplaceChar(wd,i,"-1x");
+				wd = Parser.ReplaceChar(wd,i,"-1*");
 				i=0;
 				
 			}

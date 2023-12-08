@@ -67,11 +67,13 @@ public class Test {
 		
 		System.out.print(pr+"\n\n");//*/
 		
-		function f = new function('x', "x+2");
+		function f = new function('x', "x^2-(1/x)+x");
+		
+		System.out.print(f+"\n\n");
 		
 		f.set(2);
 		
-		System.out.print(f+"");
+		System.out.print(f.getProcess()+"\n\n");
 		
 		System.out.print("\n\n");
 		

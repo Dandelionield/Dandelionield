@@ -109,7 +109,7 @@ public class function extends Mayth{
 		
 	}
 	
-	private String Overwrite(double value){
+	public String Overwrite(double value){
 		
 		String wd = "";
 		
