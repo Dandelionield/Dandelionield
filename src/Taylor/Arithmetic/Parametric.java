@@ -32,7 +32,7 @@ public class Parametric{
 		
 		name = "f";
 		this.function = function;
-		variable = new char[] {x};
+		variable = fixVar(new char[] {x});
 		
 	}
 	
@@ -40,7 +40,7 @@ public class Parametric{
 		
 		this.name = name;
 		this.function = function;
-		variable = new char[] {x};
+		variable = fixVar(new char[] {x});
 		
 	}
 	
@@ -56,7 +56,7 @@ public class Parametric{
 		
 		name = "f";
 		this.function = function;
-		variable = new char[] {x, y};
+		variable = fixVar(new char[] {x, y});
 		
 	}
 	
@@ -64,7 +64,7 @@ public class Parametric{
 		
 		this.name = name;
 		this.function = function;
-		variable = new char[] {x, y};
+		variable = fixVar(new char[] {x, y});
 		
 	}
 
@@ -80,7 +80,7 @@ public class Parametric{
 		
 		name = "f";
 		this.function = function;
-		variable = new char[] {x, y, z};
+		variable = fixVar(new char[] {x, y, z});
 		
 	}
 	
@@ -88,7 +88,7 @@ public class Parametric{
 		
 		this.name = name;
 		this.function = function;
-		variable = new char[] {x, y, z};
+		variable = fixVar(new char[] {x, y, z});
 		
 	}
 	
@@ -110,16 +110,16 @@ public class Parametric{
 	public Parametric(char[] variable, String function){
 		
 		name = "f";
-		this.variable = variable;
 		this.function = function;
+		this.variable = fixVar(variable);
 		
 	}
 	
 	public Parametric(char[] variable, String function, String name){
 		
 		this.name = name;
-		this.variable = variable;
 		this.function = function;
+		this.variable = fixVar(variable);
 		
 	}
 	
@@ -194,7 +194,7 @@ public class Parametric{
 
 			return this.name+"("+getVar()+") = "+function;
 			
-		}else if (this.n.size()!=1 && this.p.size()==1 && this.p.get(0).size()==1){
+		}else if (this.n.size()>0 && this.p.size()==1 && this.p.get(0).size()==1){
 			
 			return this.name+"("+getValues(this.n)+") = "+p.get(0).get(0);
 			
@@ -214,13 +214,13 @@ public class Parametric{
 							
 						}else{
 							
-							bup+= this.name+"("+this.xyz.get(c)+") = "+Overwrite(toArrayDouble(this.xyz.get(c)))+"\n";
+							bup+= this.name+"("+this.xyz.get(c)+") = "+Overwrite(toArrayDouble(this.xyz.get(c)))+" = "+Double.NaN+"\n";
 							
 						}
 						
 					}else{
 						
-						bup+= this.name+"("+this.xyz.get(c)+") = "+Overwrite(toArrayDouble(this.xyz.get(c)))+"\n";
+						bup+= this.name+"("+this.xyz.get(c)+") = "+Overwrite(toArrayDouble(this.xyz.get(c)))+" = "+Double.NaN+"\n";
 						
 					}
 					
@@ -320,15 +320,57 @@ public class Parametric{
 		this.n.clear();
 		function f;
 		Parametric par;
-		double[] newA = new double[a.length-1];
-		double[] newB = new double[b.length-1];
-		char[] newVariable = new char[this.variable.length-1];
-		ArrayList<Parser> bup;
+		
+		double[] newA;
+		double[] newB;
+		char[] newVariable;
+		int m = 0;
+		
+		if (a.length>1){
+			
+			newA = new double[a.length-1];
+			newB = new double[b.length-1];
+			newVariable = new char[this.variable.length-1];
+			
+			m = 1;
+			
+		}else{
+			
+			newA = a;
+			newB = b;
+			newVariable = this.variable;
+			
+			m = 0;
+			
+		}
+		
+		ArrayList<Double> bup;
+		ArrayList<Parser> bup2;
 		double input = 0;
 		
 		long n = 0;
 		
-		if (this.countVar()==1){
+		if (this.countVar()==0){
+			
+			f = new function('t', this.function, this.name);
+			
+			f.intervalueOf(0, 1, 1);
+			
+			bup2 = f.getParsers();
+			
+			bup2.remove(bup2.size()-1);
+			
+			this.p.add(bup2);
+			
+			bup = f.getValues();
+			
+			bup.remove(bup.size()-1);
+			
+			this.values.add(bup);
+			
+			xyz.add(0+"");
+			
+		}else if (this.countVar()==1){
 			
 			f = new function(this.variable[0], this.function, this.name);
 			
@@ -347,19 +389,19 @@ public class Parametric{
 			
 			for (int i=0; i<newA.length; i++){
 				
-				newA[i] = a[i+1];
+				newA[i] = a[i+m];
 				
 			}
 			
 			for (int i=0; i<newB.length; i++){
 				
-				newB[i] = b[i+1];
+				newB[i] = b[i+m];
 				
 			}
 			
 			for (int i=0; i<newVariable.length; i++){
 				
-				newVariable[i] = this.variable[i+1];
+				newVariable[i] = this.variable[i+m];
 				
 			}
 			
@@ -425,13 +467,13 @@ public class Parametric{
 						
 					}else{
 						
-						bup+= this.name+"("+this.xyz.get(c)+") = "+Overwrite(toArrayDouble(this.xyz.get(c)))+"\n\n";
+						bup+= this.name+"("+this.xyz.get(c)+") = "+Overwrite(toArrayDouble(this.xyz.get(c)))+" = "+Double.NaN+"\n\n";
 						
 					}
 					
 				}else{
 					
-					bup+= this.name+"("+this.xyz.get(c)+") = "+Overwrite(toArrayDouble(this.xyz.get(c)))+"\n\n";
+					bup+= this.name+"("+this.xyz.get(c)+") = "+Overwrite(toArrayDouble(this.xyz.get(c)))+" = "+Double.NaN+"\n\n";
 					
 				}
 				
@@ -457,7 +499,15 @@ public class Parametric{
 				
 				if (this.function.charAt(f)==this.variable[c]){
 					
-					wd+= value[c];
+					try{
+						
+						wd+= value[c];
+						
+					}catch(Exception e){
+						
+						wd+= value[value.length-1];
+						
+					};
 					
 					b = false;
 					
@@ -512,8 +562,42 @@ public class Parametric{
 			bup+= p+", ";
 			
 		}
+
+		try {
+
+            return bup.substring(0, bup.length()-2);
+			
+        } catch (Exception e) {
+
+            return "x";
+			
+        }
 		
-		return bup.substring(0, bup.length()-2);
+	}
+	
+	private char[] fixVar(char[] v){
+		
+		ArrayList<String> newVar = new ArrayList<>(); 
+		
+		for (char q : v){
+			
+			if (this.function.contains(q+"")==true){
+				
+				newVar.add(q+"");
+				
+			}
+			
+		}
+		
+		char[] VarChar = new char[newVar.size()];
+		
+		for (int i=0; i<VarChar.length; i++){
+			
+			VarChar[i] = newVar.get(i).charAt(0);
+			
+		}
+		
+		return VarChar;
 		
 	}
 	

@@ -74,7 +74,7 @@ public class Test {
 		
 		Parametric par = new Parametric(new char[] {'x', 'y', 'z', 't'}, "(x*y^2)/z+t");
 		
-		par.intervalueOf(new double[] {3, 4, 6, 9}, new double[] {10, 10, 10, 10}, 0.5);
+		par.intervalueOf(new double[] {0, 0, 0, 0}, new double[] {10, 10, 10, 10}, 1);
 		
 		System.out.print(par+"\n\n");
 		
