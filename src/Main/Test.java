@@ -45,7 +45,8 @@ public class Test {
 		time t = time.getSecondValueOf(2);
 		mass m = mass.getGramValueOf(3);
 		
-		Parser pr = new Parser("0");
+		Parser pr = new Parser("ln(((Sen(30))√2)!)+0.001*0.001*0.001+10E9");
+		function f = new function('x', "x^2-(1/x)+x");
 		
 		/*
 		
@@ -65,13 +66,17 @@ public class Test {
 		System.out.print(t+"\n\n");
 		System.out.print(m+"\n\n");//
 		
-		System.out.print(pr+"\n\n");//*/
+		System.out.print(pr+"\n\n");//
 		
-		function f = new function('x', "x^2-(1/x)+x");
+		f.intervalueOf(9, 10, 1);
 		
-		f.intervalueOf(-10, 10);
+		System.out.print(f+"\n\n");//*/
 		
-		System.out.print(f+"\n\n");
+		Parametric par = new Parametric(new char[] {'x', 'y', 'z', 't'}, "(x*y^2)/z+t");
+		
+		par.intervalueOf(new double[] {3, 4, 6, 9}, new double[] {10, 10, 10, 10}, 0.5);
+		
+		System.out.print(par+"\n\n");
 		
 		System.out.print("\n\n");
 		

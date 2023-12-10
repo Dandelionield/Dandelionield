@@ -11,60 +11,71 @@ import java.math.RoundingMode;
 import java.math.MathContext;
 
 import Taylor.Math.Mayth;
+import Taylor.Arithmetic.Parser;
+import Taylor.Arithmetic.function;
 
-public class mass{
-	
-	private final double Scalar;
+public class temperature{
+
+	/*private final double Scalar;
 	private String Unity;
 	private long nth;
-	private BigDecimal equivalent;
+	private function equivalent;
 	
-	public mass(double Scalar){
+	public temperature(double Scalar){
 		
 		this.Scalar = Scalar;
 		this.Unity = "u";
 		this.nth = 1;
-		this.equivalent = new BigDecimal(0);
+		this.equivalent = new function('u', "0");
 		
 	}
 	
-	public mass(double Scalar, String Unity){
+	public temperature(double Scalar, String Unity){
 		
 		this.Scalar = Scalar;
 		this.Unity = fixUnity(Unity);
 		this.nth = getnthPower(this.Unity);
-		this.equivalent = new BigDecimal(0);
+		this.equivalent = new function(this.Unity.charAt(0), "0");
 		
 	}
 	
-	public mass(double Scalar, String Unity, double GramEquivalent){
+	public temperature(double Scalar, String Unity, double CelsiusEquivalent){
 		
 		this.Scalar = Scalar;
 		this.Unity = fixUnity(Unity);
 		this.nth = getnthPower(this.Unity);
-		this.equivalent = new BigDecimal(GramEquivalent);
+		this.equivalent = new function(this.Unity.charAt(0), this.Unity.charAt(0)+"*"+CelsiusEquivalent);
 		
 	}
 	
-	public mass(double Scalar, String Unity, BigDecimal GramEquivalent){
+	public temperature(double Scalar, String Unity, BigDecimal CelsiusEquivalent){
 		
 		this.Scalar = Scalar;
 		this.Unity = fixUnity(Unity);
 		this.nth = getnthPower(this.Unity);
-		this.equivalent = GramEquivalent;
+		this.equivalent = new function(this.Unity.charAt(0), this.Unity.charAt(0)+"*"+CelsiusEquivalent);
 		
 	}
 	
-	private mass(double Scalar, String Unity, long nth, BigDecimal GramEquivalent){
+	public temperature(double Scalar, String Unity, function CelsiusEquivalent){
+		
+		this.Scalar = Scalar;
+		this.Unity = fixUnity(Unity);
+		this.nth = getnthPower(this.Unity);
+		this.equivalent = CelsiusEquivalent;
+		
+	}
+	
+	private temperature(double Scalar, String Unity, long nth, function CelsiusEquivalent){
 		
 		this.Scalar = Scalar;
 		this.Unity = fixUnity(Unity);
 		this.nth = nth;
-		this.equivalent = GramEquivalent;
+		this.equivalent = CelsiusEquivalent;
 		
 	}
 	
-	private mass(mass t, int limite){
+	private temperature(temperature t, int limite){
 		
 		this.Scalar = Mayth.Redondear(t.Scalar, limite);
 		this.Unity = t.Unity;
@@ -95,23 +106,29 @@ public class mass{
 		
 		this.Unity = fixUnity(Unity);
 		this.nth = getnthPower(this.Unity);
-		this.equivalent = new BigDecimal(0);
+		this.equivalent = new function(this.Unity.charAt(0), "0");
 		
 	}
 	
-	public BigDecimal getGramEquivalent(){
+	public function getCelsiusEquivalent(){
 		
 		return this.equivalent;
 		
 	}
 	
-	public void setGramEquivalent(double equivalent){
+	public void setCelsiusEquivalent(double equivalent){
 		
-		this.equivalent = new BigDecimal(equivalent);
+		this.equivalent = new function(this.Unity.charAt(0), this.Unity.charAt(0)+"*"+equivalent);
 		
 	}
 	
-	public void setGramEquivalent(BigDecimal equivalent){
+	public void setCelsiusEquivalent(BigDecimal equivalent){
+		
+		this.equivalent = new function(this.Unity.charAt(0), this.Unity.charAt(0)+"*"+equivalent);
+		
+	}
+	
+	public void setCelsiusEquivalent(function equivalent){
 		
 		this.equivalent = equivalent;
 		
@@ -119,11 +136,11 @@ public class mass{
 	
 	public String toString(){
 		
-		return Scalar+" "+Unity;
+		return Scalar+"°"+Unity;
 		
 	}
 	
-	public mass toGram(){
+	public temperature toCelsius(){
 		
 		String bup = "";
 		
@@ -133,25 +150,25 @@ public class mass{
 			
 		}
 		
-		return new mass(new BigDecimal(this.Scalar).multiply(this.equivalent).setScale(15, RoundingMode.HALF_UP).doubleValue(), "g"+bup, this.nth, new BigDecimal(1));
+		return new temperature(this.equivalent.get(this.Scalar).setScale(15, RoundingMode.HALF_UP).doubleValue(), "C"+bup, this.nth, new BigDecimal(1));
 		
 	}
 	
-	public mass doScalar(double s){
+	public temperature doScalar(double s){
 		
 		return new mass(this.Scalar*s, this.Unity, this.nth, this.equivalent);
 		
 	}
 	
-	public mass doSuma(mass m){
+	public temperature doSuma(temperature m){
 		
-		if (this.equivalent.compareTo(new BigDecimal(0))==0){
+		if (this.equivalent.isConstant()==true && this.equivalent.get(1).compareTo(new BigDecimal(0))==0){
 			
-			throwError("unabled to add masses due to variable "+this.toString()+" has no equivalency in grams");
+			throwError("unabled to add degrees due to variable "+this.toString()+" has no equivalency in Celsius degree");
 			
-		}else if (m.equivalent.compareTo(new BigDecimal(0))==0){
+		}else if (m.equivalent.isConstant()==true && m.equivalent.get(1).compareTo(new BigDecimal(0))==0){
 			
-			throwError("unabled to add masses due to variable "+m.toString()+" has no equivalency in grams");
+			throwError("unabled to add degrees due to variable "+m.toString()+" has no equivalency in Celsius degree");
 			
 		}
 		
@@ -165,13 +182,13 @@ public class mass{
 	
 	public mass doResta(mass m){
 		
-		if (this.equivalent.compareTo(new BigDecimal(0))==0){
+		if (this.equivalent.isConstant()==true && this.equivalent.get(1).compareTo(new BigDecimal(0))==0){
 			
-			throwError("unabled to subtract masses due to variable "+this.toString()+" has no equivalency in grams");
+			throwError("unabled to subtract degrees due to variable "+this.toString()+" has no equivalency in Celsius degree");
 			
-		}else if (m.equivalent.compareTo(new BigDecimal(0))==0){
+		}else if (m.equivalent.isConstant()==true && m.equivalent.get(1).compareTo(new BigDecimal(0))==0){
 			
-			throwError("unabled to subtract masses due to variable "+m.toString()+" has no equivalency in grams");
+			throwError("unabled to subtract degrees due to variable "+m.toString()+" has no equivalency in Celsius degree");
 			
 		}
 		
@@ -211,13 +228,13 @@ public class mass{
 	
 	public mass doProduct(mass m){
 		
-		if (this.equivalent.compareTo(new BigDecimal(0))==0){
+		if (this.equivalent.isConstant()==true && this.equivalent.get(1).compareTo(new BigDecimal(0))==0){
 			
-			throwError("unabled to multiply masses due to variable "+this.toString()+" has no equivalency in grams");
+			throwError("unabled to multiply degrees due to variable "+this.toString()+" has no equivalency in Celsius degree");
 			
-		}else if (m.equivalent.compareTo(new BigDecimal(0))==0){
+		}else if (m.equivalent.isConstant()==true && m.equivalent.get(1).compareTo(new BigDecimal(0))==0){
 			
-			throwError("unabled to multiply masses due to variable "+m.toString()+" has no equivalency in grams");
+			throwError("unabled to multiply degrees due to variable "+m.toString()+" has no equivalency in Celsius degree");
 			
 		}
 		
@@ -295,13 +312,13 @@ public class mass{
 	
 	public mass doDivide(mass m){
 		
-		if (this.equivalent.compareTo(new BigDecimal(0))==0){
+		if (this.equivalent.isConstant()==true && this.equivalent.get(1).compareTo(new BigDecimal(0))==0){
 			
-			throwError("unabled to divide masses due to variable "+this.toString()+" has no equivalency in meters");
+			throwError("unabled to divide degrees due to variable "+this.toString()+" has no equivalency in Celsius degree");
 			
-		}else if (m.equivalent.compareTo(new BigDecimal(0))==0){
+		}else if (m.equivalent.isConstant()==true && m.equivalent.get(1).compareTo(new BigDecimal(0))==0){
 			
-			throwError("unabled to divide masses due to variable "+m.toString()+" has no equivalency in meters");
+			throwError("unabled to divide degrees due to variable "+m.toString()+" has no equivalency in Celsius degree");
 			
 		}
 		
@@ -374,138 +391,6 @@ public class mass{
 			return new mass(new BigDecimal(this.Scalar).divide(new BigDecimal(nthSecondValue).divide(Equivalencia, MathContext.DECIMAL128), MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue(), getNewUnity(this.nth, m.nth, -1), this.nth-m.nth, newEquivalence);
 			
 		}
-		
-	}
-	
-	public static mass getTeragramValueOf(double value){
-		
-		return new mass(value, "Tg", Mayth.bigPotencia(10, 12));
-		
-	}
-	
-	public static mass getGigagramValueOf(double value){
-		
-		return new mass(value, "Gg", Mayth.bigPotencia(10, 9));
-		
-	}
-	
-	public static mass getTonValueOf(double value){
-		
-		return new mass(value, "T", Mayth.bigPotencia(10, 6));
-		
-	}
-	
-	public static mass getQuintalValueOf(double value){
-		
-		return new mass(value, "q", Mayth.bigPotencia(10, 5));
-		
-	}
-	
-	public static mass getKilogramValueOf(double value){
-		
-		return new mass(value, "kg", Mayth.bigPotencia(10, 3));
-		
-	}
-	
-	public static mass getHectogramValueOf(double value){
-		
-		return new mass(value, "hg", Mayth.bigPotencia(10, 2));
-		
-	}
-	
-	public static mass getDecagramValueOf(double value){
-		
-		return new mass(value, "dag", Mayth.bigPotencia(10, 1));
-		
-	}
-	
-	public static mass getGramValueOf(double value){
-		
-		return new mass(value, "g", Mayth.bigPotencia(10, 0));
-		
-	}
-	
-	public static mass getDecigramValueOf(double value){
-		
-		return new mass(value, "dg", Mayth.bigPotencia(10, -1));
-		
-	}
-	
-	public static mass getCentigramValueOf(double value){
-		
-		return new mass(value, "cg", Mayth.bigPotencia(10, -2));
-		
-	}
-	
-	public static mass getMilligramValueOf(double value){
-		
-		return new mass(value, "mg", Mayth.bigPotencia(10, -3));
-		
-	}
-	
-	public static mass getMicrogramValueOf(double value){
-		
-		return new mass(value, "µg", Mayth.bigPotencia(10, -6));
-		
-	}
-	
-	public static mass getNanogramValueOf(double value){
-		
-		return new mass(value, "ng", Mayth.bigPotencia(10, -9));
-		
-	}
-	
-	public static mass getPicogramValueOf(double value){
-		
-		return new mass(value, "pg", Mayth.bigPotencia(10, -12));
-		
-	}
-	
-	public static mass getFemtogramValueOf(double value){
-		
-		return new mass(value, "fg", Mayth.bigPotencia(10, -15));
-		
-	}
-	
-	public static mass getAttogramValueOf(double value){
-		
-		return new mass(value, "ag", Mayth.bigPotencia(10, -18));
-		
-	}
-	
-	public static mass getZeptogramValueOf(double value){
-		
-		return new mass(value, "zg", Mayth.bigPotencia(10, -21));
-		
-	}
-	
-	public static mass getYoctogramValueOf(double value){
-		
-		return new mass(value, "yg", Mayth.bigPotencia(10, -24));
-		
-	}
-	
-	public static mass getGrainValueOf(double value){
-		
-		return new mass(value, "gr", new BigDecimal(0.064799));
-		
-	}
-	
-	public static mass getOunceValueOf(double value){
-		
-		return new mass(value, "oz", new BigDecimal(28.34952));
-		
-	}
-	
-	public static mass getPoundValueOf(double value){
-		
-		return new mass(value, "lb", new BigDecimal(453.592338));
-		
-	}
-	
-	public static mass getStoneValueOf(double value){
-		
-		return new mass(value, "st", new BigDecimal(14).multiply(new BigDecimal(453.592338)));
 		
 	}
 	
@@ -640,7 +525,7 @@ public class mass{
 				
 			}else{
 				
-				c = " mass";
+				c = " temperature";
 				
 			}
 			
@@ -650,7 +535,7 @@ public class mass{
 				
 			}else{
 				
-				d = " mass";
+				d = " temperature";
 				
 			}
 			
@@ -674,6 +559,6 @@ public class mass{
 			
         }
 		
-	}
+	}//*/
 	
 }

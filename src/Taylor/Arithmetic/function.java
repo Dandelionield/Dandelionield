@@ -7,13 +7,9 @@ package Taylor.Arithmetic;
  */
  
 import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.math.MathContext;
 import java.util.ArrayList;
-
-import Taylor.Math.Mayth;
  
-public class function extends Mayth{
+public class function{
 	
 	private final char variable;
 	private String function;
@@ -59,6 +55,18 @@ public class function extends Mayth{
 		
 	}
 	
+	public ArrayList<Parser> getParsers(){
+		
+		return this.p;
+		
+	}
+	
+	public ArrayList<Double> getValues(){
+		
+		return this.values;
+		
+	}
+	
 	public void setFuntion(String function){
 		
 		this.function = function;
@@ -71,6 +79,18 @@ public class function extends Mayth{
 	public void setName(String name){
 		
 		this.name = name;
+		
+	}
+	
+	public boolean isConstant(){
+		
+		if (this.function.contains(this.variable+"")){
+			
+			return true;
+			
+		}
+		
+		return false;
 		
 	}
 	
@@ -153,6 +173,26 @@ public class function extends Mayth{
 		long n = 0;
 		
 		do{
+			
+			if (a>b){
+				
+				if (increment>0){
+					
+					intervalueOf(b, a, increment);
+					
+				}else{
+					
+					intervalueOf(b, a, -increment);
+					
+				}
+				
+				break;
+				
+			}else if (increment<0){
+				
+				increment = -increment;
+				
+			}
 			
 			if (a+(n*increment)>=b){
 				
