@@ -12,6 +12,8 @@ import java.math.MathContext;
  
 public class Mayth extends Hyperbolic{
 	
+	public static final BigDecimal e = Mayth.Euler();
+	
 	public Mayth(){
 		
 		super(false);
@@ -149,11 +151,25 @@ public class Mayth extends Hyperbolic{
 			
 		}
 		
-		for (int n=0; n<=400; n++){
+		if (x%1!=0){
+		
+			for (int n=0; n<=400; n++){
+				
+				if (n!=0){factorial = factorial.multiply(new BigDecimal(n));}
+				
+				exp = exp.add(bigPotencia(x,n).divide(factorial, MathContext.DECIMAL128));
+				
+			}
 			
-			if (n!=0){factorial = factorial.multiply(new BigDecimal(n));}
+		}else{
 			
-			exp = exp.add(bigPotencia(x,n).divide(factorial, MathContext.DECIMAL128));
+			exp = Mayth.e;
+			
+			for (int n=2; n<=x; n++){
+			
+				exp = exp.multiply(Mayth.e);
+				
+			}
 			
 		}
 		

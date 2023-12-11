@@ -969,12 +969,12 @@ public class Parser extends Mayth{
 				
 				if (wd.length()==1){
 					
-					wd = Parser.ReplaceChar(wd,i,Parser.Euler()+"");
+					wd = Parser.ReplaceChar(wd,i,Parser.e+"");
 					i=0;
 					
 				}else if (wd.charAt(i+1)!='n' && wd.charAt(i+1)!='c'){
 					
-					wd = Parser.ReplaceChar(wd,i,Parser.Euler()+"");
+					wd = Parser.ReplaceChar(wd,i,Parser.e+"");
 					i=0;
 					
 				}
