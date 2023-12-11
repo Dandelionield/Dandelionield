@@ -72,11 +72,12 @@ public class Test {
 		
 		System.out.print(f+"\n\n");//*/
 		
-		Parametric par = new Parametric(new char[] {'x', 'y', 'z', 't'}, "(x*y^2)/z+t-2*e");
+		Parametric f = new Parametric(new char[] {'x', 'y', 'z', 't'}, "(x*y^2)/z+t");
+		Parametric g = new Parametric(new char[] {'w'}, "(w^2)/2");
 		
-		par.intervalueOf(new double[] {8, 8, 8, 8}, new double[] {10, 10, 10, 10}, 1);
+		Vectorial v = new Vectorial(new Parametric[] {f, g});
 		
-		System.out.print(par+"\n\n");
+		System.out.print(v+"\n\n");
 		
 		System.out.print("\n\n");
 		
