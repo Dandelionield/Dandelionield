@@ -72,6 +72,12 @@ public class Mayth extends Hyperbolic{
 
 	public static double Potencia(double base, double exponent){
 		
+		if (Double.isNaN(base)==true || Double.isInfinite(base)==true || Double.isNaN(exponent)==true || Double.isInfinite(exponent)==true){
+			
+			return Double.NaN;
+			
+		}
+		
 		if (exponent<0){
 			
 			return 1/Potencia(base, -exponent);

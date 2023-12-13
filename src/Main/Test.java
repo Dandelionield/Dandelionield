@@ -73,11 +73,17 @@ public class Test {
 		System.out.print(f+"\n\n");//*/
 		
 		Parametric f = new Parametric(new char[] {'x', 'y', 'z', 't'}, "(x*y^2)/z+t");
-		Parametric g = new Parametric(new char[] {'w'}, "(w^2)/2");
+		Parametric g = new Parametric(new char[] {'w', 'z'}, "(w^2)/4+z");
+		Parametric h = new Parametric(new char[] {'t', 'y'}, "y^t");
+		Parametric j = new Parametric(new char[] {'w', 't', 'x'}, "x+t/w");
 		
-		Vectorial v = new Vectorial(new Parametric[] {f, g});
+		Vectorial v = new Vectorial(new Parametric[] {f, g, h, j});
 		
-		System.out.print(v+"\n\n");
+		//v.set(new double[] {2, 3, 5, 7, 11});
+		
+		v.intervalueOf(new double[] {1, 1, 1, 1, 1}, new double[] {5, 5, 5, 5, 5});
+		
+		System.out.print(v.getProcess()+"\n\n");
 		
 		System.out.print("\n\n");
 		

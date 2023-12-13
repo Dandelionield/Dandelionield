@@ -142,12 +142,12 @@ public class function{
 		
 	}
 	
-	public BigDecimal get(double n){
+	public Parser get(double n){
 		
 		this.p.add(new Parser(Overwrite(n)));
 		this.n = n;
 		
-		return this.p.get(0).get();
+		return this.p.get(0);
 		
 	}
 	

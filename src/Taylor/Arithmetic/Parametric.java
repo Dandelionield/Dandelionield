@@ -150,6 +150,12 @@ public class Parametric{
 		
 	}
 	
+	public String getName(){
+		
+		return this.name;
+		
+	}
+	
 	public boolean isConstant(){
 		
 		for (char p : this.variable){
@@ -236,7 +242,7 @@ public class Parametric{
 		
 	}
 	
-	public BigDecimal get(double[] n){
+	public Parser get(double[] n){
 		
 		if (n.length>this.variable.length){
 			
@@ -262,7 +268,7 @@ public class Parametric{
 			
 		}
 		
-		return this.p.get(0).get(0).get();
+		return this.p.get(0).get(0);
 		
 	}
 	
