@@ -521,7 +521,7 @@ public class Parser extends Mayth{
 						r = getRight(wd, i);
 						l = getLeft(wd, i);
 
-						n = bigPotencia(new BigDecimal(l), new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue());
+						n = new BigDecimal(Potencia(new BigDecimal(l).setScale(15, RoundingMode.HALF_UP).doubleValue(), new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
 						
 						return Parse(ReplaceOperation(wd, i, n, l, r));
 						

@@ -81,7 +81,7 @@ public class Test {
 		
 		//v.set(new double[] {2, 3, 5, 7, 11});
 		
-		v.intervalueOf(new double[] {1, 1, 1, 1, 1}, new double[] {5, 5, 5, 5, 5});
+		v.intervalueOf(new double[] {1, 1, 1, 1, 1}, new double[] {5, 5, 5, 5, 5}, 0.5);
 		
 		System.out.print(v.getProcess()+"\n\n");
 		
