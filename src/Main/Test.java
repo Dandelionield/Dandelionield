@@ -11,79 +11,64 @@ import Taylor.Arithmetic.*;
 import Geometry.Euclidean.*;
 import Geometry.Algebra.*;
 import Physics.Fundamental.*;
+import Graphic.R2Space.*;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
+
+import java.awt.EventQueue;
+import java.awt.Dimension;
+
 public class Test {
 
     public static void main(String[] args){
-        
-		String bup = "(1235)";
-		
-		double n = 2;
 		
 		System.out.print("\n\n");
 		
-		/*vector a = new vector(new double[] {2, -5, 3, -1});
-		vector b = new vector(new double[] {-1, 0, 7, -8});
-		vector c = new vector(new double[] {9, 2, -2, -3});
-		vector d = new vector(new double[] {-4, 0, -7, 4});
+		degree Thetha = new degree(30);
 		
-		bivector B = new bivector(c, d);
+		vector v = new vector(20, Thetha);
 		
-		Matriz mz = new Matriz(new vector[] {
-			
-			a, b, c, d
-			
-		});
+		System.out.print(v+"\n");
 		
-		Quaternion q = new Quaternion(2, a);
-		Quaternion p = new Quaternion(2, b);//*
-		
-		distance x = distance.getMetreValueOf(5);
-		time t = time.getSecondValueOf(2);
-		mass m = mass.getGramValueOf(3);
-		
-		Parser pr = new Parser("ln(((Sen(30))√2)!)+0.001*0.001*0.001+10E9");
-		function f = new function('x', "x^2-(1/x)+x");
-		
-		/*
-		
-			ln(((Sen(30))√2)!)+0.001*0.001*0.001+10E9
-			(5+8)/(2*7)
-			
-		//*
-		
-		System.out.print(B+"\n\n");
-		
-		System.out.print(q+"\n\n");
-		System.out.print(p+"\n\n");
-		
-		System.out.print(mz+"\n\n");//*
-		
-		System.out.print(x+"\n\n");
-		System.out.print(t+"\n\n");
-		System.out.print(m+"\n\n");//
-		
-		System.out.print(pr+"\n\n");//
-		
-		f.intervalueOf(9, 10, 1);
-		
-		System.out.print(f+"\n\n");//*/
-		
-		Parametric f = new Parametric(new char[] {'x', 'y', 'z', 't'}, "(x*y^2)/z+t");
-		Parametric g = new Parametric(new char[] {'w', 'z'}, "(w^2)/4+z");
-		Parametric h = new Parametric(new char[] {'t', 'y'}, "y^t");
-		Parametric j = new Parametric(new char[] {'w', 't', 'x'}, "x+t/w");
-		
-		Vectorial v = new Vectorial(new Parametric[] {f, g, h, j});
-		
-		//v.set(new double[] {2, 3, 5, 7, 11});
-		
-		v.intervalueOf(new double[] {1, 1, 1, 1, 1}, new double[] {5, 5, 5, 5, 5}, 0.5);
-		
-		System.out.print(v.getProcess()+"\n\n");
+		EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+				
+				CartesianPlane R2 = null;
+
+                try {
+
+                    JFrame frame = new JFrame("Plano Cartesiano");
+					
+					frame.setBounds(200, 200, 1000, 500);
+					
+					R2 = new CartesianPlane(frame.getWidth(), frame.getHeight());
+					//R2.drawVector(v);
+					
+					JLayeredPane contentPane = new JLayeredPane();
+					contentPane.setPreferredSize(new Dimension(frame.getWidth(), frame.getHeight()));
+					
+					R2.setVisible(true);
+					contentPane.add(R2);
+					
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frame.setContentPane(contentPane);
+					frame.setLocationRelativeTo(null);
+					frame.setVisible(true);
+
+                } catch (Exception e) {
+
+                    e.printStackTrace();
+
+                }
+
+            }
+
+        });
 		
 		System.out.print("\n\n");
 		

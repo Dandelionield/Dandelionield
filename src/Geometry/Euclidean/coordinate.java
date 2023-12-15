@@ -204,6 +204,12 @@ public class coordinate{
 		
 	}
 	
+	public byte getOctant(){
+		
+		return new vector(this.points).getOctant();
+		
+	}
+	
 	public void set(double[] points){
 		
 		if (points.length==0){
