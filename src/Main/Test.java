@@ -28,6 +28,12 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
+		/*Parametric par = new Parametric(new char[] {'x','y','z'}, "x+y+z");
+		
+		par.intervalueOf(new double[] {0, 0, 0}, new double[] {10, 10, 10});
+		
+		System.out.print(par);//*/
+		
 		JFrame frame = Frame();
 		
 		degree Thetha = new degree(60);
@@ -39,7 +45,7 @@ public class Test {
 		coordinate b = new coordinate(100, new degree(15));
 		
 		CartesianPlane R2 = new CartesianPlane(frame.getWidth(), frame.getHeight());
-		R2.drawVector(a);
+		//R2.drawVector(a);
 		//R2.drawCoordinate(b);
 		
 		/*for (int Theta = 0; Theta<360; Theta+=15){
@@ -70,7 +76,7 @@ public class Test {
 
             }
 
-        });
+        });//*/
 		
 		System.out.print("\n\n");
 		

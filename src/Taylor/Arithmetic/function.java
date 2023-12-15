@@ -67,6 +67,18 @@ public class function{
 		
 	}
 	
+	public Parser getOutput(int indice){
+		
+		return this.p.get(indice);
+		
+	}
+	
+	public double getInput(int indice){
+		
+		return this.values.get(indice);
+		
+	}
+	
 	public void setFuntion(String function){
 		
 		this.function = function;

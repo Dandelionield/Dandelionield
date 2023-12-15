@@ -16,8 +16,8 @@ public class Parametric{
 	private String function;
 	private String name;
 	
-	private ArrayList<ArrayList<Parser>> p = new ArrayList<>();
-	private ArrayList<ArrayList<Double>> values = new ArrayList<>();
+	private ArrayList<Parser> p = new ArrayList<>();
+	private ArrayList<Double> values = new ArrayList<>();
 	private ArrayList<Double> n = new ArrayList<>();
 	
 	public Parametric(char x){
@@ -156,6 +156,18 @@ public class Parametric{
 		
 	}
 	
+	public Parser getOutput(int indice){
+		
+		return this.p.get(indice);
+		
+	}
+	
+	public double[] getInput(int indice){
+		
+		return toArrayDouble(this.xyz.get(indice));
+		
+	}
+	
 	public boolean isConstant(){
 		
 		for (char p : this.variable){
@@ -200,29 +212,21 @@ public class Parametric{
 
 			return this.name+"("+getVar()+") = "+function;
 			
-		}else if (this.n.size()>0 && this.p.size()==1 && this.p.get(0).size()==1){
+		}else if (this.n.size()>0 && this.p.size()==1){
 			
-			return this.name+"("+getValues(this.n)+") = "+p.get(0).get(0);
+			return this.name+"("+getValues(this.n)+") = "+p.get(0);
 			
 		}else{
 			
 			bup = this.name+"("+getVar()+") = "+function+"\n\n";
 		
-			for	(ArrayList<Parser> q : this.p){
+			for	(Parser q : this.p){
 			
-				for (Parser d : q){
+				if (q!=null){
 					
-					if (d!=null){
+					if (q.get()!=null){
 						
-						if (d.get()!=null){
-							
-							bup+= this.name+"("+this.xyz.get(c)+") = "+d+"\n";
-							
-						}else{
-							
-							bup+= this.name+"("+this.xyz.get(c)+") = "+Overwrite(toArrayDouble(this.xyz.get(c)))+" = "+Double.NaN+"\n";
-							
-						}
+						bup+= this.name+"("+this.xyz.get(c)+") = "+q+"\n";
 						
 					}else{
 						
@@ -230,9 +234,13 @@ public class Parametric{
 						
 					}
 					
-					c++;
+				}else{
+					
+					bup+= this.name+"("+this.xyz.get(c)+") = "+Overwrite(toArrayDouble(this.xyz.get(c)))+" = "+Double.NaN+"\n";
 					
 				}
+				
+				c++;
 			
 			}
 			
@@ -256,11 +264,7 @@ public class Parametric{
 		
 		Parser par = new Parser(Overwrite(n));
 		
-		ArrayList<Parser> a = new ArrayList<>();
-		
-		a.add(par);
-		
-		this.p.add(a);
+		this.p.add(par);
 		
 		for (double p : n){
 			
@@ -268,7 +272,7 @@ public class Parametric{
 			
 		}
 		
-		return this.p.get(0).get(0);
+		return this.p.get(0);
 		
 	}
 	
@@ -285,12 +289,8 @@ public class Parametric{
 		}
 		
 		Parser par = new Parser(Overwrite(n));
-		
-		ArrayList<Parser> a = new ArrayList<>();
-		
-		a.add(par);
-		
-		this.p.add(a);
+
+		this.p.add(par);
 		
 		for (double p : n){
 			
@@ -350,8 +350,6 @@ public class Parametric{
 			
 		}
 		
-		ArrayList<Double> bup;
-		ArrayList<Parser> bup2;
 		double input = 0;
 		
 		long n = 0;
@@ -362,17 +360,9 @@ public class Parametric{
 			
 			f.intervalueOf(0, 1, 1);
 			
-			bup2 = f.getParsers();
+			this.p.add(f.getOutput(0));
 			
-			bup2.remove(bup2.size()-1);
-			
-			this.p.add(bup2);
-			
-			bup = f.getValues();
-			
-			bup.remove(bup.size()-1);
-			
-			this.values.add(bup);
+			this.values.add(f.getInput(0));
 			
 			xyz.add(0+"");
 			
@@ -382,12 +372,16 @@ public class Parametric{
 			
 			f.intervalueOf(a[0], b[0], increment);
 			
-			this.p.add(f.getParsers());
-			this.values.add(f.getValues());
+			for (Parser q : f.getParsers()){
+				
+				p.add(q);
+				
+			}
 			
 			for (double q : f.getValues()){
 				
 				xyz.add(q+"");
+				this.values.add(q);
 				
 			}
 			
@@ -429,13 +423,13 @@ public class Parametric{
 				
 				par.intervalueOf(newA, newB, increment);
 				
-				for (ArrayList<Parser> q : par.p){
+				for (Parser q : par.p){
 					
 					this.p.add(q);
 					
 				}
 				
-				for (ArrayList<Double> q : par.values){
+				for (double q : par.values){
 					
 					this.values.add(q);
 					
@@ -461,21 +455,13 @@ public class Parametric{
 		
 		int c = 0;
 		
-		for	(ArrayList<Parser> q : this.p){
+		for	(Parser q : this.p){
 		
-			for (Parser d : q){
+			if (q!=null){
 				
-				if (d!=null){
+				if (q.get()!=null){
 					
-					if (d.get()!=null){
-						
-						bup+= this.name+"("+this.xyz.get(c)+") = "+d+"\n\n"+d.getProcess()+"\n\n";
-						
-					}else{
-						
-						bup+= this.name+"("+this.xyz.get(c)+") = "+Overwrite(toArrayDouble(this.xyz.get(c)))+" = "+Double.NaN+"\n\n";
-						
-					}
+					bup+= this.name+"("+this.xyz.get(c)+") = "+q+"\n\n"+q.getProcess()+"\n\n";
 					
 				}else{
 					
@@ -483,10 +469,14 @@ public class Parametric{
 					
 				}
 				
-				c++;
+			}else{
+				
+				bup+= this.name+"("+this.xyz.get(c)+") = "+Overwrite(toArrayDouble(this.xyz.get(c)))+" = "+Double.NaN+"\n\n";
 				
 			}
-		
+			
+			c++;
+			
 		}
 		
 		return bup;

@@ -193,6 +193,32 @@ public class Vectorial{
 		
 	}
 	
+	public Parser[] getOutputAsParser(int indice){
+		
+		Parser[] out = new Parser[this.p.get(indice).size()];
+		
+		for (int i=0; i<out.length; i++){
+			
+			out[i] = this.p.get(indice).get(i);
+			
+		}
+		
+		return out;
+		
+	}
+	
+	public vector getOutput(int indice){
+		
+		return this.output.get(indice);
+		
+	}
+	
+	public double[] getInput(int indice){
+		
+		return toArrayDouble(this.input.get(indice));
+		
+	}
+	
 	public long countVar(){
 		
 		long n = 0;
@@ -252,12 +278,6 @@ public class Vectorial{
 				}
 				
 				bup = bup.substring(0, bup.length()-2)+"> = "+this.output.get(i)+"\n";
-				
-				/*for (Parser q : this.p.get(i)){
-					
-					bup+= q.getProcess()+"\n\n";
-					
-				}*/
 				
 			}
 			
@@ -663,6 +683,25 @@ public class Vectorial{
 		}
 		
 		return varChar;
+		
+	}
+	
+	private double[] toArrayDouble(String wd){
+		
+		String[] parts = wd.split(", ");
+		double[] db = new double[parts.length];
+		
+		int c = 0;
+		
+		for (String q : parts){
+			
+			db[c] = new BigDecimal(q).setScale(15, RoundingMode.HALF_UP).doubleValue();
+			
+			c++;
+			
+		}
+		
+		return db;
 		
 	}
 	
