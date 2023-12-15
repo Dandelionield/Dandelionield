@@ -150,9 +150,9 @@ public class coordinate{
 	
 	private coordinate(coordinate a, int limite){
 		
-		this.x = Mayth.Redondear(x, limite);
-		this.y = Mayth.Redondear(y, limite);
-		this.z = Mayth.Redondear(z, limite);
+		this.x = Mayth.Redondear(a.x, limite);
+		this.y = Mayth.Redondear(a.y, limite);
+		this.z = Mayth.Redondear(a.z, limite);
 		
 		double[] v = new double[a.points.length];
 		

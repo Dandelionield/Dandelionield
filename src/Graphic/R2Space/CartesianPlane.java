@@ -21,6 +21,9 @@ import java.awt.Font;
 import java.awt.RenderingHints;
 import java.awt.FlowLayout;
 import java.awt.BasicStroke;
+import java.awt.Polygon;
+
+import java.awt.geom.AffineTransform;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -28,8 +31,10 @@ import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
 
 import Taylor.Math.Mayth;
+import Geometry.Euclidean.Matriz;
 import Geometry.Euclidean.vector;
 import Geometry.Euclidean.coordinate;
+import Geometry.Euclidean.degree;
 
 public class CartesianPlane extends JPanel{
 	
@@ -46,6 +51,7 @@ public class CartesianPlane extends JPanel{
     private int dragStartY;
 	
 	private ArrayList<vector> v = new ArrayList<>();
+	private ArrayList<coordinate> xy = new ArrayList<>();
 	
 	public CartesianPlane(int Width, int Height){
 		
@@ -77,6 +83,14 @@ public class CartesianPlane extends JPanel{
 	public void drawVector(vector v){
 		
 		this.v.add(v);
+		
+		this.repaint();
+		
+	}
+	
+	public void drawCoordinate(coordinate xy){
+		
+		this.xy.add(xy);
 		
 		this.repaint();
 		
@@ -154,13 +168,39 @@ public class CartesianPlane extends JPanel{
 			
 		}
 		
+		if (Scala>4){
+			
+			for (int x = 4; x <= Mayth.abs((OriginXAxis+1)*(getWidth()/Scala)); x += 4){//x++
+			
+				g2d.drawLine(x, -1, x, 1);
+				
+			}
+
+			for (int x = -4; x >= -OriginXAxis/Scala; x -= 4){//x--
+			
+				g2d.drawLine(x, -1, x, 1);
+				
+			}
+
+			for (int y = 4; y <= Mayth.abs((OriginYAxis+1)*(getHeight()/Scala)); y += 4){//y--
+			
+				g2d.drawLine(-1, y, 1, y);
+				
+			}
+
+			for (int y = -4; y >= -OriginYAxis*2/Scala; y -= 4){//y++
+			
+				g2d.drawLine(-1, y, 1, y);
+				
+			}
+			
+		}
+		
 	}
 	
 	private void DrawCoordinates(Graphics g2d){
 		
-		int dotRadius = 2;
-		
-		g2d.fillOval((int) (Mouse.getX()), (int) (-Mouse.getY()), (int) (dotRadius/Scala) * 2, (int) (dotRadius/Scala) * 2);
+		g2d.fillOval((int) (Mouse.getX()), (int) (-Mouse.getY()), (int) Mayth.Redondear((2.00/Scala) * 2, 0), (int) Mayth.Redondear((2.00/Scala) * 2, 0));
 		
 		if (Mouse.getOctant()== ((byte) 1)){
 			
@@ -190,11 +230,91 @@ public class CartesianPlane extends JPanel{
 				
 				p = p.doRedondear(0);
 				
-				g2d.drawLine((int) p.getTail().getX(),(int) p.getTail().getY(),(int) p.getHead().getX(),(int) -p.getHead().getY());
+				g2d.drawLine((int) p.getTail().getX(),(int) -p.getTail().getY(),(int) p.getHead().getX(),(int) -p.getHead().getY());
+				drawArrow(g2d, p);
 				
 			}
 			
 		}
+		
+		if (this.xy.size()!=0){
+			
+			double dotRadius = 2;
+			
+			if (Scala<4){
+				
+				dotRadius = 2;
+				
+			}else if (Scala<6){
+				
+				dotRadius = 3;
+				
+			}else if (Scala<7.4){
+				
+				dotRadius = 3.5;
+				
+			}else if (Scala<9.8){
+				
+				dotRadius = 4;
+				
+			}else if (Scala<16.5){
+				
+				dotRadius = 4.4;
+				
+			}else{
+				
+				dotRadius = 5;
+				
+			}
+			
+			for (coordinate p : this.xy){
+				
+				p = p.doRedondear(0);
+				
+				g2d.fillOval((int) p.getX(), (int) (-p.getY()), (int) Mayth.Redondear((dotRadius/Scala)*2.00, 0), (int) Mayth.Redondear((dotRadius/Scala) * 2.00, 0));
+		
+				if (p.getOctant()== ((byte) 1)){
+					
+					g2d.drawString(p.toString(), (int) (p.getX() - 10*p.toString().length()/Scala), (int) -(p.getY() - 20.00/Scala));
+					
+				}else if (p.getOctant()== ((byte) 2)){
+					
+					g2d.drawString(p.toString(), (int) (p.getX() + 10.00/Scala), (int) -(p.getY() - 20.00/Scala));
+					
+				}else if (p.getOctant()== ((byte) 3)){
+					
+					g2d.drawString(p.toString(), (int) (p.getX() + 10.00/Scala), (int) -(p.getY() + 10.00/Scala));
+					
+				}else{
+					
+					g2d.drawString(p.toString(), (int) (p.getX() - 8*p.toString().length()/Scala), (int) -(p.getY() + 8.00/Scala));
+					
+				}
+				
+			}
+			
+		}
+		
+	}
+	
+	private void drawArrow(Graphics g2d, vector v){
+		
+		double ArrowScala = 2.00;
+		
+		int x1 = (int) (v.getHead().getX()-ArrowScala*v.getDirection().doResta(new degree(45)).getCos());
+		int y1 = (int) (-v.getHead().getY()+ArrowScala*v.getDirection().doResta(new degree(45)).getSen());
+		int x2 = (int) v.getHead().getX();
+		int y2 = (int) -v.getHead().getY();
+		int x3 = (int) (v.getHead().getX()-ArrowScala*v.getDirection().doSuma(new degree(45)).getCos());
+		int y3 = (int) (-v.getHead().getY()+ArrowScala*v.getDirection().doSuma(new degree(45)).getSen());
+		
+		Polygon ArrowHead = new Polygon();
+		
+		ArrowHead.addPoint(x1, y1);
+		ArrowHead.addPoint(x2, y2);
+		ArrowHead.addPoint(x3, y3);
+		
+		g2d.fillPolygon(ArrowHead);//*/
 		
 	}
 	
@@ -276,5 +396,31 @@ public class CartesianPlane extends JPanel{
 		Mouse = new coordinate((e.getX() - OriginXAxis)/Scala, (OriginYAxis - e.getY())/Scala);
 		
 	}
+	
+	/*if (v.getOctant()==1){
+			
+			x2 = (int) (v.getHead().getX()+1);
+			y2 = (int) -(v.getHead().getY()+1);
+			
+		}else if (v.getOctant()==2){
+			
+			x1++;
+			x2 = (int) (v.getHead().getX()+2);
+			y2 = (int) -v.getHead().getY();
+			x3++;
+			
+		}else if (v.getOctant()==3){
+			
+			x2 = (int) (v.getHead().getX()-1);
+			y2 = (int) -(v.getHead().getY()-1);
+			
+		}else{
+			
+			x1--;
+			x2 = (int) (v.getHead().getX()-2);
+			y2 = (int) -(v.getHead().getY());
+			x3--;
+			
+		}//*/
 	
 }
