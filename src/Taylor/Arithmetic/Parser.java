@@ -21,7 +21,33 @@ public class Parser extends Mayth{
 
 	public Parser(String wd){
 		
-		super(false);
+		super(true);
+		
+		try{
+			
+			wdProcess = new ArrayList<>();
+			
+			n = Parse(wd);
+			
+		}catch(Exception e){
+			
+			e.printStackTrace();
+			
+			op = "Error";
+			
+			n = null;
+			
+			wdProcess = new ArrayList<>();
+			
+			wdProcess.add(op);
+			
+		}//*/
+		
+	}
+	
+	public Parser(String wd, boolean value){
+		
+		super(value);
 		
 		try{
 			
@@ -348,6 +374,7 @@ public class Parser extends Mayth{
 					
 					r = getRight(wd, i-5);
 					n = new BigDecimal(Arccos(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+					//n = new BigDecimal(Math.acos(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
 					
 					return Parse(ReplaceOperation(wd, i-5, n, r, true));
 					
@@ -502,8 +529,8 @@ public class Parser extends Mayth{
 						r = getRight(wd, i);
 						l = getLeft(wd, i);
 
-						n = new BigDecimal(Raiz(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue(), new BigDecimal(l).setScale(15, RoundingMode.HALF_UP).doubleValue()));
-						
+						//n = new BigDecimal(Raiz(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue(), new BigDecimal(l).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						n = new BigDecimal(Math.sqrt(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
 						return Parse(ReplaceOperation(wd, i, n, l, r));
 						
 					}
@@ -843,8 +870,8 @@ public class Parser extends Mayth{
 			}
 			
 		}
-		
-		if (bup.charAt(0)=='-' && Result.compareTo(new BigDecimal(0))>=0 && parts[0].equals("")==false){
+
+		if (bup.charAt(0)=='-' && Result.compareTo(new BigDecimal(0))>=0 && parts[0].equals("")==false && isAllowed(parts[0].charAt(parts[0].length()-1)+"")==true){
 			
 			parts[0] = parts[0]+"+";
 			
@@ -874,7 +901,11 @@ public class Parser extends Mayth{
 				
 			}
 		
-			if (i==wd.length()-1){return wd.substring(indice);}
+			if (i==wd.length()-1){
+				
+				return wd.substring(indice);
+				
+			}
 			
 			if (i!=wd.length()-1){
 				

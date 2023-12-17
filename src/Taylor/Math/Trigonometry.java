@@ -141,6 +141,12 @@ public class Trigonometry extends Constants{
 			
 		}
 		
+		if (x==0){
+			
+			return 1;
+			
+		}
+		
 		for (int n=0; n<=100; n++){
 			
 			Cos = Cos.add(bigPotencia(-1, n).multiply(bigPotencia(x,2*n).divide(bigFactorial(2*n), 100, RoundingMode.HALF_UP)));

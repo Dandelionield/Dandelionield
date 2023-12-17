@@ -40,13 +40,25 @@ public class Test {
 		
 		vector a = new vector(50, Thetha);
 		
-		a.setTail(new coordinate(20, 10));
+		Trigonometry l = new Trigonometry(true);
 		
-		coordinate b = new coordinate(100, new degree(15));
+		function f = new function('x', "(2√(1-((x/100)-1)^2))*100");
+		function g = new function('x', "(2√(1-(-(x/100)-1)^2))*100");
+		function h = new function('x', "(-2.5*(2√(1-(2√((x/100)/2)))))*100");
+		function d = new function('x', "(-2.5*(2√(1-(2√(-(x/100)/2)))))*100");
 		
-		CartesianPlane R2 = new CartesianPlane(frame.getWidth(), frame.getHeight());
+		f.intervalueOf(0, 200);
+		g.intervalueOf(-200, 0);
+		h.intervalueOf(0, 200);
+		d.intervalueOf(-200, 0);//*
+		
+		CartesianPlane R2 = new CartesianPlane(2, frame.getWidth(), frame.getHeight());
 		//R2.drawVector(a);
 		//R2.drawCoordinate(b);
+		R2.drawFunction(f);
+		R2.drawFunction(g);
+		R2.drawFunction(h);
+		R2.drawFunction(d);
 		
 		/*for (int Theta = 0; Theta<360; Theta+=15){
 			

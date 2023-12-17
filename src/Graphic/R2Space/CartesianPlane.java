@@ -31,6 +31,7 @@ import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
 
 import Taylor.Math.Mayth;
+import Taylor.Arithmetic.function;
 import Geometry.Euclidean.Matriz;
 import Geometry.Euclidean.vector;
 import Geometry.Euclidean.coordinate;
@@ -38,13 +39,13 @@ import Geometry.Euclidean.degree;
 
 public class CartesianPlane extends JPanel{
 	
-	public int OriginXAxis;
-	public int OriginYAxis;
+	private int OriginXAxis;
+	private int OriginYAxis;
 	
 	private coordinate Mouse = new coordinate(0, 0);
 	
-	private double Scala = 1.00;
-	private float axisThickness = 1;
+	private double Scala;
+	private float axisThickness;
 	private int lastMouseX;
 	private int lastMouseY;
 	private int dragStartX;
@@ -52,31 +53,41 @@ public class CartesianPlane extends JPanel{
 	
 	private ArrayList<vector> v = new ArrayList<>();
 	private ArrayList<coordinate> xy = new ArrayList<>();
+	private ArrayList<function> f = new ArrayList<>();
 	
 	public CartesianPlane(int Width, int Height){
 		
-		this.OriginXAxis = Width/2;
-		this.OriginYAxis = Height/2;
-		
-		innitComponents(0, 0, Width, Height, Color.WHITE);
+		innitComponents(1, 0, 0, Width, Height, Color.WHITE);
 		
 	}
 	
 	public CartesianPlane(int X, int Y, int Width, int Height){
 		
-		this.OriginXAxis = Width/2;
-		this.OriginYAxis = Height/2;
-		
-		innitComponents(X, Y, Width, Height, Color.WHITE);
+		innitComponents(1, X, Y, Width, Height, Color.WHITE);
 		
 	}
 	
 	public CartesianPlane(int X, int Y, int Width, int Height, Color Background){
 		
-		this.OriginXAxis = Width/2;
-		this.OriginYAxis = Height/2;
+		innitComponents(1, X, Y, Width, Height, Background);
 		
-		innitComponents(X, Y, Width, Height, Background);
+	}
+	
+	public CartesianPlane(double Scala, int Width, int Height){
+		
+		innitComponents(Scala, 0, 0, Width, Height, Color.WHITE);
+		
+	}
+	
+	public CartesianPlane(double Scala, int X, int Y, int Width, int Height){
+		
+		innitComponents(Scala, X, Y, Width, Height, Color.WHITE);
+		
+	}
+	
+	public CartesianPlane(double Scala, int X, int Y, int Width, int Height, Color Background){
+		
+		innitComponents(Scala, X, Y, Width, Height, Background);
 		
 	}
 	
@@ -96,10 +107,22 @@ public class CartesianPlane extends JPanel{
 		
 	}
 	
-	public void innitComponents(int X, int Y, int Width, int Height, Color Background){
+	public void drawFunction(function f){
+		
+		this.f.add(f);
+		
+		this.repaint();
+		
+	}
+	
+	public void innitComponents(double Scala, int X, int Y, int Width, int Height, Color Background){
 		
 		this.setLayout(new FlowLayout());
 		
+		this.OriginXAxis = Width/2;
+		this.OriginYAxis = Height/2;
+		this.Scala = Scala;
+		this.axisThickness = (float) (1.00/Scala);
 		this.setPreferredSize(new Dimension(Width, Height));
 		this.setBounds(X, Y, Width, Height);
 		this.setBackground(Background);
@@ -232,6 +255,44 @@ public class CartesianPlane extends JPanel{
 				
 				g2d.drawLine((int) p.getTail().getX(),(int) -p.getTail().getY(),(int) p.getHead().getX(),(int) -p.getHead().getY());
 				drawArrow(g2d, p);
+				
+			}
+			
+		}
+		
+		if (this.f.size()!=0){
+			
+			int x1 = 0;
+			int x2 = 0;
+			int y1 = 0;
+			int y2 = 0;
+			
+			for (function p : this.f){
+				
+				if (p.getParsers().size()==0){
+					
+					p.intervalueOf(-10, 10);
+					
+				}
+				
+				for (int i=p.getParsers().size()-2; i>=0; i--){
+					
+					try{
+						
+						x1 = (int) p.getInput(i);
+						y1 = (int) -p.getOutput(i).get().setScale(15, RoundingMode.HALF_UP).doubleValue();
+						x2 = (int) p.getInput(i+1);
+						y2 = (int) -p.getOutput(i+1).get().setScale(15, RoundingMode.HALF_UP).doubleValue();
+						
+					}catch(Exception e){
+						
+						continue;
+						
+					}
+					
+					g2d.drawLine(x1, y1, x2, y2);
+					
+				}
 				
 			}
 			
