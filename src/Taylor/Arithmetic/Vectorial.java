@@ -28,6 +28,8 @@ public class Vectorial{
 	ArrayList<vector> output = new ArrayList<>();
 	ArrayList<String> input = new ArrayList<>();
 	
+	private boolean RAD_DEG = false;
+	
 	public Vectorial(Parametric x, Parametric y){
 		
 		this.cx = x;
@@ -216,6 +218,18 @@ public class Vectorial{
 	public double[] getInput(int indice){
 		
 		return toArrayDouble(this.input.get(indice));
+		
+	}
+	
+	public void setTrigonometryMode(boolean value){
+		
+		RAD_DEG = value;
+		
+		for (int i=0; i<this.v.length; i++){
+			
+			this.v[i].setTrigonometryMode(RAD_DEG);
+			
+		}
 		
 	}
 	
@@ -448,6 +462,7 @@ public class Vectorial{
 					}else{
 						
 						f = new function(q.getVariable()[0], q.getFunction(), q.getName());
+						f.setTrigonometryMode(RAD_DEG);
 						pa.add(f.get(INPUT));
 						
 					}
@@ -517,6 +532,8 @@ public class Vectorial{
 				}
 				
 				cv = new Vectorial(par);
+				
+				cv.setTrigonometryMode(RAD_DEG);
 				
 				cv.intervalueOf(newA, newB, increment);
 				

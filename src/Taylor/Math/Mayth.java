@@ -12,7 +12,7 @@ import java.math.MathContext;
  
 public class Mayth extends Hyperbolic{
 	
-	public static final BigDecimal e = Mayth.Euler();
+	public static final BigDecimal e = new Constants().Euler();
 	
 	public Mayth(){
 		
@@ -26,7 +26,7 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
-	public static double Raiz(double x, double n){
+	public double Raiz(double x, double n){
 		
 		int signo=1;
 		
@@ -64,13 +64,13 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
-	public static double Raiz(double x){
+	public double Raiz(double x){
 		
 		return Raiz(x, 2);
 		
 	}
 
-	public static double Potencia(double base, double exponent){
+	public double Potencia(double base, double exponent){
 		
 		if (Double.isNaN(base)==true || Double.isInfinite(base)==true || Double.isNaN(exponent)==true || Double.isInfinite(exponent)==true){
 			
@@ -132,13 +132,13 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
-	public static double Potencia(double x){
+	public double Potencia(double x){
 		
 		return Potencia(x, 2);
 		
 	}
 	
-	public static double Euler(double x){
+	public double Euler(double x){
 		
 		if (x==0){
 			
@@ -189,7 +189,7 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
-	public static double Ln(double x){
+	public double Ln(double x){
 		
 		BigDecimal ln = new BigDecimal(0);
 		BigDecimal x2 = new BigDecimal(1);
@@ -221,7 +221,7 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
-	public static double Log(double x, double base){//Se usa la serie Taylor para el logaritmo en base b 
+	public double Log(double x, double base){//Se usa la serie Taylor para el logaritmo en base b 
 		
 		BigDecimal log = new BigDecimal(0);
 		BigDecimal ln = new BigDecimal(0);
@@ -251,13 +251,13 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
-	public static double Log(double x){
+	public double Log(double x){
 		
 		return Log(x, 10);
 		
 	}
 	
-	public static double Factorial(double n){
+	public double Factorial(double n){
 
 		if (n>0 && n%1==0){
 
@@ -279,7 +279,7 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
-	public static double GammaEuler(double z){
+	public double GammaEuler(double z){
 		
 		double p = 0.99999999999980993;
 		double t = z + 7.5;
@@ -293,11 +293,11 @@ public class Mayth extends Hyperbolic{
 		p += 9.9843695780195716e-6 / (z + 7);
 		p += 1.5056327351493116e-7 / (z + 8);
 		
-		return Raiz(2 * PI, 2) * Potencia(t, z + 0.5d) * Euler(-t) * p;
+		return Raiz(2 * PI.doubleValue(), 2) * Potencia(t, z + 0.5d) * Euler(-t) * p;
 		
 	}
 	
-	public static boolean isPrime(long n){
+	public boolean isPrime(long n){
 		
 		if (n<=1){return false;}
 		
@@ -323,7 +323,7 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
-	public static long nPrime(int indice){
+	public long nPrime(int indice){
 		
 		if (indice<=0){return 0;}
 		
@@ -362,7 +362,7 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
-	public static double nFibonacci(int indice){
+	public double nFibonacci(int indice){
 		
 		double[] phi= new double [indice];
 		
@@ -384,7 +384,7 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
-	public static double nBernoulli(float indice){
+	public double nBernoulli(float indice){
 		
 		double Bn=0;
 		
@@ -404,13 +404,13 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
-	public static double nWorpitzky(double n, int k){
+	public double nWorpitzky(double n, int k){
 		
 		double W=0;
 		
 		for (int v=0; v<=k; v++){
 			
-			W += Potencia(-1,v+k) * Potencia(v+1,n) * Combinacion(k,v);
+			W += Potencia(-1,v+k) * Potencia(v+1,n) * Combination(k,v);
 			
 		}
 		
@@ -418,13 +418,13 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
-	public static double Combinacion(double n, double k){
+	public double Combination(double n, double k){
 		
 		return Factorial(n) / (Factorial(k)*Factorial(n-k));
 		
 	}
 	
-	public static double ZetaReimann(float s){
+	public double ZetaReimann(float s){
 		
 		double zeta=0;
 		int iteracion=1000;
@@ -449,7 +449,7 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
-	public static double abs(double x){
+	public double abs(double x){
 		
 		if (x<0){
 			

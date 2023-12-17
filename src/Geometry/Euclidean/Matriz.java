@@ -16,6 +16,8 @@ public class Matriz{
 	private boolean State = false;
 	private final boolean Normal;
 	
+	private final Mayth Mth = new Mayth();
+	
 	public Matriz(vector[] m){
 		
 		length = m.length;
@@ -1112,7 +1114,7 @@ public class Matriz{
 		
 		for (int n=1; n<=25; n++){
 			
-			mz = mz.doSuma(this.doPotencia(n).doScalar(1.00/Mayth.Factorial(n)));
+			mz = mz.doSuma(this.doPotencia(n).doScalar(1.00/Mth.Factorial(n)));
 			
 		}
 		
@@ -1174,7 +1176,7 @@ public class Matriz{
 			
 			for (int c=0; c<m.length; c++){
 				
-				r+= (int) Mayth.Potencia(-1, c) * this.get(0,c) * this.getCofactor(0,c).getDetermine();
+				r+= (int) Mth.Potencia(-1, c) * this.get(0,c) * this.getCofactor(0,c).getDetermine();
 				
 			}
 			

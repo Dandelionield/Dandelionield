@@ -12,8 +12,8 @@ import java.math.MathContext;
  
 public class Trigonometry extends Constants{
 	
-	private static boolean RAD_DEG = false;
-	public static double PI = Pi().doubleValue();
+	private boolean RAD_DEG;
+	public static BigDecimal PI = new Constants().Pi();
 	
 	public Trigonometry(){
 		
@@ -33,7 +33,7 @@ public class Trigonometry extends Constants{
 		
 	}
 
-	public static double Sen(double x){
+	public double Sen(double x){
 		
 		if (Double.isNaN(x) || Double.isInfinite(x)){
 			
@@ -45,7 +45,7 @@ public class Trigonometry extends Constants{
 		
 		if (RAD_DEG==false){
 			
-			x = (x*PI)/180;
+			x = (x*Trigonometry.PI.doubleValue())/180;
 			
 		}
 		
@@ -59,7 +59,7 @@ public class Trigonometry extends Constants{
 		
 	}
 	
-	public static double Arcsen(double x){
+	public double Arcsen(double x){
 		
 		if (Double.isNaN(x) || Double.isInfinite(x)){
 			
@@ -79,7 +79,7 @@ public class Trigonometry extends Constants{
 				
 			}else{
 				
-				return PI/2;
+				return Trigonometry.PI.doubleValue()/2;
 				
 			}
 			
@@ -91,33 +91,33 @@ public class Trigonometry extends Constants{
 				
 			}else{
 				
-				return -PI/2;
+				return -Trigonometry.PI.doubleValue()/2;
 				
 			}
 			
 		}
 		
-		boolean bup = Trigonometry.RAD_DEG;
+		boolean bup = RAD_DEG;
 		
-		Trigonometry.RAD_DEG = true;
+		RAD_DEG = true;
 		
 		try{
 			
-			Arcoseno = new BigDecimal(Trigonometry.Arctan(x/Math.sqrt(1-x*x)));
+			Arcoseno = new BigDecimal(Arctan(x/Math.sqrt(1-x*x)));
 			
 		}catch(Exception e){
 			
-			Trigonometry.RAD_DEG = bup;
+			RAD_DEG = bup;
 			
 			return x;
 			
 		}
 		
-		Trigonometry.RAD_DEG = bup;
+		RAD_DEG = bup;
 		
 		if (RAD_DEG==false){
 			
-			Arcoseno = Arcoseno.multiply(new BigDecimal(180)).divide(new BigDecimal(PI), MathContext.DECIMAL128);
+			Arcoseno = Arcoseno.multiply(new BigDecimal(180)).divide(Trigonometry.PI, MathContext.DECIMAL128);
 			
 		}
 		
@@ -125,7 +125,7 @@ public class Trigonometry extends Constants{
 		
 	}
 	
-	public static double Cos(double x){
+	public double Cos(double x){
 		
 		if (Double.isNaN(x) || Double.isInfinite(x)){
 			
@@ -137,7 +137,7 @@ public class Trigonometry extends Constants{
 		
 		if (RAD_DEG==false){
 			
-			x = (x*PI)/180;
+			x = (x*Trigonometry.PI.doubleValue())/180;
 			
 		}
 		
@@ -157,7 +157,7 @@ public class Trigonometry extends Constants{
 		
 	}
 	
-	public static double Arccos(double x){
+	public double Arccos(double x){
 		
 		if (Double.isNaN(x) || Double.isInfinite(x)){
 			
@@ -165,17 +165,17 @@ public class Trigonometry extends Constants{
 			
 		}
 		
-		boolean bup = Trigonometry.RAD_DEG;
+		boolean bup = RAD_DEG;
 		
-		Trigonometry.RAD_DEG = true;
+		RAD_DEG = true;
 		
-		BigDecimal Arcocoseno = (new BigDecimal(PI/2).subtract(new BigDecimal(Arcsen(x))));
+		BigDecimal Arcocoseno = ((Trigonometry.PI.divide(new BigDecimal(2), MathContext.DECIMAL128)).subtract(new BigDecimal(Arcsen(x))));
 		
-		Trigonometry.RAD_DEG = bup;
+		RAD_DEG = bup;
 		
 		if (RAD_DEG==false){
 			
-			Arcocoseno = Arcocoseno.multiply(new BigDecimal(180)).divide(new BigDecimal(PI), MathContext.DECIMAL128);
+			Arcocoseno = Arcocoseno.multiply(new BigDecimal(180)).divide(Trigonometry.PI, MathContext.DECIMAL128);
 			
 		}
 		
@@ -183,7 +183,7 @@ public class Trigonometry extends Constants{
 		
 	}
 	
-	public static double Tan(double x){
+	public double Tan(double x){
 		
 		if (Double.isNaN(x) || Double.isInfinite(x)){
 			
@@ -203,7 +203,7 @@ public class Trigonometry extends Constants{
 		
 	}
 	
-	public static double Arctan(double x){
+	public double Arctan(double x){
 		
 		if (Double.isNaN(x) || Double.isInfinite(x)){
 			
@@ -213,17 +213,17 @@ public class Trigonometry extends Constants{
 		
 		BigDecimal Arcotangente = new BigDecimal(0);
 		
-		boolean bup = Trigonometry.RAD_DEG;
+		boolean bup = RAD_DEG;
 		boolean condition1 = x<=-1.0000000000000013 && x>=-572.957213354061;
 		boolean Break = false;
 		
 		if (Math.abs(x)>1){
 			
-			Trigonometry.RAD_DEG = true;
+			RAD_DEG = true;
 			
-			Arcotangente =  new BigDecimal(PI/2-Arctan(1/x));
+			Arcotangente =  new BigDecimal(Trigonometry.PI.doubleValue()/2-Arctan(1/x));
 			
-			Trigonometry.RAD_DEG = bup;
+			RAD_DEG = bup;
 			
 			Break = true;
 			
@@ -231,7 +231,7 @@ public class Trigonometry extends Constants{
 		
 		if (condition1){
 			
-			Arcotangente = Arcotangente.subtract(new BigDecimal(PI));
+			Arcotangente = Arcotangente.subtract(Trigonometry.PI);
 			
 		}
 		
@@ -239,13 +239,13 @@ public class Trigonometry extends Constants{
 			
 			if (Break){break;}
 			
-			Arcotangente = Arcotangente.add(new BigDecimal(Mayth.Potencia(-1, n)).multiply(bigPotencia(x,2*n+1).divide(new BigDecimal(2*n+1), MathContext.DECIMAL128)));
+			Arcotangente = Arcotangente.add(new BigDecimal(new Mayth().Potencia(-1, n)).multiply(bigPotencia(x,2*n+1).divide(new BigDecimal(2*n+1), MathContext.DECIMAL128)));
 			
 		}
 		
 		if (RAD_DEG==false){
 			
-			Arcotangente = Arcotangente.multiply(new BigDecimal(180)).divide(new BigDecimal(PI), MathContext.DECIMAL128);
+			Arcotangente = Arcotangente.multiply(new BigDecimal(180)).divide(Trigonometry.PI, MathContext.DECIMAL128);
 			
 		}
 		
@@ -253,7 +253,7 @@ public class Trigonometry extends Constants{
 		
 	}
 	
-	public static double Csc(double x){
+	public double Csc(double x){
 		
 		if (x!=0 && x!=180 && x!=360){
 			
@@ -267,13 +267,13 @@ public class Trigonometry extends Constants{
 		
 	}
 	
-	public static double Arccsc(double x){
+	public double Arccsc(double x){
 		
 		return Arcsen(1/x);
 		
 	}
 	
-	public static double Sec(double x){
+	public double Sec(double x){
 		
 		if (x!=90 && x!=270){
 			
@@ -287,13 +287,13 @@ public class Trigonometry extends Constants{
 		
 	}
 	
-	public static double Arcsec(double x){
+	public double Arcsec(double x){
 		
 		return Arccos(1/x);
 		
 	}
 	
-	public static double Cot(double x){
+	public double Cot(double x){
 		
 		if (x!=0 && x!=180 && x!=360){
 			
@@ -307,7 +307,7 @@ public class Trigonometry extends Constants{
 		
 	}
 	
-	public static double Arccot(double x){
+	public double Arccot(double x){
 		
 		return Arctan(1/x);
 		

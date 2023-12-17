@@ -15,7 +15,9 @@ public class bigFuntions{
 	private static long indiceFactorial = -3;
 	private static BigDecimal factorial = new BigDecimal(0);
 	
-	public static BigDecimal bigPotencia(double base, double exponent){
+	public bigFuntions(){}
+	
+	public BigDecimal bigPotencia(double base, double exponent){
 		
 		if (base==0){
 			
@@ -39,7 +41,7 @@ public class bigFuntions{
 		
 	}
 	
-	public static BigDecimal bigPotencia(BigDecimal base, double exponent){
+	public BigDecimal bigPotencia(BigDecimal base, double exponent){
 		
 		if (base.compareTo(new BigDecimal(0))==0){
 			
@@ -63,7 +65,7 @@ public class bigFuntions{
 		
 	}//*/
 	
-	public static BigDecimal bigFactorial(long n){
+	public BigDecimal bigFactorial(long n){
 		
 		if (n==0 || n==1){
 			
@@ -99,7 +101,7 @@ public class bigFuntions{
 		
 	}
 	
-	public static BigDecimal bigFactorial(BigDecimal n){
+	public BigDecimal bigFactorial(BigDecimal n){
 		
 		if (n.compareTo(new BigDecimal(0))==0 || n.compareTo(new BigDecimal(1))==1){
 			

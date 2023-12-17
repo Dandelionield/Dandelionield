@@ -22,6 +22,8 @@ public class time{
 	private static final BigDecimal[] Year = {new BigDecimal(29_030_400), new BigDecimal(365).multiply(new BigDecimal(86400)).add(new BigDecimal(5).multiply(new BigDecimal(3600))).add(new BigDecimal(49).multiply(new BigDecimal(60))).add(new BigDecimal(12))};
 	private static byte y = 0;
 	
+	private static final Mayth Mth = new Mayth();
+	
 	public time(double Scalar){
 		
 		this.Scalar = Scalar;
@@ -84,7 +86,7 @@ public class time{
 	
 	public double getMagnitude(){
 		
-		return Mayth.abs(this.Scalar);
+		return Mth.abs(this.Scalar);
 		
 	}
 	
@@ -282,7 +284,7 @@ public class time{
 			
 			powNonMeterValue = MeterValue.divide(Equivalencia, MathContext.DECIMAL128);
 			
-			for (long i=2; i<=Mayth.abs(t.nth); i++){
+			for (long i=2; i<=Mth.abs(t.nth); i++){
 				
 				newEquivalence = newEquivalence.multiply(Equivalencia);
 				
@@ -304,7 +306,7 @@ public class time{
 			
 			nthMeterValue = t.toSecond().getScalar();
 			
-			for(long i=2; i<=Mayth.abs(t.nth); i++){
+			for(long i=2; i<=Mth.abs(t.nth); i++){
 				
 				newEquivalence = newEquivalence.multiply(backUpEquivalencia);
 				
@@ -366,7 +368,7 @@ public class time{
 			
 			powNonSecondValue = SecondValue.divide(Equivalencia, MathContext.DECIMAL128);
 			
-			for (long i=2; i<=Mayth.abs(t.nth); i++){
+			for (long i=2; i<=Mth.abs(t.nth); i++){
 				
 				newEquivalence = newEquivalence.multiply(Equivalencia);
 				
@@ -388,7 +390,7 @@ public class time{
 			
 			nthSecondValue = t.toSecond().getScalar();
 			
-			for(long i=2; i<=Mayth.abs(t.nth); i++){
+			for(long i=2; i<=Mth.abs(t.nth); i++){
 				
 				newEquivalence = newEquivalence.multiply(backUpEquivalencia);
 				
@@ -406,67 +408,67 @@ public class time{
 	
 	public static time getQuettasecondValueOf(double value){
 		
-		return new time(value, "Qs", Mayth.bigPotencia(10, 30));
+		return new time(value, "Qs", Mth.bigPotencia(10, 30));
 		
 	}
 	
 	public static time getRonnasecondValueOf(double value){
 		
-		return new time(value, "Rs", Mayth.bigPotencia(10, 27));
+		return new time(value, "Rs", Mth.bigPotencia(10, 27));
 		
 	}
 	
 	public static time getYottasecondValueOf(double value){
 		
-		return new time(value, "Ys", Mayth.bigPotencia(10, 24));
+		return new time(value, "Ys", Mth.bigPotencia(10, 24));
 		
 	}
 	
 	public static time getZettasecondValueOf(double value){
 		
-		return new time(value, "Zs", Mayth.bigPotencia(10, 21));
+		return new time(value, "Zs", Mth.bigPotencia(10, 21));
 		
 	}
 	
 	public static time getExasecondValueOf(double value){
 		
-		return new time(value, "Xs", Mayth.bigPotencia(10, 18));
+		return new time(value, "Xs", Mth.bigPotencia(10, 18));
 		
 	}
 	
 	public static time getKalpaValueOf(double value){
 		
-		return new time(value, "kp", new BigDecimal(4.32).multiply(Mayth.bigPotencia(10, 9)).multiply(Year[y]));
+		return new time(value, "kp", new BigDecimal(4.32).multiply(Mth.bigPotencia(10, 9)).multiply(Year[y]));
 		
 	}
 	
 	public static time getEonValueOf(double value){
 		
-		return new time(value, "eon", Mayth.bigPotencia(10, 9).multiply(Year[y]));
+		return new time(value, "eon", Mth.bigPotencia(10, 9).multiply(Year[y]));
 		
 	}
 	
 	public static time getGalacticYearValueOf(double value){
 		
-		return new time(value, "Gy", new BigDecimal(2.3).multiply(Mayth.bigPotencia(10, 8)).multiply(Year[y]));
+		return new time(value, "Gy", new BigDecimal(2.3).multiply(Mth.bigPotencia(10, 8)).multiply(Year[y]));
 		
 	}
 	
 	public static time getPetasecondValueOf(double value){
 		
-		return new time(value, "Ps", Mayth.bigPotencia(10, 15));
+		return new time(value, "Ps", Mth.bigPotencia(10, 15));
 		
 	}
 	
 	public static time getMegayearValueOf(double value){
 		
-		return new time(value, "My", Mayth.bigPotencia(10, 6).multiply(Year[y]));
+		return new time(value, "My", Mth.bigPotencia(10, 6).multiply(Year[y]));
 		
 	}
 	
 	public static time getTerasecondValueOf(double value){
 		
-		return new time(value, "Ts", Mayth.bigPotencia(10, 12));
+		return new time(value, "Ts", Mth.bigPotencia(10, 12));
 		
 	}
 	
@@ -478,13 +480,13 @@ public class time{
 	
 	public static time getMillenniumValueOf(double value){
 		
-		return new time(value, "ky", Mayth.bigPotencia(10, 3).multiply(Year[y]));
+		return new time(value, "ky", Mth.bigPotencia(10, 3).multiply(Year[y]));
 		
 	}
 	
 	public static time getCenturyValueOf(double value){
 		
-		return new time(value, "c", Mayth.bigPotencia(10, 2).multiply(Year[y]));
+		return new time(value, "c", Mth.bigPotencia(10, 2).multiply(Year[y]));
 		
 	}
 	
@@ -496,7 +498,7 @@ public class time{
 	
 	public static time getGigasecondValueOf(double value){
 		
-		return new time(value, "Gs", Mayth.bigPotencia(10, 9));
+		return new time(value, "Gs", Mth.bigPotencia(10, 9));
 		
 	}
 	
@@ -532,7 +534,7 @@ public class time{
 	
 	public static time getSecondValueOf(double value){
 		
-		return new time(value, "s", Mayth.bigPotencia(10, 0));
+		return new time(value, "s", Mth.bigPotencia(10, 0));
 		
 	}
 	
@@ -604,43 +606,43 @@ public class time{
 	
 	public static time getDecasecondValueOf(double value){
 		
-		return new time(value, "das", Mayth.bigPotencia(10, 1));
+		return new time(value, "das", Mth.bigPotencia(10, 1));
 		
 	}
 	
 	public static time getDecisecondValueOf(double value){
 		
-		return new time(value, "ds", Mayth.bigPotencia(10, -1));
+		return new time(value, "ds", Mth.bigPotencia(10, -1));
 		
 	}
 	
 	public static time getCentisecondValueOf(double value){
 		
-		return new time(value, "cs", Mayth.bigPotencia(10, -2));
+		return new time(value, "cs", Mth.bigPotencia(10, -2));
 		
 	}
 	
 	public static time getMillisecondValueOf(double value){
 		
-		return new time(value, "ms", Mayth.bigPotencia(10, -3));
+		return new time(value, "ms", Mth.bigPotencia(10, -3));
 		
 	}
 	
 	public static time getMicrosecondValueOf(double value){
 		
-		return new time(value, "µs", Mayth.bigPotencia(10, -6));
+		return new time(value, "µs", Mth.bigPotencia(10, -6));
 		
 	}
 	
 	public static time getNanosecondValueOf(double value){
 		
-		return new time(value, "ns", Mayth.bigPotencia(10, -9));
+		return new time(value, "ns", Mth.bigPotencia(10, -9));
 		
 	}
 	
 	public static distance getPlanckTimeValueOf(double value){
 		
-		return new distance(value, "pt", new BigDecimal(5.39).multiply(Mayth.bigPotencia(10, -44)));
+		return new distance(value, "pt", new BigDecimal(5.39).multiply(Mth.bigPotencia(10, -44)));
 		
 	}
 	

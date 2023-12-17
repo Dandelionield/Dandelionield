@@ -20,6 +20,8 @@ public class Parametric{
 	private ArrayList<Double> values = new ArrayList<>();
 	private ArrayList<Double> n = new ArrayList<>();
 	
+	private boolean RAD_DEG = false;
+	
 	public Parametric(char x){
 		
 		name = "f";
@@ -156,6 +158,12 @@ public class Parametric{
 		
 	}
 	
+	public void setTrigonometryMode(boolean value){
+		
+		RAD_DEG = value;
+		
+	}
+	
 	public Parser getOutput(int indice){
 		
 		return this.p.get(indice);
@@ -262,7 +270,7 @@ public class Parametric{
 			
 		}
 		
-		Parser par = new Parser(Overwrite(n));
+		Parser par = new Parser(Overwrite(n), RAD_DEG);
 		
 		this.p.add(par);
 		
@@ -288,7 +296,7 @@ public class Parametric{
 			
 		}
 		
-		Parser par = new Parser(Overwrite(n));
+		Parser par = new Parser(Overwrite(n), RAD_DEG);
 
 		this.p.add(par);
 		
@@ -358,6 +366,8 @@ public class Parametric{
 			
 			f = new function('t', this.function, this.name);
 			
+			f.setTrigonometryMode(RAD_DEG);
+			
 			f.intervalueOf(0, 1, 1);
 			
 			this.p.add(f.getOutput(0));
@@ -369,6 +379,8 @@ public class Parametric{
 		}else if (this.countVar()==1){
 			
 			f = new function(this.variable[0], this.function, this.name);
+			
+			f.setTrigonometryMode(RAD_DEG);
 			
 			f.intervalueOf(a[0], b[0], increment);
 			
@@ -420,6 +432,8 @@ public class Parametric{
 					par = new Parametric(newVariable, Overwrite(this.variable[0], input), this.name);
 					
 				}
+				
+				par.setTrigonometryMode(RAD_DEG);
 				
 				par.intervalueOf(newA, newB, increment);
 				
