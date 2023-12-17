@@ -32,6 +32,7 @@ import java.awt.event.MouseWheelEvent;
 
 import Taylor.Math.Mayth;
 import Taylor.Arithmetic.function;
+import Taylor.Arithmetic.Vectorial;
 import Geometry.Euclidean.Matriz;
 import Geometry.Euclidean.vector;
 import Geometry.Euclidean.coordinate;
@@ -54,6 +55,7 @@ public class CartesianPlane extends JPanel{
 	private ArrayList<vector> v = new ArrayList<>();
 	private ArrayList<coordinate> xy = new ArrayList<>();
 	private ArrayList<function> f = new ArrayList<>();
+	private ArrayList<Vectorial> fv = new ArrayList<>();
 	
 	private final Mayth Mth = new Mayth();
 	
@@ -112,6 +114,14 @@ public class CartesianPlane extends JPanel{
 	public void drawFunction(function f){
 		
 		this.f.add(f);
+		
+		this.repaint();
+		
+	}
+	
+	public void drawFunction(Vectorial fv){
+		
+		this.fv.add(fv);
 		
 		this.repaint();
 		
@@ -249,6 +259,12 @@ public class CartesianPlane extends JPanel{
 	
 	private void DrawObjects(Graphics g2d){
 		
+		int x1 = 0;
+		int x2 = 0;
+		int y1 = 0;
+		int y2 = 0;
+		double dotRadius = 2;
+		
 		if (this.v.size()!=0){
 			
 			for (vector p : this.v){
@@ -263,11 +279,6 @@ public class CartesianPlane extends JPanel{
 		}
 		
 		if (this.f.size()!=0){
-			
-			int x1 = 0;
-			int x2 = 0;
-			int y1 = 0;
-			int y2 = 0;
 			
 			for (function p : this.f){
 				
@@ -300,9 +311,40 @@ public class CartesianPlane extends JPanel{
 			
 		}
 		
-		if (this.xy.size()!=0){
+		if (this.fv.size()!=0){
 			
-			double dotRadius = 2;
+			for (Vectorial p : this.fv){
+				
+				if (p.getParsers().size()==0){
+					
+					p.intervalueOf(vector.getFullComponents(p.getVariable().length, -10).get(), vector.getFullComponents(p.getVariable().length, 10).get());
+					
+				}
+				
+				for (int i=p.getParsers().size()-2; i>=0; i--){
+					
+					try{
+						
+						x1 = (int) p.getOutput(i).getComponentX();
+						y1 = (int) -p.getOutput(i).getComponentY();
+						x2 = (int) p.getOutput(i+1).getComponentX();
+						y2 = (int) -p.getOutput(i+1).getComponentY();
+						
+					}catch(Exception e){
+						
+						continue;
+						
+					}
+					
+					g2d.drawLine(x1, y1, x2, y2);
+					
+				}
+				
+			}
+			
+		}
+		
+		if (this.xy.size()!=0){
 			
 			if (Scala<4){
 				

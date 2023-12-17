@@ -195,6 +195,12 @@ public class Vectorial{
 		
 	}
 	
+	public ArrayList<ArrayList<Parser>> getParsers(){
+		
+		return this.p;
+		
+	}
+	
 	public Parser[] getOutputAsParser(int indice){
 		
 		Parser[] out = new Parser[this.p.get(indice).size()];

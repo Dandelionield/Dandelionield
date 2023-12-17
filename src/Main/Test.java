@@ -28,17 +28,13 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		Parser p = new Parser("Arctan(Tan(15))");
-		
-		BigDecimal s = p.Parse("5!");
-		
-		System.out.print(p.getProcess());
+		Graph();
 		
 		System.out.print("\n\n");
 		
     }
 	
-	private void Graph(){
+	private static void Graph(){
 		
 		/*Parametric par = new Parametric(new char[] {'x','y','z'}, "x+y+z");
 		
@@ -57,18 +53,17 @@ public class Test {
 		function h = new function('x', "(-2.5*(2√(1-(2√((x/100)/2)))))*100");
 		function d = new function('x', "(-2.5*(2√(1-(2√(-(x/100)/2)))))*100");
 		
-		f.intervalueOf(0, 200);
-		g.intervalueOf(-200, 0);
-		h.intervalueOf(0, 200);
-		d.intervalueOf(-200, 0);//*
+		Parametric fp = new Parametric('t', "(16*(Sen(t))^3)*25");
+		Parametric gp = new Parametric('t', "(13*Cos(t)-5*Cos(2*t)-Cos(4*t))*25");
+		
+		Vectorial vec = new Vectorial(fp, gp);
+		
+		vec.intervalueOf(new double[] {-200}, new double[] {200});
+		
+		//System.out.print(vec);
 		
 		CartesianPlane R2 = new CartesianPlane(2, frame.getWidth(), frame.getHeight());
-		//R2.drawVector(a);
-		//R2.drawCoordinate(b);
-		R2.drawFunction(f);
-		R2.drawFunction(g);
-		R2.drawFunction(h);
-		R2.drawFunction(d);
+		R2.drawFunction(vec);
 		
 		/*for (int Theta = 0; Theta<360; Theta+=15){
 			
@@ -79,7 +74,7 @@ public class Test {
 		JLayeredPane contentPane = new JLayeredPane();
 		contentPane.setPreferredSize(new Dimension(frame.getWidth(), frame.getHeight()));
 		R2.setVisible(true);
-		contentPane.add(R2);
+		contentPane.add(R2, JLayeredPane.PALETTE_LAYER);
 		
 		EventQueue.invokeLater(new Runnable() {
 
@@ -88,6 +83,7 @@ public class Test {
                 try {
 					
 					frame.setContentPane(contentPane);
+					//frame.setExtendedState(frame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 
                 } catch (Exception e) {
