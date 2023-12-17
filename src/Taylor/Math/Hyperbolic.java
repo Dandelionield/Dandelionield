@@ -24,7 +24,7 @@ public class Hyperbolic extends Trigonometry{
 		
 	}
 
-	public static double Senh(double x){
+	public double Senh(double x){
 		
 		BigDecimal Senoh = new BigDecimal(0);
 		
@@ -38,13 +38,13 @@ public class Hyperbolic extends Trigonometry{
 		
 	}
 	
-	public static double Arcsenh(double x){
+	public double Arcsenh(double x){
 		
-		return Mayth.Ln(x+Mayth.Raiz(x*x+1));
+		return new Mayth().Ln(x+new Mayth().Raiz(x*x+1));
 		
 	}
 	
-	public static double Cosh(double x){
+	public double Cosh(double x){
 		
 		BigDecimal Cosenoh = new BigDecimal(0);
 		
@@ -58,25 +58,25 @@ public class Hyperbolic extends Trigonometry{
 		
 	}
 	
-	public static double Arccosh(double x){
+	public double Arccosh(double x){
 		
-		return Mayth.Ln(x+Mayth.Raiz(x*x-1));
+		return new Mayth().Ln(x+new Mayth().Raiz(x*x-1));
 		
 	}
 	
-	public static double Tanh(double x){
+	public double Tanh(double x){
 		
 		return (new BigDecimal(Senh(x)).divide(new BigDecimal(Cosh(x)), MathContext.DECIMAL128)).setScale(15, RoundingMode.HALF_UP).doubleValue();
 		
 	}
 	
-	public static double Arctanh(double x){
+	public double Arctanh(double x){
 		
-		return Mayth.Ln((1+x)/(1-x))/2;
+		return new Mayth().Ln((1+x)/(1-x))/2;
 		
 	}
 	
-	public static double Csch(double x){
+	public double Csch(double x){
 		
 		try {
 			
@@ -90,13 +90,13 @@ public class Hyperbolic extends Trigonometry{
 		
 	}
 	
-	public static double Arccsch(double x){
+	public double Arccsch(double x){
 		
-		return Mayth.Ln((1/x)+Mayth.Raiz(1/(x*x)+1));
+		return new Mayth().Ln((1/x)+new Mayth().Raiz(1/(x*x)+1));
 		
 	}
 	
-	public static double Sech(double x){
+	public double Sech(double x){
 		
 		try {
 			
@@ -110,13 +110,13 @@ public class Hyperbolic extends Trigonometry{
 		
 	}
 	
-	public static double Arcsech(double x){
+	public double Arcsech(double x){
 		
-		return Mayth.Ln((1/x)+Mayth.Raiz(1/(x*x)-1));
+		return new Mayth().Ln((1/x)+new Mayth().Raiz(1/(x*x)-1));
 		
 	}
 	
-	public static double Coth(double x){
+	public double Coth(double x){
 		
 		try {
 			
@@ -130,9 +130,9 @@ public class Hyperbolic extends Trigonometry{
 		
 	}
 	
-	public static double Arccoth(double x){
+	public double Arccoth(double x){
 		
-		return Mayth.Ln((x+1)/(x-1))/2;
+		return new Mayth().Ln((x+1)/(x-1))/2;
 		
 	}
 

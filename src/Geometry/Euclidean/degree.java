@@ -10,7 +10,7 @@ import Taylor.Math.Mayth;
 
 public class degree{
 	
-	private final double Pi = Mayth.PI;
+	private final double Pi = Mayth.PI.doubleValue();
 	
 	private final double Degree;
 	private final double Radian;
@@ -69,9 +69,9 @@ public class degree{
 		
 		double bup = 0;
 		
-		ca = Mayth.abs(ca);
-		co = Mayth.abs(co);
-		h = Mayth.abs(h);
+		ca = RAD.abs(ca);
+		co = RAD.abs(co);
+		h = RAD.abs(h);
 		
 		if (ca!=0 && co!=0 && h!=0){
 		
@@ -242,7 +242,7 @@ public class degree{
 	
 	public degree getDirectingAngle(degree Gamma){
 		
-		return new degree(Math.toDegrees(Math.acos(Math.sqrt(1-Mayth.Potencia(this.Cos)-Mayth.Potencia(Gamma.Cos)))));
+		return new degree(Math.toDegrees(Math.acos(Math.sqrt(1-RAD.Potencia(this.Cos)-RAD.Potencia(Gamma.Cos)))));
 		
 	}
 	

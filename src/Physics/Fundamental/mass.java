@@ -19,6 +19,8 @@ public class mass{
 	private long nth;
 	private BigDecimal equivalent;
 	
+	private static final Mayth Mth = new Mayth();
+	
 	public mass(double Scalar){
 		
 		this.Scalar = Scalar;
@@ -81,7 +83,7 @@ public class mass{
 	
 	public double getMagnitude(){
 		
-		return Mayth.abs(this.Scalar);
+		return Mth.abs(this.Scalar);
 		
 	}
 	
@@ -255,7 +257,7 @@ public class mass{
 			
 			powNonMeterValue = MeterValue.divide(Equivalencia, MathContext.DECIMAL128);
 			
-			for (long i=2; i<=Mayth.abs(m.nth); i++){
+			for (long i=2; i<=Mth.abs(m.nth); i++){
 				
 				newEquivalence = newEquivalence.multiply(Equivalencia);
 				
@@ -277,7 +279,7 @@ public class mass{
 			
 			nthMeterValue = m.toGram().getScalar();
 			
-			for(long i=2; i<=Mayth.abs(m.nth); i++){
+			for(long i=2; i<=Mth.abs(m.nth); i++){
 				
 				newEquivalence = newEquivalence.multiply(backUpEquivalencia);
 				
@@ -339,7 +341,7 @@ public class mass{
 			
 			powNonSecondValue = SecondValue.divide(Equivalencia, MathContext.DECIMAL128);
 			
-			for (long i=2; i<=Mayth.abs(m.nth); i++){
+			for (long i=2; i<=Mth.abs(m.nth); i++){
 				
 				newEquivalence = newEquivalence.multiply(Equivalencia);
 				
@@ -361,7 +363,7 @@ public class mass{
 			
 			nthSecondValue = m.toGram().getScalar();
 			
-			for(long i=2; i<=Mayth.abs(m.nth); i++){
+			for(long i=2; i<=Mth.abs(m.nth); i++){
 				
 				newEquivalence = newEquivalence.multiply(backUpEquivalencia);
 				
@@ -379,109 +381,109 @@ public class mass{
 	
 	public static mass getTeragramValueOf(double value){
 		
-		return new mass(value, "Tg", Mayth.bigPotencia(10, 12));
+		return new mass(value, "Tg", Mth.bigPotencia(10, 12));
 		
 	}
 	
 	public static mass getGigagramValueOf(double value){
 		
-		return new mass(value, "Gg", Mayth.bigPotencia(10, 9));
+		return new mass(value, "Gg", Mth.bigPotencia(10, 9));
 		
 	}
 	
 	public static mass getTonValueOf(double value){
 		
-		return new mass(value, "T", Mayth.bigPotencia(10, 6));
+		return new mass(value, "T", Mth.bigPotencia(10, 6));
 		
 	}
 	
 	public static mass getQuintalValueOf(double value){
 		
-		return new mass(value, "q", Mayth.bigPotencia(10, 5));
+		return new mass(value, "q", Mth.bigPotencia(10, 5));
 		
 	}
 	
 	public static mass getKilogramValueOf(double value){
 		
-		return new mass(value, "kg", Mayth.bigPotencia(10, 3));
+		return new mass(value, "kg", Mth.bigPotencia(10, 3));
 		
 	}
 	
 	public static mass getHectogramValueOf(double value){
 		
-		return new mass(value, "hg", Mayth.bigPotencia(10, 2));
+		return new mass(value, "hg", Mth.bigPotencia(10, 2));
 		
 	}
 	
 	public static mass getDecagramValueOf(double value){
 		
-		return new mass(value, "dag", Mayth.bigPotencia(10, 1));
+		return new mass(value, "dag", Mth.bigPotencia(10, 1));
 		
 	}
 	
 	public static mass getGramValueOf(double value){
 		
-		return new mass(value, "g", Mayth.bigPotencia(10, 0));
+		return new mass(value, "g", Mth.bigPotencia(10, 0));
 		
 	}
 	
 	public static mass getDecigramValueOf(double value){
 		
-		return new mass(value, "dg", Mayth.bigPotencia(10, -1));
+		return new mass(value, "dg", Mth.bigPotencia(10, -1));
 		
 	}
 	
 	public static mass getCentigramValueOf(double value){
 		
-		return new mass(value, "cg", Mayth.bigPotencia(10, -2));
+		return new mass(value, "cg", Mth.bigPotencia(10, -2));
 		
 	}
 	
 	public static mass getMilligramValueOf(double value){
 		
-		return new mass(value, "mg", Mayth.bigPotencia(10, -3));
+		return new mass(value, "mg", Mth.bigPotencia(10, -3));
 		
 	}
 	
 	public static mass getMicrogramValueOf(double value){
 		
-		return new mass(value, "µg", Mayth.bigPotencia(10, -6));
+		return new mass(value, "µg", Mth.bigPotencia(10, -6));
 		
 	}
 	
 	public static mass getNanogramValueOf(double value){
 		
-		return new mass(value, "ng", Mayth.bigPotencia(10, -9));
+		return new mass(value, "ng", Mth.bigPotencia(10, -9));
 		
 	}
 	
 	public static mass getPicogramValueOf(double value){
 		
-		return new mass(value, "pg", Mayth.bigPotencia(10, -12));
+		return new mass(value, "pg", Mth.bigPotencia(10, -12));
 		
 	}
 	
 	public static mass getFemtogramValueOf(double value){
 		
-		return new mass(value, "fg", Mayth.bigPotencia(10, -15));
+		return new mass(value, "fg", Mth.bigPotencia(10, -15));
 		
 	}
 	
 	public static mass getAttogramValueOf(double value){
 		
-		return new mass(value, "ag", Mayth.bigPotencia(10, -18));
+		return new mass(value, "ag", Mth.bigPotencia(10, -18));
 		
 	}
 	
 	public static mass getZeptogramValueOf(double value){
 		
-		return new mass(value, "zg", Mayth.bigPotencia(10, -21));
+		return new mass(value, "zg", Mth.bigPotencia(10, -21));
 		
 	}
 	
 	public static mass getYoctogramValueOf(double value){
 		
-		return new mass(value, "yg", Mayth.bigPotencia(10, -24));
+		return new mass(value, "yg", Mth.bigPotencia(10, -24));
 		
 	}
 	

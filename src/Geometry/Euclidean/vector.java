@@ -27,6 +27,8 @@ public class vector{
 	private String Unity;
 	private coordinate Tail;
 	
+	private final Mayth Mth = new Mayth();
+	
 	public vector(double x, double y){
 		
 		cx = x;
@@ -729,7 +731,7 @@ public class vector{
 			
 			if (p%1==0){
 				
-				if (Mayth.isPrime((long) p)){
+				if (Mth.isPrime((long) p)){
 					
 					v.add(p);
 					
@@ -865,7 +867,7 @@ public class vector{
 			
 			if (p%1==0){
 				
-				if (!Mayth.isPrime((long) p)){
+				if (!Mth.isPrime((long) p)){
 					
 					v.add(p);
 					
@@ -1220,7 +1222,7 @@ public class vector{
 	
 	public vector doEuler(){
 		
-		return vector.getFullComponents(1, this.length).doScalar(Mayth.Cosh(this.Magnitude)).doSuma(this.getUnitary().doScalar(Mayth.Senh(this.Magnitude)));
+		return vector.getFullComponents(1, this.length).doScalar(Mth.Cosh(this.Magnitude)).doSuma(this.getUnitary().doScalar(Mth.Senh(this.Magnitude)));
 		
 	}
 	
@@ -1230,7 +1232,7 @@ public class vector{
 		
 		for (double p : this.v){
 			
-			v.add(Mayth.Ln(Mayth.abs(p)));
+			v.add(Mth.Ln(Mth.abs(p)));
 			
 		}
 		
@@ -1246,7 +1248,7 @@ public class vector{
 	
 	public vector doOrthogonalProjection(vector b){
 		
-		return this.doScalar(this.doScalar(b)/Mayth.Potencia(this.Magnitude));
+		return this.doScalar(this.doScalar(b)/Mth.Potencia(this.Magnitude));
 		
 	}
 	
@@ -1380,7 +1382,7 @@ public class vector{
 	
 	private double getMagnitud(){
 		
-		return Math.sqrt(Mayth.Potencia(cx)+Mayth.Potencia(cy)+Mayth.Potencia(cz));
+		return Math.sqrt(Mth.Potencia(cx)+Mth.Potencia(cy)+Mth.Potencia(cz));
 		
 	}
 	
@@ -1390,7 +1392,7 @@ public class vector{
 		
 		for (double p : vz){
 			
-			n+= Mayth.Potencia(p);
+			n+= Mth.Potencia(p);
 			
 		}
 		
@@ -1402,7 +1404,7 @@ public class vector{
 		
 		if (a==true){
 			
-			return new degree(Math.acos(Mayth.abs(c/Magnitude)), true);
+			return new degree(Math.acos(Mth.abs(c/Magnitude)), true);
 			
 		}else{
 			
@@ -1572,7 +1574,7 @@ public class vector{
 		
 		for (int i=0; i<mz.length; i++){
 			
-			vz[i] = Mayth.Potencia(-1, i)*mz.getCofactor(0, i).getDetermine();
+			vz[i] = Mth.Potencia(-1, i)*mz.getCofactor(0, i).getDetermine();
 			
 		}
 		

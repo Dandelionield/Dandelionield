@@ -55,6 +55,8 @@ public class CartesianPlane extends JPanel{
 	private ArrayList<coordinate> xy = new ArrayList<>();
 	private ArrayList<function> f = new ArrayList<>();
 	
+	private final Mayth Mth = new Mayth();
+	
 	public CartesianPlane(int Width, int Height){
 		
 		innitComponents(1, 0, 0, Width, Height, Color.WHITE);
@@ -154,8 +156,8 @@ public class CartesianPlane extends JPanel{
 		
 		g2d.setStroke(new BasicStroke(axisThickness));
 		
-		g2d.drawLine( (int) -(OriginXAxis/Scala), 0, (int) Mayth.abs((OriginXAxis+1)*(getWidth()/Scala)), 0);
-		g2d.drawLine(0, (int) Mayth.abs((OriginYAxis+1)*(getHeight()/Scala)), 0, (int) -(OriginYAxis/Scala));
+		g2d.drawLine( (int) -(OriginXAxis/Scala), 0, (int) Mth.abs((OriginXAxis+1)*(getWidth()/Scala)), 0);
+		g2d.drawLine(0, (int) Mth.abs((OriginYAxis+1)*(getHeight()/Scala)), 0, (int) -(OriginYAxis/Scala));
 		
 		DrawLines(g2d);
 		DrawCoordinates(g2d);
@@ -167,7 +169,7 @@ public class CartesianPlane extends JPanel{
 		int length = (int) (3.00);
 		int delta = (int) (20.00/1);
 
-		for (int x = delta; x <= Mayth.abs((OriginXAxis+1)*(getWidth()/Scala)); x += delta){//x++
+		for (int x = delta; x <= Mth.abs((OriginXAxis+1)*(getWidth()/Scala)); x += delta){//x++
 			
 			g2d.drawLine(x, -length, x, length);
 			
@@ -179,7 +181,7 @@ public class CartesianPlane extends JPanel{
 			
 		}
 
-		for (int y = delta; y <= Mayth.abs((OriginYAxis+1)*(getHeight()/Scala)); y += delta){//y--
+		for (int y = delta; y <= Mth.abs((OriginYAxis+1)*(getHeight()/Scala)); y += delta){//y--
 		
 			g2d.drawLine(-length, y, length, y);
 			
@@ -193,7 +195,7 @@ public class CartesianPlane extends JPanel{
 		
 		if (Scala>4){
 			
-			for (int x = 4; x <= Mayth.abs((OriginXAxis+1)*(getWidth()/Scala)); x += 4){//x++
+			for (int x = 4; x <= Mth.abs((OriginXAxis+1)*(getWidth()/Scala)); x += 4){//x++
 			
 				g2d.drawLine(x, -1, x, 1);
 				
@@ -205,7 +207,7 @@ public class CartesianPlane extends JPanel{
 				
 			}
 
-			for (int y = 4; y <= Mayth.abs((OriginYAxis+1)*(getHeight()/Scala)); y += 4){//y--
+			for (int y = 4; y <= Mth.abs((OriginYAxis+1)*(getHeight()/Scala)); y += 4){//y--
 			
 				g2d.drawLine(-1, y, 1, y);
 				
@@ -457,31 +459,5 @@ public class CartesianPlane extends JPanel{
 		Mouse = new coordinate((e.getX() - OriginXAxis)/Scala, (OriginYAxis - e.getY())/Scala);
 		
 	}
-	
-	/*if (v.getOctant()==1){
-			
-			x2 = (int) (v.getHead().getX()+1);
-			y2 = (int) -(v.getHead().getY()+1);
-			
-		}else if (v.getOctant()==2){
-			
-			x1++;
-			x2 = (int) (v.getHead().getX()+2);
-			y2 = (int) -v.getHead().getY();
-			x3++;
-			
-		}else if (v.getOctant()==3){
-			
-			x2 = (int) (v.getHead().getX()-1);
-			y2 = (int) -(v.getHead().getY()-1);
-			
-		}else{
-			
-			x1--;
-			x2 = (int) (v.getHead().getX()-2);
-			y2 = (int) -(v.getHead().getY());
-			x3--;
-			
-		}//*/
 	
 }

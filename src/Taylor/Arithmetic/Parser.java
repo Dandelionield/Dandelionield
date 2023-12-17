@@ -21,13 +21,15 @@ public class Parser extends Mayth{
 
 	public Parser(String wd){
 		
-		super(true);
+		super(false);
 		
 		try{
 			
 			wdProcess = new ArrayList<>();
 			
 			n = Parse(wd);
+			
+			op = this.getProcess();
 			
 		}catch(Exception e){
 			
@@ -119,7 +121,7 @@ public class Parser extends Mayth{
 		
 		if (isAllowed(wd)){
 			
-			wdProcess.add(wd);
+			if (this.op.equals("")==true){wdProcess.add(wd);}
 			
 			return new BigDecimal(wd);
 			
@@ -127,9 +129,13 @@ public class Parser extends Mayth{
 		
 		wd = Overwrite(wd);
 		
-		wdProcess.add(wd);
+		if (this.op.equals("")==true){wdProcess.add(wd);}
 		
-		if (isAllowed(wd)){return new BigDecimal(wd);}
+		if (isAllowed(wd)){
+			
+			return new BigDecimal(wd);
+			
+		}
 		
 		BigDecimal n = new BigDecimal(0);
 		String r = "";
@@ -979,7 +985,7 @@ public class Parser extends Mayth{
 		
 	}
 	
-	private static String Overwrite(String wd){
+	private String Overwrite(String wd){
 		
 		int Counter = 0;
 		
@@ -1035,12 +1041,12 @@ public class Parser extends Mayth{
 				
 				if (wd.length()==1){
 					
-					wd = Parser.ReplaceChar(wd,i,Parser.Aureo()+"");
+					wd = Parser.ReplaceChar(wd,i,Aureo()+"");
 					i=0;
 					
 				}else if (wd.charAt(i+1)!='r'){
 					
-					wd = Parser.ReplaceChar(wd,i,Parser.Aureo()+"");
+					wd = Parser.ReplaceChar(wd,i,Aureo()+"");
 					i=0;
 					
 				}

@@ -28,6 +28,18 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
+		Parser p = new Parser("Arctan(Tan(15))");
+		
+		BigDecimal s = p.Parse("5!");
+		
+		System.out.print(p.getProcess());
+		
+		System.out.print("\n\n");
+		
+    }
+	
+	private void Graph(){
+		
 		/*Parametric par = new Parametric(new char[] {'x','y','z'}, "x+y+z");
 		
 		par.intervalueOf(new double[] {0, 0, 0}, new double[] {10, 10, 10});
@@ -39,8 +51,6 @@ public class Test {
 		degree Thetha = new degree(60);
 		
 		vector a = new vector(50, Thetha);
-		
-		Trigonometry l = new Trigonometry(true);
 		
 		function f = new function('x', "(2√(1-((x/100)-1)^2))*100");
 		function g = new function('x', "(2√(1-(-(x/100)-1)^2))*100");
@@ -90,9 +100,7 @@ public class Test {
 
         });//*/
 		
-		System.out.print("\n\n");
-		
-    }
+	}
 	
 	private static JFrame Frame(){
 		

@@ -19,6 +19,8 @@ public class distance{
 	private long nth;
 	private BigDecimal equivalent;
 	
+	private static final Mayth Mth = new Mayth();
+	
 	public distance(double Scalar){
 		
 		this.Scalar = Scalar;
@@ -81,7 +83,7 @@ public class distance{
 	
 	public double getMagnitude(){
 		
-		return Mayth.abs(this.Scalar);
+		return Mth.abs(this.Scalar);
 		
 	}
 	
@@ -255,7 +257,7 @@ public class distance{
 			
 			powNonMeterValue = MeterValue.divide(Equivalencia, MathContext.DECIMAL128);
 			
-			for (long i=2; i<=Mayth.abs(x.nth); i++){
+			for (long i=2; i<=Mth.abs(x.nth); i++){
 				
 				newEquivalence = newEquivalence.multiply(Equivalencia);
 				
@@ -277,7 +279,7 @@ public class distance{
 			
 			nthMeterValue = x.toMetre().getScalar();
 			
-			for(long i=2; i<=Mayth.abs(x.nth); i++){
+			for(long i=2; i<=Mth.abs(x.nth); i++){
 				
 				newEquivalence = newEquivalence.multiply(backUpEquivalencia);
 				
@@ -339,7 +341,7 @@ public class distance{
 			
 			powNonMeterValue = MeterValue.divide(Equivalencia, MathContext.DECIMAL128);
 			
-			for (long i=2; i<=Mayth.abs(x.nth); i++){
+			for (long i=2; i<=Mth.abs(x.nth); i++){
 				
 				newEquivalence = newEquivalence.multiply(Equivalencia);
 				
@@ -361,7 +363,7 @@ public class distance{
 			
 			nthMeterValue = x.toMetre().getScalar();
 			
-			for(long i=2; i<=Mayth.abs(x.nth); i++){
+			for(long i=2; i<=Mth.abs(x.nth); i++){
 				
 				newEquivalence = newEquivalence.multiply(backUpEquivalencia);
 				
@@ -379,7 +381,7 @@ public class distance{
 	
 	public static distance getAstronomicUnidValueOf(double value){
 		
-		return new distance(value, "UA", new BigDecimal(1.495979).multiply(Mayth.bigPotencia(10, 11)));
+		return new distance(value, "UA", new BigDecimal(1.495979).multiply(Mth.bigPotencia(10, 11)));
 		
 	}
 	
@@ -391,169 +393,169 @@ public class distance{
 	
 	public static distance getParsecValueOf(double value){
 		
-		return new distance(value, "pc", new BigDecimal(9.46052840488).multiply(Mayth.bigPotencia(3.08568, 16)));
+		return new distance(value, "pc", new BigDecimal(9.46052840488).multiply(Mth.bigPotencia(3.08568, 16)));
 		
 	}
 	
 	public static distance getRonnametreValueOf(double value){
 		
-		return new distance(value, "Rm", Mayth.bigPotencia(10, 27));
+		return new distance(value, "Rm", Mth.bigPotencia(10, 27));
 		
 	}
 	
 	public static distance getYottametreValueOf(double value){
 		
-		return new distance(value, "Ym", Mayth.bigPotencia(10, 24));
+		return new distance(value, "Ym", Mth.bigPotencia(10, 24));
 		
 	}
 	
 	public static distance getZettametreValueOf(double value){
 		
-		return new distance(value, "Zm", Mayth.bigPotencia(10, 21));
+		return new distance(value, "Zm", Mth.bigPotencia(10, 21));
 		
 	}
 	
 	public static distance getExametreValueOf(double value){
 		
-		return new distance(value, "Em", Mayth.bigPotencia(10, 18));
+		return new distance(value, "Em", Mth.bigPotencia(10, 18));
 		
 	}
 	
 	public static distance getPetametreValueOf(double value){
 		
-		return new distance(value, "Pm", Mayth.bigPotencia(10, 15));
+		return new distance(value, "Pm", Mth.bigPotencia(10, 15));
 		
 	}
 	
 	public static distance getTerametreValueOf(double value){
 		
-		return new distance(value, "Tm", Mayth.bigPotencia(10, 12));
+		return new distance(value, "Tm", Mth.bigPotencia(10, 12));
 		
 	}
 	
 	public static distance getGigametreValueOf(double value){
 		
-		return new distance(value, "Gm", Mayth.bigPotencia(10, 9));
+		return new distance(value, "Gm", Mth.bigPotencia(10, 9));
 		
 	}
 	
 	public static distance getMegametreValueOf(double value){
 		
-		return new distance(value, "Mm", Mayth.bigPotencia(10, 6));
+		return new distance(value, "Mm", Mth.bigPotencia(10, 6));
 		
 	}
 	
 	public static distance getMirametreValueOf(double value){
 		
-		return new distance(value, "mam", Mayth.bigPotencia(10, 4));
+		return new distance(value, "mam", Mth.bigPotencia(10, 4));
 		
 	}
 	
 	public static distance getKilometreValueOf(double value){
 		
-		return new distance(value, "km", Mayth.bigPotencia(10, 3));
+		return new distance(value, "km", Mth.bigPotencia(10, 3));
 		
 	}
 	
 	public static distance getHectometreValueOf(double value){
 		
-		return new distance(value, "hm", Mayth.bigPotencia(10, 2));
+		return new distance(value, "hm", Mth.bigPotencia(10, 2));
 		
 	}
 	
 	public static distance getDecametreValueOf(double value){
 		
-		return new distance(value, "dam", Mayth.bigPotencia(10, 1));
+		return new distance(value, "dam", Mth.bigPotencia(10, 1));
 		
 	}
 	
 	public static distance getMetreValueOf(double value){
 		
-		return new distance(value, "m", Mayth.bigPotencia(10, 0));
+		return new distance(value, "m", Mth.bigPotencia(10, 0));
 		
 	}
 	
 	public static distance getDecimetreValueOf(double value){
 		
-		return new distance(value, "dm", Mayth.bigPotencia(10, -1));
+		return new distance(value, "dm", Mth.bigPotencia(10, -1));
 		
 	}
 	
 	public static distance getCentimetreValueOf(double value){
 		
-		return new distance(value, "cm", Mayth.bigPotencia(10, -2));
+		return new distance(value, "cm", Mth.bigPotencia(10, -2));
 		
 	}
 	
 	public static distance getMillimetreValueOf(double value){
 		
-		return new distance(value, "mm", Mayth.bigPotencia(10, -3));
+		return new distance(value, "mm", Mth.bigPotencia(10, -3));
 		
 	}
 	
 	public static distance getMicrometreValueOf(double value){
 		
-		return new distance(value, "µm", Mayth.bigPotencia(10, -6));
+		return new distance(value, "µm", Mth.bigPotencia(10, -6));
 		
 	}
 	
 	public static distance getNanometreValueOf(double value){
 		
-		return new distance(value, "nm", Mayth.bigPotencia(10, -9));
+		return new distance(value, "nm", Mth.bigPotencia(10, -9));
 		
 	}
 	
 	public static distance getAngstromValueOf(double value){
 		
-		return new distance(value, "A", Mayth.bigPotencia(10, -10));
+		return new distance(value, "A", Mth.bigPotencia(10, -10));
 		
 	}
 	
 	public static distance getPicometreValueOf(double value){
 		
-		return new distance(value, "pm", Mayth.bigPotencia(10, -12));
+		return new distance(value, "pm", Mth.bigPotencia(10, -12));
 		
 	}
 	
 	public static distance getFemtometreValueOf(double value){
 		
-		return new distance(value, "fm", Mayth.bigPotencia(10, -15));
+		return new distance(value, "fm", Mth.bigPotencia(10, -15));
 		
 	}
 	
 	public static distance getAttometreValueOf(double value){
 		
-		return new distance(value, "am", Mayth.bigPotencia(10, -18));
+		return new distance(value, "am", Mth.bigPotencia(10, -18));
 		
 	}
 	
 	public static distance getZeptometreValueOf(double value){
 		
-		return new distance(value, "zm", Mayth.bigPotencia(10, -21));
+		return new distance(value, "zm", Mth.bigPotencia(10, -21));
 		
 	}
 	
 	public static distance getYoctometreValueOf(double value){
 		
-		return new distance(value, "ym", Mayth.bigPotencia(10, -24));
+		return new distance(value, "ym", Mth.bigPotencia(10, -24));
 		
 	}
 	
 	public static distance getPlanckLengthValueOf(double value){
 		
-		return new distance(value, "pl", Mayth.bigPotencia(10, -35));
+		return new distance(value, "pl", Mth.bigPotencia(10, -35));
 		
 	}
 	
 	public static distance getIncheValueOf(double value){
 		
-		return new distance(value, "inch", new BigDecimal(25.4).multiply(Mayth.bigPotencia(10, -3)));
+		return new distance(value, "inch", new BigDecimal(25.4).multiply(Mth.bigPotencia(10, -3)));
 		
 	}
 	
 	public static distance getFeetValueOf(double value){
 		
-		return new distance(value, "ft", new BigDecimal(304.8).multiply(Mayth.bigPotencia(10, -3)));
+		return new distance(value, "ft", new BigDecimal(304.8).multiply(Mth.bigPotencia(10, -3)));
 		
 	}
 	
@@ -583,19 +585,19 @@ public class distance{
 	
 	public static distance getLeagueValueOf(double value){
 		
-		return new distance(value, "lg", new BigDecimal(4.828032).multiply(Mayth.bigPotencia(10, 3)));
+		return new distance(value, "lg", new BigDecimal(4.828032).multiply(Mth.bigPotencia(10, 3)));
 		
 	}
 	
 	public static distance getMileValueOf(double value){
 		
-		return new distance(value, "mi", new BigDecimal(1.609344).multiply(Mayth.bigPotencia(10, 3)));
+		return new distance(value, "mi", new BigDecimal(1.609344).multiply(Mth.bigPotencia(10, 3)));
 		
 	}
 	
 	public static distance getLatitudeValueOf(double value){
 		
-		return new distance(value, "Phi", new BigDecimal(111.0996).multiply(Mayth.bigPotencia(10, 3)));
+		return new distance(value, "Phi", new BigDecimal(111.0996).multiply(Mth.bigPotencia(10, 3)));
 		
 	}
 	
@@ -752,19 +754,19 @@ public class distance{
 				
 				c = " scalar";
 				
-			}else if (Mayth.abs(a)==1){
+			}else if (Mth.abs(a)==1){
 				
 				c = " distance";
 				
-			}else if (Mayth.abs(a)==2){
+			}else if (Mth.abs(a)==2){
 				
 				c = "n area";
 				
-			}else if (Mayth.abs(a)==3){
+			}else if (Mth.abs(a)==3){
 				
 				c = " volume";
 				
-			}else if (Mayth.abs(a)>3){
+			}else if (Mth.abs(a)>3){
 				
 				c = " hypervolume";
 				
@@ -774,19 +776,19 @@ public class distance{
 				
 				d = " scalar";
 				
-			}else if (Mayth.abs(b)==1){
+			}else if (Mth.abs(b)==1){
 				
 				d = " distance";
 				
-			}else if (Mayth.abs(b)==2){
+			}else if (Mth.abs(b)==2){
 				
 				d = "n area";
 				
-			}else if (Mayth.abs(b)==3){
+			}else if (Mth.abs(b)==3){
 				
 				d = " volume";
 				
-			}else if (Mayth.abs(b)>3){
+			}else if (Mth.abs(b)>3){
 				
 				d = " hypervolume";
 				
