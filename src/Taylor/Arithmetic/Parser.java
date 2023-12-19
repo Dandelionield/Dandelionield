@@ -1391,6 +1391,21 @@ public class Parser extends Mayth{
 	private String Overwrite(String wd){
 		
 		int Counter = 0;
+		String bup = "";
+		
+		for (char p : wd.toCharArray()){
+			
+			if (p==' '){
+				
+				continue;
+				
+			}
+			
+			bup+= p+"";
+			
+		}
+		
+		wd = bup;
 		
 		if (wd==""){wd="0";}
 		
@@ -1500,6 +1515,48 @@ public class Parser extends Mayth{
 			}
 			
 		}
+		
+		bup = "";
+		
+		for (int i=0; i<wd.length(); i++){
+			
+			if (wd.charAt(i)=='-' && wd.charAt(i+1)=='-'){
+				
+				bup+= "+";
+				
+				i+=2;
+				
+			}
+			
+			if (wd.charAt(i)=='+' && wd.charAt(i+1)=='+'){
+				
+				bup+= "+";
+				
+				i+=2;
+				
+			}
+			
+			if (wd.charAt(i)=='-' && wd.charAt(i+1)=='+'){
+				
+				bup+= "-";
+				
+				i+=2;
+				
+			}
+			
+			if (wd.charAt(i)=='+' && wd.charAt(i+1)=='-'){
+				
+				bup+= "+";
+				
+				i+=2;
+				
+			}
+			
+			bup+= wd.charAt(i);
+			
+		}
+		
+		wd = bup;
 		
 		return wd;
 		

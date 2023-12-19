@@ -28,7 +28,7 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		System.out.print(new Mayth().Gamma());
+		System.out.print(new Parser("5 +- 1"));
 		
 		System.out.print("\n\n");
 		
