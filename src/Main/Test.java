@@ -28,9 +28,7 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		Parser p = new Parser("2√64", false, false);
-		
-		System.out.print(p);
+		Graph();
 		
 		System.out.print("\n\n");
 		
@@ -59,6 +57,9 @@ public class Test {
 		Parametric gp = new Parametric('t', "(13*Cos(t)-5*Cos(2*t)-Cos(4*t))*25");
 		
 		Vectorial vec = new Vectorial(fp, gp);
+		
+		vec.setTrigonometryMode(false);
+		vec.setParserFunctionType(true);
 		
 		vec.intervalueOf(new double[] {-200}, new double[] {200});
 		

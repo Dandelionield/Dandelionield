@@ -29,6 +29,7 @@ public class Vectorial{
 	ArrayList<String> input = new ArrayList<>();
 	
 	private boolean RAD_DEG = false;
+	private boolean functionType = false;
 	
 	public Vectorial(Parametric x, Parametric y){
 		
@@ -44,6 +45,9 @@ public class Vectorial{
 		
 		this.variable = getVar();
 		this.length = v.length;
+		
+		this.setTrigonometryMode(false);
+		this.setParserFunctionType(false);
 		
 	}
 	
@@ -62,6 +66,9 @@ public class Vectorial{
 		
 		this.variable = getVar();
 		this.length = v.length;
+		
+		this.setTrigonometryMode(false);
+		this.setParserFunctionType(false);
 		
 	}
 	
@@ -105,6 +112,9 @@ public class Vectorial{
 		
 		this.variable = getVar();
 		this.length = v.length;
+		
+		this.setTrigonometryMode(false);
+		this.setParserFunctionType(false);
 		
 	}
 	
@@ -156,6 +166,9 @@ public class Vectorial{
 		
 		this.variable = getVar();
 		this.length = v.length;
+		
+		this.setTrigonometryMode(false);
+		this.setParserFunctionType(false);
 		
 	}
 	
@@ -234,6 +247,18 @@ public class Vectorial{
 		for (int i=0; i<this.v.length; i++){
 			
 			this.v[i].setTrigonometryMode(RAD_DEG);
+			
+		}
+		
+	}
+	
+	public void setParserFunctionType(boolean value){
+		
+		this.functionType = value;
+		
+		for (int i=0; i<this.v.length; i++){
+			
+			this.v[i].setParserFunctionType(functionType);
 			
 		}
 		
@@ -469,6 +494,7 @@ public class Vectorial{
 						
 						f = new function(q.getVariable()[0], q.getFunction(), q.getName());
 						f.setTrigonometryMode(RAD_DEG);
+						f.setParserFunctionType(functionType);
 						pa.add(f.get(INPUT));
 						
 					}
@@ -540,6 +566,7 @@ public class Vectorial{
 				cv = new Vectorial(par);
 				
 				cv.setTrigonometryMode(RAD_DEG);
+				cv.setParserFunctionType(functionType);
 				
 				cv.intervalueOf(newA, newB, increment);
 				

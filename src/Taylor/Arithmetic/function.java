@@ -20,6 +20,7 @@ public class function{
 	private double n = Double.NaN;
 	
 	private boolean RAD_DEG = false;
+	private boolean functionType = false;
 
 	public function(char variable){
 		
@@ -98,7 +99,13 @@ public class function{
 	
 	public void setTrigonometryMode(boolean value){
 		
-		RAD_DEG = value;
+		this.RAD_DEG = value;
+		
+	}
+	
+	public void setParserFunctionType(boolean value){
+		
+		this.functionType = value;
 		
 	}
 	
@@ -164,7 +171,7 @@ public class function{
 	
 	public Parser get(double n){
 		
-		this.p.add(new Parser(Overwrite(n), RAD_DEG));
+		this.p.add(new Parser(Overwrite(n), RAD_DEG, functionType));
 		this.n = n;
 		
 		return this.p.get(0);
@@ -173,7 +180,7 @@ public class function{
 	
 	public void set(double n){
 		
-		this.p.add(new Parser(Overwrite(n), RAD_DEG));
+		this.p.add(new Parser(Overwrite(n), RAD_DEG, functionType));
 		this.n = n;
 		
 	}
@@ -220,7 +227,7 @@ public class function{
 				
 				try {
 					
-					this.p.add(new Parser(Overwrite(b), RAD_DEG));
+					this.p.add(new Parser(Overwrite(b), RAD_DEG, functionType));
 					
 				}catch(Exception e){
 					
@@ -236,7 +243,7 @@ public class function{
 			
 			try {
 				
-				this.p.add(new Parser(Overwrite(values.get(values.size()-1)), RAD_DEG));
+				this.p.add(new Parser(Overwrite(values.get(values.size()-1)), RAD_DEG, functionType));
 				
 			}catch(Exception e){
 				

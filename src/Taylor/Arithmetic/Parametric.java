@@ -21,6 +21,7 @@ public class Parametric{
 	private ArrayList<Double> n = new ArrayList<>();
 	
 	private boolean RAD_DEG = false;
+	private boolean functionType = false;
 	
 	public Parametric(char x){
 		
@@ -164,6 +165,12 @@ public class Parametric{
 		
 	}
 	
+	public void setParserFunctionType(boolean value){
+		
+		this.functionType = value;
+		
+	}
+	
 	public Parser getOutput(int indice){
 		
 		return this.p.get(indice);
@@ -270,7 +277,7 @@ public class Parametric{
 			
 		}
 		
-		Parser par = new Parser(Overwrite(n), RAD_DEG);
+		Parser par = new Parser(Overwrite(n), RAD_DEG, functionType);
 		
 		this.p.add(par);
 		
@@ -296,7 +303,7 @@ public class Parametric{
 			
 		}
 		
-		Parser par = new Parser(Overwrite(n), RAD_DEG);
+		Parser par = new Parser(Overwrite(n), RAD_DEG, functionType);
 
 		this.p.add(par);
 		
@@ -367,6 +374,7 @@ public class Parametric{
 			f = new function('t', this.function, this.name);
 			
 			f.setTrigonometryMode(RAD_DEG);
+			f.setParserFunctionType(functionType);
 			
 			f.intervalueOf(0, 1, 1);
 			
@@ -381,6 +389,7 @@ public class Parametric{
 			f = new function(this.variable[0], this.function, this.name);
 			
 			f.setTrigonometryMode(RAD_DEG);
+			f.setParserFunctionType(functionType);
 			
 			f.intervalueOf(a[0], b[0], increment);
 			
@@ -434,6 +443,7 @@ public class Parametric{
 				}
 				
 				par.setTrigonometryMode(RAD_DEG);
+				par.setParserFunctionType(functionType);
 				
 				par.intervalueOf(newA, newB, increment);
 				

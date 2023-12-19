@@ -183,6 +183,18 @@ public class Parser extends Mayth{
 		
 	}
 	
+	public boolean getFunctionType(){
+		
+		return this.functionType;
+		
+	}
+	
+	public void setFunctionType(boolean value){
+		
+		this.functionType = value;
+		
+	}
+	
 	public String toString(){
 		
 		if (n!=null){
