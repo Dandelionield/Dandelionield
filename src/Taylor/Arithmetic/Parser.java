@@ -1546,7 +1546,7 @@ public class Parser extends Mayth{
 			
 			if (wd.charAt(i)=='+' && wd.charAt(i+1)=='-'){
 				
-				bup+= "+";
+				bup+= "-";
 				
 				i+=2;
 				

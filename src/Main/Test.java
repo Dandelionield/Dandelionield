@@ -28,7 +28,9 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		System.out.print(new Parser("5 +- 1"));
+		Parser p = new Parser("2*ln(24)*Cos(30)", false, true);
+		
+		System.out.print(p);
 		
 		System.out.print("\n\n");
 		
