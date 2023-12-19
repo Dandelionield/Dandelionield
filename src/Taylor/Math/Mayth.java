@@ -13,6 +13,8 @@ import java.math.MathContext;
 public class Mayth extends Hyperbolic{
 	
 	public static final BigDecimal e = new Constants().Euler();
+	public static final BigDecimal A = new Constants().Aureo();
+	public static final BigDecimal G = new Constants().Gamma();
 	
 	public Mayth(){
 		
@@ -265,7 +267,7 @@ public class Mayth extends Hyperbolic{
 			
 		}else if (n%1!=0 && n!=0){
 			
-			return GammaEuler(n);
+			return GammaEuler(n).setScale(15, RoundingMode.HALF_UP).doubleValue();
 			
 		}else if (n==0){
 
@@ -279,21 +281,21 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
-	public double GammaEuler(double z){
+	public BigDecimal GammaEuler(double z){
 		
-		double p = 0.99999999999980993;
-		double t = z + 7.5;
+		BigDecimal p = new BigDecimal(0.99999999999980993);
+		BigDecimal t = new BigDecimal(z).add(new BigDecimal(7.5));
 		
-		p += 676.5203681218851 / (z + 1);
-		p -= 1259.1392167224028 / (z + 2);
-		p += 771.32342877765313 / (z + 3);
-		p -= 176.61502916214059 / (z + 4);
-		p += 12.507343278686905 / (z + 5);
-		p -= 0.13857109526572012 / (z + 6);
-		p += 9.9843695780195716e-6 / (z + 7);
-		p += 1.5056327351493116e-7 / (z + 8);
+		p = p.add(new BigDecimal(676.5203681218851).divide(new BigDecimal(z).add(new BigDecimal(1)), MathContext.DECIMAL128));
+		p = p.subtract(new BigDecimal(1259.1392167224028).divide(new BigDecimal(z).add(new BigDecimal(2)), MathContext.DECIMAL128));
+		p = p.add(new BigDecimal(771.32342877765313).divide(new BigDecimal(z).add(new BigDecimal(3)), MathContext.DECIMAL128));
+		p = p.subtract(new BigDecimal(176.61502916214059).divide(new BigDecimal(z).add(new BigDecimal(4)), MathContext.DECIMAL128));
+		p = p.add(new BigDecimal(12.507343278686905).divide(new BigDecimal(z).add(new BigDecimal(5)), MathContext.DECIMAL128));
+		p = p.subtract(new BigDecimal(0.13857109526572012).divide(new BigDecimal(z).add(new BigDecimal(6)), MathContext.DECIMAL128));
+		p = p.add(new BigDecimal(9.9843695780195716e-6).divide(new BigDecimal(z).add(new BigDecimal(7)), MathContext.DECIMAL128));
+		p = p.add(new BigDecimal(1.5056327351493116e-7).divide(new BigDecimal(z).add(new BigDecimal(8)), MathContext.DECIMAL128));
 		
-		return Raiz(2 * PI.doubleValue(), 2) * Potencia(t, z + 0.5d) * Euler(-t) * p;
+		return new BigDecimal(Raiz(2 * PI.doubleValue(), 2)).multiply(new BigDecimal(Potencia(t.setScale(15, RoundingMode.HALF_UP).doubleValue(), z + 0.5d))).multiply(new BigDecimal(Euler(-t.setScale(15, RoundingMode.HALF_UP).doubleValue()))).multiply(p);
 		
 	}
 	
@@ -384,9 +386,9 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
-	public double nBernoulli(float indice){
+	public BigDecimal nBernoulli(double indice){
 		
-		double Bn=0;
+		BigDecimal Bn = new BigDecimal(0);
 		
 		if (indice!=0 && indice>0){
 			
@@ -394,23 +396,23 @@ public class Mayth extends Hyperbolic{
 			
 			for (int n=0; n<=indice; n++){
 				
-				Bn += Potencia(-1,n) * nWorpitzky(indice,n)/(n+1);
+				Bn = Bn.add(new BigDecimal(Potencia(-1,n)).multiply(nWorpitzky(indice,n)).divide(new BigDecimal(n+1), MathContext.DECIMAL128));
 				
 			}
 			
-		}else if (indice==0){Bn=1;}else {Bn = Double.NaN;}
+		}else if (indice==0){Bn = new BigDecimal(1);}else {Bn = null;}
 		
 		return Bn;
 		
 	}
 	
-	public double nWorpitzky(double n, int k){
+	public BigDecimal nWorpitzky(double n, int k){
 		
-		double W=0;
+		BigDecimal W = new BigDecimal(0);
 		
 		for (int v=0; v<=k; v++){
 			
-			W += Potencia(-1,v+k) * Potencia(v+1,n) * Combination(k,v);
+			W = W.add(new BigDecimal(Potencia(-1,v+k)).multiply(new BigDecimal(Potencia(v+1,n))).multiply(new BigDecimal(Combination(k,v))));
 			
 		}
 		
@@ -424,9 +426,9 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
-	public double ZetaReimann(float s){
+	public BigDecimal ZetaReimann(double s){
 		
-		double zeta=0;
+		BigDecimal zeta = new BigDecimal(0);
 		int iteracion=1000;
 		
 		if (s%1!=0){iteracion=10;}
@@ -435,13 +437,13 @@ public class Mayth extends Hyperbolic{
 		
 			for (int n=1; n<=iteracion; n++){
 				
-				zeta += 1d/Potencia(n,s);
+				zeta = zeta.add(new BigDecimal(1).divide(new BigDecimal(Potencia(n,s)), MathContext.DECIMAL128));
 				
 			}
 			
 		}else{
 			
-			zeta = -1*(nBernoulli(s+1)/(s+1));
+			zeta = new BigDecimal(-1).multiply(nBernoulli(s+1)).divide(new BigDecimal(s+1), MathContext.DECIMAL128);
 			
 		}
 		

@@ -52,6 +52,22 @@ public class Constants extends bigFuntions{
 		
 	}
 	
+	public BigDecimal Gamma(){
+		
+		BigDecimal gamma = new BigDecimal(0);
+		int uno = 1;
+		
+		for (int k=2; k<=102; k++){
+			
+			gamma = gamma.add((new BigDecimal(uno).multiply(new Mayth().ZetaReimann(k))).divide(new BigDecimal(k), MathContext.DECIMAL128));
+			uno*= -1;
+			
+		}
+		
+		return gamma;
+		
+	}
+	
 	public BigDecimal Aureo(){
 		
 		return new BigDecimal(new Trigonometry().Cos(36)).multiply(new BigDecimal(2)).setScale(15, RoundingMode.HALF_UP);

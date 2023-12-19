@@ -28,7 +28,7 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		Graph();
+		System.out.print(new Mayth().Gamma());
 		
 		System.out.print("\n\n");
 		

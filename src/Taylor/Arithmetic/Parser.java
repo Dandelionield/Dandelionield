@@ -1444,12 +1444,12 @@ public class Parser extends Mayth{
 				
 				if (wd.length()==1){
 					
-					wd = Parser.ReplaceChar(wd,i,Aureo()+"");
+					wd = Parser.ReplaceChar(wd,i,A+"");
 					i=0;
 					
 				}else if (wd.charAt(i+1)!='r'){
 					
-					wd = Parser.ReplaceChar(wd,i,Aureo()+"");
+					wd = Parser.ReplaceChar(wd,i,A+"");
 					i=0;
 					
 				}
@@ -1460,7 +1460,7 @@ public class Parser extends Mayth{
 			
 			if (wd.charAt(i)=='G'){
 				
-				wd = Parser.ReplaceChar(wd,i,"0.5772156649");
+				wd = Parser.ReplaceChar(wd,i,G+"");
 				i=0;
 				
 			}
