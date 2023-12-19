@@ -59,8 +59,6 @@ public class CartesianPlane extends JPanel{
 	
 	private final Mayth Mth = new Mayth();
 	
-	private final Mayth Mth = new Mayth();
-	
 	public CartesianPlane(int Width, int Height){
 		
 		innitComponents(1, 0, 0, Width, Height, Color.WHITE);

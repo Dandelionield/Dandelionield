@@ -32,6 +32,12 @@ public class Trigonometry extends Constants{
 		RAD_DEG = value;
 		
 	}
+	
+	public boolean getMode(){
+		
+		return this.RAD_DEG;
+		
+	}
 
 	public double Sen(double x){
 		

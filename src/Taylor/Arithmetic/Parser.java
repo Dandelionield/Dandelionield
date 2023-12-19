@@ -18,10 +18,14 @@ public class Parser extends Mayth{
 	private ArrayList<String> wdProcess;
 	private BigDecimal n;
 	private String op = "";
+	
+	private boolean functionType;
 
 	public Parser(String wd){
 		
 		super(false);
+		
+		this.functionType = false;
 		
 		try{
 			
@@ -47,15 +51,19 @@ public class Parser extends Mayth{
 		
 	}
 	
-	public Parser(String wd, boolean value){
+	public Parser(String wd, boolean RAD_DEG){
 		
-		super(value);
+		super(RAD_DEG);
+		
+		this.functionType = false;
 		
 		try{
 			
 			wdProcess = new ArrayList<>();
 			
 			n = Parse(wd);
+			
+			op = this.getProcess();
 			
 		}catch(Exception e){
 			
@@ -70,6 +78,78 @@ public class Parser extends Mayth{
 			wdProcess.add(op);
 			
 		}//*/
+		
+	}
+	
+	public Parser(String wd, boolean RAD_DEG, boolean functionType){
+		
+		super(RAD_DEG);
+		
+		this.functionType = functionType;
+		
+		try{
+			
+			wdProcess = new ArrayList<>();
+			
+			n = Parse(wd);
+			
+			op = this.getProcess();
+			
+		}catch(Exception e){
+			
+			//e.printStackTrace();
+			
+			op = "Error";
+			
+			n = null;
+			
+			wdProcess = new ArrayList<>();
+			
+			wdProcess.add(op);
+			
+		}//*/
+		
+	}
+	
+	public Parser(boolean RAD_DEG, boolean functionType){
+		
+		super(RAD_DEG);
+		
+		this.functionType = functionType;
+		
+		wdProcess = new ArrayList<>();
+		
+		n = Parse("0.0");
+		
+		op = this.getProcess();
+		
+	}
+	
+	public Parser(boolean RAD_DEG){
+		
+		super(RAD_DEG);
+		
+		this.functionType = false;
+		
+		wdProcess = new ArrayList<>();
+		
+		n = Parse("0.0");
+		
+		op = this.getProcess();
+		
+	}
+	
+	public Parser(){
+		
+		super(false);
+		
+		this.functionType = false;
+		
+		wdProcess = new ArrayList<>();
+		
+		n = Parse("0.0");
+		
+		op = this.getProcess();
 		
 	}
 	
@@ -280,7 +360,16 @@ public class Parser extends Mayth{
 					wd = DeleteChar(wd,i-3);
 					
 					r = getRight(wd, i-3);
-					n = new BigDecimal(Senh(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+					
+					if (this.functionType==false){
+						
+						n = new BigDecimal(Senh(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}else{
+						
+						n = new BigDecimal(Math.sinh(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}
 					
 					return Parse(ReplaceOperation(wd, i-3, n, r, true));
 					
@@ -293,7 +382,16 @@ public class Parser extends Mayth{
 					wd = DeleteChar(wd,i-3);
 					
 					r = getRight(wd, i-3);
-					n = new BigDecimal(Cosh(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+					
+					if (this.functionType==false){
+						
+						n = new BigDecimal(Cosh(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}else{
+						
+						n = new BigDecimal(Math.cosh(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}
 					
 					return Parse(ReplaceOperation(wd, i-3, n, r, true));
 					
@@ -306,7 +404,16 @@ public class Parser extends Mayth{
 					wd = DeleteChar(wd,i-3);
 					
 					r = getRight(wd, i-3);
-					n = new BigDecimal(Tanh(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+					
+					if (this.functionType==false){
+						
+						n = new BigDecimal(Tanh(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}else{
+						
+						n = new BigDecimal(Math.tanh(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}
 					
 					return Parse(ReplaceOperation(wd, i-3, n, r, true));
 					
@@ -319,7 +426,16 @@ public class Parser extends Mayth{
 					wd = DeleteChar(wd,i-3);
 					
 					r = getRight(wd, i-3);
-					n = new BigDecimal(Csch(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+					
+					if (this.functionType==false){
+						
+						n = new BigDecimal(Csch(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}else{
+						
+						n = new BigDecimal(1).divide(new BigDecimal(Math.sinh(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue())), MathContext.DECIMAL128);
+						
+					}
 					
 					return Parse(ReplaceOperation(wd, i-3, n, r, true));
 					
@@ -332,7 +448,16 @@ public class Parser extends Mayth{
 					wd = DeleteChar(wd,i-3);
 					
 					r = getRight(wd, i-3);
-					n = new BigDecimal(Sech(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+					
+					if (this.functionType==false){
+						
+						n = new BigDecimal(Sech(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}else{
+						
+						n = new BigDecimal(1).divide(new BigDecimal(Math.cosh(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue())), MathContext.DECIMAL128);
+						
+					}
 					
 					return Parse(ReplaceOperation(wd, i-3, n, r, true));
 					
@@ -345,7 +470,16 @@ public class Parser extends Mayth{
 					wd = DeleteChar(wd,i-3);
 					
 					r = getRight(wd, i-3);
-					n = new BigDecimal(Coth(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+					
+					if (this.functionType==false){
+						
+						n = new BigDecimal(Coth(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}else{
+						
+						n = new BigDecimal(1).divide(new BigDecimal(Math.tanh(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue())), MathContext.DECIMAL128);
+					
+					}
 					
 					return Parse(ReplaceOperation(wd, i-3, n, r, true));
 					
@@ -364,7 +498,24 @@ public class Parser extends Mayth{
 					wd = DeleteChar(wd,i-5);
 					
 					r = getRight(wd, i-5);
-					n = new BigDecimal(Arcsen(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+					
+					if (this.functionType==false){
+						
+						n = new BigDecimal(Arcsen(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}else{
+						
+						if (this.getMode()==false){
+							
+							n = new BigDecimal(Math.toDegrees(Math.asin(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue())));
+							
+						}else{
+							
+							n = new BigDecimal(Math.asin(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+							
+						}
+						
+					}
 					
 					return Parse(ReplaceOperation(wd, i-5, n, r, true));
 					
@@ -379,8 +530,24 @@ public class Parser extends Mayth{
 					wd = DeleteChar(wd,i-5);
 					
 					r = getRight(wd, i-5);
-					n = new BigDecimal(Arccos(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
-					//n = new BigDecimal(Math.acos(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+					
+					if (this.functionType==false){
+						
+						n = new BigDecimal(Arccos(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}else{
+						
+						if (this.getMode()==false){
+							
+							n = new BigDecimal(Math.toDegrees(Math.acos(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue())));
+							
+						}else{
+							
+							n = new BigDecimal(Math.acos(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+							
+						}
+						
+					}
 					
 					return Parse(ReplaceOperation(wd, i-5, n, r, true));
 					
@@ -395,8 +562,25 @@ public class Parser extends Mayth{
 					wd = DeleteChar(wd,i-5);
 					
 					r = getRight(wd, i-5);
-					n = new BigDecimal(Arctan(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
 					
+					if (this.functionType==false){
+						
+						n = new BigDecimal(Arctan(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}else{
+						
+						if (this.getMode()==false){
+							
+							n = new BigDecimal(Math.toDegrees(Math.atan(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue())));
+							
+						}else{
+							
+							n = new BigDecimal(Math.atan(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+							
+						}
+						
+					}
+				
 					return Parse(ReplaceOperation(wd, i-5, n, r, true));
 					
 				}
@@ -410,7 +594,24 @@ public class Parser extends Mayth{
 					wd = DeleteChar(wd,i-5);
 					
 					r = getRight(wd, i-5);
-					n = new BigDecimal(Arccsc(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+					
+					if (this.functionType==false){
+						
+						n = new BigDecimal(Arccsc(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}else{
+						
+						if (this.getMode()==false){
+							
+							n = new BigDecimal(Math.toDegrees(Math.asin(new BigDecimal(1).divide(new BigDecimal(r), MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue())));
+							
+						}else{
+							
+							n = new BigDecimal(Math.asin(new BigDecimal(1).divide(new BigDecimal(r), MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+							
+						}
+						
+					}
 					
 					return Parse(ReplaceOperation(wd, i-5, n, r, true));
 					
@@ -425,7 +626,24 @@ public class Parser extends Mayth{
 					wd = DeleteChar(wd,i-5);
 					
 					r = getRight(wd, i-5);
-					n = new BigDecimal(Arcsec(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+					
+					if (this.functionType==false){
+						
+						n = new BigDecimal(Arcsec(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}else{
+						
+						if (this.getMode()==false){
+							
+							n = new BigDecimal(Math.toDegrees(Math.acos(new BigDecimal(1).divide(new BigDecimal(r), MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue())));
+							
+						}else{
+							
+							n = new BigDecimal(Math.acos(new BigDecimal(1).divide(new BigDecimal(r), MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+							
+						}
+						
+					}
 					
 					return Parse(ReplaceOperation(wd, i-5, n, r, true));
 					
@@ -440,7 +658,24 @@ public class Parser extends Mayth{
 					wd = DeleteChar(wd,i-5);
 					
 					r = getRight(wd, i-5);
-					n = new BigDecimal(Arccot(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+					
+					if (this.functionType==false){
+						
+						n = new BigDecimal(Arccot(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}else{
+						
+						if (this.getMode()==false){
+							
+							n = new BigDecimal(Math.toDegrees(Math.atan(new BigDecimal(1).divide(new BigDecimal(r), MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue())));
+							
+						}else{
+							
+							n = new BigDecimal(Math.atan(new BigDecimal(1).divide(new BigDecimal(r), MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+							
+						}
+						
+					}
 					
 					return Parse(ReplaceOperation(wd, i-5, n, r, true));
 					
@@ -456,7 +691,24 @@ public class Parser extends Mayth{
 					wd = DeleteChar(wd,i-2);
 					
 					r = getRight(wd, i-2);
-					n = new BigDecimal(Sen(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+					
+					if (this.functionType==false){
+						
+						n = new BigDecimal(Sen(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}else{
+						
+						if (this.getMode()==false){
+							
+							n = new BigDecimal(Math.sin(Math.toRadians(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue())));
+							
+						}else{
+							
+							n = new BigDecimal(Math.sin(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+							
+						}
+						
+					}
 					
 					return Parse(ReplaceOperation(wd, i-2, n, r, true));
 					
@@ -468,7 +720,24 @@ public class Parser extends Mayth{
 					wd = DeleteChar(wd,i-2);
 					
 					r = getRight(wd, i-2);
-					n = new BigDecimal(Cos(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+					
+					if (this.functionType==false){
+						
+						n = new BigDecimal(Cos(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}else{
+						
+						if (this.getMode()==false){
+							
+							n = new BigDecimal(Math.cos(Math.toRadians(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue())));
+							
+						}else{
+							
+							n = new BigDecimal(Math.cos(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+							
+						}
+						
+					}
 					
 					return Parse(ReplaceOperation(wd, i-2, n, r, true));
 					
@@ -480,7 +749,24 @@ public class Parser extends Mayth{
 					wd = DeleteChar(wd,i-2);
 					
 					r = getRight(wd, i-2);
-					n = new BigDecimal(Tan(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+					
+					if (this.functionType==false){
+						
+						n = new BigDecimal(Tan(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}else{
+						
+						if (this.getMode()==false){
+							
+							n = new BigDecimal(Math.tan(Math.toRadians(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue())));
+							
+						}else{
+							
+							n = new BigDecimal(Math.tan(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+							
+						}
+						
+					}
 					
 					return Parse(ReplaceOperation(wd, i-2, n, r, true));
 					
@@ -492,7 +778,24 @@ public class Parser extends Mayth{
 					wd = DeleteChar(wd,i-2);
 					
 					r = getRight(wd, i-2);
-					n = new BigDecimal(Csc(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+					
+					if (this.functionType==false){
+						
+						n = new BigDecimal(Csc(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}else{
+						
+						if (this.getMode()==false){
+							
+							n = new BigDecimal(1).divide(new BigDecimal(Math.sin(Math.toRadians(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()))), MathContext.DECIMAL128);
+							
+						}else{
+							
+							n = new BigDecimal(1).divide(new BigDecimal(Math.sin(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue())), MathContext.DECIMAL128);
+							
+						}
+						
+					}
 					
 					return Parse(ReplaceOperation(wd, i-2, n, r, true));
 					
@@ -504,7 +807,24 @@ public class Parser extends Mayth{
 					wd = DeleteChar(wd,i-2);
 					
 					r = getRight(wd, i-2);
-					n = new BigDecimal(Sec(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+					
+					if (this.functionType==false){
+						
+						n = new BigDecimal(Sec(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}else{
+						
+						if (this.getMode()==false){
+							
+							n = new BigDecimal(1).divide(new BigDecimal(Math.cos(Math.toRadians(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()))), MathContext.DECIMAL128);
+							
+						}else{
+							
+							n = new BigDecimal(1).divide(new BigDecimal(Math.cos(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue())), MathContext.DECIMAL128);
+							
+						}
+						
+					}
 					
 					return Parse(ReplaceOperation(wd, i-2, n, r, true));
 					
@@ -516,7 +836,24 @@ public class Parser extends Mayth{
 					wd = DeleteChar(wd,i-2);
 					
 					r = getRight(wd, i-2);
-					n = new BigDecimal(Cot(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+					
+					if (this.functionType==false){
+						
+						n = new BigDecimal(Cot(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+					}else{
+						
+						if (this.getMode()==false){
+							
+							n = new BigDecimal(1).divide(new BigDecimal(Math.tan(Math.toRadians(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()))), MathContext.DECIMAL128);
+							
+						}else{
+							
+							n = new BigDecimal(1).divide(new BigDecimal(Math.tan(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue())), MathContext.DECIMAL128);
+							
+						}
+						
+					}
 					
 					return Parse(ReplaceOperation(wd, i-2, n, r, true));
 					
@@ -534,9 +871,17 @@ public class Parser extends Mayth{
 						
 						r = getRight(wd, i);
 						l = getLeft(wd, i);
+						
+						if (this.functionType==false){
+							
+							n = new BigDecimal(Raiz(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue(), new BigDecimal(l).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+							
+						}else{
+							
+							n = new BigDecimal(Math.pow(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue(), new BigDecimal(1).divide(new BigDecimal(l), MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+							
+						}
 
-						//n = new BigDecimal(Raiz(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue(), new BigDecimal(l).setScale(15, RoundingMode.HALF_UP).doubleValue()));
-						n = new BigDecimal(Math.sqrt(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
 						return Parse(ReplaceOperation(wd, i, n, l, r));
 						
 					}
@@ -553,8 +898,16 @@ public class Parser extends Mayth{
 						
 						r = getRight(wd, i);
 						l = getLeft(wd, i);
-
-						n = new BigDecimal(Potencia(new BigDecimal(l).setScale(15, RoundingMode.HALF_UP).doubleValue(), new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+						if (this.functionType==false){
+							
+							n = new BigDecimal(Potencia(new BigDecimal(l).setScale(15, RoundingMode.HALF_UP).doubleValue(), new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+							
+						}else{
+							
+							n = new BigDecimal(Math.pow(new BigDecimal(l).setScale(15, RoundingMode.HALF_UP).doubleValue(), new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+							
+						}
 						
 						return Parse(ReplaceOperation(wd, i, n, l, r));
 						
@@ -591,7 +944,16 @@ public class Parser extends Mayth{
 						wd = DeleteChar(wd, i-1);
 						
 						r = getRight(wd, i-1);
-						n = new BigDecimal(Ln(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+						
+						if (this.functionType==false){
+							
+							n = new BigDecimal(Ln(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+							
+						}else{
+							
+							n = new BigDecimal(Math.log(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+							
+						}
 						
 						return Parse(ReplaceOperation(wd, i-1, n, r, true));
 						
@@ -641,6 +1003,27 @@ public class Parser extends Mayth{
 				
 					if (wd.charAt(f-2)=='l' && wd.charAt(f-1)=='o' && wd.charAt(f)=='g'){
 						
+						if (isAllowed(wd.charAt(f+1)+"")==true){
+							
+							wd = DeleteChar(wd, f);
+							f--;wd = DeleteChar(wd, f);
+							
+							r = getRight(wd, f-1);
+						
+							if (this.functionType==false){
+								
+								n = new BigDecimal(Log(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+								
+							}else{
+								
+								n = new BigDecimal(Math.log10(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+								
+							}
+							
+							return Parse(ReplaceOperation(wd, f-1, n, r, true));
+							
+						}
+						
 						wd = DeleteChar(wd, f);
 						f--;wd = DeleteChar(wd, f);
 						f--;wd = DeleteChar(wd, f);
@@ -659,8 +1042,16 @@ public class Parser extends Mayth{
 									
 										r = getRight(wd, i);
 										l = getLeft(wd, i);
-
-										n = new BigDecimal(Log(new BigDecimal(l).setScale(15, RoundingMode.HALF_UP).doubleValue(), new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+										
+										if (this.functionType==false){
+											
+											n = new BigDecimal(Log(new BigDecimal(l).setScale(15, RoundingMode.HALF_UP).doubleValue(), new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue()));
+											
+										}else{
+											
+											n = new BigDecimal(Math.log(new BigDecimal(l).setScale(15, RoundingMode.HALF_UP).doubleValue())).divide(new BigDecimal(Math.log(new BigDecimal(r).setScale(15, RoundingMode.HALF_UP).doubleValue())), MathContext.DECIMAL128);
+											
+										}
 										
 										return Parse(ReplaceOperation(wd, i, n, l, r));
 										

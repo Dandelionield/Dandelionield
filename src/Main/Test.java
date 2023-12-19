@@ -28,7 +28,9 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		Graph();
+		Parser p = new Parser("2√64", false, false);
+		
+		System.out.print(p);
 		
 		System.out.print("\n\n");
 		
