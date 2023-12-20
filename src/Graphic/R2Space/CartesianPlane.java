@@ -327,7 +327,7 @@ public class CartesianPlane extends JPanel{
 				
 				if (p.getParsers().size()==0){
 					
-					p.intervalueOf(vector.getFullComponents(p.getVariable().length, -10).get(), vector.getFullComponents(p.getVariable().length, 10).get());
+					p.intervalueOf(vector.getFullComponents(-10, p.getVariable().length).get(), vector.getFullComponents(10, p.getVariable().length).get());
 					
 				}
 				
@@ -360,7 +360,7 @@ public class CartesianPlane extends JPanel{
 				
 				if (p.getParsers().size()==0){
 					
-					p.intervalueOf(vector.getFullComponents(p.getVariable().length, -10).get(), vector.getFullComponents(p.getVariable().length, 10).get());
+					p.intervalueOf(vector.getFullComponents(-10, p.getVariable().length).get(), vector.getFullComponents(10, p.getVariable().length).get());
 					
 				}
 				

@@ -38,7 +38,7 @@ public class Test {
 		
 		Parametric par = new Parametric(new char[] {'x','y'}, "xy");
 		
-		//par.intervalueOf(new double[] {-100, -100}, new double[] {100, 100});
+		//par.intervalueOf(new double[] {0, 0}, new double[] {100, 100});
 		
 		//System.out.print(par);//*/
 		
@@ -79,7 +79,7 @@ public class Test {
 		//R2.drawFunction(g);
 		//R2.drawFunction(h);
 		//R2.drawFunction(d);
-		//R2.drawFunction(par);
+		R2.drawFunction(par);
 		
 		/*for (int Theta = 0; Theta<360; Theta+=15){
 			
