@@ -301,65 +301,38 @@ public class function{
 	
 	private String fix(String func){
 		
-		/*String wd = "";
-		
-		for (int i=1; i<func.length()-1; i++){
+		String wd = "";
+		char p;
+
+		for (int i=0; i<func.length(); i++) {
 			
-			if (func.charAt(i)==this.variable){
+			p = func.charAt(i);
+
+			if (p==this.variable){
 				
-				if (func.charAt(i-1)=='e'  || func.charAt(i-1)=='P' || func.charAt(i-1)=='G' || func.charAt(i-1)=='A' || Parser.isAllowed(func.charAt(i-1)+"")==true){
+				if (i>0 && (Character.isLetter(func.charAt(i - 1)) || Character.isDigit(func.charAt(i - 1)))){
 					
-					wd+= "*"+func.charAt(i);
+					wd+= "*";
 					
-				}else if (func.charAt(i+1)=='('){
+				}
+
+				wd+= p+"";
+
+				if (i<func.length()-1 && (Character.isLetter(func.charAt(i + 1)) || func.charAt(i + 1)=='(')){
 					
-					wd+= func.charAt(i)+"*";
-					
-				}else{
-					
-					wd+= func.charAt(i);
+					wd+= "*";
 					
 				}
 				
-			}
-			
-		}
-		
-		if (func.charAt(func.length()-1)==this.variable){
-		
-			if (func.charAt(func.length()-2)=='e'  || func.charAt(func.length()-2)=='P' || func.charAt(func.length()-2)=='G' || func.charAt(func.length()-2)=='A' || Parser.isAllowed(func.charAt(func.length()-2)+"")==true){
-				
-				wd = wd+"*"+func.charAt(func.length()-1);
-				
 			}else{
 				
-				wd = wd+""+func.charAt(func.length()-1);
+				wd+= p+"";
 				
 			}
 			
-			return func.charAt(0)+wd;
-			
 		}
-		
-		if (func.charAt(0)==this.variable){
-		
-			if (func.charAt(1)=='e'  || func.charAt(1)=='P' || func.charAt(1)=='G' || func.charAt(1)=='A' || Parser.isAllowed(func.charAt(1)+"")==true || func.charAt(1)=='('){
-				
-				wd = func.charAt(0)+"*"+wd;
-				
-			}else{
-				
-				wd = func.charAt(0)+""+wd;
-				
-			}
-			
-			return wd+func.charAt(func.length()-1);
-			
-		}
-		
-		return func.charAt(0)+wd+func.charAt(func.length()-1);//*/
-		
-		return func;
+
+		return wd;
 		
 	}
 	

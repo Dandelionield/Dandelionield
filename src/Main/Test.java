@@ -30,9 +30,11 @@ public class Test {
 		
 		/*Parser p = new Parser("2ln(24)*Cos(30)", false, true);//*/
 		
-		function f = new function('t', "2*e*t/3");
+		function f = new function('t', "tSen(t)");
 		
-		System.out.print(f);
+		Parametric par = new Parametric(new char[] {'t', 'w'}, "ewtSen(tw)/we");
+		
+		System.out.print(par);
 		
 		System.out.print("\n\n");
 		

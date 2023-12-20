@@ -36,6 +36,7 @@ public class Parametric{
 		name = "f";
 		this.function = function;
 		variable = fixVar(new char[] {x});
+		this.function = fix(function);
 		
 	}
 	
@@ -44,6 +45,7 @@ public class Parametric{
 		this.name = name;
 		this.function = function;
 		variable = fixVar(new char[] {x});
+		this.function = fix(function);
 		
 	}
 	
@@ -60,6 +62,7 @@ public class Parametric{
 		name = "f";
 		this.function = function;
 		variable = fixVar(new char[] {x, y});
+		this.function = fix(function);
 		
 	}
 	
@@ -68,6 +71,7 @@ public class Parametric{
 		this.name = name;
 		this.function = function;
 		variable = fixVar(new char[] {x, y});
+		this.function = fix(function);
 		
 	}
 
@@ -84,6 +88,7 @@ public class Parametric{
 		name = "f";
 		this.function = function;
 		variable = fixVar(new char[] {x, y, z});
+		this.function = fix(function);
 		
 	}
 	
@@ -92,6 +97,7 @@ public class Parametric{
 		this.name = name;
 		this.function = function;
 		variable = fixVar(new char[] {x, y, z});
+		this.function = fix(function);
 		
 	}
 	
@@ -115,6 +121,7 @@ public class Parametric{
 		name = "f";
 		this.function = function;
 		this.variable = fixVar(variable);
+		this.function = fix(function);
 		
 	}
 	
@@ -123,6 +130,7 @@ public class Parametric{
 		this.name = name;
 		this.function = function;
 		this.variable = fixVar(variable);
+		this.function = fix(function);
 		
 	}
 	
@@ -547,6 +555,51 @@ public class Parametric{
 			
 		}
 		
+		return wd;
+		
+	}
+	
+	private String fix(String func){
+		
+		String wd = "";
+		char p;
+		
+		for (char q : this.variable){
+			
+			wd = "";
+
+			for (int i=0; i<func.length(); i++) {
+				
+				p = func.charAt(i);
+
+				if (p==q){
+					
+					if (i>0 && (Character.isLetter(func.charAt(i - 1)) || Character.isDigit(func.charAt(i - 1)))){
+						
+						wd+= "*";
+						
+					}
+
+					wd+= p+"";
+
+					if (i<func.length()-1 && (Character.isLetter(func.charAt(i + 1)) || func.charAt(i + 1)=='(')){
+						
+						wd+= "*";
+						
+					}
+					
+				}else{
+					
+					wd+= p+"";
+					
+				}
+				
+			}
+			
+			func = wd;
+			
+		}
+
 		return wd;
 		
 	}
