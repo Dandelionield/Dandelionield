@@ -299,11 +299,11 @@ public class mass{
 		
 		if (this.equivalent.compareTo(new BigDecimal(0))==0){
 			
-			throwError("unabled to divide masses due to variable "+this.toString()+" has no equivalency in meters");
+			throwError("unabled to divide masses due to variable "+this.toString()+" has no equivalency in grams");
 			
 		}else if (m.equivalent.compareTo(new BigDecimal(0))==0){
 			
-			throwError("unabled to divide masses due to variable "+m.toString()+" has no equivalency in meters");
+			throwError("unabled to divide masses due to variable "+m.toString()+" has no equivalency in grams");
 			
 		}
 		
