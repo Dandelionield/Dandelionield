@@ -179,6 +179,18 @@ public class Parametric{
 		
 	}
 	
+	public ArrayList<Parser> getParsers(){
+		
+		return this.p;
+		
+	}
+	
+	public ArrayList<Double> getValues(){
+		
+		return this.values;
+		
+	}
+	
 	public Parser getOutput(int indice){
 		
 		return this.p.get(indice);

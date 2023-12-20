@@ -32,6 +32,7 @@ import java.awt.event.MouseWheelEvent;
 
 import Taylor.Math.Mayth;
 import Taylor.Arithmetic.function;
+import Taylor.Arithmetic.Parametric;
 import Taylor.Arithmetic.Vectorial;
 import Geometry.Euclidean.Matriz;
 import Geometry.Euclidean.vector;
@@ -55,6 +56,7 @@ public class CartesianPlane extends JPanel{
 	private ArrayList<vector> v = new ArrayList<>();
 	private ArrayList<coordinate> xy = new ArrayList<>();
 	private ArrayList<function> f = new ArrayList<>();
+	private ArrayList<Parametric> fp = new ArrayList<>();
 	private ArrayList<Vectorial> fv = new ArrayList<>();
 	
 	private final Mayth Mth = new Mayth();
@@ -122,6 +124,14 @@ public class CartesianPlane extends JPanel{
 	public void drawFunction(Vectorial fv){
 		
 		this.fv.add(fv);
+		
+		this.repaint();
+		
+	}
+	
+	public void drawFunction(Parametric fp){
+		
+		this.fp.add(fp);
 		
 		this.repaint();
 		
@@ -296,6 +306,39 @@ public class CartesianPlane extends JPanel{
 						y1 = (int) -p.getOutput(i).get().setScale(15, RoundingMode.HALF_UP).doubleValue();
 						x2 = (int) p.getInput(i+1);
 						y2 = (int) -p.getOutput(i+1).get().setScale(15, RoundingMode.HALF_UP).doubleValue();
+						
+					}catch(Exception e){
+						
+						continue;
+						
+					}
+					
+					g2d.drawLine(x1, y1, x2, y2);
+					
+				}
+				
+			}
+			
+		}
+		
+		if (this.fp.size()!=0){
+			
+			for (Parametric p : this.fp){
+				
+				if (p.getParsers().size()==0){
+					
+					p.intervalueOf(vector.getFullComponents(p.getVariable().length, -10).get(), vector.getFullComponents(p.getVariable().length, 10).get());
+					
+				}
+				
+				for (int i=p.getParsers().size()-2; i>=0; i--){
+					
+					try{
+						
+						x1 = (int) p.getInput(i)[0];
+						y1 = (int) -p.getInput(i)[1];
+						x2 = (int) p.getInput(i+1)[0];
+						y2 = (int) -p.getInput(i+1)[1];
 						
 					}catch(Exception e){
 						

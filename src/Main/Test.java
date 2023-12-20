@@ -28,13 +28,7 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		/*Parser p = new Parser("2ln(24)*Cos(30)", false, true);//*/
-		
-		function f = new function('t', "tSen(t)");
-		
-		Parametric par = new Parametric(new char[] {'t', 'w'}, "ewtSen(tw)/we");
-		
-		System.out.print(par);
+		Graph();
 		
 		System.out.print("\n\n");
 		
@@ -42,11 +36,11 @@ public class Test {
 	
 	private static void Graph(){
 		
-		/*Parametric par = new Parametric(new char[] {'x','y','z'}, "x+y+z");
+		Parametric par = new Parametric(new char[] {'x','y'}, "xy");
 		
-		par.intervalueOf(new double[] {0, 0, 0}, new double[] {10, 10, 10});
+		//par.intervalueOf(new double[] {-100, -100}, new double[] {100, 100});
 		
-		System.out.print(par);//*/
+		//System.out.print(par);//*/
 		
 		JFrame frame = Frame();
 		
@@ -74,17 +68,18 @@ public class Test {
 		
 		//vec.intervalueOf(new double[] {-200}, new double[] {200});
 		
-		f.intervalueOf(0, 200);
+		/*f.intervalueOf(0, 200);
 		g.intervalueOf(-200, 0);
 		h.intervalueOf(0, 200);
-		d.intervalueOf(-200, 0);
+		d.intervalueOf(-200, 0);//*/
 		
 		CartesianPlane R2 = new CartesianPlane(2, frame.getWidth(), frame.getHeight());
 		//R2.drawFunction(vec);
-		R2.drawFunction(f);
-		R2.drawFunction(g);
-		R2.drawFunction(h);
-		R2.drawFunction(d);
+		//R2.drawFunction(f);
+		//R2.drawFunction(g);
+		//R2.drawFunction(h);
+		//R2.drawFunction(d);
+		//R2.drawFunction(par);
 		
 		/*for (int Theta = 0; Theta<360; Theta+=15){
 			
