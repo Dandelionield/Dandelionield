@@ -33,7 +33,7 @@ public class function{
 	public function(char variable, String function){
 		
 		this.variable = variable;
-		this.function = function;
+		this.function = fix(function);
 		this.name = "f";
 		
 	}
@@ -41,7 +41,7 @@ public class function{
 	public function(char variable, String function, String name){
 		
 		this.variable = variable;
-		this.function = function;
+		this.function = fix(function);
 		this.name = name;
 		
 	}
@@ -296,6 +296,70 @@ public class function{
 		}
 		
 		return bup;
+		
+	}
+	
+	private String fix(String func){
+		
+		/*String wd = "";
+		
+		for (int i=1; i<func.length()-1; i++){
+			
+			if (func.charAt(i)==this.variable){
+				
+				if (func.charAt(i-1)=='e'  || func.charAt(i-1)=='P' || func.charAt(i-1)=='G' || func.charAt(i-1)=='A' || Parser.isAllowed(func.charAt(i-1)+"")==true){
+					
+					wd+= "*"+func.charAt(i);
+					
+				}else if (func.charAt(i+1)=='('){
+					
+					wd+= func.charAt(i)+"*";
+					
+				}else{
+					
+					wd+= func.charAt(i);
+					
+				}
+				
+			}
+			
+		}
+		
+		if (func.charAt(func.length()-1)==this.variable){
+		
+			if (func.charAt(func.length()-2)=='e'  || func.charAt(func.length()-2)=='P' || func.charAt(func.length()-2)=='G' || func.charAt(func.length()-2)=='A' || Parser.isAllowed(func.charAt(func.length()-2)+"")==true){
+				
+				wd = wd+"*"+func.charAt(func.length()-1);
+				
+			}else{
+				
+				wd = wd+""+func.charAt(func.length()-1);
+				
+			}
+			
+			return func.charAt(0)+wd;
+			
+		}
+		
+		if (func.charAt(0)==this.variable){
+		
+			if (func.charAt(1)=='e'  || func.charAt(1)=='P' || func.charAt(1)=='G' || func.charAt(1)=='A' || Parser.isAllowed(func.charAt(1)+"")==true || func.charAt(1)=='('){
+				
+				wd = func.charAt(0)+"*"+wd;
+				
+			}else{
+				
+				wd = func.charAt(0)+""+wd;
+				
+			}
+			
+			return wd+func.charAt(func.length()-1);
+			
+		}
+		
+		return func.charAt(0)+wd+func.charAt(func.length()-1);//*/
+		
+		return func;
 		
 	}
 	

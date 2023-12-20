@@ -28,9 +28,11 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		Parser p = new Parser("2*ln(24)*Cos(30)", false, true);
+		/*Parser p = new Parser("2ln(24)*Cos(30)", false, true);//*/
 		
-		System.out.print(p);
+		function f = new function('t', "2*e*t/3");
+		
+		System.out.print(f);
 		
 		System.out.print("\n\n");
 		
@@ -63,12 +65,24 @@ public class Test {
 		vec.setTrigonometryMode(false);
 		vec.setParserFunctionType(true);
 		
-		vec.intervalueOf(new double[] {-200}, new double[] {200});
+		f.setParserFunctionType(true);
+		g.setParserFunctionType(true);
+		h.setParserFunctionType(true);
+		d.setParserFunctionType(true);
 		
-		//System.out.print(vec);
+		//vec.intervalueOf(new double[] {-200}, new double[] {200});
+		
+		f.intervalueOf(0, 200);
+		g.intervalueOf(-200, 0);
+		h.intervalueOf(0, 200);
+		d.intervalueOf(-200, 0);
 		
 		CartesianPlane R2 = new CartesianPlane(2, frame.getWidth(), frame.getHeight());
-		R2.drawFunction(vec);
+		//R2.drawFunction(vec);
+		R2.drawFunction(f);
+		R2.drawFunction(g);
+		R2.drawFunction(h);
+		R2.drawFunction(d);
 		
 		/*for (int Theta = 0; Theta<360; Theta+=15){
 			

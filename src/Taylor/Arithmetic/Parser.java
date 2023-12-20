@@ -37,7 +37,7 @@ public class Parser extends Mayth{
 			
 		}catch(Exception e){
 			
-			e.printStackTrace();
+			//e.printStackTrace();
 			
 			op = "Error";
 			
@@ -1393,6 +1393,8 @@ public class Parser extends Mayth{
 		int Counter = 0;
 		String bup = "";
 		
+		if (wd.equals("")==true){return "0";}
+		
 		for (char p : wd.toCharArray()){
 			
 			if (p==' '){
@@ -1407,7 +1409,28 @@ public class Parser extends Mayth{
 		
 		wd = bup;
 		
-		if (wd==""){wd="0";}
+		bup = "";
+		
+		for (int i=0; i<wd.length()-1; i++){
+			
+			if (isAllowed(wd.charAt(i)+"")==true && isAllowed(wd.charAt(i+1)+"")==false){
+				
+				if (wd.charAt(i+1)=='e' || wd.charAt(i+1)=='P' || wd.charAt(i+1)=='A' 
+				|| wd.charAt(i+1)=='G' || wd.charAt(i+1)=='(' || wd.charAt(i+1)=='l' 
+				|| wd.charAt(i+1)=='S' || wd.charAt(i+1)=='C' || wd.charAt(i+1)=='T'){
+				
+					bup+= wd.charAt(i)+"*";
+					continue;
+					
+				}
+				
+			}
+			
+			bup+= wd.charAt(i)+"";
+			
+		}
+		
+		wd = bup+wd.charAt(wd.length()-1);//*/
 		
 		for (int i=0; i<wd.length(); i++){
 			
