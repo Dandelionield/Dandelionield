@@ -37,7 +37,7 @@ public class Parser extends Mayth{
 			
 		}catch(Exception e){
 			
-			//e.printStackTrace();
+			e.printStackTrace();
 			
 			op = "Error";
 			
@@ -1367,6 +1367,10 @@ public class Parser extends Mayth{
 			if (wd.charAt(i)=='-' && wd.charAt(i-1)=='E'){
 				
 				E = true;
+				
+				continue;
+				
+			}else if (wd.charAt(i)=='E'){
 				
 				continue;
 				

@@ -105,6 +105,12 @@ public class function{
 		
 	}
 	
+	public String getName(){
+		
+		return this.name;
+		
+	}
+	
 	public void setTrigonometryMode(boolean value){
 		
 		this.RAD_DEG = value;

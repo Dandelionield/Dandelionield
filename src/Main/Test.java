@@ -28,7 +28,23 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
+		temperature K = temperature.getKelvinValueOf(3);
+		temperature C = temperature.getCelsiusValueOf(5);
+		temperature F = temperature.getFahrenheitValueOf(2);
 		
+		temperature bup = C.doProduct(K);
+		
+		//function f = new function('k', "9k/5 - 459.67", "F");
+		
+		System.out.print(K+"\n\n");
+		System.out.print(C+"\n\n");
+		System.out.print(bup.toKelvin()+"\n\n");
+		System.out.print(F+"\n\n");
+		System.out.print(F.doProduct(bup)+"\n\n");
+		
+		/*Parser p = new Parser("9*2.9783402774399996E8/5 - 459.67");
+		
+		System.out.print(p.getProcess());//*/
 		
 		System.out.print("\n\n");
 		
@@ -36,7 +52,7 @@ public class Test {
 	
 	private static void Graph(){
 		
-		Parametric par = new Parametric(new char[] {'x','y'}, "xy");
+		Parametric par = new Parametric(new char[] {'x','y'}, "xy");//2.9783402774399996
 		
 		//par.intervalueOf(new double[] {0, 0}, new double[] {100, 100});
 		
