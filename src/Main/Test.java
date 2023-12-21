@@ -28,10 +28,7 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		substance s = substance.getMolValueOf(1);
-		substance s2 = substance.getPoundMolValueOf(1);
 		
-		System.out.print(s2.doSuma(s));
 		
 		System.out.print("\n\n");
 		

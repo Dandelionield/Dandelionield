@@ -21,6 +21,14 @@ public class function{
 	
 	private boolean RAD_DEG = false;
 	private boolean functionType = false;
+	
+	public function(double value){
+		
+		this.variable = 'x';
+		this.function = value+"";
+		this.name = "f";
+		
+	}
 
 	public function(char variable){
 		
@@ -113,11 +121,11 @@ public class function{
 		
 		if (this.function.contains(this.variable+"")){
 			
-			return true;
+			return false;
 			
 		}
 		
-		return false;
+		return true;
 		
 	}
 	
