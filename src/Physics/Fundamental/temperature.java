@@ -143,7 +143,7 @@ public class temperature{
 		
 		//System.out.print(this.toKelvin+"\n\n");
 		
-		return new temperature(this.toKelvin.get(this.Scalar).get().setScale(15, RoundingMode.HALF_UP).doubleValue(), "K"+bup, this.nth, new function('k', "k", "K"), new function('k', "k", "K"));
+		return new temperature(this.toKelvin.get(this.Scalar).get().setScale(15, RoundingMode.HALF_UP).doubleValue(), "K"+bup, this.nth, new function('k', "k", "K"+bup), new function('k', "k", "K"+bup));
 		
 	}
 	
@@ -391,7 +391,7 @@ public class temperature{
 								
 								if (Parser.isAllowed(bup)==true){
 									
-									return new function(f.getVariable(), wd.substring(0, i+2)+""+newNth, f.getName());
+									return new function(f.getVariable(), wd.substring(0, i+2)+""+newNth, f.getName().charAt(0)+"^"+newNth);
 									
 								}
 								
@@ -415,7 +415,7 @@ public class temperature{
 			
 		}
 		
-		return new function(f.getVariable(), "("+wd+")^"+newNth, f.getName());
+		return new function(f.getVariable(), "("+wd+")^"+newNth, f.getName().charAt(0)+"^"+newNth);
 		
 	}
 	

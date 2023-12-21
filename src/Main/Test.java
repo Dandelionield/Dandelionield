@@ -32,15 +32,20 @@ public class Test {
 		temperature C = temperature.getCelsiusValueOf(5);
 		temperature F = temperature.getFahrenheitValueOf(2);
 		
-		temperature bup = C.doProduct(K);
+		temperature bup1 = C.doProduct(F);
+		temperature bup2 = F.doProduct(C);
 		
 		//function f = new function('k', "9k/5 - 459.67", "F");
 		
-		System.out.print(K+"\n\n");
-		System.out.print(C+"\n\n");
-		System.out.print(bup.toKelvin()+"\n\n");
-		System.out.print(F+"\n\n");
-		System.out.print(F.doProduct(bup)+"\n\n");
+		System.out.print(F+" * "+C+" = \n\n");
+		
+		System.out.print(bup1+"\n\n");
+		System.out.print(bup2+"\n\n");
+		System.out.print(bup1.getToKelvin()+"\n");
+		System.out.print(bup2.getToKelvin()+"\n\n");
+		System.out.print("Resultados en Kelvin\n\n");
+		System.out.print(bup1.toKelvin()+"\n\n");
+		System.out.print(bup2.toKelvin()+"\n\n");
 		
 		/*Parser p = new Parser("9*2.9783402774399996E8/5 - 459.67");
 		
