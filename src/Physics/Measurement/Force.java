@@ -39,6 +39,58 @@ public class Force{
 		
 	}
 	
+	public Force(mass m, distance x, time t){
+		
+		if (m.getDegree()!=1){
+			
+			throwError("mass "+m+" must have a degree of 1");
+			
+		}else if (x.getDegree()!=1){
+			
+			throwError("distance "+x+" must have a degree of 1");
+			
+		}else if (t.getDegree()!=2){
+			
+			throwError("time "+t+" must have a degree of 2");
+			
+		}
+		
+		this.F = new vector(m.getMagnitude()*x.getMagnitude()*t.getMagnitude(), new degree(0));
+		this.m = m;
+		this.x = x;
+		this.t = t;
+		
+		this.nth = 1;
+		this.equivalent = (m.getGramEquivalent().multiply(x.getMetreEquivalent())).divide(t.getSecondEquivalent(), MathContext.DECIMAL128);
+		
+	}
+	
+	public Force(mass m, distance x, time t, degree Theta){
+		
+		if (m.getDegree()!=1){
+			
+			throwError("mass "+m+" must have a degree of 1");
+			
+		}else if (x.getDegree()!=1){
+			
+			throwError("distance "+x+" must have a degree of 1");
+			
+		}else if (t.getDegree()!=2){
+			
+			throwError("time "+t+" must have a degree of 2");
+			
+		}
+		
+		this.F = new vector(m.getMagnitude()*x.getMagnitude()*t.getMagnitude(), Theta);
+		this.m = m;
+		this.x = x;
+		this.t = t;
+		
+		this.nth = 1;
+		this.equivalent = (m.getGramEquivalent().multiply(x.getMetreEquivalent())).divide(t.getSecondEquivalent(), MathContext.DECIMAL128);
+		
+	}
+	
 	public vector get(){
 		
 		return this.F;
@@ -65,6 +117,12 @@ public class Force{
 	
 	public void setMass(mass m){
 		
+		if (m.getDegree()!=1*nth){
+			
+			throwError("mass "+m+" must have a degree of "+nth);
+			
+		}
+		
 		BigDecimal bup;
 		
 		this.m = m;
@@ -86,6 +144,12 @@ public class Force{
 	}
 	
 	public void setDistance(distance x){
+		
+		if (x.getDegree()!=1*nth){
+			
+			throwError("distance "+x+" must have a degree of "+nth);
+			
+		}
 		
 		BigDecimal bup;
 		
@@ -109,6 +173,12 @@ public class Force{
 	
 	public void setTime(time t){
 		
+		if (t.getDegree()!=2*nth){
+			
+			throwError("time "+t+" must have a degree of "+(2*nth));
+			
+		}
+		
 		BigDecimal bup;
 		
 		this.t = t;
@@ -126,6 +196,22 @@ public class Force{
 			this.m = new mass(bup.setScale(15, RoundingMode.HALF_UP).doubleValue(), m.getUnity(), m.getGramEquivalent());
 			
 		}
+		
+	}
+	
+	private void throwError(String ErrorMessage){
+		
+		try {
+
+            throw new RuntimeException(ErrorMessage);
+			
+        } catch (RuntimeException e) {
+
+            e.printStackTrace();
+			
+			System.exit(0);
+			
+        }
 		
 	}
 
