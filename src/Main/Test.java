@@ -28,28 +28,7 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		temperature K = temperature.getKelvinValueOf(3);
-		temperature C = temperature.getCelsiusValueOf(5);
-		temperature F = temperature.getFahrenheitValueOf(2);
 		
-		temperature bup1 = C.doProduct(F);
-		temperature bup2 = F.doProduct(C);
-		
-		//function f = new function('k', "9k/5 - 459.67", "F");
-		
-		System.out.print(F+" * "+C+" = \n\n");
-		
-		System.out.print(bup1+"\n\n");
-		System.out.print(bup2+"\n\n");
-		System.out.print(bup1.getToKelvin()+"\n");
-		System.out.print(bup2.getToKelvin()+"\n\n");
-		System.out.print("Resultados en Kelvin\n\n");
-		System.out.print(bup1.toKelvin()+"\n\n");
-		System.out.print(bup2.toKelvin()+"\n\n");
-		
-		/*Parser p = new Parser("9*2.9783402774399996E8/5 - 459.67");
-		
-		System.out.print(p.getProcess());//*/
 		
 		System.out.print("\n\n");
 		
@@ -132,6 +111,27 @@ public class Test {
             }
 
         });//*/
+		
+	}
+	
+	private static void temp(){
+		
+		temperature K = temperature.getKelvinValueOf(3);
+		temperature C = temperature.getCelsiusValueOf(5);
+		temperature F = temperature.getFahrenheitValueOf(2);
+		
+		temperature bup1 = C.doProduct(F);
+		temperature bup2 = F.doProduct(C);
+		
+		System.out.print(F+" * "+C+" = \n\n");
+		
+		System.out.print(bup1+"\n\n");
+		System.out.print(bup2+"\n\n");
+		System.out.print(bup1.getToKelvin()+"\n");
+		System.out.print(bup2.getToKelvin()+"\n\n");
+		System.out.print("Resultados en Kelvin\n\n");
+		System.out.print(bup1.toKelvin()+"\n\n");
+		System.out.print(bup2.toKelvin()+"\n\n");
 		
 	}
 	
