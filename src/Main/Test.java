@@ -28,7 +28,9 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
+		mass m = mass.getPoundValueOf(5000);
 		
+		System.out.print(m.toGram());
 		
 		System.out.print("\n\n");
 		

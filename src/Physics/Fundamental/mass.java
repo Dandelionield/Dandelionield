@@ -119,6 +119,12 @@ public class mass{
 		
 	}
 	
+	public long getDegree(){
+		
+		return this.nth;
+		
+	}
+	
 	public String toString(){
 		
 		return Scalar+" "+Unity;

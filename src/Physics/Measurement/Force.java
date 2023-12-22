@@ -23,13 +23,19 @@ public class Force{
 	private mass m;
 	private distance x;
 	private time t;
+	
+	private long nth;
+	private BigDecimal equivalent;
 
 	public Force(double v){
 		
 		this.F = new vector(v, new degree(0));
-		this.m = null;
-		this.x = null;
-		this.t = null;
+		this.m = new mass(0, "um");
+		this.x = new distance(0, "ud");
+		this.t = new time(0, "ut^2");
+		
+		this.nth = 1;
+		this.equivalent = new BigDecimal(0);
 		
 	}
 	
@@ -61,23 +67,63 @@ public class Force{
 		
 		BigDecimal bup;
 		
-		if (this.x==null && this.t==null || ((this.x==null || this.t==null) && this.m==null)){
+		this.m = m;
+		
+		if (this.x.getScalar()!=0){
 			
-			this.m = m;
+			bup = (new BigDecimal(this.m.getScalar()).multiply(new BigDecimal(this.x.getScalar()))).divide(new BigDecimal(this.F.getMagnitude()), MathContext.DECIMAL128);
+			
+			this.t = new time(bup.setScale(15, RoundingMode.HALF_UP).doubleValue(), t.getUnity(), t.getSecondEquivalent());
+			
+		}else if (this.t.getScalar()!=0){
+			
+			bup = (new BigDecimal(this.F.getMagnitude()).multiply(new BigDecimal(this.t.getScalar()))).divide(new BigDecimal(this.m.getScalar()), MathContext.DECIMAL128);
+			
+			this.x = new distance(bup.setScale(15, RoundingMode.HALF_UP).doubleValue(), x.getUnity(), x.getMetreEquivalent());
 			
 		}
 		
-		if (this.m!=null && this.x!=null && this.t==null){
+	}
+	
+	public void setDistance(distance x){
+		
+		BigDecimal bup;
+		
+		this.x = x;
+		
+		if (this.m.getScalar()!=0){
 			
-			bup = (new BigDecimal(m.getScalar()).multiply(new BigDecimal(x.getScalar()))).divide(new BigDecimal(this.F.getMagnitude()), MathContext.DECIMAL128);
+			bup = (new BigDecimal(this.m.getScalar()).multiply(new BigDecimal(this.x.getScalar()))).divide(new BigDecimal(this.F.getMagnitude()), MathContext.DECIMAL128);
 			
-			this.t = new time(bup.setScale(15, RoundingMode.HALF_UP).doubleValue(), "ut^2");
+			this.t = new time(bup.setScale(15, RoundingMode.HALF_UP).doubleValue(), t.getUnity(), t.getSecondEquivalent());
 			
-		}else if (this.m!=null && this.t!=null && this.x==null){
+		}else if (this.t.getScalar()!=0){
 			
-			bup = (new BigDecimal(t.getScalar()).multiply(new BigDecimal(this.F.getMagnitude()))).divide(new BigDecimal(m.getScalar()), MathContext.DECIMAL128);
+			bup = (new BigDecimal(this.F.getMagnitude()).multiply(new BigDecimal(this.t.getScalar()))).divide(new BigDecimal(this.x.getScalar()), MathContext.DECIMAL128);
 			
-			this.x = new distance(bup.setScale(15, RoundingMode.HALF_UP).doubleValue(), "ud");
+			this.m = new mass(bup.setScale(15, RoundingMode.HALF_UP).doubleValue(), m.getUnity(), m.getGramEquivalent());
+			
+		}
+		
+	}
+	
+	public void setTime(time t){
+		
+		BigDecimal bup;
+		
+		this.t = t;
+		
+		if (this.m.getScalar()!=0){
+			
+			bup = (new BigDecimal(this.F.getMagnitude()).multiply(new BigDecimal(this.t.getScalar()))).divide(new BigDecimal(this.m.getScalar()), MathContext.DECIMAL128);
+			
+			this.x = new distance(bup.setScale(15, RoundingMode.HALF_UP).doubleValue(), x.getUnity(), x.getMetreEquivalent());
+			
+		}else if (this.x.getScalar()!=0){
+			
+			bup = (new BigDecimal(this.F.getMagnitude()).multiply(new BigDecimal(this.t.getScalar()))).divide(new BigDecimal(this.x.getScalar()), MathContext.DECIMAL128);
+			
+			this.m = new mass(bup.setScale(15, RoundingMode.HALF_UP).doubleValue(), m.getUnity(), m.getGramEquivalent());
 			
 		}
 		

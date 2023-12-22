@@ -125,6 +125,12 @@ public class temperature{
 		
 	}
 	
+	public long getDegree(){
+		
+		return this.nth;
+		
+	}
+	
 	public String toString(){
 		
 		return this.Scalar+"°"+this.Unity;
