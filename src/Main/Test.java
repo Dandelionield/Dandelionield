@@ -11,6 +11,7 @@ import Taylor.Arithmetic.*;
 import Geometry.Euclidean.*;
 import Geometry.Algebra.*;
 import Physics.Fundamental.*;
+import Physics.Measurement.*;
 import Graphic.R2Space.*;
 
 import java.math.BigDecimal;
@@ -28,9 +29,14 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		mass m = mass.getPoundValueOf(5000);
+		mass m = mass.getKilogramValueOf(1);
+		distance x = distance.getMetreValueOf(1);
+		time t = time.getSecondValueOf(1).doPotencia(2);
 		
-		System.out.print(m.toGram());
+		Force F = new Force(m, x, t);
+		Force F2 = F.toBase();
+		
+		System.out.print(F.doSuma(F2));
 		
 		System.out.print("\n\n");
 		
