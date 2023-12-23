@@ -148,6 +148,42 @@ public class time{
 		
 	}
 	
+	public time to(time t){
+		
+		double SecondValue = 0;
+		BigDecimal newEquivalence = new BigDecimal(1);
+		BigDecimal BackUpEquivalence = new BigDecimal(0);
+		
+		if (this.nth==t.nth){
+			
+			SecondValue = t.toSecond().Scalar;
+			
+			return new time(new BigDecimal(SecondValue).divide(this.equivalent, MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue(), this.Unity, this.nth, this.equivalent);
+			
+		}else{
+			
+			if (t.nth!=1){
+				
+				BackUpEquivalence = new BigDecimal(Math.pow(t.equivalent.setScale(15, RoundingMode.HALF_UP).doubleValue(), 1.00/t.nth));
+				
+			}else{
+				
+				BackUpEquivalence = t.equivalent;
+				
+			}
+			
+			for (int i=0; i<Mth.abs(this.nth); i++){
+				
+				newEquivalence = newEquivalence.multiply(BackUpEquivalence);
+				
+			}
+			
+			return new time(new BigDecimal(this.toSecond().Scalar).divide(newEquivalence, MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue(), t.getNewUnity(this.nth, 0, 1), this.nth, newEquivalence);
+			
+		}
+		
+	}
+	
 	public static void useNormalYear(boolean b){
 		
 		time.y = (byte) 1;

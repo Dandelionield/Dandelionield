@@ -145,6 +145,42 @@ public class distance{
 		
 	}
 	
+	public distance to(distance x){
+		
+		double MetreValue = 0;
+		BigDecimal newEquivalence = new BigDecimal(1);
+		BigDecimal BackUpEquivalence = new BigDecimal(0);
+		
+		if (this.nth==x.nth){
+			
+			MetreValue = x.toMetre().Scalar;
+			
+			return new distance(new BigDecimal(MetreValue).divide(this.equivalent, MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue(), this.Unity, this.nth, this.equivalent);
+			
+		}else{
+			
+			if (x.nth!=1){
+				
+				BackUpEquivalence = new BigDecimal(Math.pow(x.equivalent.setScale(15, RoundingMode.HALF_UP).doubleValue(), 1.00/x.nth));
+				
+			}else{
+				
+				BackUpEquivalence = x.equivalent;
+				
+			}
+			
+			for (int i=0; i<Mth.abs(this.nth); i++){
+				
+				newEquivalence = newEquivalence.multiply(BackUpEquivalence);
+				
+			}
+			
+			return new distance(new BigDecimal(this.toMetre().Scalar).divide(newEquivalence, MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue(), x.getNewUnity(this.nth, 0, 1), this.nth, newEquivalence);
+			
+		}
+		
+	}
+	
 	public distance doScalar(double s){
 		
 		return new distance(this.Scalar*s, this.Unity, this.nth, this.equivalent);

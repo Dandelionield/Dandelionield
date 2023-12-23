@@ -29,14 +29,20 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		mass m = mass.getKilogramValueOf(1);
+		distance x = distance.getMillimetreValueOf(2000).doPotencia(2);
+		
+		System.out.print(x+"\n");
+		System.out.print(x.to(distance.getDecametreValueOf(1))+"\n");
+		System.out.print(x.to(distance.getDecametreValueOf(1)).toMetre());
+		
+		/*mass m = mass.getKilogramValueOf(1);
 		distance x = distance.getMetreValueOf(1);
 		time t = time.getSecondValueOf(1).doPotencia(2);
 		
 		Force F = new Force(m, x, t);
 		Force F2 = F.toBase();
 		
-		System.out.print(F.doSuma(F2));
+		System.out.print(F.doSuma(F2));//*/
 		
 		System.out.print("\n\n");
 		
