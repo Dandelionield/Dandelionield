@@ -43,7 +43,7 @@ public class Test {
 	
 	private static void Graph(){
 		
-		Parametric par = new Parametric(new char[] {'x','y'}, "xy");//2.9783402774399996
+		Parametric par = new Parametric(new char[] {'x','y'}, "xy");
 		
 		//par.intervalueOf(new double[] {0, 0}, new double[] {100, 100});
 		
