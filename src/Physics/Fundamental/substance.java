@@ -147,15 +147,25 @@ public class substance{
 	
 	public substance to(substance m){
 		
+		if (this.equivalent.compareTo(new BigDecimal(0))==0){
+			
+			throwError(this.toString()+" has no equivalency in unids");
+			
+		}else if (m.equivalent.compareTo(new BigDecimal(0))==0){
+			
+			throwError(m.toString()+" has no equivalency in unids");
+			
+		}
+		
 		double SecondValue = 0;
 		BigDecimal newEquivalence = new BigDecimal(1);
 		BigDecimal BackUpEquivalence = new BigDecimal(0);
 		
 		if (this.nth==m.nth){
 			
-			SecondValue = m.toUnid().Scalar;
+			SecondValue = this.toUnid().Scalar;
 			
-			return new substance(new BigDecimal(SecondValue).divide(this.equivalent, MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue(), this.Unity, this.nth, this.equivalent);
+			return new substance(new BigDecimal(SecondValue).divide(m.equivalent, MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue(), m.Unity, this.nth, m.equivalent);
 			
 		}else{
 			
@@ -227,7 +237,7 @@ public class substance{
 		
 	}
 	
-	public substance arcUnid(){
+	public substance arcSubstance(){
 		
 		return new substance(1.00/this.Scalar, this.Unity, this.nth, this.equivalent);
 		
@@ -245,7 +255,7 @@ public class substance{
 			
 		}else if (n<0){
 			
-			return this.doPotencia(-n).arcUnid();
+			return this.doPotencia(-n).arcSubstance();
 			
 		}
 		

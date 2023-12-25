@@ -147,15 +147,25 @@ public class distance{
 	
 	public distance to(distance x){
 		
+		if (this.equivalent.compareTo(new BigDecimal(0))==0){
+			
+			throwError(this.toString()+" has no equivalency in meters");
+			
+		}else if (x.equivalent.compareTo(new BigDecimal(0))==0){
+			
+			throwError(x.toString()+" has no equivalency in meters");
+			
+		}
+		
 		double MetreValue = 0;
 		BigDecimal newEquivalence = new BigDecimal(1);
 		BigDecimal BackUpEquivalence = new BigDecimal(0);
 		
 		if (this.nth==x.nth){
 			
-			MetreValue = x.toMetre().Scalar;
+			MetreValue = this.toMetre().Scalar;
 			
-			return new distance(new BigDecimal(MetreValue).divide(this.equivalent, MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue(), this.Unity, this.nth, this.equivalent);
+			return new distance(new BigDecimal(MetreValue).divide(x.equivalent, MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue(), x.Unity, this.nth, x.equivalent);
 			
 		}else{
 			

@@ -150,15 +150,25 @@ public class time{
 	
 	public time to(time t){
 		
+		if (this.equivalent.compareTo(new BigDecimal(0))==0){
+			
+			throwError(this.toString()+" has no equivalency in seconds");
+			
+		}else if (t.equivalent.compareTo(new BigDecimal(0))==0){
+			
+			throwError(t.toString()+" has no equivalency in seconds");
+			
+		}
+		
 		double SecondValue = 0;
 		BigDecimal newEquivalence = new BigDecimal(1);
 		BigDecimal BackUpEquivalence = new BigDecimal(0);
 		
 		if (this.nth==t.nth){
 			
-			SecondValue = t.toSecond().Scalar;
+			SecondValue = this.toSecond().Scalar;
 			
-			return new time(new BigDecimal(SecondValue).divide(this.equivalent, MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue(), this.Unity, this.nth, this.equivalent);
+			return new time(new BigDecimal(SecondValue).divide(t.equivalent, MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue(), t.Unity, this.nth, t.equivalent);
 			
 		}else{
 			

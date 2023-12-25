@@ -24,7 +24,6 @@ public class Force{
 	private distance x;
 	private time t;
 	
-	private String Unity;
 	private long nth;
 	private BigDecimal equivalent;
 	
@@ -37,7 +36,6 @@ public class Force{
 		this.x = new distance(0, "ud");
 		this.t = new time(0, "ut^2");
 		
-		this.Unity = "";
 		this.nth = 1;
 		this.equivalent = new BigDecimal(0);
 		
@@ -50,7 +48,6 @@ public class Force{
 		this.x = new distance(0, "ud");
 		this.t = new time(0, "ut^2");
 		
-		this.Unity = "";
 		this.nth = 1;
 		this.equivalent = new BigDecimal(0);
 		
@@ -58,17 +55,9 @@ public class Force{
 	
 	public Force(mass m, distance x, time t){
 		
-		if (m.getDegree()!=1){
+		if (m.getDegree()!=x.getDegree() || t.getDegree()!=2*m.getDegree()){
 			
-			throwError("mass "+m+" must have a degree of 1");
-			
-		}else if (x.getDegree()!=1){
-			
-			throwError("distance "+x+" must have a degree of 1");
-			
-		}else if (t.getDegree()!=2){
-			
-			throwError("time "+t+" must have a degree of 2");
+			throwError("mass and distance degree must be "+m.getDegree()+" and time degree must be "+(2*m.getDegree()));
 			
 		}
 		
@@ -77,9 +66,13 @@ public class Force{
 		this.x = x;
 		this.t = t;
 		
-		this.Unity = "";
-		this.nth = 1;
-		this.equivalent = (m.getGramEquivalent().multiply(x.getMetreEquivalent())).divide(t.getSecondEquivalent(), MathContext.DECIMAL128);
+		this.nth = m.getDegree();
+		
+		try{
+			
+			this.equivalent = (m.getGramEquivalent().multiply(x.getMetreEquivalent())).divide(t.getSecondEquivalent(), MathContext.DECIMAL128);
+			
+		}catch(Exception e){this.equivalent = new BigDecimal(0);}
 		
 	}
 	
@@ -96,9 +89,13 @@ public class Force{
 		this.x = x;
 		this.t = t;
 		
-		this.Unity = "";
 		this.nth = m.getDegree();
-		this.equivalent = (m.getGramEquivalent().multiply(x.getMetreEquivalent())).divide(t.getSecondEquivalent(), MathContext.DECIMAL128);
+		
+		try{
+			
+			this.equivalent = (m.getGramEquivalent().multiply(x.getMetreEquivalent())).divide(t.getSecondEquivalent(), MathContext.DECIMAL128);
+			
+		}catch(Exception e){this.equivalent = new BigDecimal(0);}
 		
 	}
 	
@@ -115,20 +112,23 @@ public class Force{
 		this.x = x;
 		this.t = t;
 		
-		this.Unity = "";
 		this.nth = m.getDegree();
-		this.equivalent = (m.getGramEquivalent().multiply(x.getMetreEquivalent())).divide(t.getSecondEquivalent(), MathContext.DECIMAL128);
+		
+		try{
+			
+			this.equivalent = (m.getGramEquivalent().multiply(x.getMetreEquivalent())).divide(t.getSecondEquivalent(), MathContext.DECIMAL128);
+			
+		}catch(Exception e){this.equivalent = new BigDecimal(0);}
 		
 	}
 	
-	private Force(double Mag, mass m, distance x, time t, BigDecimal equivalent, vector v, String Unity, long nth){
+	private Force(double Mag, mass m, distance x, time t, BigDecimal equivalent, vector v, long nth){
 		
 		this.F = new vector(Mag, v.getDirectionX(), v.getDirectionY(), v.getDirectionZ());
 		this.m = m;
 		this.x = x;
 		this.t = t;
 		
-		this.Unity = Unity;
 		this.nth = nth;
 		this.equivalent = equivalent;
 		
@@ -141,7 +141,6 @@ public class Force{
 		this.x = F.x.doRedondear(limite);
 		this.t = F.t.doRedondear(limite);
 		
-		this.Unity = F.Unity;
 		this.nth = F.nth;
 		this.equivalent = F.equivalent;
 		
@@ -173,12 +172,6 @@ public class Force{
 	
 	public String getUnity(){
 		
-		if (this.Unity.equals("")==false){
-			
-			return this.Unity;
-			
-		}
-		
 		return m.getUnity()+"*"+x.getUnity()+"/"+t.getUnity();
 		
 	}
@@ -191,25 +184,165 @@ public class Force{
 	
 	public String toString(){
 		
-		if (this.Unity.equals("")==false){
-			
-			return this.F.getMagnitude()+" "+this.Unity+"\n"+this.nth;
-			
-		}
-		
 		return this.F.getMagnitude()+" "+m.getUnity()+"*"+x.getUnity()+"/"+t.getUnity();
 		
 	}
 	
 	public Force toBase(){
 		
-		return new Force(new BigDecimal(this.F.getMagnitude()).multiply(this.equivalent).setScale(15, RoundingMode.HALF_UP).doubleValue(), this.m.toGram(), this.x.toMetre(), this.t.toSecond(), new BigDecimal(1), this.F, this.Unity,this.nth);
+		return new Force(new BigDecimal(this.F.getMagnitude()).multiply(this.equivalent).setScale(15, RoundingMode.HALF_UP).doubleValue(), this.m.toGram(), this.x.toMetre(), this.t.toSecond(), new BigDecimal(1), this.F, this.nth);
 		
 	}
 	
-	public void setUnity(String Unity){
+	public Force to(Force F){
 		
-		this.Unity = Unity;
+		if (this.equivalent.compareTo(new BigDecimal(0))==0){
+			
+			throwError("variable "+this.toString()+" has no equivalency in g*m/s^2");
+			
+		}else if (F.equivalent.compareTo(new BigDecimal(0))==0){
+			
+			throwError("variable "+F.toString()+" has no equivalency in g*m/s^2");
+			
+		}
+		
+		mass m1;
+		distance x1;
+		time t1;
+		boolean pass = true;
+		String bup = "";
+		
+		double ForceValue = 0;
+		BigDecimal newEquivalence = new BigDecimal(1);
+		BigDecimal BackUpEquivalence = new BigDecimal(0);
+		
+		if (this.m.getGramEquivalent().compareTo(new BigDecimal(0))!=0 && F.m.getGramEquivalent().compareTo(new BigDecimal(0))!=0){
+
+            m1 = this.m.to(F.m);
+			
+        }else{
+			
+			bup = F.m.getUnity();
+			
+			if (bup.indexOf('^')!=-1){
+				
+				bup = bup.substring(0, bup.indexOf('^'));
+				
+			}
+			
+			if (this.m.getDegree()!=1){
+				
+				bup+= "^"+this.m.getDegree();
+				
+			}
+			
+			m1 = new mass(0, bup, 0);
+			
+			pass = false;
+			
+        }
+		
+		if (this.x.getMetreEquivalent().compareTo(new BigDecimal(0))!=0 && F.x.getMetreEquivalent().compareTo(new BigDecimal(0))!=0){
+
+            x1 = this.x.to(F.x);
+			
+        }else{
+			
+			bup = F.x.getUnity();
+			
+			if (bup.indexOf('^')!=-1){
+				
+				bup = bup.substring(0, bup.indexOf('^'));
+				
+			}
+			
+			if (this.x.getDegree()!=1){
+				
+				bup+= "^"+this.x.getDegree();
+				
+			}
+			
+			x1 = new distance(0, bup, 0);
+			
+			pass = false;
+			
+        }
+		
+		if (this.t.getSecondEquivalent().compareTo(new BigDecimal(0))!=0 && F.t.getSecondEquivalent().compareTo(new BigDecimal(0))!=0){
+
+            t1 = this.t.to(F.t);
+			
+        }else{
+			
+			bup = F.t.getUnity();
+			
+			if (bup.indexOf('^')!=-1){
+				
+				bup = bup.substring(0, bup.indexOf('^'));
+				
+			}
+			
+			if (this.t.getDegree()!=1){
+				
+				bup+= "^"+this.t.getDegree();
+				
+			}
+			
+			t1 = new time(0, bup, 0);
+			
+			pass = false;
+			
+        }
+		
+		if (pass==true){
+			
+			return new Force(m1, x1, t1);
+			
+		}else{
+			
+			if (this.nth==F.nth){
+			
+				ForceValue = new BigDecimal(this.toBase().F.getMagnitude()).divide(F.equivalent, MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue();
+				
+				return new Force(ForceValue, m1, x1, t1, F.equivalent, new vector(ForceValue, this.F.getDirectionX(), this.F.getDirectionY(), this.F.getDirectionZ()), this.nth);
+				
+			}else{
+				
+				if (F.nth!=1){
+					
+					BackUpEquivalence = new BigDecimal(Math.pow(F.equivalent.setScale(15, RoundingMode.HALF_UP).doubleValue(), 1.00/F.nth));
+					
+				}else{
+					
+					BackUpEquivalence = F.equivalent;
+					
+				}
+				
+				for (int i=0; i<Mth.abs(this.nth); i++){
+					
+					newEquivalence = newEquivalence.multiply(BackUpEquivalence);
+					
+				}
+				
+				ForceValue = new BigDecimal(this.toBase().F.getMagnitude()).divide(newEquivalence, MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue();
+				
+				return new Force(ForceValue, m1, x1, t1, newEquivalence, new vector(ForceValue, this.F.getDirectionX(), this.F.getDirectionY(), this.F.getDirectionZ()), this.nth);
+				
+			}
+			
+		}
+		
+	}//*/
+	
+	public void setBaseEquivalent(double equivalent){
+		
+		this.equivalent = new BigDecimal(equivalent);
+		
+	}
+	
+	public void setBaseEquivalent(BigDecimal equivalent){
+		
+		this.equivalent = equivalent;
 		
 	}
 	
@@ -471,7 +604,6 @@ public class Force{
 				this.t.doScalar(0),
 				this.equivalent,
 				v,
-				this.Unity,
 				this.nth
 			
 			);
@@ -527,12 +659,271 @@ public class Force{
 				this.t.doScalar(0),
 				this.equivalent,
 				v,
-				this.Unity,
 				this.nth
 			
 			);
 			
 		}
+		
+	}
+	
+	public Force arcForce(){
+		
+		return new Force(1.00/this.F.getMagnitude(), this.m.arcMass(), this.x.arcDistance(), this.t.arcTime(), this.equivalent, new vector(1, this.F.getDirectionX(), this.F.getDirectionY(), this.F.getDirectionZ()), this.nth);
+		
+	}
+	
+	public Force doPotencia(long n){
+		
+		if (n==0){
+			
+			return new Force(1.00, this.m.arcMass(), this.x.arcDistance(), this.t.arcTime(), this.equivalent, new vector(1, this.F.getDirectionX(), this.F.getDirectionY(), this.F.getDirectionZ()), this.nth);
+			
+		}else if (n==1){
+			
+			return this;
+			
+		}else if (n<0){
+			
+			return this.doPotencia(-n).arcForce();
+			
+		}
+		
+		return this.doProduct(this.doPotencia(n-1));
+		
+	}
+	
+	public Force doProduct(Force F){
+		
+		if (this.equivalent.compareTo(new BigDecimal(0))==0){
+			
+			throwError("unabled to multiply forces due to variable "+this.toString()+" has no equivalency in g*m/s^2");
+			
+		}else if (F.equivalent.compareTo(new BigDecimal(0))==0){
+			
+			throwError("unabled to multiply forces due to variable "+F.toString()+" has no equivalency in g*m/s^2");
+			
+		}
+		
+		mass m1;
+		distance x1;
+		time t1;
+		Force F1;
+		String bup;
+		boolean pass = true;
+		
+		if (this.m.getGramEquivalent().compareTo(new BigDecimal(0))!=0 && F.m.getGramEquivalent().compareTo(new BigDecimal(0))!=0){
+
+            m1 = this.m.doProduct(F.m);
+			
+        }else{
+			
+			bup = this.m.getUnity();
+			
+			if (bup.indexOf('^')!=-1){
+				
+				bup = bup.substring(0, bup.indexOf('^'))+"^"+(this.m.getDegree()+F.m.getDegree());
+				
+			}else{
+				
+				bup+= "^"+(this.m.getDegree()+F.m.getDegree());
+				
+			}
+			
+			m1 = new mass(0, bup, 0);
+			
+			pass = false;
+			
+        }
+		
+		if (this.x.getMetreEquivalent().compareTo(new BigDecimal(0))!=0 && F.x.getMetreEquivalent().compareTo(new BigDecimal(0))!=0){
+
+            x1 = this.x.doProduct(F.x);
+			
+        }else{
+			
+			bup = this.x.getUnity();
+			
+			if (bup.indexOf('^')!=-1){
+				
+				bup = bup.substring(0, bup.indexOf('^'))+"^"+(this.x.getDegree()+F.x.getDegree());
+				
+			}else{
+				
+				bup+= "^"+(this.x.getDegree()+F.x.getDegree());
+				
+			}
+			
+			x1 = new distance(0, bup, 0);
+			
+			pass = false;
+			
+        }
+		
+		if (this.t.getSecondEquivalent().compareTo(new BigDecimal(0))!=0 && F.t.getSecondEquivalent().compareTo(new BigDecimal(0))!=0){
+
+            t1 = this.t.doProduct(F.t);
+			
+        }else{
+			
+			bup = this.t.getUnity();
+			
+			if (bup.indexOf('^')!=-1){
+				
+				bup = bup.substring(0, bup.indexOf('^'))+"^"+(this.t.getDegree()+F.t.getDegree());
+				
+			}else{
+				
+				bup+= "^"+(this.t.getDegree()+F.t.getDegree());
+				
+			}
+			
+			t1 = new time(0, bup, 0);
+			
+			pass = false;
+			
+        }
+		
+		if (pass==true){
+			
+			return new Force(m1, x1, t1);
+			
+		}else{
+			
+			F1 = F.to(this);
+			
+			return new Force(this.F.getMagnitude()*F1.F.getMagnitude(), m1, x1, t1, this.equivalent.multiply(F1.equivalent), new vector(1, 0), this.nth+F.nth);
+			
+		}
+		
+	}
+	
+	public Force doDivide(Force F){
+		
+		if (this.equivalent.compareTo(new BigDecimal(0))==0){
+			
+			throwError("unabled to multiply forces due to variable "+this.toString()+" has no equivalency in g*m/s^2");
+			
+		}else if (F.equivalent.compareTo(new BigDecimal(0))==0){
+			
+			throwError("unabled to multiply forces due to variable "+F.toString()+" has no equivalency in g*m/s^2");
+			
+		}
+		
+		mass m1;
+		distance x1;
+		time t1;
+		Force F1;
+		String bup;
+		boolean pass = true;
+		
+		if (this.m.getGramEquivalent().compareTo(new BigDecimal(0))!=0 && F.m.getGramEquivalent().compareTo(new BigDecimal(0))!=0){
+
+            m1 = this.m.doDivide(F.m);
+			
+        }else{
+			
+			bup = this.m.getUnity();
+			
+			if (bup.indexOf('^')!=-1){
+				
+				bup = bup.substring(0, bup.indexOf('^'))+"^"+(this.m.getDegree()-F.m.getDegree());
+				
+			}else{
+				
+				bup+= "^"+(this.m.getDegree()-F.m.getDegree());
+				
+			}
+			
+			m1 = new mass(0, bup, 0);
+			
+			pass = false;
+			
+        }
+		
+		if (this.x.getMetreEquivalent().compareTo(new BigDecimal(0))!=0 && F.x.getMetreEquivalent().compareTo(new BigDecimal(0))!=0){
+
+            x1 = this.x.doDivide(F.x);
+			
+        }else{
+			
+			bup = this.x.getUnity();
+			
+			if (bup.indexOf('^')!=-1){
+				
+				bup = bup.substring(0, bup.indexOf('^'))+"^"+(this.x.getDegree()-F.x.getDegree());
+				
+			}else{
+				
+				bup+= "^"+(this.x.getDegree()-F.x.getDegree());
+				
+			}
+			
+			x1 = new distance(0, bup, 0);
+			
+			pass = false;
+			
+        }
+		
+		if (this.t.getSecondEquivalent().compareTo(new BigDecimal(0))!=0 && F.t.getSecondEquivalent().compareTo(new BigDecimal(0))!=0){
+
+            t1 = this.t.doDivide(F.t);
+			
+        }else{
+			
+			bup = this.t.getUnity();
+			
+			if (bup.indexOf('^')!=-1){
+				
+				bup = bup.substring(0, bup.indexOf('^'))+"^"+(this.t.getDegree()-F.t.getDegree());
+				
+			}else{
+				
+				bup+= "^"+(this.t.getDegree()-F.t.getDegree());
+				
+			}
+			
+			t1 = new time(0, bup, 0);
+			
+			pass = false;
+			
+        }
+		
+		if (pass==true){
+			
+			return new Force(m1, x1, t1);
+			
+		}else{
+			
+			F1 = F.to(this);
+			
+			return new Force(this.F.getMagnitude()/F1.F.getMagnitude(), m1, x1, t1, this.equivalent.divide(F1.equivalent, MathContext.DECIMAL128), new vector(1, 0), this.nth-F.nth);
+			
+		}
+		
+	}
+	
+	public static Force getNewtonValueOf(double value){
+		
+		return new Force(mass.getKilogramValueOf(value/2.00), distance.getMetreValueOf(2.00), time.getSecondValueOf(1).doPotencia(2));
+		
+	}
+	
+	public static Force getPoundalValueOf(double value){
+		
+		return new Force(mass.getPoundValueOf(value/2.00), distance.getFeetValueOf(2.00), time.getSecondValueOf(1).doPotencia(2));
+		
+	}
+	
+	public static Force getBaseValueOf(double value){
+		
+		return new Force(mass.getGramValueOf(value/2.00), distance.getMetreValueOf(2.00), time.getSecondValueOf(1).doPotencia(2));
+		
+	}
+	
+	public static Force getDyneValueOf(double value){
+		
+		return new Force(mass.getGramValueOf(value/2.00), distance.getCentimetreValueOf(2.00), time.getSecondValueOf(1).doPotencia(2));
 		
 	}
 	

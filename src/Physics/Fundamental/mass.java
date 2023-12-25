@@ -147,15 +147,25 @@ public class mass{
 	
 	public mass to(mass m){
 		
+		if (this.equivalent.compareTo(new BigDecimal(0))==0){
+			
+			throwError(this.toString()+" has no equivalency in grams");
+			
+		}else if (m.equivalent.compareTo(new BigDecimal(0))==0){
+			
+			throwError(m.toString()+" has no equivalency in grams");
+			
+		}
+		
 		double SecondValue = 0;
 		BigDecimal newEquivalence = new BigDecimal(1);
 		BigDecimal BackUpEquivalence = new BigDecimal(0);
 		
 		if (this.nth==m.nth){
 			
-			SecondValue = m.toGram().Scalar;
+			SecondValue = this.toGram().Scalar;
 			
-			return new mass(new BigDecimal(SecondValue).divide(this.equivalent, MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue(), this.Unity, this.nth, this.equivalent);
+			return new mass(new BigDecimal(SecondValue).divide(m.equivalent, MathContext.DECIMAL128).setScale(15, RoundingMode.HALF_UP).doubleValue(), m.Unity, this.nth, m.equivalent);
 			
 		}else{
 			
