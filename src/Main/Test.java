@@ -13,6 +13,7 @@ import Geometry.Algebra.*;
 import Physics.Fundamental.*;
 import Physics.Measurement.*;
 import Graphic.R2Space.*;
+import Graphic.User.Interface.*;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -29,13 +30,7 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		mass m = mass.getKilogramValueOf(1);
-		distance x = distance.getMetreValueOf(1);
-		time t = time.getSecondValueOf(1).doPotencia(2);
-		
-		Force F = Force.getNewtonValueOf(2);
-		
-		System.out.print(F);
+		WindowPane.showMessage(null, "Hola");
 		
 		System.out.print("\n\n");
 		

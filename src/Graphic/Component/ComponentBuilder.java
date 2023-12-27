@@ -1,4 +1,4 @@
-package Graphic.Component;;
+package Graphic.Component;
 
 /*
  *
@@ -73,6 +73,14 @@ public class ComponentBuilder{
 		this.url = url+"/";
 		this.extention = ".png";
 		this.Fondo = null;
+		
+	}
+	
+	public ComponentBuilder(Color Fondo){
+		
+		this.url = "";
+		this.extention = ".png";
+		this.Fondo = Fondo;
 		
 	}
 	
@@ -280,6 +288,12 @@ public class ComponentBuilder{
 		
 	}
 	
+	public static JPanel buildPanel(int[] Bounds, int[] Rectangle, Color color){
+
+		return buildPanel(Bounds, Rectangle, 0, 0, color);
+
+	}
+	
 	public static JPanel buildPanel(int[] Bounds, int[] Rectangle, float sx, float sy, Color color){
 
 		JPanel Panel = new JPanel(){
@@ -323,6 +337,22 @@ public class ComponentBuilder{
 		
 	}
 	
+	public JLabel buildLabel(String Text, int[] Bounds, int VTextPosition, int HTextPosition, Font Format){
+		
+		JLabel Etiqueta = new JLabel(Text);
+		
+		Etiqueta.setBounds(Bounds[0], Bounds[1], Bounds[2], Bounds[3]);
+		Etiqueta.setVerticalTextPosition(VTextPosition);
+        Etiqueta.setHorizontalTextPosition(HTextPosition);
+		Etiqueta.setForeground(Colour);
+		Etiqueta.setBackground(Fondo);
+		Etiqueta.setOpaque(true);
+		Etiqueta.setFont(Format);
+		
+		return Etiqueta;
+		
+	}
+	
 	public JLabel buildLabel(String Text, int[] Bounds, String Name, int Width, int Height, int VTextPosition, int HTextPosition, int HAlignment, Font Format){
 		
 		JLabel Etiqueta = new JLabel(Text);
@@ -350,8 +380,8 @@ public class ComponentBuilder{
 		Etiqueta.setBounds(Bounds[0], Bounds[1], Bounds[2], Bounds[3]);
 
 		Image icono = new ImageIcon(url+Name+extention).getImage().getScaledInstance(Bounds[3], Bounds[3], Image.SCALE_SMOOTH);
-
         Etiqueta.setIcon(new ImageIcon(icono));
+		
 		Etiqueta.setVerticalTextPosition(VTextPosition);
         Etiqueta.setHorizontalTextPosition(HTextPosition);
 		Etiqueta.setHorizontalAlignment(HAlignment);
@@ -519,6 +549,7 @@ public class ComponentBuilder{
 		Boton.setVerticalTextPosition(VTextPosition);
         Boton.setHorizontalTextPosition(HTextPosition);
 		Boton.setBackground(color);
+		Boton.setForeground(Colour);
 		Boton.setFocusable(false);
 		Boton.setOpaque(true);
         Boton.setContentAreaFilled(false);
