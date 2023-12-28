@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -419,6 +420,64 @@ public class ComponentBuilder{
 
 		PanelTexto.setBounds(Bounds[0], Bounds[1], Bounds[2], Bounds[3]);
 		PanelTexto.setHorizontalAlignment(HAlignment);
+		PanelTexto.setOpaque(true);
+		PanelTexto.setFont(Format);
+		PanelTexto.setForeground(Colour);
+		PanelTexto.setCaretColor(Caret);
+		PanelTexto.setBackground(Fondo);
+		PanelTexto.setEditable(Editable);
+		PanelTexto.setVisible(Visible);
+		
+		return PanelTexto;
+		
+	}
+	
+	public JTextArea buildTextArea(String Text, int[] Bounds, boolean LineWrap, boolean WrapStyle, Font Format, Color Caret, boolean Editable, boolean Visible){
+
+		JTextArea PanelTexto = new JTextArea(Text);
+		
+		PanelTexto.setLineWrap(LineWrap);
+        PanelTexto.setWrapStyleWord(WrapStyle);
+		PanelTexto.setBounds(Bounds[0], Bounds[1], Bounds[2], Bounds[3]);
+		PanelTexto.setAlignmentX(0);
+		PanelTexto.setAlignmentY(0);
+		PanelTexto.setOpaque(true);
+		PanelTexto.setFont(Format);
+		PanelTexto.setForeground(Colour);
+		PanelTexto.setCaretColor(Caret);
+		PanelTexto.setBackground(Fondo);
+		PanelTexto.setEditable(Editable);
+		PanelTexto.setVisible(Visible);
+		
+		return PanelTexto;
+		
+	}
+	
+	public JTextArea buildTextArea(String Text, int[] Bounds, Font Format, Color Caret, boolean Editable, boolean Visible){
+
+		JTextArea PanelTexto = new JTextArea(Text);
+		
+		PanelTexto.setBounds(Bounds[0], Bounds[1], Bounds[2], Bounds[3]);
+		PanelTexto.setAlignmentX(0);
+		PanelTexto.setAlignmentY(0);
+		PanelTexto.setOpaque(true);
+		PanelTexto.setFont(Format);
+		PanelTexto.setForeground(Colour);
+		PanelTexto.setCaretColor(Caret);
+		PanelTexto.setBackground(Fondo);
+		PanelTexto.setEditable(Editable);
+		PanelTexto.setVisible(Visible);
+		
+		return PanelTexto;
+		
+	}
+	
+	public JTextArea buildTextArea(String Text, Font Format, Color Caret, boolean Editable, boolean Visible){
+
+		JTextArea PanelTexto = new JTextArea(Text);
+		
+		PanelTexto.setAlignmentX(0);
+		PanelTexto.setAlignmentY(0);
 		PanelTexto.setOpaque(true);
 		PanelTexto.setFont(Format);
 		PanelTexto.setForeground(Colour);

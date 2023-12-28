@@ -479,6 +479,25 @@ public class vector{
 		
 	}
 	
+	public vector(){
+		
+		cx = 0;
+		cy = 0;
+		cz = 0;
+		Magnitude = 0;
+		Direction = new degree(0);
+		DirectionX = new degree(0);
+		DirectionY = new degree(90);
+		DirectionZ = new degree(90);
+		Octant = 1;
+		Unity = "u";
+		
+		v = new double[] {};
+		Tail = new coordinate(0, 0, 0);
+		length = 0;
+		
+	}
+	
 	private vector(vector a, int limite){
 		
 		cx = Mayth.Redondear(a.cx, limite);

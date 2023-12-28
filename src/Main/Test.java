@@ -20,6 +20,7 @@ import java.math.RoundingMode;
 
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 
 import java.awt.EventQueue;
 import java.awt.Dimension;
@@ -30,7 +31,9 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		WindowPane.showMessage(null, "Hola");
+		String bup = "Hola guys\njgksadllllllllllllllllllllll";
+		
+		WindowPane.showMessage(null, bup);
 		
 		System.out.print("\n\n");
 		
