@@ -31,7 +31,7 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		String bup = "Hola guys\njgksadllllllllllllllllllllll";
+		String bup = "El que lea esto es gay.";
 		
 		WindowPane.showMessage(null, bup);
 		

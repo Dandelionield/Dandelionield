@@ -8,10 +8,14 @@ package Graphic.User.Interface;
 
 import java.awt.geom.RoundRectangle2D;
 
+import java.awt.RenderingHints;
 import java.awt.BorderLayout;
+import java.awt.BasicStroke;
+import java.awt.Graphics2D;
 import java.awt.Dimension;
 import java.awt.Component;
 import java.awt.Rectangle;
+import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -19,6 +23,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.border.LineBorder;
+import javax.swing.border.AbstractBorder;
 
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
@@ -30,6 +37,7 @@ import javax.swing.JLabel;
 import javax.swing.JFrame;
 
 import Graphic.Component.ComponentBuilder;
+import javax.swing.border.AbstractBorder;
 
 public class WindowPane{
 	
@@ -41,15 +49,15 @@ public class WindowPane{
 	public static void showMessage(Component parentComponent, Object Message){
 		
 		WindowPane wp = new WindowPane();
-		//int[] bup = wp.getLocation(Message);
 		
-		int Width = 0;//bup[0];
-		int Height = 0;//bup[1];
+		int Width = 0;
+		int Height = 0;
 		int z = 0;
+		int Radio = 20;
 		Font Format = new Font("Clarendon Blk BT", Font.BOLD, 15);
 		
 		cp.setForeground(Color.BLACK);
-		cp.setBackground(new Color(241, 251, 253));
+		cp.setBackground(Color.WHITE);
 		
 		JTextArea Text = cp.buildTextArea(Message.toString(), new Font("Clarendon Blk BT", Font.PLAIN, 13), null, false, true);//new int[] {0, 0, Scroll.getWidth(), Scroll.getHeight()}
 		Dimension PreferredSize = Text.getPreferredSize();
@@ -97,12 +105,29 @@ public class WindowPane{
 		cp.setForeground(Color.WHITE);
 		cp.setBackground(Color.BLACK);
 		
-		JPanel contentPane = cp.buildPanel(new int[] {0, 0, Width, Height}, new int[] {0, 0, Width, Height, 60, 60}, new Color(241, 251, 253));
+		JPanel contentPane = cp.buildPanel(new int[] {0, 0, Width, Height}, new int[] {0, 0, Width, Height, Radio, Radio}, Color.WHITE);//new Color(241, 251, 253));
+		contentPane.setBorder(new AbstractBorder(){
+            
+            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height){
+				
+                Graphics2D g2d = (Graphics2D) g.create();
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                g2d.setColor(Color.BLACK);
+				g2d.setStroke(new BasicStroke(4));
+                g2d.drawRoundRect(x+1, y, (width-3), (height-2), Radio, Radio);
+
+                g2d.dispose();
+				
+            }
+			
+        });
+		
 		JLabel Title = cp.buildLabel("    Output", new int[] {0, 0, Width, 30}, SwingConstants.TOP, SwingConstants.LEFT, Format);
 		JButton Close = cp.buildButton("X", new int[] {Width-50, 5, 30, 24}, new int [] {0, 0, 30, Height/6, 0, 0}, SwingConstants.CENTER, SwingConstants.CENTER, Format, cp.getBackground(), true, true);
 		
 		contentPane.setLayout(null);
-		contentPane.add(Scroll, BorderLayout.CENTER);z++;
+		contentPane.setComponentZOrder(Scroll, z);z++;
 		contentPane.setComponentZOrder(Close, z);z++;
 		contentPane.setComponentZOrder(Title, z);z++;
 		
@@ -111,10 +136,10 @@ public class WindowPane{
 		Scroll.setVisible(true);
 		
 		JDialog Window = new JDialog((JFrame) parentComponent, true);
-		Window.setSize(Width, Height);
+		Window.setSize(Width, Height+5);
         Window.setLocationRelativeTo(parentComponent);
         Window.setUndecorated(true);
-        Window.setShape(new RoundRectangle2D.Double(0, 0, Width, Height, 60, 60));
+        Window.setShape(new RoundRectangle2D.Double(0, 0, Width, Height+5, Radio, Radio));
 		
 		Close.addActionListener(new ActionListener(){
 
@@ -152,37 +177,6 @@ public class WindowPane{
 		
 		Window.add(contentPane);
 		Window.setVisible(true);
-		
-	}
-	
-	private int[] getLocation(Object Message){
-		
-		String[] lineas = Message.toString().split("\n");
-		int c = 0;
-		double[] v = new double[lineas.length];
-		
-		for (String linea: lineas){
-			
-			v[c] = linea.length();
-			c++;
-		}
-		
-		double bup = 0;
-		double n = v[0];
-		
-		for (double p : v){
-			
-			bup = p;
-			
-			if (bup>n){
-				
-				n = bup;
-				
-			}
-			
-		}
-		
-		return new int[] {300, 150};
 		
 	}
 	
