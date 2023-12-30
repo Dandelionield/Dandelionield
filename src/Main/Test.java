@@ -13,6 +13,7 @@ import Geometry.Algebra.*;
 import Physics.Fundamental.*;
 import Physics.Measurement.*;
 import Graphic.R2Space.*;
+import Graphic.Component.*;
 import Graphic.User.Interface.*;
 
 import java.math.BigDecimal;
@@ -21,7 +22,9 @@ import java.math.RoundingMode;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 
+import java.awt.Image;
 import java.awt.EventQueue;
 import java.awt.Dimension;
 
@@ -31,9 +34,17 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		String bup = "El que lea esto es gay.";
+		String bup = "hfifhfjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkjkjkjkjkjkjkjkjkjkjkjkhfifhfjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkjkjkjkjkjkjkjkjkjkjkjkhfifhfjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkjkjkjkjkjkjkjkjkjkjkjk";
 		
-		WindowPane.showMessage(null, bup);
+		String bup2 = bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup
+		+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup
+		+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup;
+		
+		WindowPane.getInputMessage(null, "Hola", "Output", 
+		
+			new ImageIcon("C://CrudResources//Textures//AceptarLight.png")
+		
+		);//*/
 		
 		System.out.print("\n\n");
 		

@@ -153,6 +153,45 @@ public class ComponentBuilder{
 		
 	}
 	
+	/*public static String actionimage(JPanel panel) {
+		
+		File archivo=new File("./src/ResourcePackCaja/image-not-found.png");
+		
+		try {
+		
+			try {
+			  
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+
+			} catch (Exception e) {}
+
+			JFileChooser jf=new JFileChooser();
+			jf.setDialogTitle("Searcher");
+			jf.showSaveDialog(panel);
+			
+			archivo= jf.getSelectedFile();
+			String arc= Mecanics.getExtension(archivo);
+			
+			if(arc.equalsIgnoreCase("png")==false && arc.equalsIgnoreCase("jpg")==false) {
+				
+				String []error= {"ERROR, Seleccione un archivo con los formatos permitidos.","ERROR, Select a file with the allowed formats."};
+				
+			    JOptionPane.showMessageDialog(null, error[getLanguage(true)]+" \n\n->PNG\n->JPG\n", "Error", JOptionPane.ERROR_MESSAGE);
+			    archivo=new File("./src/ResourcePackCaja/image-not-found.png");
+				
+			}
+
+		}catch(Exception e) {
+			
+			String []error= {"Error de búsqueda: Documento no encontrado.","Search error: Document not found."};
+			JOptionPane.showMessageDialog(null, error[getLanguage(true)], "Error", JOptionPane.ERROR_MESSAGE);
+			archivo=new File("./src/ResourcePackCaja/image-not-found.png");
+			
+		}
+
+		return archivo;
+	}//*/
+	
 	public void buildTable(String[] Column, int[] Bounds){
 		
 		Object[][] Data = new Object[1][Column.length];
@@ -414,6 +453,25 @@ public class ComponentBuilder{
 		
 	}
 	
+	public JTextField buildTextField(String Text, int[] Bounds, int HAlignment, Font Format, MatteBorder Border, Color Caret, boolean Editable, boolean Visible){
+
+		JTextField PanelTexto = new JTextField(Text);
+
+		PanelTexto.setBounds(Bounds[0], Bounds[1], Bounds[2], Bounds[3]);
+		PanelTexto.setHorizontalAlignment(HAlignment);
+		PanelTexto.setOpaque(true);
+		PanelTexto.setFont(Format);
+		PanelTexto.setBorder(Border);
+		PanelTexto.setForeground(Colour);
+		PanelTexto.setCaretColor(Caret);
+		PanelTexto.setBackground(Fondo);
+		PanelTexto.setEditable(Editable);
+		PanelTexto.setVisible(Visible);
+		
+		return PanelTexto;
+		
+	}
+	
 	public JTextField buildTextField(String Text, int[] Bounds, int HAlignment, Font Format, Color Caret, boolean Editable, boolean Visible){
 
 		JTextField PanelTexto = new JTextField(Text);
@@ -621,7 +679,7 @@ public class ComponentBuilder{
 
 	}
 	
-	public int[] doBounds(int X, int Y, int Width, int Height){
+	public int[] buildBounds(int X, int Y, int Width, int Height){
 		
 		return new int[] {X, Y, Width, Height};
 		
