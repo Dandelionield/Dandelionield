@@ -40,7 +40,7 @@ public class Test {
 		+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup
 		+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup;
 		
-		WindowPane.getInputMessage(null, "Hola", "Output", 
+		WindowPane.getInputMessage(null, "Holaaaaaaaaaaaaaaaaaaaaaaaa", "Output", 
 		
 			new ImageIcon("C://CrudResources//Textures//AceptarLight.png")
 		

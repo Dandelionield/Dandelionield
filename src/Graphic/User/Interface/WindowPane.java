@@ -138,6 +138,7 @@ public class WindowPane{
 			icon = new JLabel(new ImageIcon(Icono.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
 			icon.setBounds(Width/25, 60, 40, 40);
 			Sum = 40;
+			Width+= Sum;
 			
 		}
 		
@@ -179,9 +180,9 @@ public class WindowPane{
 		
 		contentPane.setLayout(null);
 		contentPane.setComponentZOrder(icon, z);z++;
-		contentPane.setComponentZOrder(Scroll, z);z++;
 		contentPane.setComponentZOrder(Close, z);z++;
 		contentPane.setComponentZOrder(Title, z);z++;
+		contentPane.setComponentZOrder(Scroll, z);z++;
 		
 		Title.setVisible(true);
 		Close.setVisible(true);
@@ -236,6 +237,7 @@ public class WindowPane{
 			icon = new JLabel(new ImageIcon(Icono.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
 			icon.setBounds(Width/25, 60, 40, 40);
 			Sum = 40;
+			Width+= Sum;
 			
 		}
 		
@@ -280,14 +282,14 @@ public class WindowPane{
 		cp.setForeground(Color.BLACK);
 		cp.setBackground(Color.WHITE);
 		
-		JTextField Input = cp.buildTextField("", new int[] {Width/15, Height-50, Scroll.getWidth(), 20}, SwingConstants.LEFT, new Font("Clarendon Blk BT", Font.PLAIN, 14), Color.BLACK, Color.BLACK, true, true);
+		JTextField Input = cp.buildTextField("", new int[] {Width/15, Height-50, (int) (Width*0.85), 20}, SwingConstants.LEFT, new Font("Clarendon Blk BT", Font.PLAIN, 14), Color.BLACK, Color.BLACK, true, true);
 		
 		contentPane.setLayout(null);
 		contentPane.setComponentZOrder(icon, z);z++;
-		contentPane.setComponentZOrder(Input, z);z++;
-		contentPane.setComponentZOrder(Scroll, z);z++;
 		contentPane.setComponentZOrder(Close, z);z++;
 		contentPane.setComponentZOrder(Title, z);z++;
+		contentPane.setComponentZOrder(Input, z);z++;
+		contentPane.setComponentZOrder(Scroll, z);z++;
 		
 		Title.setVisible(true);
 		Close.setVisible(true);
@@ -386,9 +388,13 @@ public class WindowPane{
 	
 	private JScrollPane Scroll(int Sum, int PanelWidth, int PanelHeight){
 		
+		int w = 0;
+		
+		if (Sum!=0){w = 10;}
+		
 		JScrollPane Scroll = new JScrollPane();
 		
-		Scroll.setBounds(PanelWidth/15 + Sum, 70, (int) (PanelWidth*0.85)-Sum, (int) PanelHeight-70);
+		Scroll.setBounds(PanelWidth/15 + Sum, 70, (int) (PanelWidth*0.85) - w, (int) PanelHeight-70);
 		Scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         Scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		
