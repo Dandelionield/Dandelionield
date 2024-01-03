@@ -40,11 +40,7 @@ public class Test {
 		+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup
 		+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup;
 		
-		System.out.print(WindowPane.getOptionMessage(null, "Holaaaaaaaaaaaaaaaaaaaaaaaa", "Output", new Object[] {"Holi", 13, true}, 
-		
-			new ImageIcon("C://CrudResources//Textures//AceptarLight.png")
-		
-		));//*/
+		System.out.print(WindowPane.getOptionMessage("Holaaaaaaaaaaaaaaaaaaaaaaaa", new Object[] {"Holi", 13, true}));
 		
 		System.out.print("\n\n");
 		

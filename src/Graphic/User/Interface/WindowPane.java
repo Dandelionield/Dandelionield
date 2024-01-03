@@ -33,8 +33,11 @@ import java.awt.event.KeyAdapter;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.AbstractBorder;
+import javax.swing.border.Border;
 
 import javax.swing.plaf.basic.BasicComboBoxUI;
+import javax.swing.plaf.basic.BasicComboPopup;
+import javax.swing.plaf.basic.ComboPopup;
 
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
@@ -104,6 +107,30 @@ public class WindowPane{
 	public static Object getInputMessage(Component parentComponent, Object Message, Object Title){
 		
 		return getInputMessage(parentComponent, Message, Title, null);
+		
+	}
+	
+	public static Object getOptionMessage(Object Message, Object[] Options){
+		
+		return getOptionMessage(null, Message, "Input", Options, null);
+		
+	}
+	
+	public static Object getOptionMessage(Object Message, Object Title, Object[] Options){
+		
+		return getOptionMessage(null, Message, Title, Options, null);
+		
+	}
+	
+	public static Object getOptionMessage(Component parentComponent, Object Message, Object[] Options){
+		
+		return getOptionMessage(parentComponent, Message, "Input", Options, null);
+		
+	}
+	
+	public static Object getOptionMessage(Component parentComponent, Object Message, Object Title, Object[] Options){
+		
+		return getOptionMessage(parentComponent, Message, Title, Options, null);
 		
 	}
 	
@@ -456,7 +483,7 @@ public class WindowPane{
 				
             }
 			
-        });//*/
+        });
 		
 		contentPane.setLayout(null);
 		contentPane.setComponentZOrder(icon, z);z++;
