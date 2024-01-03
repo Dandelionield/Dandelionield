@@ -31,18 +31,23 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 
 import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
 import javax.swing.border.AbstractBorder;
+
+import javax.swing.plaf.basic.BasicComboBoxUI;
 
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JFrame;
+import javax.swing.Icon;
 import javax.swing.Box;
 
 import Graphic.Component.ComponentBuilder;
@@ -309,6 +314,175 @@ public class WindowPane{
 				if (e.getKeyCode() == KeyEvent.VK_ENTER){
 					
 					wp.Input = Input.getText();
+					Window.dispose();
+
+				}
+
+            }
+			
+		});
+		
+		wp.addListeners(Title, Close, Window, wp);
+		
+		Window.add(contentPane);
+		Window.setVisible(true);
+		
+		return wp.Input;
+		
+	}
+	
+	public static Object getOptionMessage(Component parentComponent, Object Message, Object Titlebar, Object[] Options, ImageIcon Icono){
+		
+		final ComponentBuilder cp = new ComponentBuilder();
+		final WindowPane wp = new WindowPane();
+		
+		int Width = 0;
+		int Height = 0;
+		int z = 0;
+		int Sum = 0;
+		final int Radio = 20;
+		final Font Format = new Font("Clarendon Blk BT", Font.BOLD, 15);
+		
+		cp.setForeground(Color.BLACK);
+		cp.setBackground(Color.WHITE);
+		
+		JTextArea Text = cp.buildTextArea(Message.toString(), new Font("Clarendon Blk BT", Font.PLAIN, 13), null, false, true);
+		Dimension PreferredSize = Text.getPreferredSize();
+		Width = (int) (1.2*PreferredSize.getWidth());
+		Height = (int) (PreferredSize.getHeight());
+		
+		if (Width<400){
+			
+			Width = 400;
+			
+		}else if (Width>1900){
+			
+			Width = 1900;
+			
+		}
+		
+		JLabel icon = new JLabel();
+		if (Icono!=null){
+			
+			icon = new JLabel(new ImageIcon(Icono.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
+			icon.setBounds(Width/25, 60, 40, 40);
+			Sum = 40;
+			Width+= Sum;
+			
+		}
+		
+		if (Height<50){
+			
+			Height = 50;
+			
+		}else if (Height>936){
+			
+			Height = 936;
+			
+		}
+		
+		JScrollPane Scroll = wp.Scroll(Sum, Width, Height);
+		
+		if (Scroll.getVerticalScrollBar().isVisible()==true){
+			
+			if (Height<836){
+			
+				Height+= 100;
+				
+			}
+			
+			Scroll = wp.Scroll(Sum, Width, Height);
+			
+		}
+		
+		Height+= 50;
+		
+		Scroll.setViewportView(Text);
+		Scroll.setBorder(null);
+		
+		cp.setForeground(Color.WHITE);
+		cp.setBackground(Color.BLACK);
+		
+		JPanel contentPane = cp.buildPanel(new int[] {0, 0, Width, Height}, new int[] {0, 0, Width, Height, Radio, Radio}, Color.WHITE);
+		contentPane.setBorder(wp.getAbstractBorder(Radio, Color.BLACK));
+		
+		JLabel Title = cp.buildLabel("    "+Titlebar.toString(), new int[] {0, 0, Width, 30}, SwingConstants.TOP, SwingConstants.LEFT, Format);
+		JButton Close = cp.buildButton("X", new int[] {Width-50, 5, 30, 24}, new int [] {0, 0, 30, Height/6, 0, 0}, SwingConstants.CENTER, SwingConstants.CENTER, Format, cp.getBackground(), true, true);
+		
+		cp.setForeground(Color.BLACK);
+		cp.setBackground(Color.WHITE);
+		
+		JComboBox<Object> Input = new JComboBox<>(Options);
+		Input.setBounds(Width/15, Height-50, (int) (Width*0.85), 25);
+		Input.setBackground(Color.WHITE);
+		Input.setBorder(new MatteBorder(1, 1, 1, 0, Color.BLACK));
+		Input.setUI(new BasicComboBoxUI(){
+			
+            protected JButton createArrowButton(){
+				
+                JButton Arrow = new JButton(new Icon(){
+                    
+                    public void paintIcon(Component c, Graphics g, int x, int y){
+						
+                        Graphics2D g2 = (Graphics2D) g.create();
+						
+                        g2.setColor(Color.WHITE);
+                        int[] xp = {x, x + 5, x + 10};
+						int[] yp = {y, y + 5, y};
+                        g2.fillPolygon(xp, yp, 3);
+                        g2.dispose();
+						
+                    }
+
+                    public int getIconWidth(){
+						
+                        return 10;
+						
+                    }
+
+                    public int getIconHeight(){
+						
+                        return 5;
+						
+                    }
+					
+                });
+				
+				Arrow.setBackground(Color.BLACK);
+				Arrow.setFocusable(false);
+				Arrow.setBorderPainted(false);
+				
+				return Arrow;
+				
+            }
+			
+        });//*/
+		
+		contentPane.setLayout(null);
+		contentPane.setComponentZOrder(icon, z);z++;
+		contentPane.setComponentZOrder(Close, z);z++;
+		contentPane.setComponentZOrder(Title, z);z++;
+		contentPane.setComponentZOrder(Input, z);z++;
+		contentPane.setComponentZOrder(Scroll, z);z++;
+		
+		Title.setVisible(true);
+		Close.setVisible(true);
+		Scroll.setVisible(true);
+		Input.setVisible(true);
+		
+		JDialog Window = new JDialog((JFrame) parentComponent, true);
+		Window.setSize(Width, Height+5);
+        Window.setLocationRelativeTo(parentComponent);
+        Window.setUndecorated(true);
+        Window.setShape(new RoundRectangle2D.Double(0, 0, Width, Height+5, Radio, Radio));
+		
+		Input.addKeyListener(new KeyAdapter(){
+
+            public void keyPressed(KeyEvent e){
+
+				if (e.getKeyCode() == KeyEvent.VK_ENTER){
+					
+					wp.Input = Input.getSelectedItem();
 					Window.dispose();
 
 				}
