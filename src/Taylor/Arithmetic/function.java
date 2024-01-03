@@ -7,6 +7,7 @@ package Taylor.Arithmetic;
  */
  
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.math.MathContext;
 import java.util.ArrayList;
  
@@ -106,6 +107,13 @@ public class function{
 		
 	}
 	
+	public void reset(){
+		
+		this.p = new ArrayList<>();
+		this.values = new ArrayList<>();
+		
+	}
+	
 	public String getName(){
 		
 		return this.name;
@@ -189,16 +197,19 @@ public class function{
 		BigDecimal Delta = (new BigDecimal(b).subtract(new BigDecimal(a))).divide(new BigDecimal(n), MathContext.DECIMAL128);
 		BigDecimal Zigma = new BigDecimal(0);
 		
-		//System.out.print(Delta+"\n\n");
+		this.intervalueOf(a, b, Delta.setScale(15, RoundingMode.HALF_UP).doubleValue());
 		
-		for (int k=1; k<n; k++){
+		for(Parser q : this.getParsers()){
 			
-			Zigma = Zigma.add(this.get(new BigDecimal(a).add(Delta.multiply(new BigDecimal(k)))).get().multiply(Delta));
-			//System.out.print(Zigma+"\n\n");
-
+			if (q.get()==null){continue;}
+			
+			Zigma = Zigma.add(Delta.multiply(q.get()));
+			
 		}
 		
-		return Zigma;//.divide(new BigDecimal(3), MathContext.DECIMAL128);
+		this.reset();
+		
+		return Zigma;
 		
 	}
 	

@@ -34,9 +34,14 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		function f = new function('x', "e^x");
+		function f = new function('x', "x^2 + 2", "F");
+		double a = -1;
+		double b = 2;
 		
-		WindowPane.showOutputMessage(f.integralOf(-10, 10, 2));
+		f.setTrigonometryMode(false);
+		f.setParserFunctionType(true);
+		
+		WindowPane.showOutputMessage("Integrals of "+f+" from "+a+" to "+b+" = "+f.integralOf(a, b, 1000).setScale(15, RoundingMode.HALF_UP).doubleValue());
 		
 		System.out.print("\n\n");
 		

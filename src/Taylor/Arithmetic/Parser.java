@@ -1397,6 +1397,8 @@ public class Parser extends Mayth{
 		int Counter = 0;
 		String bup = "";
 		
+		String Constant = "";
+		
 		if (wd.equals("")==true){return "0";}
 		
 		for (char p : wd.toCharArray()){
@@ -1451,12 +1453,32 @@ public class Parser extends Mayth{
 				
 				if (wd.length()==1){
 					
-					wd = Parser.ReplaceChar(wd,i,Parser.e+"");
+					if (functionType==false){
+			
+						Constant = Parser.e+"";
+						
+					}else{
+						
+						Constant = Math.E+"";
+						
+					}
+					
+					wd = Parser.ReplaceChar(wd,i,Constant);
 					i=0;
 					
 				}else if (wd.charAt(i+1)!='n' && wd.charAt(i+1)!='c'){
 					
-					wd = Parser.ReplaceChar(wd,i,Parser.e+"");
+					if (functionType==false){
+			
+						Constant = Parser.e+"";
+						
+					}else{
+						
+						Constant = Math.E+"";
+						
+					}
+					
+					wd = Parser.ReplaceChar(wd,i,Constant);
 					i=0;
 					
 				}
@@ -1471,7 +1493,17 @@ public class Parser extends Mayth{
 				
 				if (wd.charAt(i+1)!='('){
 					
-					wd = Parser.ReplaceChar(wd,i,Parser.PI+"");
+					if (functionType==false){
+			
+						Constant = Parser.PI+"";
+						
+					}else{
+						
+						Constant = Math.PI+"";
+						
+					}
+					
+					wd = Parser.ReplaceChar(wd,i,Constant);
 					i=0;
 					
 				}
