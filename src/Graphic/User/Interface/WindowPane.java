@@ -451,13 +451,16 @@ public class WindowPane{
                     
                     public void paintIcon(Component c, Graphics g, int x, int y){
 						
-                        Graphics2D g2 = (Graphics2D) g.create();
+                        Graphics2D g2d = (Graphics2D) g.create();
 						
-                        g2.setColor(Color.WHITE);
-                        int[] xp = {x, x + 5, x + 10};
-						int[] yp = {y, y + 5, y};
-                        g2.fillPolygon(xp, yp, 3);
-                        g2.dispose();
+						RenderingHints Render = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+						g2d.setRenderingHints(Render);
+						
+                        g2d.setColor(Color.WHITE);
+						g2d.setStroke(new BasicStroke(2));
+						g2d.drawLine(x, y, x + 5, y + 5);
+						g2d.drawLine(x + 10, y, x + 5, y + 5);
+                        g2d.dispose();
 						
                     }
 
