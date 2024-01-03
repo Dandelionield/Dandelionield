@@ -7,6 +7,7 @@ package Taylor.Arithmetic;
  */
  
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.ArrayList;
  
 public class function{
@@ -183,6 +184,33 @@ public class function{
 		
 	}
 	
+	public BigDecimal integralOf(double a, double b, int n){
+		
+		BigDecimal Delta = (new BigDecimal(b).subtract(new BigDecimal(a))).divide(new BigDecimal(n), MathContext.DECIMAL128);
+		BigDecimal Zigma = new BigDecimal(0);
+		
+		//System.out.print(Delta+"\n\n");
+		
+		for (int k=1; k<n; k++){
+			
+			Zigma = Zigma.add(this.get(new BigDecimal(a).add(Delta.multiply(new BigDecimal(k)))).get().multiply(Delta));
+			//System.out.print(Zigma+"\n\n");
+
+		}
+		
+		return Zigma;//.divide(new BigDecimal(3), MathContext.DECIMAL128);
+		
+	}
+	
+	public Parser get(BigDecimal n){
+		
+		this.p.add(new Parser(Overwrite(n), RAD_DEG, functionType));
+		this.n = n.doubleValue();
+		
+		return this.p.get(0);
+		
+	}
+	
 	public Parser get(double n){
 		
 		this.p.add(new Parser(Overwrite(n), RAD_DEG, functionType));
@@ -351,6 +379,28 @@ public class function{
 	}
 	
 	public String Overwrite(double value){
+		
+		String wd = "";
+		
+		for (char p : this.function.toCharArray()){
+			
+			if (p==this.variable){
+				
+				wd+= ""+value+"";
+				
+				continue;
+				
+			}
+			
+			wd+= p+"";
+			
+		}
+		
+		return wd;
+		
+	}
+	
+	public String Overwrite(BigDecimal value){
 		
 		String wd = "";
 		

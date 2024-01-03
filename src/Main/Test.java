@@ -34,13 +34,9 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		String bup = "hfifhfjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkjkjkjkjkjkjkjkjkjkjkjkhfifhfjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkjkjkjkjkjkjkjkjkjkjkjkhfifhfjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkjkjkjkjkjkjkjkjkjkjkjk";
+		function f = new function('x', "e^x");
 		
-		String bup2 = bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup
-		+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup
-		+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup;
-		
-		System.out.print(WindowPane.getOptionMessage("Holaaaaaaaaaaaaaaaaaaaaaaaa", new Object[] {"Holi", 13, true}));
+		WindowPane.showOutputMessage(f.integralOf(-10, 10, 2));
 		
 		System.out.print("\n\n");
 		
