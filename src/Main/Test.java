@@ -34,14 +34,11 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		function f = new function('x', "x^2 + 2", "F");
-		double a = -1;
-		double b = 2;
+		System.out.print(WindowPane.getOptionMessage(null, "Hola", "Output", new String[] {"Yes", "No", "Maybe", "idk :v"}, 
 		
-		f.setTrigonometryMode(false);
-		f.setParserFunctionType(true);
+			new ImageIcon("C:\\CrudResources\\Textures\\AceptarLight.PNG")
 		
-		WindowPane.showOutputMessage("Integrals of "+f+" from "+a+" to "+b+" = "+f.integralOf(a, b, 1000).setScale(15, RoundingMode.HALF_UP).doubleValue());
+		));
 		
 		System.out.print("\n\n");
 		

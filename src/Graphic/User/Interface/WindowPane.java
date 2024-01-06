@@ -134,6 +134,30 @@ public class WindowPane{
 		
 	}
 	
+	public static Object getOptionMessage(Object Message, String[] Options){
+		
+		return getOptionMessage(null, Message, "Input", Options, null);
+		
+	}
+	
+	public static Object getOptionMessage(Object Message, Object Title, String[] Options){
+		
+		return getOptionMessage(null, Message, Title, Options, null);
+		
+	}
+	
+	public static Object getOptionMessage(Component parentComponent, Object Message, String[] Options){
+		
+		return getOptionMessage(parentComponent, Message, "Input", Options, null);
+		
+	}
+	
+	public static Object getOptionMessage(Component parentComponent, Object Message, Object Title, String[] Options){
+		
+		return getOptionMessage(parentComponent, Message, Title, Options, null);
+		
+	}
+	
 	public static void showOutputMessage(Component parentComponent, Object Message, Object Titlebar, ImageIcon Icono){
 		
 		final ComponentBuilder cp = new ComponentBuilder();
@@ -226,7 +250,7 @@ public class WindowPane{
         Window.setUndecorated(true);
         Window.setShape(new RoundRectangle2D.Double(0, 0, Width, Height+5, Radio, Radio));
 		
-		wp.addListeners(Title, Close, Window, wp);
+		wp.addListeners(Title, Close, null, Window, wp);
 		
 		Window.add(contentPane);
 		Window.setVisible(true);
@@ -349,7 +373,7 @@ public class WindowPane{
 			
 		});
 		
-		wp.addListeners(Title, Close, Window, wp);
+		wp.addListeners(Title, Close, null, Window, wp);
 		
 		Window.add(contentPane);
 		Window.setVisible(true);
@@ -521,12 +545,166 @@ public class WindowPane{
 			
 		});
 		
-		wp.addListeners(Title, Close, Window, wp);
+		wp.addListeners(Title, Close, null, Window, wp);
 		
 		Window.add(contentPane);
 		Window.setVisible(true);
 		
 		return wp.Input;
+		
+	}
+	
+	public static int getOptionMessage(Component parentComponent, Object Message, Object Titlebar, String[] Options, ImageIcon Icono){
+		
+		final ComponentBuilder cp = new ComponentBuilder();
+		final WindowPane wp = new WindowPane();
+		
+		int Width = 0;
+		int Height = 0;
+		int bupWidth = 0, bupY = 0;
+		int z = 0;
+		int Sum = 0;
+		final int Radio = 20;
+		final Font Format = new Font("Clarendon Blk BT", Font.BOLD, 15);
+		
+		cp.setForeground(Color.BLACK);
+		cp.setBackground(Color.WHITE);
+		
+		JTextArea Text = cp.buildTextArea(Message.toString(), new Font("Clarendon Blk BT", Font.PLAIN, 13), null, false, true);
+		Dimension PreferredSize = Text.getPreferredSize();
+		Width = (int) (1.2*PreferredSize.getWidth());
+		Height = (int) (PreferredSize.getHeight());
+		
+		if (Width<400){
+			
+			Width = 400;
+			
+		}else if (Width>1900){
+			
+			Width = 1900;
+			
+		}
+		
+		JLabel icon = new JLabel();
+		if (Icono!=null){
+			
+			icon = new JLabel(new ImageIcon(Icono.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
+			icon.setBounds(Width/25, 60, 40, 40);
+			Sum = 40;
+			Width+= Sum;
+			
+		}
+		
+		if (Height<50){
+			
+			Height = 50;
+			
+		}else if (Height>936){
+			
+			Height = 936;
+			
+		}
+		
+		JButton[] input = new JButton[Options.length];
+		
+		for (int i=0; i<input.length; i++){
+			
+			input[i] = new JButton(Options[i]);
+			
+			input[i].setSize(50 + Options[i].length()*10, 25);
+			//input[i].setFont(Format);
+			input[i].setBackground(Color.WHITE);
+			input[i].setHorizontalTextPosition(SwingConstants.LEFT);
+			input[i].setVisible(true);
+			
+			bupWidth+= input[i].getWidth() + 10;
+			
+		}
+		
+		if (bupWidth>Width){
+			
+			Width+= (bupWidth - Width) + 20;
+			
+		}
+		
+		JScrollPane Scroll = wp.Scroll(Sum, Width, Height);
+		
+		if (Scroll.getVerticalScrollBar().isVisible()==true){
+			
+			if (Height<836){
+			
+				Height+= 100;
+				
+			}
+			
+			Scroll = wp.Scroll(Sum, Width, Height);
+			
+		}
+		
+		Height+= 50;
+		
+		Scroll.setViewportView(Text);
+		Scroll.setBorder(null);
+		
+		cp.setForeground(Color.WHITE);
+		cp.setBackground(Color.BLACK);
+		
+		JPanel contentPane = cp.buildPanel(new int[] {0, 0, Width, Height}, new int[] {0, 0, Width, Height, Radio, Radio}, Color.WHITE);
+		contentPane.setBorder(wp.getAbstractBorder(Radio, Color.BLACK));
+		
+		JLabel Title = cp.buildLabel("    "+Titlebar.toString(), new int[] {0, 0, Width, 30}, SwingConstants.TOP, SwingConstants.LEFT, Format);
+		JButton Close = cp.buildButton("X", new int[] {Width-50, 5, 30, 24}, new int [] {0, 0, 30, Height/6, 0, 0}, SwingConstants.CENTER, SwingConstants.CENTER, Format, cp.getBackground(), true, true);
+		
+		cp.setForeground(Color.BLACK);
+		cp.setBackground(Color.WHITE);
+		
+		contentPane.setLayout(null);
+		contentPane.setComponentZOrder(icon, z);z++;
+		contentPane.setComponentZOrder(Close, z);z++;
+		contentPane.setComponentZOrder(Title, z);z++;
+		contentPane.setComponentZOrder(Scroll, z);z++;
+		
+		Title.setVisible(true);
+		Close.setVisible(true);
+		Scroll.setVisible(true);
+		
+		JDialog Window = new JDialog((JFrame) parentComponent, true);
+		Window.setSize(Width, Height+5);
+        Window.setLocationRelativeTo(parentComponent);
+        Window.setUndecorated(true);
+        Window.setShape(new RoundRectangle2D.Double(0, 0, Width, Height+5, Radio, Radio));
+		
+		wp.addListeners(Title, Close, -1, Window, wp);
+		
+		bupY = (Width - bupWidth)/2;
+		
+		for (int i=0; i<input.length; i++){//Height-50
+			
+			input[i].setLocation(bupY, Height-50);
+			
+			final int indice = i;
+			
+			input[i].addActionListener(new ActionListener(){
+
+				public void actionPerformed(ActionEvent e){
+					
+					wp.Input = indice;
+					Window.dispose();
+					
+				}
+				
+			});
+			
+			contentPane.setComponentZOrder(input[i], z);z++;
+			
+			bupY+= input[i].getWidth() + 10;
+			
+		}
+		
+		Window.add(contentPane);
+		Window.setVisible(true);
+		
+		return Integer.parseInt(wp.Input.toString());
 		
 	}
 	
@@ -551,13 +729,13 @@ public class WindowPane{
 		
 	}
 	
-	private void addListeners(JLabel Title, JButton Close, JDialog Window, WindowPane wp){
+	private void addListeners(JLabel Title, JButton Close, Object value, JDialog Window, WindowPane wp){
 		
 		Close.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e){
 				
-				wp.Input = null;
+				wp.Input = value;
 				Window.dispose();
 				
 			}
