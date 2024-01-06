@@ -25,6 +25,7 @@ import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 
 import java.awt.Image;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Dimension;
 
@@ -34,11 +35,16 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		System.out.print(WindowPane.getOptionMessage(null, "Hola", "Output", new String[] {"Yes", "No", "Maybe", "idk :v"}, 
+		ImageIcon icono = new ImageIcon("C:\\CrudResources\\Textures\\AceptarLight.PNG");
 		
-			new ImageIcon("C:\\CrudResources\\Textures\\AceptarLight.PNG")
+		WindowPane wp = new WindowPane();
 		
-		));
+		wp.setBackground(Color.WHITE);
+		wp.setBorderBackground(Color.PINK);
+		wp.setForeground(Color.BLACK);
+		wp.setBorderForeground(Color.WHITE);
+		
+		System.out.print(WindowPane.getYesNoMessage("Hola", wp));
 		
 		System.out.print("\n\n");
 		

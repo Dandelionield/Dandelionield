@@ -60,120 +60,655 @@ public class WindowPane{
 	private int X = 0, Y = 0;
 	private Object Input = "";
 	
-	private WindowPane(){}
+	private Color Background;
+	private Color BorderBackground;
+	
+	private Color Foreground;
+	private Color BorderForeground;
+	
+	private Font Format;
+	private Font BorderFormat;
+	
+	private int BorderLength;
+	private int CornerRadio;
+	
+	public WindowPane(){
+		
+		this.Background = Color.WHITE;
+		this.BorderBackground = Color.BLACK;
+		this.Foreground = Color.BLACK;
+		this.BorderForeground = Color.WHITE;
+		this.Format = new Font("Clarendon Blk BT", Font.PLAIN, 13);
+		this.BorderFormat = new Font("Clarendon Blk BT", Font.BOLD, 15);
+		this.BorderLength = 4;
+		this.CornerRadio = 20;
+		
+	}
+	
+	public WindowPane(Color Background, Color BorderBackground, Color Foreground, Color BorderForeground, Font Format, Font BorderFormat){
+		
+		this.Background = Background;
+		this.BorderBackground = BorderBackground;
+		this.Foreground = Foreground;
+		this.BorderForeground = BorderForeground;
+		this.Format = Format;
+		this.BorderFormat = BorderFormat;
+		this.BorderLength = 4;
+		this.CornerRadio = 20;
+		
+	}
+	
+	public WindowPane(Color Background, Color BorderBackground, Color Foreground, Color BorderForeground, Font Format, Font BorderFormat, int BorderLength, int CornerRadio){
+		
+		this.Background = Background;
+		this.BorderBackground = BorderBackground;
+		this.Foreground = Foreground;
+		this.BorderForeground = BorderForeground;
+		this.Format = Format;
+		this.BorderFormat = BorderFormat;
+		this.BorderLength = BorderLength;
+		this.CornerRadio = CornerRadio;
+		
+	}
+	
+	public WindowPane(Color Background, Color BorderBackground, Color Foreground, Color BorderForeground){
+		
+		this.Background = Background;
+		this.BorderBackground = BorderBackground;
+		this.Foreground = Foreground;
+		this.BorderForeground = BorderForeground;
+		this.Format = new Font("Clarendon Blk BT", Font.PLAIN, 13);
+		this.BorderFormat = new Font("Clarendon Blk BT", Font.BOLD, 15);
+		this.BorderLength = 4;
+		this.CornerRadio = 20;
+		
+	}
+	
+	public WindowPane(Font Format, Font BorderFormat){
+		
+		this.Background = Color.WHITE;
+		this.BorderBackground = Color.BLACK;
+		this.Foreground = Color.BLACK;
+		this.BorderForeground = Color.WHITE;
+		this.Format = Format;
+		this.BorderFormat = BorderFormat;
+		this.BorderLength = 4;
+		this.CornerRadio = 20;
+		
+	}
+	
+	public WindowPane(int BorderLength, int CornerRadio){
+		
+		this.Background = Color.WHITE;
+		this.BorderBackground = Color.BLACK;
+		this.Foreground = Color.BLACK;
+		this.BorderForeground = Color.WHITE;
+		this.Format = new Font("Clarendon Blk BT", Font.PLAIN, 13);
+		this.BorderFormat = new Font("Clarendon Blk BT", Font.BOLD, 15);
+		this.BorderLength = BorderLength;
+		this.CornerRadio = CornerRadio;
+		
+	}
+	
+	public Color getBackground(){
+		
+		return this.Background;
+		
+	}
+	
+	public Color getBorderBackground(){
+		
+		return this.BorderBackground;
+		
+	}
+	
+	public Color getForeground(){
+		
+		return this.Foreground;
+		
+	}
+	
+	public Color getBorderForeground(){
+		
+		return this.BorderForeground;
+		
+	}
+	
+	public Font getFormat(){
+		
+		return this.Format;
+		
+	}
+	
+	public Font getBorderFormat(){
+		
+		return this.BorderFormat;
+		
+	}
+	
+	public int getBorderLength(){
+		
+		return this.BorderLength;
+		
+	}
+	
+	public int getCornerRadio(){
+		
+		return this.CornerRadio;
+		
+	}
+	
+	public void setBackground(Color Background){
+		
+		this.Background = Background;
+		
+	}
+	
+	public void setBorderBackground(Color BorderBackground){
+		
+		this.BorderBackground = BorderBackground;
+		
+	}
+	
+	public void setForeground(Color Foreground){
+		
+		this.Foreground = Foreground;
+		
+	}
+	
+	public void setBorderForeground(Color BorderForeground){
+		
+		this.BorderForeground = BorderForeground;
+		
+	}
+	
+	public void setFormat(Font Format){
+		
+		this.Format = Format;
+		
+	}
+	
+	public void setBorderFormat(Font BorderFormat){
+		
+		this.BorderFormat = BorderFormat;
+		
+	}
+	
+	public void setBorderLength(int BorderLength){
+		
+		this.BorderLength = BorderLength;
+		
+	}
+	
+	public void setCornerRadio(int CornerRadio){
+		
+		this.CornerRadio = CornerRadio;
+		
+	}
 	
 	public static void showOutputMessage(Object Message){
 		
-		showOutputMessage(null, Message, "Output", null);
+		showOutputMessage(null, Message, "Output", null, new WindowPane());
+		
+	}
+	
+	public static void showOutputMessage(Object Message, WindowPane wp){
+		
+		showOutputMessage(null, Message, "Output", null, wp);
+		
+	}
+	
+	public static void showOutputMessage(Object Message, ImageIcon icono){
+		
+		showOutputMessage(null, Message, "Output", icono, new WindowPane());
+		
+	}
+	
+	public static void showOutputMessage(Object Message, ImageIcon icono, WindowPane wp){
+		
+		showOutputMessage(null, Message, "Output", icono, wp);
 		
 	}
 	
 	public static void showOutputMessage(Object Message, Object Title){
 		
-		showOutputMessage(null, Message, Title, null);
+		showOutputMessage(null, Message, Title, null, new WindowPane());
+		
+	}
+	
+	public static void showOutputMessage(Object Message, Object Title, WindowPane wp){
+		
+		showOutputMessage(null, Message, Title, null, wp);
+		
+	}
+	
+	public static void showOutputMessage(Object Message, Object Title, ImageIcon icono){
+		
+		showOutputMessage(null, Message, Title, icono, new WindowPane());
 		
 	}
 	
 	public static void showOutputMessage(Component parentComponent, Object Message){
 		
-		showOutputMessage(parentComponent, Message, "Output", null);
+		showOutputMessage(parentComponent, Message, "Output", null, new WindowPane());
+		
+	}
+	
+	public static void showOutputMessage(Component parentComponent, Object Message, WindowPane wp){
+		
+		showOutputMessage(parentComponent, Message, "Output", null, wp);
+		
+	}
+	
+	public static void showOutputMessage(Component parentComponent, Object Message, ImageIcon icono){
+		
+		showOutputMessage(parentComponent, Message, "Output", icono, new WindowPane());
+		
+	}
+	
+	public static void showOutputMessage(Component parentComponent, Object Message, ImageIcon icono, WindowPane wp){
+		
+		showOutputMessage(parentComponent, Message, "Output", icono, wp);
 		
 	}
 	
 	public static void showOutputMessage(Component parentComponent, Object Message, Object Titlebar){
 		
-		showOutputMessage(parentComponent, Message, Titlebar, null);
+		showOutputMessage(parentComponent, Message, Titlebar, null, new WindowPane());
+		
+	}
+	
+	public static void showOutputMessage(Component parentComponent, Object Message, Object Titlebar, WindowPane wp){
+		
+		showOutputMessage(parentComponent, Message, Titlebar, null, wp);
+		
+	}
+	
+	public static void showOutputMessage(Component parentComponent, Object Message, Object Titlebar, ImageIcon icono){
+		
+		showOutputMessage(parentComponent, Message, Titlebar, icono, new WindowPane());
 		
 	}
 	
 	public static Object getInputMessage(Object Message){
 		
-		return getInputMessage(null, Message, "Input", null);
+		return getInputMessage(null, Message, "Input", null, new WindowPane());
+		
+	}
+	
+	public static Object getInputMessage(Object Message, WindowPane wp){
+		
+		return getInputMessage(null, Message, "Input", null, wp);
+		
+	}
+	
+	public static Object getInputMessage(Object Message, ImageIcon icono){
+		
+		return getInputMessage(null, Message, "Input", icono, new WindowPane());
+		
+	}
+	
+	public static Object getInputMessage(Object Message, ImageIcon icono, WindowPane wp){
+		
+		return getInputMessage(null, Message, "Input", icono, wp);
 		
 	}
 	
 	public static Object getInputMessage(Object Message, Object Title){
 		
-		return getInputMessage(null, Message, Title, null);
+		return getInputMessage(null, Message, Title, null, new WindowPane());
+		
+	}
+	
+	public static Object getInputMessage(Object Message, Object Title, WindowPane wp){
+		
+		return getInputMessage(null, Message, Title, null, wp);
+		
+	}
+	
+	public static Object getInputMessage(Object Message, Object Title, ImageIcon icono){
+		
+		return getInputMessage(null, Message, Title, icono, new WindowPane());
+		
+	}
+	
+	public static Object getInputMessage(Object Message, Object Title, ImageIcon icono, WindowPane wp){
+		
+		return getInputMessage(null, Message, Title, icono, wp);
 		
 	}
 	
 	public static Object getInputMessage(Component parentComponent, Object Message){
 		
-		return getInputMessage(parentComponent, Message, "Input", null);
+		return getInputMessage(parentComponent, Message, "Input", null, new WindowPane());
+		
+	}
+	
+	public static Object getInputMessage(Component parentComponent, Object Message, WindowPane wp){
+		
+		return getInputMessage(parentComponent, Message, "Input", null, wp);
+		
+	}
+	
+	public static Object getInputMessage(Component parentComponent, Object Message, ImageIcon icono){
+		
+		return getInputMessage(parentComponent, Message, "Input", icono, new WindowPane());
+		
+	}
+	
+	public static Object getInputMessage(Component parentComponent, Object Message, ImageIcon icono, WindowPane wp){
+		
+		return getInputMessage(parentComponent, Message, "Input", icono, wp);
 		
 	}
 	
 	public static Object getInputMessage(Component parentComponent, Object Message, Object Title){
 		
-		return getInputMessage(parentComponent, Message, Title, null);
+		return getInputMessage(parentComponent, Message, Title, null, new WindowPane());
+		
+	}
+	
+	public static Object getInputMessage(Component parentComponent, Object Message, Object Title, WindowPane wp){
+		
+		return getInputMessage(parentComponent, Message, Title, null, wp);
+		
+	}
+	
+	public static Object getInputMessage(Component parentComponent, Object Message, Object Title, ImageIcon icono){
+		
+		return getInputMessage(parentComponent, Message, Title, icono, new WindowPane());
 		
 	}
 	
 	public static Object getOptionMessage(Object Message, Object[] Options){
 		
-		return getOptionMessage(null, Message, "Input", Options, null);
+		return getOptionMessage(null, Message, "Input", Options, null, new WindowPane());
+		
+	}
+	
+	public static Object getOptionMessage(Object Message, Object[] Options, WindowPane wp){
+		
+		return getOptionMessage(null, Message, "Input", Options, null, wp);
+		
+	}
+	
+	public static Object getOptionMessage(Object Message, Object[] Options, ImageIcon icono){
+		
+		return getOptionMessage(null, Message, "Input", Options, icono, new WindowPane());
+		
+	}
+	
+	public static Object getOptionMessage(Object Message, Object[] Options, ImageIcon icono, WindowPane wp){
+		
+		return getOptionMessage(null, Message, "Input", Options, icono, wp);
 		
 	}
 	
 	public static Object getOptionMessage(Object Message, Object Title, Object[] Options){
 		
-		return getOptionMessage(null, Message, Title, Options, null);
+		return getOptionMessage(null, Message, Title, Options, null, new WindowPane());
+		
+	}
+	
+	public static Object getOptionMessage(Object Message, Object Title, Object[] Options, WindowPane wp){
+		
+		return getOptionMessage(null, Message, Title, Options, null, wp);
+		
+	}
+	
+	public static Object getOptionMessage(Object Message, Object Title, Object[] Options, ImageIcon icono){
+		
+		return getOptionMessage(null, Message, Title, Options, icono, new WindowPane());
+		
+	}
+	
+	public static Object getOptionMessage(Object Message, Object Title, Object[] Options, ImageIcon icono, WindowPane wp){
+		
+		return getOptionMessage(null, Message, Title, Options, icono, wp);
 		
 	}
 	
 	public static Object getOptionMessage(Component parentComponent, Object Message, Object[] Options){
 		
-		return getOptionMessage(parentComponent, Message, "Input", Options, null);
+		return getOptionMessage(parentComponent, Message, "Input", Options, null, new WindowPane());
+		
+	}
+	
+	public static Object getOptionMessage(Component parentComponent, Object Message, Object[] Options, WindowPane wp){
+		
+		return getOptionMessage(parentComponent, Message, "Input", Options, null, wp);
+		
+	}
+	
+	public static Object getOptionMessage(Component parentComponent, Object Message, Object[] Options, ImageIcon icono){
+		
+		return getOptionMessage(parentComponent, Message, "Input", Options, icono, new WindowPane());
+		
+	}
+	
+	public static Object getOptionMessage(Component parentComponent, Object Message, Object[] Options, ImageIcon icono, WindowPane wp){
+		
+		return getOptionMessage(parentComponent, Message, "Input", Options, icono, wp);
 		
 	}
 	
 	public static Object getOptionMessage(Component parentComponent, Object Message, Object Title, Object[] Options){
 		
-		return getOptionMessage(parentComponent, Message, Title, Options, null);
+		return getOptionMessage(parentComponent, Message, Title, Options, null, new WindowPane());
+		
+	}
+	
+	public static Object getOptionMessage(Component parentComponent, Object Message, Object Title, Object[] Options, WindowPane wp){
+		
+		return getOptionMessage(parentComponent, Message, Title, Options, null, wp);
+		
+	}
+	
+	public static Object getOptionMessage(Component parentComponent, Object Message, Object Title, Object[] Options, ImageIcon icono){
+		
+		return getOptionMessage(parentComponent, Message, Title, Options, icono, new WindowPane());
 		
 	}
 	
 	public static Object getOptionMessage(Object Message, String[] Options){
 		
-		return getOptionMessage(null, Message, "Input", Options, null);
+		return getOptionMessage(null, Message, "Input", Options, null, new WindowPane());
+		
+	}
+	
+	public static Object getOptionMessage(Object Message, String[] Options, WindowPane wp){
+		
+		return getOptionMessage(null, Message, "Input", Options, null, wp);
+		
+	}
+	
+	public static Object getOptionMessage(Object Message, String[] Options, ImageIcon icono){
+		
+		return getOptionMessage(null, Message, "Input", Options, icono, new WindowPane());
+		
+	}
+	
+	public static Object getOptionMessage(Object Message, String[] Options, ImageIcon icono, WindowPane wp){
+		
+		return getOptionMessage(null, Message, "Input", Options, icono, wp);
 		
 	}
 	
 	public static Object getOptionMessage(Object Message, Object Title, String[] Options){
 		
-		return getOptionMessage(null, Message, Title, Options, null);
+		return getOptionMessage(null, Message, Title, Options, null, new WindowPane());
+		
+	}
+	
+	public static Object getOptionMessage(Object Message, Object Title, String[] Options, WindowPane wp){
+		
+		return getOptionMessage(null, Message, Title, Options, null, wp);
+		
+	}
+	
+	public static Object getOptionMessage(Object Message, Object Title, String[] Options, ImageIcon icono){
+		
+		return getOptionMessage(null, Message, Title, Options, icono, new WindowPane());
+		
+	}
+	
+	public static Object getOptionMessage(Object Message, Object Title, String[] Options, ImageIcon icono, WindowPane wp){
+		
+		return getOptionMessage(null, Message, Title, Options, icono, wp);
 		
 	}
 	
 	public static Object getOptionMessage(Component parentComponent, Object Message, String[] Options){
 		
-		return getOptionMessage(parentComponent, Message, "Input", Options, null);
+		return getOptionMessage(parentComponent, Message, "Input", Options, null, new WindowPane());
+		
+	}
+	
+	public static Object getOptionMessage(Component parentComponent, Object Message, String[] Options, WindowPane wp){
+		
+		return getOptionMessage(parentComponent, Message, "Input", Options, null, wp);
+		
+	}
+	
+	public static Object getOptionMessage(Component parentComponent, Object Message, String[] Options, ImageIcon icono){
+		
+		return getOptionMessage(parentComponent, Message, "Input", Options, icono, new WindowPane());
+		
+	}
+	
+	public static Object getOptionMessage(Component parentComponent, Object Message, String[] Options, ImageIcon icono, WindowPane wp){
+		
+		return getOptionMessage(parentComponent, Message, "Input", Options, icono, wp);
 		
 	}
 	
 	public static Object getOptionMessage(Component parentComponent, Object Message, Object Title, String[] Options){
 		
-		return getOptionMessage(parentComponent, Message, Title, Options, null);
+		return getOptionMessage(parentComponent, Message, Title, Options, null, new WindowPane());
 		
 	}
 	
-	public static void showOutputMessage(Component parentComponent, Object Message, Object Titlebar, ImageIcon Icono){
+	public static Object getOptionMessage(Component parentComponent, Object Message, Object Title, String[] Options, WindowPane wp){
+		
+		return getOptionMessage(parentComponent, Message, Title, Options, null, wp);
+		
+	}
+	
+	public static Object getOptionMessage(Component parentComponent, Object Message, Object Title, String[] Options, ImageIcon icono){
+		
+		return getOptionMessage(parentComponent, Message, Title, Options, icono, new WindowPane());
+		
+	}
+	
+	public static boolean getYesNoMessage(Object Message){
+		
+		return getYesNoMessage(null, Message, "Question", null, new WindowPane());
+		
+	}
+	
+	public static boolean getYesNoMessage(Object Message, WindowPane wp){
+		
+		return getYesNoMessage(null, Message, "Question", null, wp);
+		
+	}
+	
+	public static boolean getYesNoMessage(Object Message, ImageIcon icono){
+		
+		return getYesNoMessage(null, Message, "Question", icono, new WindowPane());
+		
+	}
+	
+	public static boolean getYesNoMessage(Object Message, ImageIcon icono, WindowPane wp){
+		
+		return getYesNoMessage(null, Message, "Question", icono, wp);
+		
+	}
+	
+	public static boolean getYesNoMessage(Object Message, Object Title){
+		
+		return getYesNoMessage(null, Message, Title, null, new WindowPane());
+		
+	}
+	
+	public static boolean getYesNoMessage(Object Message, Object Title, WindowPane wp){
+		
+		return getYesNoMessage(null, Message, Title, null, wp);
+		
+	}
+	
+	public static boolean getYesNoMessage(Object Message, Object Title, ImageIcon icono){
+		
+		return getYesNoMessage(null, Message, Title, icono, new WindowPane());
+		
+	}
+	
+	public static boolean getYesNoMessage(Object Message, Object Title, ImageIcon icono, WindowPane wp){
+		
+		return getYesNoMessage(null, Message, Title, icono, wp);
+		
+	}
+	
+	public static boolean getYesNoMessage(Component parentComponent, Object Message, Object Title){
+		
+		return getYesNoMessage(parentComponent, Message, Title, null, new WindowPane());
+		
+	}
+	
+	public static boolean getYesNoMessage(Component parentComponent, Object Message, Object Title, WindowPane wp){
+		
+		return getYesNoMessage(parentComponent, Message, Title, null, wp);
+		
+	}
+	
+	public static boolean getYesNoMessage(Component parentComponent, Object Message, Object Title, ImageIcon icono){
+		
+		return getYesNoMessage(parentComponent, Message, Title, icono, new WindowPane());
+		
+	}
+	
+	public static boolean getYesNoMessage(Component parentComponent, Object Message){
+		
+		return getYesNoMessage(parentComponent, Message, "Question", null, new WindowPane());
+		
+	}
+	
+	public static boolean getYesNoMessage(Component parentComponent, Object Message, WindowPane wp){
+		
+		return getYesNoMessage(parentComponent, Message, "Question", null, wp);
+		
+	}
+	
+	public static boolean getYesNoMessage(Component parentComponent, Object Message, ImageIcon icono){
+		
+		return getYesNoMessage(parentComponent, Message, "Question", icono, new WindowPane());
+		
+	}
+	
+	public static boolean getYesNoMessage(Component parentComponent, Object Message, ImageIcon icono, WindowPane wp){
+		
+		return getYesNoMessage(parentComponent, Message, "Question", icono, wp);
+		
+	}
+	
+	public static boolean getYesNoMessage(Component parentComponent, Object Message, Object Title, ImageIcon icono, WindowPane wp){
+		
+		return !Taylor.Arithmetic.Parser.Parse(getOptionMessage(parentComponent, Message, Title, new String[] {"Yes", "No"}, icono, wp));
+		
+	}
+	
+	public static void showOutputMessage(Component parentComponent, Object Message, Object Titlebar, ImageIcon Icono, WindowPane wp){
 		
 		final ComponentBuilder cp = new ComponentBuilder();
-		final WindowPane wp = new WindowPane();
 		
 		int Width = 0;
 		int Height = 0;
 		int z = 0;
 		int Sum = 0;
-		final int Radio = 20;
-		final Font Format = new Font("Clarendon Blk BT", Font.BOLD, 15);
 		
-		cp.setForeground(Color.BLACK);
-		cp.setBackground(Color.WHITE);
+		cp.setBackground(wp.Background);
+		cp.setForeground(wp.Foreground);
 		
-		JTextArea Text = cp.buildTextArea(Message.toString(), new Font("Clarendon Blk BT", Font.PLAIN, 13), null, false, true);
+		JTextArea Text = cp.buildTextArea(Message.toString(), wp.Format, null, false, true);
 		Dimension PreferredSize = Text.getPreferredSize();
 		Width = (int) (1.2*PreferredSize.getWidth());
 		Height = (int) (PreferredSize.getHeight());
@@ -225,14 +760,14 @@ public class WindowPane{
 		Scroll.setViewportView(Text);
 		Scroll.setBorder(null);
 		
-		cp.setForeground(Color.WHITE);
-		cp.setBackground(Color.BLACK);
+		cp.setForeground(wp.BorderForeground);
+		cp.setBackground(wp.BorderBackground);
 		
-		JPanel contentPane = cp.buildPanel(new int[] {0, 0, Width, Height}, new int[] {0, 0, Width, Height, Radio, Radio}, Color.WHITE);
-		contentPane.setBorder(wp.getAbstractBorder(Radio, Color.BLACK));
+		JPanel contentPane = cp.buildPanel(new int[] {0, 0, Width, Height}, new int[] {0, 0, Width, Height, wp.CornerRadio, wp.CornerRadio}, wp.Background);
+		contentPane.setBorder(wp.getAbstractBorder());
 		
-		JLabel Title = cp.buildLabel("    "+Titlebar.toString(), new int[] {0, 0, Width, 30}, SwingConstants.TOP, SwingConstants.LEFT, Format);
-		JButton Close = cp.buildButton("X", new int[] {Width-50, 5, 30, 24}, new int [] {0, 0, 30, Height/6, 0, 0}, SwingConstants.CENTER, SwingConstants.CENTER, Format, cp.getBackground(), true, true);
+		JLabel Title = cp.buildLabel("    "+Titlebar.toString(), new int[] {0, 0, Width, 30}, SwingConstants.TOP, SwingConstants.LEFT, wp.BorderFormat);
+		JButton Close = cp.buildButton("X", new int[] {Width-50, 5, 30, 24}, new int [] {0, 0, 30, Height/6, 0, 0}, SwingConstants.CENTER, SwingConstants.CENTER, wp.BorderFormat, cp.getBackground(), true, true);
 		
 		contentPane.setLayout(null);
 		contentPane.setComponentZOrder(icon, z);z++;
@@ -248,31 +783,28 @@ public class WindowPane{
 		Window.setSize(Width, Height+5);
         Window.setLocationRelativeTo(parentComponent);
         Window.setUndecorated(true);
-        Window.setShape(new RoundRectangle2D.Double(0, 0, Width, Height+5, Radio, Radio));
+        Window.setShape(new RoundRectangle2D.Double(0, 0, Width, Height+5, wp.CornerRadio, wp.CornerRadio));
 		
-		wp.addListeners(Title, Close, null, Window, wp);
+		wp.addListeners(Title, Close, null, Window);
 		
 		Window.add(contentPane);
 		Window.setVisible(true);
 		
 	}
 	
-	public static Object getInputMessage(Component parentComponent, Object Message, Object Titlebar, ImageIcon Icono){
+	public static Object getInputMessage(Component parentComponent, Object Message, Object Titlebar, ImageIcon Icono, WindowPane wp){
 		
 		final ComponentBuilder cp = new ComponentBuilder();
-		final WindowPane wp = new WindowPane();
 		
 		int Width = 0;
 		int Height = 0;
 		int z = 0;
 		int Sum = 0;
-		final int Radio = 20;
-		final Font Format = new Font("Clarendon Blk BT", Font.BOLD, 15);
 		
-		cp.setForeground(Color.BLACK);
-		cp.setBackground(Color.WHITE);
+		cp.setBackground(wp.Background);
+		cp.setForeground(wp.Foreground);
 		
-		JTextArea Text = cp.buildTextArea(Message.toString(), new Font("Clarendon Blk BT", Font.PLAIN, 13), null, false, true);
+		JTextArea Text = cp.buildTextArea(Message.toString(), wp.Format, null, false, true);
 		Dimension PreferredSize = Text.getPreferredSize();
 		Width = (int) (1.2*PreferredSize.getWidth());
 		Height = (int) (PreferredSize.getHeight());
@@ -326,19 +858,19 @@ public class WindowPane{
 		Scroll.setViewportView(Text);
 		Scroll.setBorder(null);
 		
-		cp.setForeground(Color.WHITE);
-		cp.setBackground(Color.BLACK);
+		cp.setForeground(wp.BorderForeground);
+		cp.setBackground(wp.BorderBackground);
 		
-		JPanel contentPane = cp.buildPanel(new int[] {0, 0, Width, Height}, new int[] {0, 0, Width, Height, Radio, Radio}, Color.WHITE);
-		contentPane.setBorder(wp.getAbstractBorder(Radio, Color.BLACK));
+		JPanel contentPane = cp.buildPanel(new int[] {0, 0, Width, Height}, new int[] {0, 0, Width, Height, wp.CornerRadio, wp.CornerRadio}, wp.Background);
+		contentPane.setBorder(wp.getAbstractBorder());
 		
-		JLabel Title = cp.buildLabel("    "+Titlebar.toString(), new int[] {0, 0, Width, 30}, SwingConstants.TOP, SwingConstants.LEFT, Format);
-		JButton Close = cp.buildButton("X", new int[] {Width-50, 5, 30, 24}, new int [] {0, 0, 30, Height/6, 0, 0}, SwingConstants.CENTER, SwingConstants.CENTER, Format, cp.getBackground(), true, true);
+		JLabel Title = cp.buildLabel("    "+Titlebar.toString(), new int[] {0, 0, Width, 30}, SwingConstants.TOP, SwingConstants.LEFT, wp.BorderFormat);
+		JButton Close = cp.buildButton("X", new int[] {Width-50, 5, 30, 24}, new int [] {0, 0, 30, Height/6, 0, 0}, SwingConstants.CENTER, SwingConstants.CENTER, wp.BorderFormat, cp.getBackground(), true, true);
 		
-		cp.setForeground(Color.BLACK);
-		cp.setBackground(Color.WHITE);
+		cp.setBackground(wp.Background);
+		cp.setForeground(wp.Foreground);
 		
-		JTextField Input = cp.buildTextField("", new int[] {Width/15, Height-50, (int) (Width*0.85), 20}, SwingConstants.LEFT, new Font("Clarendon Blk BT", Font.PLAIN, 14), Color.BLACK, Color.BLACK, true, true);
+		JTextField Input = cp.buildTextField("", new int[] {Width/15, Height-50, (int) (Width*0.85), 20}, SwingConstants.LEFT, wp.Format, wp.BorderBackground, wp.BorderBackground, true, true);
 		
 		contentPane.setLayout(null);
 		contentPane.setComponentZOrder(icon, z);z++;
@@ -356,7 +888,7 @@ public class WindowPane{
 		Window.setSize(Width, Height+5);
         Window.setLocationRelativeTo(parentComponent);
         Window.setUndecorated(true);
-        Window.setShape(new RoundRectangle2D.Double(0, 0, Width, Height+5, Radio, Radio));
+        Window.setShape(new RoundRectangle2D.Double(0, 0, Width, Height+5, wp.CornerRadio, wp.CornerRadio));
 		
 		Input.addKeyListener(new KeyAdapter(){
 
@@ -373,7 +905,7 @@ public class WindowPane{
 			
 		});
 		
-		wp.addListeners(Title, Close, null, Window, wp);
+		wp.addListeners(Title, Close, null, Window);
 		
 		Window.add(contentPane);
 		Window.setVisible(true);
@@ -382,22 +914,19 @@ public class WindowPane{
 		
 	}
 	
-	public static Object getOptionMessage(Component parentComponent, Object Message, Object Titlebar, Object[] Options, ImageIcon Icono){
+	public static Object getOptionMessage(Component parentComponent, Object Message, Object Titlebar, Object[] Options, ImageIcon Icono, WindowPane wp){
 		
 		final ComponentBuilder cp = new ComponentBuilder();
-		final WindowPane wp = new WindowPane();
 		
 		int Width = 0;
 		int Height = 0;
 		int z = 0;
 		int Sum = 0;
-		final int Radio = 20;
-		final Font Format = new Font("Clarendon Blk BT", Font.BOLD, 15);
 		
-		cp.setForeground(Color.BLACK);
-		cp.setBackground(Color.WHITE);
+		cp.setBackground(wp.Background);
+		cp.setForeground(wp.Foreground);
 		
-		JTextArea Text = cp.buildTextArea(Message.toString(), new Font("Clarendon Blk BT", Font.PLAIN, 13), null, false, true);
+		JTextArea Text = cp.buildTextArea(Message.toString(), wp.Format, null, false, true);
 		Dimension PreferredSize = Text.getPreferredSize();
 		Width = (int) (1.2*PreferredSize.getWidth());
 		Height = (int) (PreferredSize.getHeight());
@@ -451,22 +980,21 @@ public class WindowPane{
 		Scroll.setViewportView(Text);
 		Scroll.setBorder(null);
 		
-		cp.setForeground(Color.WHITE);
-		cp.setBackground(Color.BLACK);
+		cp.setForeground(wp.BorderForeground);
+		cp.setBackground(wp.BorderBackground);
 		
-		JPanel contentPane = cp.buildPanel(new int[] {0, 0, Width, Height}, new int[] {0, 0, Width, Height, Radio, Radio}, Color.WHITE);
-		contentPane.setBorder(wp.getAbstractBorder(Radio, Color.BLACK));
+		JPanel contentPane = cp.buildPanel(new int[] {0, 0, Width, Height}, new int[] {0, 0, Width, Height, wp.CornerRadio, wp.CornerRadio}, wp.Background);
+		contentPane.setBorder(wp.getAbstractBorder());
 		
-		JLabel Title = cp.buildLabel("    "+Titlebar.toString(), new int[] {0, 0, Width, 30}, SwingConstants.TOP, SwingConstants.LEFT, Format);
-		JButton Close = cp.buildButton("X", new int[] {Width-50, 5, 30, 24}, new int [] {0, 0, 30, Height/6, 0, 0}, SwingConstants.CENTER, SwingConstants.CENTER, Format, cp.getBackground(), true, true);
-		
-		cp.setForeground(Color.BLACK);
-		cp.setBackground(Color.WHITE);
+		JLabel Title = cp.buildLabel("    "+Titlebar.toString(), new int[] {0, 0, Width, 30}, SwingConstants.TOP, SwingConstants.LEFT, wp.BorderFormat);
+		JButton Close = cp.buildButton("X", new int[] {Width-50, 5, 30, 24}, new int [] {0, 0, 30, Height/6, 0, 0}, SwingConstants.CENTER, SwingConstants.CENTER, wp.BorderFormat, cp.getBackground(), true, true);
 		
 		JComboBox<Object> Input = new JComboBox<>(Options);
 		Input.setBounds(Width/15, Height-50, (int) (Width*0.85), 25);
-		Input.setBackground(Color.WHITE);
-		Input.setBorder(new MatteBorder(1, 1, 1, 0, Color.BLACK));
+		Input.setBackground(wp.Background);
+		Input.setForeground(wp.Foreground);
+		Input.setFont(wp.Format);
+		Input.setBorder(new MatteBorder(1, 1, 1, 0, wp.BorderBackground));
 		Input.setUI(new BasicComboBoxUI(){
 			
             protected JButton createArrowButton(){
@@ -502,7 +1030,7 @@ public class WindowPane{
 					
                 });
 				
-				Arrow.setBackground(Color.BLACK);
+				Arrow.setBackground(wp.BorderBackground);
 				Arrow.setFocusable(false);
 				Arrow.setBorderPainted(false);
 				
@@ -528,7 +1056,7 @@ public class WindowPane{
 		Window.setSize(Width, Height+5);
         Window.setLocationRelativeTo(parentComponent);
         Window.setUndecorated(true);
-        Window.setShape(new RoundRectangle2D.Double(0, 0, Width, Height+5, Radio, Radio));
+        Window.setShape(new RoundRectangle2D.Double(0, 0, Width, Height+5, wp.CornerRadio, wp.CornerRadio));
 		
 		Input.addKeyListener(new KeyAdapter(){
 
@@ -545,7 +1073,7 @@ public class WindowPane{
 			
 		});
 		
-		wp.addListeners(Title, Close, null, Window, wp);
+		wp.addListeners(Title, Close, null, Window);
 		
 		Window.add(contentPane);
 		Window.setVisible(true);
@@ -554,23 +1082,21 @@ public class WindowPane{
 		
 	}
 	
-	public static int getOptionMessage(Component parentComponent, Object Message, Object Titlebar, String[] Options, ImageIcon Icono){
+	public static int getOptionMessage(Component parentComponent, Object Message, Object Titlebar, String[] Options, ImageIcon Icono, WindowPane wp){
 		
 		final ComponentBuilder cp = new ComponentBuilder();
-		final WindowPane wp = new WindowPane();
 		
 		int Width = 0;
 		int Height = 0;
-		int bupWidth = 0, bupY = 0;
 		int z = 0;
 		int Sum = 0;
-		final int Radio = 20;
-		final Font Format = new Font("Clarendon Blk BT", Font.BOLD, 15);
+		int bupY = 0;
+		int bupWidth = 0;
 		
-		cp.setForeground(Color.BLACK);
-		cp.setBackground(Color.WHITE);
+		cp.setBackground(wp.Background);
+		cp.setForeground(wp.Foreground);
 		
-		JTextArea Text = cp.buildTextArea(Message.toString(), new Font("Clarendon Blk BT", Font.PLAIN, 13), null, false, true);
+		JTextArea Text = cp.buildTextArea(Message.toString(), wp.Format, null, false, true);
 		Dimension PreferredSize = Text.getPreferredSize();
 		Width = (int) (1.2*PreferredSize.getWidth());
 		Height = (int) (PreferredSize.getHeight());
@@ -612,8 +1138,10 @@ public class WindowPane{
 			input[i] = new JButton(Options[i]);
 			
 			input[i].setSize(50 + Options[i].length()*10, 25);
-			//input[i].setFont(Format);
-			input[i].setBackground(Color.WHITE);
+			input[i].setFont(wp.Format);
+			input[i].setBackground(wp.Background);
+			input[i].setForeground(wp.Foreground);
+			input[i].setBorder(new LineBorder(wp.BorderBackground, 1, true));
 			input[i].setHorizontalTextPosition(SwingConstants.LEFT);
 			input[i].setVisible(true);
 			
@@ -646,17 +1174,14 @@ public class WindowPane{
 		Scroll.setViewportView(Text);
 		Scroll.setBorder(null);
 		
-		cp.setForeground(Color.WHITE);
-		cp.setBackground(Color.BLACK);
+		cp.setForeground(wp.BorderForeground);
+		cp.setBackground(wp.BorderBackground);
 		
-		JPanel contentPane = cp.buildPanel(new int[] {0, 0, Width, Height}, new int[] {0, 0, Width, Height, Radio, Radio}, Color.WHITE);
-		contentPane.setBorder(wp.getAbstractBorder(Radio, Color.BLACK));
+		JPanel contentPane = cp.buildPanel(new int[] {0, 0, Width, Height}, new int[] {0, 0, Width, Height, wp.CornerRadio, wp.CornerRadio}, wp.Background);
+		contentPane.setBorder(wp.getAbstractBorder());
 		
-		JLabel Title = cp.buildLabel("    "+Titlebar.toString(), new int[] {0, 0, Width, 30}, SwingConstants.TOP, SwingConstants.LEFT, Format);
-		JButton Close = cp.buildButton("X", new int[] {Width-50, 5, 30, 24}, new int [] {0, 0, 30, Height/6, 0, 0}, SwingConstants.CENTER, SwingConstants.CENTER, Format, cp.getBackground(), true, true);
-		
-		cp.setForeground(Color.BLACK);
-		cp.setBackground(Color.WHITE);
+		JLabel Title = cp.buildLabel("    "+Titlebar.toString(), new int[] {0, 0, Width, 30}, SwingConstants.TOP, SwingConstants.LEFT, wp.BorderFormat);
+		JButton Close = cp.buildButton("X", new int[] {Width-50, 5, 30, 24}, new int [] {0, 0, 30, Height/6, 0, 0}, SwingConstants.CENTER, SwingConstants.CENTER, wp.BorderFormat, cp.getBackground(), true, true);
 		
 		contentPane.setLayout(null);
 		contentPane.setComponentZOrder(icon, z);z++;
@@ -672,13 +1197,13 @@ public class WindowPane{
 		Window.setSize(Width, Height+5);
         Window.setLocationRelativeTo(parentComponent);
         Window.setUndecorated(true);
-        Window.setShape(new RoundRectangle2D.Double(0, 0, Width, Height+5, Radio, Radio));
+        Window.setShape(new RoundRectangle2D.Double(0, 0, Width, Height+5, wp.CornerRadio, wp.CornerRadio));
 		
-		wp.addListeners(Title, Close, -1, Window, wp);
+		wp.addListeners(Title, Close, -1, Window);
 		
-		bupY = (Width - bupWidth)/2;
+		bupY = (Width - bupWidth)/2 + wp.BorderLength;
 		
-		for (int i=0; i<input.length; i++){//Height-50
+		for (int i=0; i<input.length; i++){
 			
 			input[i].setLocation(bupY, Height-50);
 			
@@ -708,7 +1233,9 @@ public class WindowPane{
 		
 	}
 	
-	private AbstractBorder getAbstractBorder(int Radio, Color color){
+	private AbstractBorder getAbstractBorder(){
+		
+		WindowPane wp = this;
 		
 		return new AbstractBorder(){
             
@@ -717,9 +1244,9 @@ public class WindowPane{
                 Graphics2D g2d = (Graphics2D) g.create();
                 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-                g2d.setColor(Color.BLACK);
-				g2d.setStroke(new BasicStroke(4));
-                g2d.drawRoundRect(x+1, y, (width-3), (height-2), Radio, Radio);
+                g2d.setColor(wp.BorderBackground);
+				g2d.setStroke(new BasicStroke(wp.BorderLength));
+                g2d.drawRoundRect(x+1, y, (width-3), (height-2), wp.CornerRadio, wp.CornerRadio);
 
                 g2d.dispose();
 				
@@ -729,7 +1256,9 @@ public class WindowPane{
 		
 	}
 	
-	private void addListeners(JLabel Title, JButton Close, Object value, JDialog Window, WindowPane wp){
+	private void addListeners(JLabel Title, JButton Close, Object value, JDialog Window){
+		
+		WindowPane wp = this;
 		
 		Close.addActionListener(new ActionListener(){
 

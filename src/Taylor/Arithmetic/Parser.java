@@ -1166,6 +1166,30 @@ public class Parser extends Mayth{
 		
 	}
 	
+	public static boolean Parse(int n){
+		
+		if (n==1){
+			
+			return true;
+			
+		}
+		
+		return false;
+		
+	}
+	
+	public static int Parse(boolean n){
+		
+		if (n==true){
+			
+			return 1;
+			
+		}
+		
+		return 0;
+		
+	}
+	
 	public static String DeleteChar(String cadena, int indice){
 		
 		String nw="";
