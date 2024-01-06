@@ -453,6 +453,8 @@ public class Mayth extends Hyperbolic{
 	
 	public double abs(double x){
 		
+		if (x==-0){return 0;}
+		
 		if (x<0){
 			
 			return -x;

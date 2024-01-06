@@ -692,7 +692,7 @@ public class WindowPane{
 	
 	public static boolean getYesNoMessage(Component parentComponent, Object Message, Object Title, ImageIcon icono, WindowPane wp){
 		
-		return !Taylor.Arithmetic.Parser.Parse(getOptionMessage(parentComponent, Message, Title, new String[] {"Yes", "No"}, icono, wp));
+		return !Taylor.Arithmetic.Parser.Parse((int) new Taylor.Math.Mayth().abs(getOptionMessage(parentComponent, Message, Title, new String[] {"Yes", "No"}, icono, wp)));
 		
 	}
 	
