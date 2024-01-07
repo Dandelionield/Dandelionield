@@ -32,6 +32,10 @@ import java.awt.event.KeyAdapter;
 
 import java.net.URL;
 
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.AbstractBorder;
@@ -81,12 +85,12 @@ public class WindowPane{
 		
 	*/
 	
-	private final ImageIcon[] TYPE_MESSAGE = new ImageIcon[] {
+	public final ImageIcon[] TYPE_MESSAGE = new ImageIcon[] {
 		
-		new ImageIcon("INFORMATION_MESSAGE.PNG"), 
-		new ImageIcon("QUESTION_MESSAGE.PNG"), 
-		new ImageIcon("ERROR_MESSAGE.PNG"), 
-		new ImageIcon("WARNING_MESSAGE.PNG")
+		new ImageIcon(getClass().getResource("/WindowPane_Textures/INFORMATION_MESSAGE.png")), 
+		new ImageIcon(getClass().getResource("/WindowPane_Textures/QUESTION_MESSAGE.png")), 
+		new ImageIcon(getClass().getResource("/WindowPane_Textures/ERROR_MESSAGE.png")), 
+		new ImageIcon(getClass().getResource("/WindowPane_Textures/WARNING_MESSAGE.png"))
 		
 	};
 	

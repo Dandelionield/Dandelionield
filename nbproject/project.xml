@@ -6,6 +6,7 @@
             <name>Dandelionield</name>
             <source-roots>
                 <root id="src.dir"/>
+                <root id="src.WindowPane_Textures.dir"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir"/>
