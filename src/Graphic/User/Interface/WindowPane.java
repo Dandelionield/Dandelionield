@@ -81,18 +81,23 @@ public class WindowPane{
 	/*
 	
 		All Images used here were made by https://www.flaticon.es/autores/riajulislam
-		From the Image package https://www.flaticon.es/packs/essential-actions-3
+		From the Image Package https://www.flaticon.es/packs/essential-actions-3
 		
 	*/
 	
-	public final ImageIcon[] TYPE_MESSAGE = new ImageIcon[] {
+	public static final ImageIcon[] TYPE_MESSAGE = new ImageIcon[] {
 		
-		new ImageIcon(getClass().getResource("/WindowPane_Textures/INFORMATION_MESSAGE.png")), 
-		new ImageIcon(getClass().getResource("/WindowPane_Textures/QUESTION_MESSAGE.png")), 
-		new ImageIcon(getClass().getResource("/WindowPane_Textures/ERROR_MESSAGE.png")), 
-		new ImageIcon(getClass().getResource("/WindowPane_Textures/WARNING_MESSAGE.png"))
+		new ImageIcon(WindowPane.class.getResource("/WindowPane_Textures/INFORMATION_MESSAGE.png")), 
+		new ImageIcon(WindowPane.class.getResource("/WindowPane_Textures/QUESTION_MESSAGE.png")), 
+		new ImageIcon(WindowPane.class.getResource("/WindowPane_Textures/ERROR_MESSAGE.png")), 
+		new ImageIcon(WindowPane.class.getResource("/WindowPane_Textures/WARNING_MESSAGE.png"))
 		
 	};
+	
+	public static final Color INFORMATION_COLOR = new Color(66, 224, 245);
+	public static final Color QUESTION_COLOR = new Color(66, 135, 245);
+	public static final Color ERROR_COLOR = Color.RED;
+	public static final Color WARNING_COLOR = Color.YELLOW;
 	
 	public static final int INFORMATION_MESSAGE = 0;
 	public static final int QUESTION_MESSAGE = 1;
@@ -143,6 +148,32 @@ public class WindowPane{
 		this.Background = Background;
 		this.BorderBackground = BorderBackground;
 		this.Foreground = Foreground;
+		this.BorderForeground = BorderForeground;
+		this.Format = new Font("Clarendon Blk BT", Font.PLAIN, 13);
+		this.BorderFormat = new Font("Clarendon Blk BT", Font.BOLD, 15);
+		this.BorderLength = 4;
+		this.CornerRadio = 20;
+		
+	}
+	
+	public WindowPane(Color BorderBackground){
+		
+		this.Background = Color.WHITE;
+		this.BorderBackground = BorderBackground;
+		this.Foreground = Color.BLACK;
+		this.BorderForeground = Color.WHITE;
+		this.Format = new Font("Clarendon Blk BT", Font.PLAIN, 13);
+		this.BorderFormat = new Font("Clarendon Blk BT", Font.BOLD, 15);
+		this.BorderLength = 4;
+		this.CornerRadio = 20;
+		
+	}
+	
+	public WindowPane(Color BorderBackground, Color BorderForeground){
+		
+		this.Background = Color.WHITE;
+		this.BorderBackground = BorderBackground;
+		this.Foreground = Color.BLACK;
 		this.BorderForeground = BorderForeground;
 		this.Format = new Font("Clarendon Blk BT", Font.PLAIN, 13);
 		this.BorderFormat = new Font("Clarendon Blk BT", Font.BOLD, 15);
@@ -291,9 +322,21 @@ public class WindowPane{
 		
 	}
 	
+	public static void showOutputMessage(Object Message, int icono){
+		
+		showOutputMessage(null, Message, "Output", TYPE_MESSAGE[icono], new WindowPane());
+		
+	}
+	
 	public static void showOutputMessage(Object Message, ImageIcon icono, WindowPane wp){
 		
 		showOutputMessage(null, Message, "Output", icono, wp);
+		
+	}
+	
+	public static void showOutputMessage(Object Message, int icono, WindowPane wp){
+		
+		showOutputMessage(null, Message, "Output", TYPE_MESSAGE[icono], wp);
 		
 	}
 	
@@ -315,6 +358,24 @@ public class WindowPane{
 		
 	}
 	
+	public static void showOutputMessage(Object Message, Object Title, int icono){
+		
+		showOutputMessage(null, Message, Title, TYPE_MESSAGE[icono], new WindowPane());
+		
+	}
+	
+	public static void showOutputMessage(Object Message, Object Title, ImageIcon icono, WindowPane wp){
+		
+		showOutputMessage(null, Message, Title, icono, wp);
+		
+	}
+	
+	public static void showOutputMessage(Object Message, Object Title, int icono, WindowPane wp){
+		
+		showOutputMessage(null, Message, Title, TYPE_MESSAGE[icono], wp);
+		
+	}
+	
 	public static void showOutputMessage(Component parentComponent, Object Message){
 		
 		showOutputMessage(parentComponent, Message, "Output", null, new WindowPane());
@@ -333,9 +394,21 @@ public class WindowPane{
 		
 	}
 	
+	public static void showOutputMessage(Component parentComponent, Object Message, int icono){
+		
+		showOutputMessage(parentComponent, Message, "Output", TYPE_MESSAGE[icono], new WindowPane());
+		
+	}
+	
 	public static void showOutputMessage(Component parentComponent, Object Message, ImageIcon icono, WindowPane wp){
 		
 		showOutputMessage(parentComponent, Message, "Output", icono, wp);
+		
+	}
+	
+	public static void showOutputMessage(Component parentComponent, Object Message, int icono, WindowPane wp){
+		
+		showOutputMessage(parentComponent, Message, "Output", TYPE_MESSAGE[icono], wp);
 		
 	}
 	
@@ -357,6 +430,18 @@ public class WindowPane{
 		
 	}
 	
+	public static void showOutputMessage(Component parentComponent, Object Message, Object Titlebar, int icono){
+		
+		showOutputMessage(parentComponent, Message, Titlebar, TYPE_MESSAGE[icono], new WindowPane());
+		
+	}
+	
+	public static void showOutputMessage(Component parentComponent, Object Message, Object Titlebar, int icono, WindowPane wp){
+		
+		showOutputMessage(parentComponent, Message, Titlebar, TYPE_MESSAGE[icono], wp);
+		
+	}
+	
 	public static Object getInputMessage(Object Message){
 		
 		return getInputMessage(null, Message, "Input", null, new WindowPane());
@@ -375,9 +460,21 @@ public class WindowPane{
 		
 	}
 	
+	public static Object getInputMessage(Object Message, int icono){
+		
+		return getInputMessage(null, Message, "Input", TYPE_MESSAGE[icono], new WindowPane());
+		
+	}
+	
 	public static Object getInputMessage(Object Message, ImageIcon icono, WindowPane wp){
 		
 		return getInputMessage(null, Message, "Input", icono, wp);
+		
+	}
+	
+	public static Object getInputMessage(Object Message, int icono, WindowPane wp){
+		
+		return getInputMessage(null, Message, "Input", TYPE_MESSAGE[icono], wp);
 		
 	}
 	
@@ -399,9 +496,21 @@ public class WindowPane{
 		
 	}
 	
+	public static Object getInputMessage(Object Message, Object Title, int icono){
+		
+		return getInputMessage(null, Message, Title, TYPE_MESSAGE[icono], new WindowPane());
+		
+	}
+	
 	public static Object getInputMessage(Object Message, Object Title, ImageIcon icono, WindowPane wp){
 		
 		return getInputMessage(null, Message, Title, icono, wp);
+		
+	}
+	
+	public static Object getInputMessage(Object Message, Object Title, int icono, WindowPane wp){
+		
+		return getInputMessage(null, Message, Title, TYPE_MESSAGE[icono], wp);
 		
 	}
 	
@@ -423,9 +532,21 @@ public class WindowPane{
 		
 	}
 	
+	public static Object getInputMessage(Component parentComponent, Object Message, int icono){
+		
+		return getInputMessage(parentComponent, Message, "Input", TYPE_MESSAGE[icono], new WindowPane());
+		
+	}
+	
 	public static Object getInputMessage(Component parentComponent, Object Message, ImageIcon icono, WindowPane wp){
 		
 		return getInputMessage(parentComponent, Message, "Input", icono, wp);
+		
+	}
+	
+	public static Object getInputMessage(Component parentComponent, Object Message, int icono, WindowPane wp){
+		
+		return getInputMessage(parentComponent, Message, "Input", TYPE_MESSAGE[icono], wp);
 		
 	}
 	
@@ -447,6 +568,18 @@ public class WindowPane{
 		
 	}
 	
+	public static Object getInputMessage(Component parentComponent, Object Message, Object Title, int icono){
+		
+		return getInputMessage(parentComponent, Message, Title, TYPE_MESSAGE[icono], new WindowPane());
+		
+	}
+	
+	public static Object getInputMessage(Component parentComponent, Object Message, Object Title, int icono, WindowPane wp){
+		
+		return getInputMessage(parentComponent, Message, Title, TYPE_MESSAGE[icono], wp);
+		
+	}
+	
 	public static Object getOptionMessage(Object Message, Object[] Options){
 		
 		return getOptionMessage(null, Message, "Input", Options, null, new WindowPane());
@@ -465,9 +598,21 @@ public class WindowPane{
 		
 	}
 	
+	public static Object getOptionMessage(Object Message, Object[] Options, int icono){
+		
+		return getOptionMessage(null, Message, "Input", Options, TYPE_MESSAGE[icono], new WindowPane());
+		
+	}
+	
 	public static Object getOptionMessage(Object Message, Object[] Options, ImageIcon icono, WindowPane wp){
 		
 		return getOptionMessage(null, Message, "Input", Options, icono, wp);
+		
+	}
+	
+	public static Object getOptionMessage(Object Message, Object[] Options, int icono, WindowPane wp){
+		
+		return getOptionMessage(null, Message, "Input", Options, TYPE_MESSAGE[icono], wp);
 		
 	}
 	
@@ -489,9 +634,21 @@ public class WindowPane{
 		
 	}
 	
+	public static Object getOptionMessage(Object Message, Object Title, Object[] Options, int icono){
+		
+		return getOptionMessage(null, Message, Title, Options, TYPE_MESSAGE[icono], new WindowPane());
+		
+	}
+	
 	public static Object getOptionMessage(Object Message, Object Title, Object[] Options, ImageIcon icono, WindowPane wp){
 		
 		return getOptionMessage(null, Message, Title, Options, icono, wp);
+		
+	}
+	
+	public static Object getOptionMessage(Object Message, Object Title, Object[] Options, int icono, WindowPane wp){
+		
+		return getOptionMessage(null, Message, Title, Options, TYPE_MESSAGE[icono], wp);
 		
 	}
 	
@@ -513,9 +670,21 @@ public class WindowPane{
 		
 	}
 	
+	public static Object getOptionMessage(Component parentComponent, Object Message, Object[] Options, int icono){
+		
+		return getOptionMessage(parentComponent, Message, "Input", Options, TYPE_MESSAGE[icono], new WindowPane());
+		
+	}
+	
 	public static Object getOptionMessage(Component parentComponent, Object Message, Object[] Options, ImageIcon icono, WindowPane wp){
 		
 		return getOptionMessage(parentComponent, Message, "Input", Options, icono, wp);
+		
+	}
+	
+	public static Object getOptionMessage(Component parentComponent, Object Message, Object[] Options, int icono, WindowPane wp){
+		
+		return getOptionMessage(parentComponent, Message, "Input", Options, TYPE_MESSAGE[icono], wp);
 		
 	}
 	
@@ -537,6 +706,18 @@ public class WindowPane{
 		
 	}
 	
+	public static Object getOptionMessage(Component parentComponent, Object Message, Object Title, Object[] Options, int icono){
+		
+		return getOptionMessage(parentComponent, Message, Title, Options, TYPE_MESSAGE[icono], new WindowPane());
+		
+	}
+	
+	public static Object getOptionMessage(Component parentComponent, Object Message, Object Title, Object[] Options, int icono, WindowPane wp){
+		
+		return getOptionMessage(parentComponent, Message, Title, Options, TYPE_MESSAGE[icono], wp);
+		
+	}
+	
 	public static Object getOptionMessage(Object Message, String[] Options){
 		
 		return getOptionMessage(null, Message, "Input", Options, null, new WindowPane());
@@ -555,9 +736,21 @@ public class WindowPane{
 		
 	}
 	
+	public static Object getOptionMessage(Object Message, String[] Options, int icono){
+		
+		return getOptionMessage(null, Message, "Input", Options, TYPE_MESSAGE[icono], new WindowPane());
+		
+	}
+	
 	public static Object getOptionMessage(Object Message, String[] Options, ImageIcon icono, WindowPane wp){
 		
 		return getOptionMessage(null, Message, "Input", Options, icono, wp);
+		
+	}
+	
+	public static Object getOptionMessage(Object Message, String[] Options, int icono, WindowPane wp){
+		
+		return getOptionMessage(null, Message, "Input", Options, TYPE_MESSAGE[icono], wp);
 		
 	}
 	
@@ -579,9 +772,21 @@ public class WindowPane{
 		
 	}
 	
+	public static Object getOptionMessage(Object Message, Object Title, String[] Options, int icono){
+		
+		return getOptionMessage(null, Message, Title, Options, TYPE_MESSAGE[icono], new WindowPane());
+		
+	}
+	
 	public static Object getOptionMessage(Object Message, Object Title, String[] Options, ImageIcon icono, WindowPane wp){
 		
 		return getOptionMessage(null, Message, Title, Options, icono, wp);
+		
+	}
+	
+	public static Object getOptionMessage(Object Message, Object Title, String[] Options, int icono, WindowPane wp){
+		
+		return getOptionMessage(null, Message, Title, Options, TYPE_MESSAGE[icono], wp);
 		
 	}
 	
@@ -603,9 +808,21 @@ public class WindowPane{
 		
 	}
 	
+	public static Object getOptionMessage(Component parentComponent, Object Message, String[] Options, int icono){
+		
+		return getOptionMessage(parentComponent, Message, "Input", Options, TYPE_MESSAGE[icono], new WindowPane());
+		
+	}
+	
 	public static Object getOptionMessage(Component parentComponent, Object Message, String[] Options, ImageIcon icono, WindowPane wp){
 		
 		return getOptionMessage(parentComponent, Message, "Input", Options, icono, wp);
+		
+	}
+	
+	public static Object getOptionMessage(Component parentComponent, Object Message, String[] Options, int icono, WindowPane wp){
+		
+		return getOptionMessage(parentComponent, Message, "Input", Options, TYPE_MESSAGE[icono], wp);
 		
 	}
 	
@@ -627,53 +844,135 @@ public class WindowPane{
 		
 	}
 	
-	public static boolean getYesNoMessage(Object Message){
+	public static Object getOptionMessage(Component parentComponent, Object Message, Object Title, String[] Options, int icono){
 		
-		return getYesNoMessage(null, Message, "Question", new WindowPane());
+		return getOptionMessage(parentComponent, Message, Title, Options, TYPE_MESSAGE[icono], new WindowPane());
 		
 	}
 	
-	public static boolean getYesNoMessage(Object Message, WindowPane wp){
+	public static Object getOptionMessage(Component parentComponent, Object Message, Object Title, String[] Options, int icono, WindowPane wp){
 		
-		return getYesNoMessage(null, Message, "Question", wp);
+		return getOptionMessage(parentComponent, Message, Title, Options, TYPE_MESSAGE[icono], wp);
+		
+	}
+	
+	public static void showInformationMessage(Object Message){
+		
+		showInformationMessage(null, Message, "Information", new WindowPane(INFORMATION_COLOR, Color.BLACK));
+		
+	}
+	
+	public static void showInformationMessage(Object Message, Object Title){
+		
+		showInformationMessage(null, Message, Title, new WindowPane(INFORMATION_COLOR, Color.BLACK));
+		
+	}
+	
+	public static void showInformationMessage(Component parentComponent, Object Message){
+		
+		showInformationMessage(parentComponent, Message, "Information", new WindowPane(INFORMATION_COLOR, Color.BLACK));
+		
+	}
+	
+	public static void showInformationMessage(Component parentComponent, Object Message, Object Title){
+		
+		showInformationMessage(parentComponent, Message, Title, new WindowPane(INFORMATION_COLOR, Color.BLACK));
+		
+	}
+	
+	public static void showErrorMessage(Object Message){
+		
+		showErrorMessage(null, Message, "ERROR", new WindowPane(ERROR_COLOR, Color.BLACK));
+		
+	}
+	
+	public static void showErrorMessage(Object Message, Object Title){
+		
+		showErrorMessage(null, Message, Title, new WindowPane(ERROR_COLOR, Color.BLACK));
+		
+	}
+	
+	public static void showErrorMessage(Component parentComponent, Object Message){
+		
+		showErrorMessage(parentComponent, Message, "ERROR", new WindowPane(ERROR_COLOR, Color.BLACK));
+		
+	}
+	
+	public static void showErrorMessage(Component parentComponent, Object Message, Object Title){
+		
+		showErrorMessage(parentComponent, Message, Title, new WindowPane(ERROR_COLOR, Color.BLACK));
+		
+	}
+	
+	public static void showWarningMessage(Object Message){
+		
+		showWarningMessage(null, Message, "WARNING", new WindowPane(WARNING_COLOR, Color.BLACK));
+		
+	}
+	
+	public static void showWarningMessage(Object Message, Object Title){
+		
+		showWarningMessage(null, Message, Title, new WindowPane(WARNING_COLOR, Color.BLACK));
+		
+	}
+	
+	public static void showWarningMessage(Component parentComponent, Object Message){
+		
+		showWarningMessage(parentComponent, Message, "WARNING", new WindowPane(WARNING_COLOR, Color.BLACK));
+		
+	}
+	
+	public static void showWarningMessage(Component parentComponent, Object Message, Object Title){
+		
+		showWarningMessage(parentComponent, Message, Title, new WindowPane(WARNING_COLOR, Color.BLACK));
+		
+	}
+	
+	public static boolean getYesNoMessage(Object Message){
+		
+		return getYesNoMessage(null, Message, "Question", new WindowPane(QUESTION_COLOR));
 		
 	}
 	
 	public static boolean getYesNoMessage(Object Message, Object Title){
 		
-		return getYesNoMessage(null, Message, Title, new WindowPane());
-		
-	}
-	
-	public static boolean getYesNoMessage(Object Message, Object Title, WindowPane wp){
-		
-		return getYesNoMessage(null, Message, Title, wp);
-		
-	}
-	
-	public static boolean getYesNoMessage(Component parentComponent, Object Message, Object Title){
-		
-		return getYesNoMessage(parentComponent, Message, Title, new WindowPane());
+		return getYesNoMessage(null, Message, Title, new WindowPane(QUESTION_COLOR));
 		
 	}
 	
 	public static boolean getYesNoMessage(Component parentComponent, Object Message){
 		
-		return getYesNoMessage(parentComponent, Message, "Question", new WindowPane());
+		return getYesNoMessage(parentComponent, Message, "Question", new WindowPane(QUESTION_COLOR));
 		
 	}
 	
-	public static boolean getYesNoMessage(Component parentComponent, Object Message, WindowPane wp){
+	public static boolean getYesNoMessage(Component parentComponent, Object Message, Object Title){
 		
-		return getYesNoMessage(parentComponent, Message, "Question", wp);
+		return getYesNoMessage(parentComponent, Message, Title, new WindowPane(QUESTION_COLOR));
+		
+	}
+	
+	public static void showInformationMessage(Component parentComponent, Object Message, Object Titlebar, WindowPane wp){
+		
+		showOutputMessage(parentComponent, Message, Titlebar, TYPE_MESSAGE[INFORMATION_MESSAGE], wp);
+		
+	}
+	
+	public static void showErrorMessage(Component parentComponent, Object Message, Object Titlebar, WindowPane wp){
+		
+		showOutputMessage(parentComponent, Message, Titlebar, TYPE_MESSAGE[ERROR_MESSAGE], wp);
+		
+	}
+	
+	public static void showWarningMessage(Component parentComponent, Object Message, Object Titlebar, WindowPane wp){
+		
+		showOutputMessage(parentComponent, Message, Titlebar, TYPE_MESSAGE[WARNING_MESSAGE], wp);
 		
 	}
 	
 	public static boolean getYesNoMessage(Component parentComponent, Object Message, Object Title, WindowPane wp){
 		
-		//return !Taylor.Arithmetic.Parser.Parse((int) new Taylor.Math.Mayth().abs(getOptionMessage(parentComponent, Message, Title, new String[] {"Yes", "No"}, new ImageIcon(url+"QUESTION_MESSAGE.PNG"), wp)));
-		
-		return !Taylor.Arithmetic.Parser.Parse((int) new Taylor.Math.Mayth().abs(getOptionMessage(parentComponent, Message, Title, new String[] {"Yes", "No"}, wp.TYPE_MESSAGE[QUESTION_MESSAGE], wp)));
+		return !Taylor.Arithmetic.Parser.Parse((int) new Taylor.Math.Mayth().abs(getOptionMessage(parentComponent, Message, Title, new String[] {"Yes", "No"}, TYPE_MESSAGE[QUESTION_MESSAGE], wp)));
 		
 	}
 	

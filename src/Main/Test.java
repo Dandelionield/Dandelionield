@@ -37,9 +37,7 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		//new ImageIcon(Test.class.getClassLoader().getResource("WindowPane_Textures/INFORMATION_MESSAGE.PNG"));
-		
-		ImageIcon icono = new ImageIcon("C:\\CrudResources\\Textures\\AceptarLight.PNG");
+		ImageIcon icono = new ImageIcon(Test.class.getResource("/WindowPane_Textures/INFORMATION_MESSAGE.png"));
 		
 		WindowPane wp = new WindowPane();
 		
@@ -48,7 +46,13 @@ public class Test {
 		wp.setForeground(Color.BLACK);
 		wp.setBorderForeground(Color.WHITE);
 		
-		System.out.print(WindowPane.getYesNoMessage("Answer this simple question :3\n\nDoes your parents know you're gay? UuU", wp));
+		WindowPane.showInformationMessage("Sisas");
+		
+		WindowPane.showErrorMessage("Nel perro");
+		
+		WindowPane.showWarningMessage("Cuidado");
+		
+		System.out.print(WindowPane.getYesNoMessage("Answer this simple question :3\n\nDoes your parents know you're gay? UuU"));
 		
 		System.out.print("\n\n");
 		
