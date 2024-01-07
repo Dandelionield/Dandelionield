@@ -30,6 +30,8 @@ import java.awt.event.AdjustmentListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 
+import java.net.URL;
+
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.AbstractBorder;
@@ -71,6 +73,29 @@ public class WindowPane{
 	
 	private int BorderLength;
 	private int CornerRadio;
+	
+	private static final String url = "WindowPane_Textures/";
+	
+	/*
+	
+		All Images used here were made by https://www.flaticon.es/autores/riajulislam
+		From the Image package https://www.flaticon.es/packs/essential-actions-3
+		
+	*/
+	
+	private final ImageIcon[] TYPE_MESSAGE = new ImageIcon[] {
+		
+		new ImageIcon(getClass().getResource(url+"INFORMATION_MESSAGE.PNG")), 
+		new ImageIcon(getClass().getResource(url+"QUESTION_MESSAGE.PNG")), 
+		new ImageIcon(getClass().getResource(url+"ERROR_MESSAGE.PNG")), 
+		new ImageIcon(getClass().getResource(url+"WARNING_MESSAGE.PNG"))
+		
+	};//*/
+	
+	public static final int INFORMATION_MESSAGE = 0;
+	public static final int QUESTION_MESSAGE = 1;
+	public static final int ERROR_MESSAGE = 2;
+	public static final int WARNING_MESSAGE = 3;
 	
 	public WindowPane(){
 		
@@ -602,97 +627,51 @@ public class WindowPane{
 	
 	public static boolean getYesNoMessage(Object Message){
 		
-		return getYesNoMessage(null, Message, "Question", null, new WindowPane());
+		return getYesNoMessage(null, Message, "Question", new WindowPane());
 		
 	}
 	
 	public static boolean getYesNoMessage(Object Message, WindowPane wp){
 		
-		return getYesNoMessage(null, Message, "Question", null, wp);
-		
-	}
-	
-	public static boolean getYesNoMessage(Object Message, ImageIcon icono){
-		
-		return getYesNoMessage(null, Message, "Question", icono, new WindowPane());
-		
-	}
-	
-	public static boolean getYesNoMessage(Object Message, ImageIcon icono, WindowPane wp){
-		
-		return getYesNoMessage(null, Message, "Question", icono, wp);
+		return getYesNoMessage(null, Message, "Question", wp);
 		
 	}
 	
 	public static boolean getYesNoMessage(Object Message, Object Title){
 		
-		return getYesNoMessage(null, Message, Title, null, new WindowPane());
+		return getYesNoMessage(null, Message, Title, new WindowPane());
 		
 	}
 	
 	public static boolean getYesNoMessage(Object Message, Object Title, WindowPane wp){
 		
-		return getYesNoMessage(null, Message, Title, null, wp);
-		
-	}
-	
-	public static boolean getYesNoMessage(Object Message, Object Title, ImageIcon icono){
-		
-		return getYesNoMessage(null, Message, Title, icono, new WindowPane());
-		
-	}
-	
-	public static boolean getYesNoMessage(Object Message, Object Title, ImageIcon icono, WindowPane wp){
-		
-		return getYesNoMessage(null, Message, Title, icono, wp);
+		return getYesNoMessage(null, Message, Title, wp);
 		
 	}
 	
 	public static boolean getYesNoMessage(Component parentComponent, Object Message, Object Title){
 		
-		return getYesNoMessage(parentComponent, Message, Title, null, new WindowPane());
-		
-	}
-	
-	public static boolean getYesNoMessage(Component parentComponent, Object Message, Object Title, WindowPane wp){
-		
-		return getYesNoMessage(parentComponent, Message, Title, null, wp);
-		
-	}
-	
-	public static boolean getYesNoMessage(Component parentComponent, Object Message, Object Title, ImageIcon icono){
-		
-		return getYesNoMessage(parentComponent, Message, Title, icono, new WindowPane());
+		return getYesNoMessage(parentComponent, Message, Title, new WindowPane());
 		
 	}
 	
 	public static boolean getYesNoMessage(Component parentComponent, Object Message){
 		
-		return getYesNoMessage(parentComponent, Message, "Question", null, new WindowPane());
+		return getYesNoMessage(parentComponent, Message, "Question", new WindowPane());
 		
 	}
 	
 	public static boolean getYesNoMessage(Component parentComponent, Object Message, WindowPane wp){
 		
-		return getYesNoMessage(parentComponent, Message, "Question", null, wp);
+		return getYesNoMessage(parentComponent, Message, "Question", wp);
 		
 	}
 	
-	public static boolean getYesNoMessage(Component parentComponent, Object Message, ImageIcon icono){
+	public static boolean getYesNoMessage(Component parentComponent, Object Message, Object Title, WindowPane wp){
 		
-		return getYesNoMessage(parentComponent, Message, "Question", icono, new WindowPane());
+		//return !Taylor.Arithmetic.Parser.Parse((int) new Taylor.Math.Mayth().abs(getOptionMessage(parentComponent, Message, Title, new String[] {"Yes", "No"}, new ImageIcon(url+"QUESTION_MESSAGE.PNG"), wp)));
 		
-	}
-	
-	public static boolean getYesNoMessage(Component parentComponent, Object Message, ImageIcon icono, WindowPane wp){
-		
-		return getYesNoMessage(parentComponent, Message, "Question", icono, wp);
-		
-	}
-	
-	public static boolean getYesNoMessage(Component parentComponent, Object Message, Object Title, ImageIcon icono, WindowPane wp){
-		
-		return !Taylor.Arithmetic.Parser.Parse((int) new Taylor.Math.Mayth().abs(getOptionMessage(parentComponent, Message, Title, new String[] {"Yes", "No"}, icono, wp)));
+		return !Taylor.Arithmetic.Parser.Parse((int) new Taylor.Math.Mayth().abs(getOptionMessage(parentComponent, Message, Title, new String[] {"Yes", "No"}, wp.TYPE_MESSAGE[QUESTION_MESSAGE], wp)));
 		
 	}
 	
@@ -1008,7 +987,7 @@ public class WindowPane{
 						RenderingHints Render = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 						g2d.setRenderingHints(Render);
 						
-                        g2d.setColor(Color.WHITE);
+                        g2d.setColor(wp.Background);
 						g2d.setStroke(new BasicStroke(2));
 						g2d.drawLine(x, y, x + 5, y + 5);
 						g2d.drawLine(x + 10, y, x + 5, y + 5);

@@ -19,6 +19,8 @@ import Graphic.User.Interface.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import java.net.URL;
+
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
@@ -35,6 +37,8 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
+		//new ImageIcon(Test.class.getClassLoader().getResource("WindowPane_Textures/INFORMATION_MESSAGE.PNG"));
+		
 		ImageIcon icono = new ImageIcon("C:\\CrudResources\\Textures\\AceptarLight.PNG");
 		
 		WindowPane wp = new WindowPane();
@@ -44,7 +48,7 @@ public class Test {
 		wp.setForeground(Color.BLACK);
 		wp.setBorderForeground(Color.WHITE);
 		
-		System.out.print(WindowPane.getYesNoMessage("Hola", wp));
+		System.out.print(WindowPane.getYesNoMessage("Answer this simple question :3\n\nDoes your parents know you're gay? UuU", wp));
 		
 		System.out.print("\n\n");
 		
