@@ -10,12 +10,12 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.math.MathContext;
  
-public class bigFuntions{
+public class bigFunctions{
 	
 	private static long indiceFactorial = -3;
 	private static BigDecimal factorial = new BigDecimal(0);
 	
-	public bigFuntions(){}
+	public bigFunctions(){}
 	
 	public BigDecimal bigPotencia(double base, double exponent){
 		

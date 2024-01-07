@@ -74,8 +74,6 @@ public class WindowPane{
 	private int BorderLength;
 	private int CornerRadio;
 	
-	private static final String url = "WindowPane_Textures/";
-	
 	/*
 	
 		All Images used here were made by https://www.flaticon.es/autores/riajulislam
@@ -85,12 +83,12 @@ public class WindowPane{
 	
 	private final ImageIcon[] TYPE_MESSAGE = new ImageIcon[] {
 		
-		new ImageIcon(getClass().getResource(url+"INFORMATION_MESSAGE.PNG")), 
-		new ImageIcon(getClass().getResource(url+"QUESTION_MESSAGE.PNG")), 
-		new ImageIcon(getClass().getResource(url+"ERROR_MESSAGE.PNG")), 
-		new ImageIcon(getClass().getResource(url+"WARNING_MESSAGE.PNG"))
+		new ImageIcon("INFORMATION_MESSAGE.PNG"), 
+		new ImageIcon("QUESTION_MESSAGE.PNG"), 
+		new ImageIcon("ERROR_MESSAGE.PNG"), 
+		new ImageIcon("WARNING_MESSAGE.PNG")
 		
-	};//*/
+	};
 	
 	public static final int INFORMATION_MESSAGE = 0;
 	public static final int QUESTION_MESSAGE = 1;

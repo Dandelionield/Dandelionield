@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.math.MathContext;
  
-public class Constants extends bigFuntions{
+public class Constants extends bigFunctions{
 	
 	public Constants(){}
 
