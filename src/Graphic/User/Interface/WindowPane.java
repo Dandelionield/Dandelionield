@@ -30,8 +30,6 @@ import java.awt.event.AdjustmentListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 
-import java.net.URL;
-
 import java.io.IOException;
 
 import javax.imageio.ImageIO;

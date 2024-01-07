@@ -19,8 +19,6 @@ import Graphic.User.Interface.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import java.net.URL;
-
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
