@@ -43,6 +43,8 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 
+import javax.swing.text.Caret;
+
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -986,7 +988,7 @@ public class WindowPane{
 		cp.setBackground(wp.Background);
 		cp.setForeground(wp.Foreground);
 		
-		JTextArea Text = cp.buildTextArea(Message.toString(), wp.Format, null, false, true);
+		JTextArea Text = cp.buildTextArea(Message.toString(), wp.Format, wp.Background, false, true);
 		Dimension PreferredSize = Text.getPreferredSize();
 		Width = (int) (1.2*PreferredSize.getWidth());
 		Height = (int) (PreferredSize.getHeight());
@@ -1082,7 +1084,7 @@ public class WindowPane{
 		cp.setBackground(wp.Background);
 		cp.setForeground(wp.Foreground);
 		
-		JTextArea Text = cp.buildTextArea(Message.toString(), wp.Format, null, false, true);
+		JTextArea Text = cp.buildTextArea(Message.toString(), wp.Format, wp.Background, false, true);
 		Dimension PreferredSize = Text.getPreferredSize();
 		Width = (int) (1.2*PreferredSize.getWidth());
 		Height = (int) (PreferredSize.getHeight());
@@ -1204,7 +1206,7 @@ public class WindowPane{
 		cp.setBackground(wp.Background);
 		cp.setForeground(wp.Foreground);
 		
-		JTextArea Text = cp.buildTextArea(Message.toString(), wp.Format, null, false, true);
+		JTextArea Text = cp.buildTextArea(Message.toString(), wp.Format, wp.Background, false, true);
 		Dimension PreferredSize = Text.getPreferredSize();
 		Width = (int) (1.2*PreferredSize.getWidth());
 		Height = (int) (PreferredSize.getHeight());
@@ -1374,7 +1376,7 @@ public class WindowPane{
 		cp.setBackground(wp.Background);
 		cp.setForeground(wp.Foreground);
 		
-		JTextArea Text = cp.buildTextArea(Message.toString(), wp.Format, null, false, true);
+		JTextArea Text = cp.buildTextArea(Message.toString(), wp.Format, wp.Background, false, true);
 		Dimension PreferredSize = Text.getPreferredSize();
 		Width = (int) (1.2*PreferredSize.getWidth());
 		Height = (int) (PreferredSize.getHeight());

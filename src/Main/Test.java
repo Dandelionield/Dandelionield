@@ -44,6 +44,8 @@ public class Test {
 		wp.setForeground(Color.BLACK);
 		wp.setBorderForeground(Color.WHITE);
 		
+		WindowPane.getInputMessage("Sisas", wp);
+		
 		WindowPane.showInformationMessage("Sisas");
 		
 		WindowPane.showErrorMessage("Nel perro");

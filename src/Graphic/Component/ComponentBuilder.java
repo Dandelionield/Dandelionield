@@ -505,6 +505,8 @@ public class ComponentBuilder{
 		PanelTexto.setCaretColor(Caret);
 		PanelTexto.setBackground(Fondo);
 		PanelTexto.setEditable(Editable);
+		PanelTexto.getCaret().setVisible(Editable);
+		PanelTexto.getCaret().setSelectionVisible(Editable);
 		PanelTexto.setVisible(Visible);
 		
 		return PanelTexto;
@@ -524,6 +526,8 @@ public class ComponentBuilder{
 		PanelTexto.setCaretColor(Caret);
 		PanelTexto.setBackground(Fondo);
 		PanelTexto.setEditable(Editable);
+		PanelTexto.getCaret().setVisible(Editable);
+		PanelTexto.getCaret().setSelectionVisible(Editable);
 		PanelTexto.setVisible(Visible);
 		
 		return PanelTexto;
@@ -542,6 +546,8 @@ public class ComponentBuilder{
 		PanelTexto.setCaretColor(Caret);
 		PanelTexto.setBackground(Fondo);
 		PanelTexto.setEditable(Editable);
+		PanelTexto.getCaret().setVisible(Editable);
+		PanelTexto.getCaret().setSelectionVisible(Editable);
 		PanelTexto.setVisible(Visible);
 		
 		return PanelTexto;
