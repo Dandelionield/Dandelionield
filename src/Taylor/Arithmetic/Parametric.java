@@ -203,6 +203,13 @@ public class Parametric{
 		
 	}
 	
+	public void reset(){
+		
+		this.p = new ArrayList<>();
+		this.values = new ArrayList<>();
+		
+	}
+	
 	public boolean isConstant(){
 		
 		for (char p : this.variable){
@@ -282,6 +289,26 @@ public class Parametric{
 		}
 		
 		return bup;
+		
+	}
+	
+	public BigDecimal productoryOf(double[] a, double[] b){
+		
+		BigDecimal Zigma = new BigDecimal(1);
+		
+		this.intervalueOf(a, b);
+		
+		for(Parser q : this.p){
+			
+			if (q.get()==null){continue;}
+			
+			Zigma = Zigma.multiply(q.get());
+			
+		}
+		
+		this.reset();
+		
+		return Zigma;
 		
 	}
 	

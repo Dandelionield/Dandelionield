@@ -199,7 +199,7 @@ public class Parser extends Mayth{
 		
 		if (n!=null){
 			
-			return wdProcess.get(0)+" = "+n.setScale(15, RoundingMode.HALF_UP).doubleValue();
+			return wdProcess.get(0)+" = "+n;
 			
 		}else{
 			

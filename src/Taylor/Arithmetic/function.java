@@ -213,6 +213,26 @@ public class function{
 		
 	}
 	
+	public BigDecimal productoryOf(double a, double b){
+		
+		BigDecimal Zigma = new BigDecimal(1);
+		
+		this.intervalueOf(a, b);
+		
+		for(Parser q : this.getParsers()){
+			
+			if (q.get()==null){continue;}
+			
+			Zigma = Zigma.multiply(q.get());
+			
+		}
+		
+		this.reset();
+		
+		return Zigma;
+		
+	}
+	
 	public Parser get(BigDecimal n){
 		
 		this.p.add(new Parser(Overwrite(n), RAD_DEG, functionType));

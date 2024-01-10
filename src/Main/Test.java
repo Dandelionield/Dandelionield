@@ -32,13 +32,23 @@ import java.awt.Dimension;
 
 public class Test {
 
-    public static void main(String[] args){
+    /*public static void main(String[] args){
 		
 		System.out.print("\n\n");
 		
-		WindowPane.showErrorMessage("zzzz");
+		Parser p = new Parser("1*3*5*7*9*11*13*15*17*19*21");
 		
-		Graph();
+		function f = new function('n', "2n + 1");
+		
+		f.intervalueOf(0, 10);
+		
+		WindowPane.showInformationMessage(p+"\n\n"+p.getProcess());
+		
+		WindowPane.showInformationMessage(f.getOutput(1).getProcess());
+		
+		WindowPane.showInformationMessage(f.productoryOf(0, 10));
+		
+		//Graph();
 		
 		System.out.print("\n\n");
 		
