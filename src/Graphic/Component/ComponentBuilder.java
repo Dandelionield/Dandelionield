@@ -8,6 +8,7 @@ package Graphic.Component;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
+
 import javax.swing.JViewport;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
@@ -21,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;

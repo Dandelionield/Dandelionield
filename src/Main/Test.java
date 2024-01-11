@@ -25,6 +25,15 @@ import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
+
+import javax.swing.JViewport;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.table.TableColumn;
+import javax.swing.DefaultCellEditor;
+
 import java.awt.Image;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -32,23 +41,11 @@ import java.awt.Dimension;
 
 public class Test {
 
-    /public static void main(String[] args){
+    public static void main(String[] args){
 		
 		System.out.print("\n\n");
 		
-		Parser p = new Parser("1*3*5*7*9*11*13*15*17*19*21");
-		
-		function f = new function('n', "2n + 1");
-		
-		f.intervalueOf(0, 10);
-		
-		WindowPane.showInformationMessage(p+"\n\n"+p.getProcess());
-		
-		WindowPane.showInformationMessage(f.getOutput(1).getProcess());
-		
-		WindowPane.showInformationMessage(f.productoryOf(0, 10));
-		
-		//Graph();
+		Graph();
 		
 		System.out.print("\n\n");
 		
@@ -69,9 +66,19 @@ public class Test {
 		PlaceHolder Text2 = new PlaceHolder("Holaaaaa");
 		Text2.setBounds(frame.getWidth()/2, frame.getHeight()/2 - 20, 100, 20);
 		
+		DefaultTableModel Tablita = new DefaultTableModel(new Object[][] {{1, 2, 2}, {1, 2, 2}}, new String[] {"a", "a", "a"});
+		
+		//JTable Table = new JTable(Tablita);
+		Table Tabla = new Table(new Object[][] {{1, 2, 2}, {1, 2, 2}}, new String[] {"a", "a", "a"});
+		
+		JScrollPane Scroll = new JScrollPane(Tabla);
+		
+		Scroll.setBounds(20, 20, 900, 200);
+		
 		panel.setLayout(null);
 		panel.setComponentZOrder(Text, z);z++;
 		panel.setComponentZOrder(Text2, z);z++;
+		panel.setComponentZOrder(Scroll, z);z++;
 		
 		JLayeredPane contentPane = new JLayeredPane();
 		contentPane.setPreferredSize(new Dimension(frame.getWidth(), frame.getHeight()));

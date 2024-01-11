@@ -24,11 +24,14 @@ public class TableHeader implements TableCellRenderer{
 	private final Color Foreground;
 	private final Font Format;
 	
+	private final String Title;
+	
 	public TableHeader(){
 		
 		this.Background = Color.BLACK;
 		this.Foreground = Color.WHITE;
 		this.Format = new Font("Clarendon Blk BT", Font.BOLD, 15);
+		this.Title = "Data Table";
 		
 	}
 	
@@ -43,7 +46,7 @@ public class TableHeader implements TableCellRenderer{
         Header.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new Color(255, 255, 255)));
         Header.setOpaque(true);
         Header.setBackground(this.Background);
-        Header.setToolTipText("Tabla Seguimiento");
+        Header.setToolTipText(Title);
         Header.setForeground(this.Foreground);
 		Header.setFont(this.Format);
         
