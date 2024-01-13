@@ -16,22 +16,81 @@ import javax.swing.JTable;
 import javax.swing.JComponent;
 import javax.swing.SwingConstants;
 
+import javax.swing.border.MatteBorder;
+import javax.swing.border.LineBorder;
+
 import javax.swing.table.TableCellRenderer;
 
 public class TableHeader implements TableCellRenderer{
 	
-	private final Color Background;
-	private final Color Foreground;
-	private final Font Format;
+	private Color Background;
+	private Color Foreground;
+	private Font Format;
 	
-	private final String Title;
+	private String Title;
+	
+	private int InnerBorder = 1;
 	
 	public TableHeader(){
 		
-		this.Background = Color.BLACK;
-		this.Foreground = Color.WHITE;
-		this.Format = new Font("Clarendon Blk BT", Font.BOLD, 15);
+		this.Background = null;
+		this.Foreground = Color.BLACK;
+		this.Format = new Font("Clarendon Blk BT", Font.BOLD, 12);
 		this.Title = "Data Table";
+		
+	}
+	
+	public Color getBackground(){
+		
+		return this.Background;
+		
+	}
+	
+	public Color getForeground(){
+		
+		return this.Foreground;
+		
+	}
+	
+	public Font getFont(){
+		
+		return this.Format;
+		
+	}
+	
+	public void setBackground(Color Background){
+		
+		this.Background = Background;
+		
+	}
+	
+	public void setForeground(Color Foreground){
+		
+		this.Foreground = Foreground;
+		
+	}
+	
+	public void setFont(Font Format){
+		
+		this.Format = Format;
+		
+	}
+	
+	public String getTitle(){
+		
+		return this.Title;
+		
+	}
+	
+	public void hideInnerBorder(){
+		
+		this.InnerBorder = 0;
+		
+	}
+	
+	public void showInnerBorder(){
+		
+		this.InnerBorder = 1;
 		
 	}
 	
@@ -40,16 +99,16 @@ public class TableHeader implements TableCellRenderer{
         JComponent Header = Header = new JLabel((String) value);
 		
 		((JLabel) Header).setHorizontalAlignment(SwingConstants.CENTER);
-        ((JLabel) Header).setSize(30, Header.getWidth());   
+        ((JLabel) Header).setSize(20, Header.getWidth());   
         ((JLabel) Header).setPreferredSize(new Dimension(6, Header.getWidth()));	         
    
-        Header.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new Color(255, 255, 255)));
         Header.setOpaque(true);
         Header.setBackground(this.Background);
         Header.setToolTipText(Title);
         Header.setForeground(this.Foreground);
 		Header.setFont(this.Format);
-        
+		Header.setBorder(new MatteBorder(0, 0, 1, InnerBorder, Color.GRAY));
+		
         return Header;
     }
 	

@@ -66,19 +66,62 @@ public class Test {
 		PlaceHolder Text2 = new PlaceHolder("Holaaaaa");
 		Text2.setBounds(frame.getWidth()/2, frame.getHeight()/2 - 20, 100, 20);
 		
-		DefaultTableModel Tablita = new DefaultTableModel(new Object[][] {{1, 2, 2}, {1, 2, 2}}, new String[] {"a", "a", "a"});
+		DefaultTableModel Tablita = new DefaultTableModel(new Object[][] {
+			
+			{1, 2, 2}, 
+			{1, 2, 2}, 
+			{1, 2, 2}, 
+			{1, 2, 2}, 
+			{1, 2, 2}, 
+			{1, 2, 2}, 
+			{1, 2, 2}, 
+			{1, 2, 2}, 
+			{1, 2, 2}, 
+			{1, 2, 2}, 
+			{1, 2, 2}, 
+			{1, 2, 2}
+			
+		}, new String[] {"a", "a", "a"});
 		
-		//JTable Table = new JTable(Tablita);
-		Table Tabla = new Table(new Object[][] {{1, 2, 2}, {1, 2, 2}}, new String[] {"a", "a", "a"});
+		JTable Tabla1 = new JTable(Tablita);
+		
+		Table Tabla = new Table(new Object[][] {
+			
+			{1, 2, 2}, 
+			{1, 2, 2}, 
+			{1, 2, 2}, 
+			{1, 2, 2}, 
+			{1, 2, 2}, 
+			{1, 2, 2}, 
+			{1, 2, 2}, 
+			{1, 2, 2}, 
+			{1, 2, 2}, 
+			{1, 2, 2}, 
+			{1, 2, 2}, 
+			{1, 2, 2}
+			
+		}, new String[] {"a", "a", "a"});
+		
+		//Tabla.getHeader().hideInnerBorder();
+		
+		//Tabla.setBackground(new Color(66, 224, 245));
+		
+		System.out.print(Tabla.getRowCount()+"\n");
+		//Tabla.removeRow(1);
+		System.out.print(Tabla.getRowCount()+"\n");
 		
 		JScrollPane Scroll = new JScrollPane(Tabla);
+		JScrollPane Scroll1 = new JScrollPane(Tabla1);
 		
 		Scroll.setBounds(20, 20, 900, 200);
+		
+		Scroll1.setBounds(20, 260, 900, 200);
 		
 		panel.setLayout(null);
 		panel.setComponentZOrder(Text, z);z++;
 		panel.setComponentZOrder(Text2, z);z++;
 		panel.setComponentZOrder(Scroll, z);z++;
+		panel.setComponentZOrder(Scroll1, z);z++;
 		
 		JLayeredPane contentPane = new JLayeredPane();
 		contentPane.setPreferredSize(new Dimension(frame.getWidth(), frame.getHeight()));
