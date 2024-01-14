@@ -8,8 +8,11 @@ package Graphic.Component;
 
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.BasicStroke;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -22,6 +25,9 @@ import javax.swing.SwingConstants;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+
+import javax.swing.border.MatteBorder;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -33,6 +39,7 @@ import javax.swing.JScrollPane;
 import javax.swing.DefaultCellEditor;
 
 import java.util.EventObject;
+import java.util.Vector;
 
 public class Table extends JTable{
 	
@@ -40,7 +47,7 @@ public class Table extends JTable{
 	
 	private Object[][] Data;
 	private String[] ColumnName;
-	private DefaultTableModel Tablita;
+	private final DefaultTableModel Tablita;
 	
 	private Color Background;
 	private Color Foreground;
@@ -71,9 +78,39 @@ public class Table extends JTable{
 		
 	}
 	
+	public DefaultTableModel getDefaultTableModel(){
+		
+		return this.Tablita;
+		
+	}
+	
 	public TableHeader getHeader(){
 		
 		return this.Header;
+		
+	}
+	
+	public String getColumnName(int Column){
+		
+		return this.Tablita.getColumnName(Column);
+		
+	}
+	
+	public Vector<Vector> getDataVector(){
+		
+		return this.Tablita.getDataVector();
+		
+	}
+	
+	public Object getValueAt(int Row, int Column){
+		
+		return this.Tablita.getValueAt(Row, Column);
+		
+	}
+	
+	public void setValueAt(Object value, int Row, int Column){
+		
+		this.Tablita.setValueAt(value, Row, Column);
 		
 	}
 	
@@ -83,7 +120,49 @@ public class Table extends JTable{
 		
 	}
 	
+	public void setColumnCount(int ColumnCount){
+		
+		this.Tablita.setColumnCount(ColumnCount);
+		
+	}
+	
+	public void setRowCount​(int RowCount){
+		
+		this.Tablita.setRowCount(RowCount);
+		
+	}
+	
+	public void setColumnIdentifiers​(Object[] newIdentifiers){
+		
+		this.Tablita.setColumnIdentifiers(newIdentifiers);
+		
+	}
+	
+	public void setColumnIdentifiers​(Vector<?> newIdentifiers){
+		
+		this.Tablita.setColumnIdentifiers(newIdentifiers);
+		
+	}
+	
+	public void setDataVector​(Object[][] dataVector, Object[] columnIdentifiers){
+		
+		this.Tablita.setDataVector(dataVector, columnIdentifiers);
+		
+	}
+	
+	public void setDataVector​(Vector<? extends Vector> dataVector, Vector<?> columnIdentifiers){
+		
+		this.Tablita.setDataVector(dataVector, columnIdentifiers);
+		
+	}
+	
 	public void addRow(Object[] rowData){
+		
+		this.Tablita.addRow(rowData);
+		
+	}
+	
+	public void addRow(Vector<?> rowData){
 		
 		this.Tablita.addRow(rowData);
 		
@@ -101,7 +180,19 @@ public class Table extends JTable{
 		
 	}
 	
+	public void addColumn(Object ColumnName, Vector<?> ColumnData){
+		
+		this.Tablita.addColumn(ColumnName, ColumnData);
+		
+	}
+	
 	public void insertRow(int indice, Object[] rowData){
+		
+		this.Tablita.insertRow(indice, rowData);
+		
+	}
+	
+	public void insertRow(int indice, Vector<?> rowData){
 		
 		this.Tablita.insertRow(indice, rowData);
 		
@@ -113,9 +204,41 @@ public class Table extends JTable{
 		
 	}
 	
+	public boolean isCellEditable(int Row, int Column){
+		
+		return this.Tablita.isCellEditable(Row, Column);
+		
+	}
+	
+	public void moveRow(int start, int end, int to){
+		
+		this.Tablita.moveRow(start, end, to);
+		
+	}
+	
+	public void newDataAvailable​(TableModelEvent event){
+		
+		this.Tablita.newDataAvailable(event);
+		
+	}
+	
+	public void newRowsAdded​​(TableModelEvent e){
+		
+		this.Tablita.newRowsAdded(e);
+		
+	}
+	
+	public void rowsRemoved​(TableModelEvent event){
+		
+		this.Tablita.rowsRemoved(event);
+		
+	}
+	
 	private void innit(){
 		
 		for(int i=0; i<this.getColumnCount(); i++){
+			
+			this.getColumnModel().getColumn(i).setCellRenderer(new TableCell());
 			
 			if (CellEditable[i]){
 				
@@ -137,12 +260,8 @@ public class Table extends JTable{
 			
 		}
 		
-		for (int i=0; i<this.getColumnCount(); i++) {
-
-			this.getColumnModel().getColumn(i).setCellRenderer(new TableCell());
-			
-		}
-		
+		//this.setGridColor(this.getBackground());
+		//this.setBorder(new MatteBorder(0, 0, 1, 0, Color.RED));
 		
 		JTableHeader Header = this.getTableHeader();
 	    Header.setDefaultRenderer(this.Header);

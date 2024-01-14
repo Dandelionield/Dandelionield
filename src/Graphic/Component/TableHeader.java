@@ -40,6 +40,51 @@ public class TableHeader implements TableCellRenderer{
 		
 	}
 	
+	public TableHeader(Color Background){
+		
+		this.Background = Background;
+		this.Foreground = Color.BLACK;
+		this.Format = new Font("Clarendon Blk BT", Font.BOLD, 12);
+		this.Title = "Data Table";
+		
+	}
+	
+	public TableHeader(Color Background, Color Foreground){
+		
+		this.Background = Background;
+		this.Foreground = Foreground;
+		this.Format = new Font("Clarendon Blk BT", Font.BOLD, 12);
+		this.Title = "Data Table";
+		
+	}
+	
+	public TableHeader(Font Format){
+		
+		this.Background = null;
+		this.Foreground = Color.BLACK;
+		this.Format = Format;
+		this.Title = "Data Table";
+		
+	}
+	
+	public TableHeader(String Title){
+		
+		this.Background = null;
+		this.Foreground = Color.BLACK;
+		this.Format = new Font("Clarendon Blk BT", Font.BOLD, 12);
+		this.Title = Title;
+		
+	}
+	
+	public TableHeader(Color Background, Color Foreground, Font Format, String Title){
+		
+		this.Background = Background;
+		this.Foreground = Foreground;
+		this.Format = Format;
+		this.Title = Title;
+		
+	}
+	
 	public Color getBackground(){
 		
 		return this.Background;

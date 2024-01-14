@@ -9,16 +9,22 @@ package Graphic.Component;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.Graphics;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.BasicStroke;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.border.MatteBorder;
 
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JComponent;
 import javax.swing.SwingConstants;
+import javax.swing.BorderFactory;
 
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -39,6 +45,38 @@ public class TableCell extends DefaultTableCellRenderer{
 		this.DefaultBackground = this.getBackground();
 		this.DefaultForeground = this.getForeground();
 		this.Format = new Font("Verdana", Font.PLAIN, 12);
+		
+	}
+	
+	public TableCell(Color FocusBackground, Color FocusForeground){
+		
+		this.FocusBackground = FocusBackground;
+		this.FocusForeground = FocusForeground;
+		this.DefaultBackground = this.getBackground();
+		this.DefaultForeground = this.getForeground();
+		this.Format = new Font("Verdana", Font.PLAIN, 12);
+		
+	}
+	
+	public TableCell(Color FocusBackground, Color FocusForeground, Font Format){
+		
+		this.FocusBackground = FocusBackground;
+		this.FocusForeground = FocusForeground;
+		this.DefaultBackground = this.getBackground();
+		this.DefaultForeground = this.getForeground();
+		this.Format = Format;
+		
+	}
+	
+	public TableCell(Color FocusBackground, Color FocusForeground, Color DefaultBackground, Color DefaultForeground, Font Format){
+		
+		this.FocusBackground = FocusBackground;
+		this.FocusForeground = FocusForeground;
+		this.setBackground(DefaultBackground);
+		this.setForeground(DefaultForeground);
+		this.DefaultBackground = this.getBackground();
+		this.DefaultForeground = this.getForeground();
+		this.Format = Format;
 		
 	}
 	
@@ -111,6 +149,10 @@ public class TableCell extends DefaultTableCellRenderer{
 		}
 		
 		this.setFont(Format);
+		
+		//((JComponent) cp).setBorder(BorderFactory.createCompoundBorder(this.getBorder(), new MatteBorder(0, 0, 1, 0, this.getBackground())));
+		
+		//this.setBorder(new MatteBorder(0, 0, 1, 1, Color.GRAY));
 		
 		return cp;
 		

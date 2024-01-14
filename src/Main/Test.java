@@ -39,6 +39,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Dimension;
 
+import java.util.Vector;
+
 public class Test {
 
     public static void main(String[] args){
@@ -90,25 +92,25 @@ public class Test {
 			{1, 2, 2}, 
 			{1, 2, 2}, 
 			{1, 2, 2}, 
-			{1, 2, 2}, 
-			{1, 2, 2}, 
-			{1, 2, 2}, 
-			{1, 2, 2}, 
-			{1, 2, 2}, 
-			{1, 2, 2}, 
-			{1, 2, 2}, 
-			{1, 2, 2}, 
-			{1, 2, 2}
+			{1, 2, 2},
 			
 		}, new String[] {"a", "a", "a"});
+		
+		Tabla.setShowHorizontalLines(true);
+		Tabla.setShowVerticalLines(false);
 		
 		//Tabla.getHeader().hideInnerBorder();
 		
 		//Tabla.setBackground(new Color(66, 224, 245));
 		
-		System.out.print(Tabla.getRowCount()+"\n");
-		//Tabla.removeRow(1);
-		System.out.print(Tabla.getRowCount()+"\n");
+		Vector<Object> v = new Vector<>();
+		
+		v.add(3);
+		v.add(3);
+		v.add(3);
+		v.add(3);
+		
+		//Tabla.insertRow(0, v);
 		
 		JScrollPane Scroll = new JScrollPane(Tabla);
 		JScrollPane Scroll1 = new JScrollPane(Tabla1);
