@@ -39,11 +39,13 @@ import javax.swing.JScrollPane;
 import javax.swing.DefaultCellEditor;
 
 import java.util.EventObject;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class Table extends JTable{
 	
 	private TableHeader Header;
+	private ArrayList<TableCell> Cell = new ArrayList<>();
 	
 	private Object[][] Data;
 	private String[] ColumnName;
@@ -52,7 +54,7 @@ public class Table extends JTable{
 	private Color Background;
 	private Color Foreground;
 	
-	private boolean[] CellEditable;
+	private ArrayList<Boolean> CellEditable = new ArrayList<>();
 	
 	public Table(Object[][] Data, String[] ColumnName){
 		
@@ -61,19 +63,18 @@ public class Table extends JTable{
 		this.Tablita = new DefaultTableModel(this.Data, this.ColumnName);
 		this.Background = this.getBackground();
 		this.Foreground = this.getForeground();
-		this.CellEditable = new boolean[this.ColumnName.length];
 		
 		this.Header = new TableHeader();
 		
-		for (int i=0; i<this.CellEditable.length; i++){
+		for (int i=0; i<this.ColumnName.length; i++){
 			
-			CellEditable[i] = true;
+			this.CellEditable.add(true);
+			this.Cell.add(new TableCell());
 			
 		}
 		
 		this.setModel(Tablita);
 		
-		innit();
 		Listener();
 		
 	}
@@ -117,6 +118,50 @@ public class Table extends JTable{
 	public void setHeader(TableHeader Header){
 		
 		this.Header = Header;
+		
+	}
+	
+	public void setCellEditable(boolean value){
+		
+		ArrayList<Boolean> bup = new ArrayList<>();
+		
+		for (int i=0; i<this.CellEditable.size(); i++){
+			
+			bup.add(value);
+			
+		}
+		
+		this.CellEditable = bup;
+		
+	}
+	
+	public void setColumnEditable(int Column, boolean value){
+		
+		this.CellEditable.remove(Column);
+		
+		this.CellEditable.add(Column, value);
+		
+	}
+	
+	public void setHorizontalAlignment(int SwingConstant){
+		
+		for (int i=0; i<this.Cell.size(); i++){
+			
+			Cell.get(i).setHorizontalAlignment(SwingConstant);
+			
+		}
+		
+	}
+	
+	public void setHorizontalAlignment(int indice, int SwingConstant){
+		
+		Cell.get(indice).setHorizontalAlignment(SwingConstant);
+		
+	}
+	
+	public void setForeground(int indice, Color Foreground){
+		
+		Cell.get(indice).setDefaultForeground(Foreground);
 		
 	}
 	
@@ -172,17 +217,26 @@ public class Table extends JTable{
 		
 		this.Tablita.addColumn(ColumnName);
 		
+		this.CellEditable.add(true);
+		this.Cell.add(new TableCell(Cell.get(0).getFocusBackground(), Cell.get(0).getFocusForeground(), Cell.get(0).getFont(), SwingConstants.LEFT));
+		
 	}
 	
 	public void addColumn(Object ColumnName, Object[] ColumnData){
 		
 		this.Tablita.addColumn(ColumnName, ColumnData);
 		
+		this.CellEditable.add(true);
+		this.Cell.add(new TableCell(Cell.get(0).getFocusBackground(), Cell.get(0).getFocusForeground(), Cell.get(0).getFont(), SwingConstants.LEFT));
+		
 	}
 	
 	public void addColumn(Object ColumnName, Vector<?> ColumnData){
 		
 		this.Tablita.addColumn(ColumnName, ColumnData);
+		
+		this.CellEditable.add(true);
+		this.Cell.add(new TableCell(Cell.get(0).getFocusBackground(), Cell.get(0).getFocusForeground(), Cell.get(0).getFont(), SwingConstants.LEFT));
 		
 	}
 	
@@ -234,13 +288,25 @@ public class Table extends JTable{
 		
 	}
 	
+	protected void paintComponent(Graphics g) {
+		
+        Graphics2D g2 = (Graphics2D) g.create();
+        
+		innit();
+		
+		super.paintComponent(g);
+
+        g2.dispose();
+		
+    }
+	
 	private void innit(){
 		
 		for(int i=0; i<this.getColumnCount(); i++){
 			
-			this.getColumnModel().getColumn(i).setCellRenderer(new TableCell());
+			this.getColumnModel().getColumn(i).setCellRenderer(this.Cell.get(i));
 			
-			if (CellEditable[i]){
+			if (this.CellEditable.get(i)){
 				
 				continue;
 				
@@ -259,9 +325,6 @@ public class Table extends JTable{
 			});
 			
 		}
-		
-		//this.setGridColor(this.getBackground());
-		//this.setBorder(new MatteBorder(0, 0, 1, 0, Color.RED));
 		
 		JTableHeader Header = this.getTableHeader();
 	    Header.setDefaultRenderer(this.Header);

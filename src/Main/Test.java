@@ -31,6 +31,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.JViewport;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 import javax.swing.table.TableColumn;
 import javax.swing.DefaultCellEditor;
 
@@ -96,8 +97,13 @@ public class Test {
 			
 		}, new String[] {"a", "a", "a"});
 		
+		Tabla.setColumnEditable(1, false);
+		Tabla.setHorizontalAlignment(1, SwingConstants.CENTER);
+		
+		Tabla.setForeground(1, Color.RED);
+		
 		Tabla.setShowHorizontalLines(true);
-		Tabla.setShowVerticalLines(false);
+		Tabla.setShowVerticalLines(true);
 		
 		//Tabla.getHeader().hideInnerBorder();
 		
@@ -110,7 +116,7 @@ public class Test {
 		v.add(3);
 		v.add(3);
 		
-		//Tabla.insertRow(0, v);
+		Tabla.addColumn("zzz", v);
 		
 		JScrollPane Scroll = new JScrollPane(Tabla);
 		JScrollPane Scroll1 = new JScrollPane(Tabla1);

@@ -36,7 +36,9 @@ public class TableCell extends DefaultTableCellRenderer{
 	private Color DefaultBackground;
 	private Color DefaultForeground;
 	
-	private final Font Format;
+	private Font Format;
+	
+	private int SwingConstant;
 	
 	public TableCell(){
 		
@@ -45,6 +47,7 @@ public class TableCell extends DefaultTableCellRenderer{
 		this.DefaultBackground = this.getBackground();
 		this.DefaultForeground = this.getForeground();
 		this.Format = new Font("Verdana", Font.PLAIN, 12);
+		this.SwingConstant = SwingConstants.LEFT;
 		
 	}
 	
@@ -55,6 +58,7 @@ public class TableCell extends DefaultTableCellRenderer{
 		this.DefaultBackground = this.getBackground();
 		this.DefaultForeground = this.getForeground();
 		this.Format = new Font("Verdana", Font.PLAIN, 12);
+		this.SwingConstant = SwingConstants.LEFT;
 		
 	}
 	
@@ -65,6 +69,18 @@ public class TableCell extends DefaultTableCellRenderer{
 		this.DefaultBackground = this.getBackground();
 		this.DefaultForeground = this.getForeground();
 		this.Format = Format;
+		this.SwingConstant = SwingConstants.LEFT;
+		
+	}
+	
+	public TableCell(Color FocusBackground, Color FocusForeground, Font Format, int SwingConstant){
+		
+		this.FocusBackground = FocusBackground;
+		this.FocusForeground = FocusForeground;
+		this.DefaultBackground = this.getBackground();
+		this.DefaultForeground = this.getForeground();
+		this.Format = Format;
+		this.SwingConstant = SwingConstant;
 		
 	}
 	
@@ -77,6 +93,31 @@ public class TableCell extends DefaultTableCellRenderer{
 		this.DefaultBackground = this.getBackground();
 		this.DefaultForeground = this.getForeground();
 		this.Format = Format;
+		this.SwingConstant = SwingConstants.LEFT;
+		
+	}
+	
+	public TableCell(Font Format, int SwingConstant){
+		
+		this.FocusBackground = new Color(46, 54, 59);
+		this.FocusForeground = Color.WHITE;
+		this.DefaultBackground = this.getBackground();
+		this.DefaultForeground = this.getForeground();
+		this.Format = Format;
+		this.SwingConstant = SwingConstant;
+		
+	}
+	
+	public TableCell(Color FocusBackground, Color FocusForeground, Color DefaultBackground, Color DefaultForeground, Font Format, int SwingConstant){
+		
+		this.FocusBackground = FocusBackground;
+		this.FocusForeground = FocusForeground;
+		this.setBackground(DefaultBackground);
+		this.setForeground(DefaultForeground);
+		this.DefaultBackground = this.getBackground();
+		this.DefaultForeground = this.getForeground();
+		this.Format = Format;
+		this.SwingConstant = SwingConstant;
 		
 	}
 	
@@ -98,6 +139,12 @@ public class TableCell extends DefaultTableCellRenderer{
 		
 	}
 	
+	public int getHorizontalAlignment(){
+		
+		return this.SwingConstant;
+		
+	}
+	
 	public void setFocusBackground(Color FocusBackground){
 		
 		this.FocusBackground = FocusBackground;
@@ -107,6 +154,18 @@ public class TableCell extends DefaultTableCellRenderer{
 	public void setFocusForeground(Color FocusForeground){
 		
 		this.FocusForeground = FocusForeground;
+		
+	}
+	
+	public void setDefaultForeground(Color DefaultForeground){
+		
+		this.DefaultForeground = DefaultForeground;
+		
+	}
+	
+	public void setHorizontalAlignment(int SwingConstant){
+		
+		this.SwingConstant = SwingConstant;
 		
 	}
 	
@@ -149,10 +208,7 @@ public class TableCell extends DefaultTableCellRenderer{
 		}
 		
 		this.setFont(Format);
-		
-		//((JComponent) cp).setBorder(BorderFactory.createCompoundBorder(this.getBorder(), new MatteBorder(0, 0, 1, 0, this.getBackground())));
-		
-		//this.setBorder(new MatteBorder(0, 0, 1, 1, Color.GRAY));
+		this.setHorizontalAlignment(SwingConstant);
 		
 		return cp;
 		
