@@ -40,6 +40,9 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Dimension;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import java.util.Vector;
 
 public class Test {
@@ -104,6 +107,18 @@ public class Test {
 		
 		Tabla.setShowHorizontalLines(true);
 		Tabla.setShowVerticalLines(true);
+		
+		Tabla.addMouseListener(new MouseAdapter() {
+
+			public void mouseEntered(MouseEvent e) {
+
+				System.out.print(Tabla.getSelectedRow()+"\n");
+
+			}
+
+		});
+		
+		System.out.print(Tabla.getSelectedRow());
 		
 		//Tabla.getHeader().hideInnerBorder();
 		

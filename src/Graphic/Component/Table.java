@@ -33,6 +33,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableCellEditor;
 
 import javax.swing.JViewport;
 import javax.swing.JScrollPane;
@@ -344,11 +345,18 @@ public class Table extends JTable{
                 int Column = DTable.columnAtPoint(e.getPoint());
 				
                 if (Row!=-1 && Column!=-1){
-                    
-                    DTable.changeSelection(Row, Column, false, false);
-                    DTable.setRowSelectionInterval(Row, Row);
+					
+                    for (int i=0; i<Cell.size(); i++){
+					
+						Cell.get(i).setFocusedRow(Row);
+						Cell.get(i).setFocusedColumn(Column);
+						
+					}
+					
+					repaint();
 					
                 }
+				
             }
 			
         });

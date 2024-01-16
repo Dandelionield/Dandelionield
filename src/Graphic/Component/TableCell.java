@@ -14,6 +14,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.BasicStroke;
+import java.awt.KeyboardFocusManager;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -39,6 +40,8 @@ public class TableCell extends DefaultTableCellRenderer{
 	private Font Format;
 	
 	private int SwingConstant;
+	private int focusedRow = -1;
+	private int focusedColumn = -1;
 	
 	public TableCell(){
 		
@@ -169,13 +172,25 @@ public class TableCell extends DefaultTableCellRenderer{
 		
 	}
 	
+	public void setFocusedRow(int Row){
+		
+		this.focusedRow = Row;
+		
+	}
+	
+	public void setFocusedColumn(int Column){
+		
+		this.focusedColumn = Column;
+		
+	}
+	
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocused, int Row, int Column) {
 		
 		Component cp = super.getTableCellRendererComponent(table, value, isSelected, hasFocused, Row, Column);
 		
 		boolean bd = false;
 		
-		if (isSelected){
+		if (Row==focusedRow){
 			
 			bd = true;
 			
@@ -191,7 +206,7 @@ public class TableCell extends DefaultTableCellRenderer{
 			
 		}
 		
-		if (hasFocused){
+		if (Row==focusedRow && Column==focusedColumn){
 			
             this.setBackground(FocusBackground);
 			this.setForeground(FocusForeground);
