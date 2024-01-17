@@ -218,8 +218,7 @@ public class Table extends JTable{
 		
 		this.Tablita.addColumn(ColumnName);
 		
-		this.CellEditable.add(true);
-		this.Cell.add(new TableCell(Cell.get(0).getFocusBackground(), Cell.get(0).getFocusForeground(), Cell.get(0).getFont(), SwingConstants.LEFT));
+		adder();
 		
 	}
 	
@@ -227,8 +226,7 @@ public class Table extends JTable{
 		
 		this.Tablita.addColumn(ColumnName, ColumnData);
 		
-		this.CellEditable.add(true);
-		this.Cell.add(new TableCell(Cell.get(0).getFocusBackground(), Cell.get(0).getFocusForeground(), Cell.get(0).getFont(), SwingConstants.LEFT));
+		adder();
 		
 	}
 	
@@ -236,8 +234,14 @@ public class Table extends JTable{
 		
 		this.Tablita.addColumn(ColumnName, ColumnData);
 		
+		adder();
+		
+	}
+	
+	private void adder(){
+		
 		this.CellEditable.add(true);
-		this.Cell.add(new TableCell(Cell.get(0).getFocusBackground(), Cell.get(0).getFocusForeground(), Cell.get(0).getFont(), SwingConstants.LEFT));
+		this.Cell.add(new TableCell(Cell.get(0).getFocusCellBackground(), Cell.get(0).getFocusCellForeground(), Cell.get(0).getFocusRowBackground(), Cell.get(0).getFocusRowForeground(), Cell.get(0).getFocusColumnBackground(), Cell.get(0).getFocusColumnForeground(), this.getBackground(), this.getForeground(), Cell.get(0).getFont()));
 		
 	}
 	
