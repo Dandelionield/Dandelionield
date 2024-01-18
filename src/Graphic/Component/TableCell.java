@@ -70,12 +70,29 @@ public class TableCell extends DefaultTableCellRenderer{
 		
 	}
 	
-	public TableCell(Color FocusBackground, Color FocusForeground){
+	public TableCell(TableCell Cell){
+		
+		this.FocusCellBackground = Cell.FocusCellBackground;
+		this.FocusCellForeground = Cell.FocusCellForeground;
+		this.FocusRowBackground = Cell.FocusRowBackground;
+		this.FocusRowForeground = Cell.FocusRowForeground;
+		this.FocusColumnBackground = Cell.FocusColumnBackground;
+		this.FocusColumnForeground = Cell.FocusColumnForeground;
+		this.setBackground(Cell.DefaultBackground);
+		this.setForeground(Cell.DefaultForeground);
+		this.DefaultBackground = this.getBackground();
+		this.DefaultForeground = this.getForeground();
+		this.Format = Cell.Format;
+		this.SwingConstant = Cell.SwingConstant;
+		
+	}
+	
+	public TableCell(Color FocusRowBackground, Color FocusRowForeground){
 		
 		this.FocusCellBackground = new Color(46, 54, 59);
 		this.FocusCellForeground = Color.WHITE;
-		this.FocusRowBackground = FocusBackground;
-		this.FocusRowForeground = FocusForeground;
+		this.FocusRowBackground = FocusRowBackground;
+		this.FocusRowForeground = FocusRowForeground;
 		this.FocusColumnBackground = Color.GRAY;
 		this.FocusColumnForeground = Color.WHITE;
 		this.DefaultBackground = this.getBackground();
@@ -85,12 +102,12 @@ public class TableCell extends DefaultTableCellRenderer{
 		
 	}
 	
-	public TableCell(Color FocusBackground, Color FocusForeground, Font Format){
+	public TableCell(Color FocusRowBackground, Color FocusRowForeground, Font Format){
 		
 		this.FocusCellBackground = new Color(46, 54, 59);
 		this.FocusCellForeground = Color.WHITE;
-		this.FocusRowBackground = FocusBackground;
-		this.FocusRowForeground = FocusForeground;
+		this.FocusRowBackground = FocusRowBackground;
+		this.FocusRowForeground = FocusRowForeground;
 		this.FocusColumnBackground = Color.GRAY;
 		this.FocusColumnForeground = Color.WHITE;
 		this.DefaultBackground = this.getBackground();
@@ -100,12 +117,12 @@ public class TableCell extends DefaultTableCellRenderer{
 		
 	}
 	
-	public TableCell(Color FocusBackground, Color FocusForeground, Font Format, int SwingConstant){
+	public TableCell(Color FocusRowBackground, Color FocusRowForeground, Font Format, int SwingConstant){
 		
 		this.FocusCellBackground = new Color(46, 54, 59);
 		this.FocusCellForeground = Color.WHITE;
-		this.FocusRowBackground = FocusBackground;
-		this.FocusRowForeground = FocusForeground;
+		this.FocusRowBackground = FocusRowBackground;
+		this.FocusRowForeground = FocusRowForeground;
 		this.FocusColumnBackground = Color.GRAY;
 		this.FocusColumnForeground = Color.WHITE;
 		this.DefaultBackground = this.getBackground();
@@ -136,7 +153,7 @@ public class TableCell extends DefaultTableCellRenderer{
 		
 		this.FocusCellBackground = new Color(46, 54, 59);
 		this.FocusCellForeground = Color.WHITE;
-		this.FocusRowBackground = new Color(46, 54, 59);
+		this.FocusRowBackground = Color.GRAY;
 		this.FocusRowForeground = Color.WHITE;
 		this.FocusColumnBackground = Color.GRAY;
 		this.FocusColumnForeground = Color.WHITE;
@@ -155,6 +172,23 @@ public class TableCell extends DefaultTableCellRenderer{
 		this.FocusRowForeground = FocusForeground;
 		this.FocusColumnBackground = Color.GRAY;
 		this.FocusColumnForeground = Color.WHITE;
+		this.setBackground(DefaultBackground);
+		this.setForeground(DefaultForeground);
+		this.DefaultBackground = this.getBackground();
+		this.DefaultForeground = this.getForeground();
+		this.Format = Format;
+		this.SwingConstant = SwingConstant;
+		
+	}
+	
+	public TableCell(Color FocusCellBackground, Color FocusCellForeground, Color FocusRowBackground, Color FocusRowForeground, Color FocusColumnBackground, Color FocusColumnForeground,  Color DefaultBackground, Color DefaultForeground, Font Format, int SwingConstant){
+		
+		this.FocusCellBackground = FocusCellBackground;
+		this.FocusCellForeground = FocusCellForeground;
+		this.FocusRowBackground = FocusRowBackground;
+		this.FocusRowForeground = FocusRowForeground;
+		this.FocusColumnBackground = FocusColumnBackground;
+		this.FocusColumnForeground = FocusColumnForeground;
 		this.setBackground(DefaultBackground);
 		this.setForeground(DefaultForeground);
 		this.DefaultBackground = this.getBackground();

@@ -101,9 +101,10 @@ public class Test {
 		}, new String[] {"a", "a", "a"});
 		
 		Tabla.setColumnEditable(1, false);
-		Tabla.setHorizontalAlignment(1, SwingConstants.CENTER);
+		Tabla.getColumn(1).setHorizontalAlignment(SwingConstants.CENTER);
 		
-		Tabla.setForeground(1, Color.RED);
+		Tabla.getColumn(1).setDefaultForeground(Color.RED);
+		Tabla.getColumn(1).setFocusCellBackground(Color.BLUE);
 		
 		Tabla.setShowHorizontalLines(true);
 		Tabla.setShowVerticalLines(true);
@@ -131,7 +132,7 @@ public class Test {
 		
 		Tabla.addColumn("aaa", v);
 		Tabla.addColumn(new ImageIcon(Test.class.getResource("/WindowPane_Textures/INFORMATION_MESSAGE.png")));
-		Tabla.addColumn(new ImageIcon(Test.class.getResource("/WindowPane_Textures/ERROR_MESSAGE.png")));
+		Tabla.addColumn(new ImageIcon(Test.class.getResource("/WindowPane_Textures/ERROR_MESSAGE.png")));//*/
 		
 		JScrollPane Scroll = new JScrollPane(Tabla);
 		JScrollPane Scroll1 = new JScrollPane(Tabla1);
