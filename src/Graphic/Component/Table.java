@@ -20,6 +20,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTable;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.SwingConstants;
 
@@ -222,6 +223,19 @@ public class Table extends JTable{
 		
 	}
 	
+	public void addColumn(ImageIcon icono){
+		
+		this.Tablita.addColumn(" ");
+		
+		TableCell Celda = new TableCell(Cell.get(0).getFocusCellBackground(), Cell.get(0).getFocusCellForeground(), Cell.get(0).getFocusRowBackground(), Cell.get(0).getFocusRowForeground(), Cell.get(0).getFocusColumnBackground(), Cell.get(0).getFocusColumnForeground(), this.getBackground(), this.getForeground(), Cell.get(0).getFont());
+		Celda.setImage(icono);
+		Celda.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		this.CellEditable.add(false);
+		this.Cell.add(Celda);
+		
+	}
+	
 	public void addColumn(Object ColumnName, Object[] ColumnData){
 		
 		this.Tablita.addColumn(ColumnName, ColumnData);
@@ -307,9 +321,19 @@ public class Table extends JTable{
 	
 	private void innit(){
 		
+		int c = 0;
+		
 		for(int i=0; i<this.getColumnCount(); i++){
 			
 			this.getColumnModel().getColumn(i).setCellRenderer(this.Cell.get(i));
+			
+			if (this.Cell.get(i).hasImage()){
+				
+				this.getColumnModel().getColumn(i).setWidth(30);
+				
+				c++;
+				
+			}
 			
 			if (this.CellEditable.get(i)){
 				
@@ -328,6 +352,20 @@ public class Table extends JTable{
 				}
 				
 			});
+			
+		}
+		
+		int width = (int) Math.ceil((this.getWidth() - 30.00*c) / ((double) (this.getColumnCount() - c)));
+		
+		if (this.getWidth()!=0 && c!=0){
+		
+			for(int i=0; i<this.getColumnCount(); i++){
+				
+				if (this.Cell.get(i).hasImage()){continue;}
+				
+				this.getColumnModel().getColumn(i).setWidth(width);
+				
+			}
 			
 		}
 		

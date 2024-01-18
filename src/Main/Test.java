@@ -118,8 +118,6 @@ public class Test {
 
 		});
 		
-		System.out.print(Tabla.getSelectedRow());
-		
 		//Tabla.getHeader().hideInnerBorder();
 		
 		//Tabla.setBackground(new Color(66, 224, 245));
@@ -131,7 +129,9 @@ public class Test {
 		v.add(3);
 		v.add(3);
 		
-		Tabla.addColumn("zzz", v);
+		Tabla.addColumn("aaa", v);
+		Tabla.addColumn(new ImageIcon(Test.class.getResource("/WindowPane_Textures/INFORMATION_MESSAGE.png")));
+		Tabla.addColumn(new ImageIcon(Test.class.getResource("/WindowPane_Textures/ERROR_MESSAGE.png")));
 		
 		JScrollPane Scroll = new JScrollPane(Tabla);
 		JScrollPane Scroll1 = new JScrollPane(Tabla1);
@@ -159,6 +159,8 @@ public class Test {
 					frame.setContentPane(contentPane);
 					//frame.setExtendedState(frame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
+					
+					System.out.print(Tabla.getColumnCount());
 
                 } catch (Exception e) {
 

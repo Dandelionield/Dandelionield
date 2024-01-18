@@ -9,6 +9,7 @@ package Graphic.Component;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -20,10 +21,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.border.MatteBorder;
+import javax.swing.border.BevelBorder;
 
 import javax.swing.JLabel;
+import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JComponent;
+import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.BorderFactory;
 
@@ -44,6 +48,8 @@ public class TableCell extends DefaultTableCellRenderer{
 	private Color DefaultForeground;
 	
 	private Font Format;
+	
+	private ImageIcon icono = null;
 	
 	private int SwingConstant;
 	private int focusedRow = -1;
@@ -206,6 +212,12 @@ public class TableCell extends DefaultTableCellRenderer{
 		
 	}
 	
+	public boolean hasImage(){
+		
+		return this.icono!=null;
+		
+	}
+	
 	public void setFocusCellBackground(Color FocusBackground){
 		
 		this.FocusCellBackground = FocusBackground;
@@ -263,6 +275,12 @@ public class TableCell extends DefaultTableCellRenderer{
 	public void setFocusedColumn(int Column){
 		
 		this.focusedColumn = Column;
+		
+	}
+	
+	public void setImage(ImageIcon icono){
+		
+		this.icono = icono;
 		
 	}
 	
@@ -327,6 +345,18 @@ public class TableCell extends DefaultTableCellRenderer{
 		
 		this.setFont(Format);
 		this.setHorizontalAlignment(SwingConstant);
+		
+		if (icono!=null){
+			
+			JLabel Label = (JLabel) cp;
+			
+			Label.setIcon(new ImageIcon(icono.getImage().getScaledInstance(10, 10, Image.SCALE_SMOOTH)));
+			
+			this.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+			
+			return Label;
+			
+		}
 		
 		return cp;
 		
