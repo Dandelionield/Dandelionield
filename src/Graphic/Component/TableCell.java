@@ -288,9 +288,17 @@ public class TableCell extends DefaultTableCellRenderer{
 		
 	}
 	
+	public void setDefaultBackground(Color DefaultBackground){
+		
+		this.DefaultBackground = DefaultBackground;
+		this.FocusColumnBackground = this.DefaultBackground;
+		
+	}
+	
 	public void setDefaultForeground(Color DefaultForeground){
 		
 		this.DefaultForeground = DefaultForeground;
+		this.FocusColumnForeground = this.DefaultForeground;
 		
 	}
 	
@@ -391,7 +399,7 @@ public class TableCell extends DefaultTableCellRenderer{
 			return Label;
 			
 		}
-		
+	
 		return cp;
 		
 	}

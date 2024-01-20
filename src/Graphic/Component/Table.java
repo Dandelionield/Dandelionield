@@ -273,7 +273,7 @@ public class Table extends JTable{
 		Celda.setImage(icono);
 		Celda.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		this.CellEditable.add(false);
+		this.CellEditable.add(CellEditable.get(CellEditable.size()-1));
 		this.Cell.add(Celda);
 		
 	}
@@ -296,7 +296,7 @@ public class Table extends JTable{
 	
 	private void adder(){
 		
-		this.CellEditable.add(true);
+		this.CellEditable.add(CellEditable.get(CellEditable.size()-1));
 		
 		try{
 			
@@ -379,7 +379,6 @@ public class Table extends JTable{
 			TableColumn Column = this.getColumnModel().getColumn(i);
 			
 			Column.setCellRenderer(this.Cell.get(i));
-			Column.setResizable(false);
 			
 			if (this.Cell.get(i).hasImage()){
 				

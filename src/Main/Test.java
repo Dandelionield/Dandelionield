@@ -28,8 +28,11 @@ import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import javax.swing.border.MatteBorder;
+
 import javax.swing.JViewport;
 import javax.swing.JTable;
+import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.TableColumn;
@@ -42,6 +45,8 @@ import java.awt.Dimension;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 import java.util.Vector;
 
@@ -61,91 +66,129 @@ public class Test {
 		
 		int z = 0;
 		
+		final Color[] Fondo = {new Color(238, 248, 254), new Color(20, 35, 54), new Color(60, 133, 100)};
+		
 		JFrame frame = Frame();
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, frame.getWidth(), frame.getHeight());
 		
-		PlaceHolder Text = new PlaceHolder("Holaaaaa");
-		Text.setBounds(frame.getWidth()/2 - 200, frame.getHeight()/2 - 20, 100, 20);
+		JButton Boton = new JButton("Columna");
+		Boton.setBounds(20, 340, 100, 40);
 		
-		PlaceHolder Text2 = new PlaceHolder("Holaaaaa");
-		Text2.setBounds(frame.getWidth()/2, frame.getHeight()/2 - 20, 100, 20);
-		
-		DefaultTableModel Tablita = new DefaultTableModel(new Object[][] {
-			
-			{1, 2, 2}, 
-			{1, 2, 2}, 
-			{1, 2, 2}, 
-			{1, 2, 2}, 
-			{1, 2, 2}, 
-			{1, 2, 2}, 
-			{1, 2, 2}, 
-			{1, 2, 2}, 
-			{1, 2, 2}, 
-			{1, 2, 2}, 
-			{1, 2, 2}, 
-			{1, 2, 2}
-			
-		}, new String[] {"a", "a", "a"});
-		
-		JTable Tabla1 = new JTable(Tablita);
-		
+		JButton Boton1 = new JButton("Columna 2");
+		Boton1.setBounds(160, 340, 100, 40);
+
 		Table Tabla = new Table(new Object[][] {
 			
-			{1, 2, 2}, 
-			{1, 2, 2}, 
-			{1, 2, 2}, 
-			{1, 2, 2},
+			{"CP1", "Carne", 2, "1.500 $", "3.000 $"}, 
+			{"CP2", "Carnita", 3, "2.000 $", "6.000 $"},  
+			{"CP3", "Pollo", 2.5, "2.500 $", "6.250 $"}, 
+			{"CP4", "Pollito", 0.5, "3.500 $", "1.750 $"}, 
+			{"CP5", "Posho", 1, "4.000 $", "4.000 $"}, 
+			{"CP6", "Poshito", 2, "4.500 $", "9.000 $"}, 
+			{"CP7", "Cerdo", 3, "5.000 $", "15.000 $"}, 
+			{"CP8", "Cerdito", 0.5, "5.500 $", "2.750$"}, 
+			{"CP9", "Pescado", 1, "6.000 $", "6.000 $"}, 
+			{"CP10", "Pescadito", 1.5, "6.500 $", "9.750 $"}, 
+			{"CP11", "Cabra", 2, "7.000 $", "14.000 $"}, 
+			{"CP12", "Cabrita", 3.5, "7.500 $", "26.250 $"}, 
+			{"CP13", "Cabrito", 0.5, "8.000 $", "4.000 $"}, 
 			
-		}, new String[] {"a", "a", "a"});
+		}, new String[] {"ID", "Nombre", "Cantidad", "Precio", "Total"}, false);
 		
-		Tabla.setColumnEditable(1, false);
-		Tabla.getColumn(1).setHorizontalAlignment(SwingConstants.CENTER);
+		Tabla.setColumnEditable(2, true);
 		
-		Tabla.getColumn(1).setDefaultForeground(Color.RED);
-		Tabla.getColumn(1).setFocusCellBackground(Color.BLUE);
+		Tabla.getColumn(0).setHorizontalAlignment(SwingConstants.CENTER);
+		Tabla.getColumn(3).setHorizontalAlignment(SwingConstants.CENTER);
+		Tabla.getColumn(4).setHorizontalAlignment(SwingConstants.CENTER);
 		
-		Tabla.setShowHorizontalLines(true);
-		Tabla.setShowVerticalLines(true);
+		Tabla.getColumn(3).setDefaultForeground(Fondo[2]);
+		Tabla.getColumn(4).setDefaultForeground(Fondo[2]);
+		
+		Tabla.getColumn(3).setFocusCellBackground(Fondo[2]);
+		Tabla.getColumn(4).setFocusCellBackground(Fondo[2]);
+		
+		/*for(int i=0; i<Tabla.getColumnCount(); i++){
+			
+			Tabla.getColumn(i).setFocusColumnBackground(Color.GRAY);
+			Tabla.getColumn(i).setFocusColumnForeground(Color.WHITE);
+			
+		}//*/
+		
+		Tabla.getHeader().setBackground(Fondo[0]);
+		Tabla.getHeader().setForeground(Color.BLACK);
+		
+		Tabla.setBackground(Fondo[0]);
+		
+		Tabla.getHeader().showInnerBorder(false);
+		
+		Tabla.setShowHorizontalLines(false);
+		Tabla.setShowVerticalLines(false);
 		
 		Tabla.addMouseListener(new MouseAdapter() {
 
 			public void mouseEntered(MouseEvent e) {
 
-				System.out.print(Tabla.getSelectedRow()+"\n");
+				//System.out.print(Tabla.getSelectedRow()+"\n");
 
 			}
 
 		});
 		
-		//Tabla.getHeader().hideInnerBorder();
+		Boton.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e){
+				
+				Vector<Object> v = new Vector<>();
+				
+				v.add(3);
+				v.add(3);
+				v.add(3);
+				v.add(3);
+				v.add(3);
+				v.add(3);
+				v.add(3);
+				v.add(3);
+				v.add(3);
+				v.add(3);
+				v.add(3);
+				v.add(3);
+				v.add(3);
+				
+				Tabla.addColumn("Nueva Fila", v);
+				
+			}
+			
+		});
 		
-		//Tabla.setBackground(new Color(66, 224, 245));
+		Boton1.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e){
+				
+				Tabla.addColumn(new ImageIcon(Test.class.getResource("/WindowPane_Textures/INFORMATION_MESSAGE.png")));
+				Tabla.addColumn(new ImageIcon(Test.class.getResource("/WindowPane_Textures/ERROR_MESSAGE.png")));//*/
+				
+			}
+			
+		});
 		
-		Vector<Object> v = new Vector<>();
+		JViewport View = new JViewport();
+		View.setView(Tabla);
+		View.setBackground(Tabla.getBackground());
 		
-		v.add(3);
-		v.add(3);
-		v.add(3);
-		v.add(3);
+		JScrollPane Scroll = new JScrollPane();
+		Scroll.setViewport(View);
+		Scroll.setBorder(new MatteBorder(0, 0, 0, 0, Color.BLACK));
 		
-		Tabla.addColumn("aaa", v);
-		Tabla.addColumn(new ImageIcon(Test.class.getResource("/WindowPane_Textures/INFORMATION_MESSAGE.png")));
-		Tabla.addColumn(new ImageIcon(Test.class.getResource("/WindowPane_Textures/ERROR_MESSAGE.png")));//*/
-		
-		JScrollPane Scroll = new JScrollPane(Tabla);
-		JScrollPane Scroll1 = new JScrollPane(Tabla1);
-		
-		Scroll.setBounds(20, 20, 900, 200);
-		
-		Scroll1.setBounds(20, 260, 900, 200);
+		Scroll.setBounds(20, 20, 900, 300);
 		
 		panel.setLayout(null);
-		panel.setComponentZOrder(Text, z);z++;
-		panel.setComponentZOrder(Text2, z);z++;
 		panel.setComponentZOrder(Scroll, z);z++;
-		panel.setComponentZOrder(Scroll1, z);z++;
+		panel.setComponentZOrder(Boton, z);z++;
+		panel.setComponentZOrder(Boton1, z);z++;
+		
+		panel.setBackground(Fondo[0]);
 		
 		JLayeredPane contentPane = new JLayeredPane();
 		contentPane.setPreferredSize(new Dimension(frame.getWidth(), frame.getHeight()));
@@ -158,10 +201,7 @@ public class Test {
                 try {
 					
 					frame.setContentPane(contentPane);
-					//frame.setExtendedState(frame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
-					
-					System.out.print(Tabla.getColumnCount());
 
                 } catch (Exception e) {
 

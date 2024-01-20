@@ -127,15 +127,17 @@ public class TableHeader implements TableCellRenderer{
 		
 	}
 	
-	public void hideInnerBorder(){
+	public void showInnerBorder(boolean value){
 		
-		this.InnerBorder = 0;
-		
-	}
-	
-	public void showInnerBorder(){
-		
-		this.InnerBorder = 1;
+		if (value){
+			
+			this.InnerBorder = 1;
+			
+		}else{
+			
+			this.InnerBorder = 0;
+			
+		}
 		
 	}
 	
