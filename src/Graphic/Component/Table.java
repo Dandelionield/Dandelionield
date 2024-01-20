@@ -27,6 +27,7 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 
 import javax.swing.border.MatteBorder;
 
@@ -52,6 +53,9 @@ public class Table extends JTable{
 	private final DefaultTableModel Tablita;
 	
 	private ArrayList<Boolean> CellEditable = new ArrayList<>();
+	
+	private int focusedRow = -1;
+	private int focusedColumn = -1;
 	
 	public Table(){
 		
@@ -151,6 +155,18 @@ public class Table extends JTable{
 	public Object getValueAt(int Row, int Column){
 		
 		return this.Tablita.getValueAt(Row, Column);
+		
+	}
+	
+	public int getFocusedRow(){
+		
+		return focusedRow;
+		
+	}
+	
+	public int getFocusedColumn(){
+		
+		return focusedColumn;
 		
 	}
 	
@@ -273,7 +289,7 @@ public class Table extends JTable{
 		Celda.setImage(icono);
 		Celda.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		this.CellEditable.add(CellEditable.get(CellEditable.size()-1));
+		this.CellEditable.add(false);
 		this.Cell.add(Celda);
 		
 	}
@@ -296,13 +312,15 @@ public class Table extends JTable{
 	
 	private void adder(){
 		
-		this.CellEditable.add(CellEditable.get(CellEditable.size()-1));
-		
 		try{
+			
+			this.CellEditable.add(CellEditable.get(CellEditable.size()-1));
 			
 			this.Cell.add(new TableCell(Cell.get(Cell.size()-1)));
 			
 		}catch(Exception e){
+			
+			this.CellEditable.add(true);
 			
 			this.Cell.add(new TableCell());
 			
@@ -358,7 +376,7 @@ public class Table extends JTable{
 		
 	}
 	
-	protected void paintComponent(Graphics g) {
+	protected void paintComponent(Graphics g){
 		
         Graphics2D g2 = (Graphics2D) g.create();
         
@@ -432,9 +450,11 @@ public class Table extends JTable{
 	
 	private void Listener(){
 		
+		//innit();
+		
 		this.getTableHeader().setReorderingAllowed(false);
 		
-		final JTable DTable = this;
+		final Table DTable = this;
 		
 		this.addMouseMotionListener(new MouseAdapter() {
 
@@ -442,6 +462,9 @@ public class Table extends JTable{
 				
                 int Row = DTable.rowAtPoint(e.getPoint());
                 int Column = DTable.columnAtPoint(e.getPoint());
+				
+				focusedRow = Row;
+				focusedColumn = Column;
 				
                 if (Row!=-1 && Column!=-1){
 					
@@ -459,6 +482,16 @@ public class Table extends JTable{
             }
 			
         });
+		
+		/*this.Tablita.addTableModelListener(new TableModelListener() {
+            
+            public void tableChanged(TableModelEvent e){
+                
+				DTable.innit();
+				
+            }
+			
+        });//*/
 		
 	}
 

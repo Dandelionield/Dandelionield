@@ -328,15 +328,7 @@ public class TableCell extends DefaultTableCellRenderer{
 	
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocused, int Row, int Column) {
 		
-		if (Row==focusedRow && Column==focusedColumn){
-			
-			hasFocused = true;
-			
-		}else{
-			
-			hasFocused = false;
-			
-		}
+		hasFocused = (Row==focusedRow && Column==focusedColumn) ? true : false;
 		
 		Component cp = super.getTableCellRendererComponent(table, value, isSelected, hasFocused, Row, Column);
 		

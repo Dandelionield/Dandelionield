@@ -99,20 +99,18 @@ public class Test {
 		
 		Tabla.setColumnEditable(2, true);
 		
-		Tabla.getColumn(0).setHorizontalAlignment(SwingConstants.CENTER);
-		Tabla.getColumn(3).setHorizontalAlignment(SwingConstants.CENTER);
-		Tabla.getColumn(4).setHorizontalAlignment(SwingConstants.CENTER);
-		
 		Tabla.getColumn(3).setDefaultForeground(Fondo[2]);
 		Tabla.getColumn(4).setDefaultForeground(Fondo[2]);
 		
 		Tabla.getColumn(3).setFocusCellBackground(Fondo[2]);
 		Tabla.getColumn(4).setFocusCellBackground(Fondo[2]);
 		
-		/*for(int i=0; i<Tabla.getColumnCount(); i++){
+		for(int i=0; i<Tabla.getColumnCount(); i++){
 			
-			Tabla.getColumn(i).setFocusColumnBackground(Color.GRAY);
-			Tabla.getColumn(i).setFocusColumnForeground(Color.WHITE);
+			//Tabla.getColumn(i).setFocusColumnBackground(Color.GRAY);
+			//Tabla.getColumn(i).setFocusColumnForeground(Color.WHITE);
+			
+			Tabla.getColumn(i).setHorizontalAlignment(SwingConstants.CENTER);
 			
 		}//*/
 		
@@ -121,7 +119,7 @@ public class Test {
 		
 		Tabla.setBackground(Fondo[0]);
 		
-		Tabla.getHeader().showInnerBorder(false);
+		Tabla.getHeader().showInnerBorder(true);
 		
 		Tabla.setShowHorizontalLines(false);
 		Tabla.setShowVerticalLines(false);
@@ -130,7 +128,14 @@ public class Test {
 
 			public void mouseEntered(MouseEvent e) {
 
-				//System.out.print(Tabla.getSelectedRow()+"\n");
+				/*System.out.print(
+				
+					"Fila Seleccionada: "+Tabla.getSelectedRow()+"\n"+
+					"Columna Seleccionada: "+Tabla.getSelectedColumn()+"\n"+
+					"Fila Focuseada: "+Tabla.getFocusedRow()+"\n"+
+					"Columna Focuseada: "+Tabla.getFocusedColumn()+"\n"
+					
+				);//*/
 
 			}
 
@@ -139,6 +144,8 @@ public class Test {
 		Boton.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e){
+				
+				//Tabla.removeRow(1);
 				
 				Vector<Object> v = new Vector<>();
 				
@@ -156,7 +163,7 @@ public class Test {
 				v.add(3);
 				v.add(3);
 				
-				Tabla.addColumn("Nueva Fila", v);
+				Tabla.addColumn("Nueva Fila", v);//*/
 				
 			}
 			

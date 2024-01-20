@@ -129,19 +129,11 @@ public class TableHeader implements TableCellRenderer{
 	
 	public void showInnerBorder(boolean value){
 		
-		if (value){
-			
-			this.InnerBorder = 1;
-			
-		}else{
-			
-			this.InnerBorder = 0;
-			
-		}
+		this.InnerBorder = value ? 1 : 0;
 		
 	}
 	
-	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int Row, int Column) {
         
         JComponent Header = Header = new JLabel((String) value);
 		
@@ -154,7 +146,7 @@ public class TableHeader implements TableCellRenderer{
         Header.setToolTipText(Title);
         Header.setForeground(this.Foreground);
 		Header.setFont(this.Format);
-		Header.setBorder(new MatteBorder(0, 0, 1, InnerBorder, Color.GRAY));
+		Header.setBorder(new MatteBorder(0, 0, 1, (table.getColumnCount()-1!=Column) ? InnerBorder : 0, Color.GRAY));
 		
         return Header;
     }
