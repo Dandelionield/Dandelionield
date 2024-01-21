@@ -94,6 +94,19 @@ public class Test {
 			{"CP11", "Cabra", 2, "7.000 $", "14.000 $"}, 
 			{"CP12", "Cabrita", 3.5, "7.500 $", "26.250 $"}, 
 			{"CP13", "Cabrito", 0.5, "8.000 $", "4.000 $"}, 
+			{"CP1", "Carne", 2, "1.500 $", "3.000 $"}, 
+			{"CP2", "Carnita", 3, "2.000 $", "6.000 $"},  
+			{"CP3", "Pollo", 2.5, "2.500 $", "6.250 $"}, 
+			{"CP4", "Pollito", 0.5, "3.500 $", "1.750 $"}, 
+			{"CP5", "Posho", 1, "4.000 $", "4.000 $"}, 
+			{"CP6", "Poshito", 2, "4.500 $", "9.000 $"}, 
+			{"CP7", "Cerdo", 3, "5.000 $", "15.000 $"}, 
+			{"CP8", "Cerdito", 0.5, "5.500 $", "2.750$"}, 
+			{"CP9", "Pescado", 1, "6.000 $", "6.000 $"}, 
+			{"CP10", "Pescadito", 1.5, "6.500 $", "9.750 $"}, 
+			{"CP11", "Cabra", 2, "7.000 $", "14.000 $"}, 
+			{"CP12", "Cabrita", 3.5, "7.500 $", "26.250 $"}, 
+			{"CP13", "Cabrito", 0.5, "8.000 $", "4.000 $"}, 
 			
 		}, new String[] {"ID", "Nombre", "Cantidad", "Precio", "Total"}, false);
 		
@@ -187,6 +200,7 @@ public class Test {
 		JScrollPane Scroll = new JScrollPane();
 		Scroll.setViewport(View);
 		Scroll.setBorder(new MatteBorder(0, 0, 0, 0, Color.BLACK));
+		Scroll.getVerticalScrollBar().setUI(new ScrollBar(Tabla.getBackground()));
 		
 		Scroll.setBounds(20, 20, 900, 300);
 		
