@@ -142,7 +142,7 @@ public class Table extends JTable{
 	
 	public TableCell getColumn(int Column){
 		
-		return this.Cell.get(Column);
+		return (this.Cell.size()!=0) ? this.Cell.get(Column) : null;
 		
 	}
 	

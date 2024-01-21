@@ -52,7 +52,7 @@ import java.util.Vector;
 
 public class Test {
 
-    public static void main(String[] args){
+    /*public static void main(String[] args){
 		
 		System.out.print("\n\n");
 		
@@ -193,20 +193,10 @@ public class Test {
 			
 		});
 		
-		JViewport View = new JViewport();
-		View.setView(Tabla);
-		View.setBackground(Tabla.getBackground());
-		
-		JScrollPane Scroll = new JScrollPane();
-		Scroll.setViewport(View);
-		Scroll.setBorder(new MatteBorder(0, 0, 0, 0, Color.BLACK));
-		Scroll.getVerticalScrollBar().setUI(new ScrollBar(Tabla.getBackground()));
-		Scroll.setBackground(Tabla.getBackground());
-		
-		Scroll.setBounds(20, 20, 900, 300);
+		ComponentBuilder cp = new ComponentBuilder();
 		
 		panel.setLayout(null);
-		panel.setComponentZOrder(Scroll, z);z++;
+		panel.setComponentZOrder(cp.buildJScrollPane(Tabla, new int[] {20, 20, 900, 300}), z);z++;
 		panel.setComponentZOrder(Boton, z);z++;
 		panel.setComponentZOrder(Boton1, z);z++;
 		

@@ -14,7 +14,6 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.TableColumn;
 import javax.swing.DefaultCellEditor;
-import javax.swing.border.MatteBorder;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -22,6 +21,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
+
+import javax.swing.border.MatteBorder;
+import javax.swing.border.EmptyBorder;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -310,6 +312,24 @@ public class ComponentBuilder{
 		Table.setViewport(viewport);
 		Table.setBounds(Bounds[0], Bounds[1], Bounds[2], Bounds[3]);
 
+	}
+	
+	public JScrollPane buildJScrollPane(Table Tabla, int[] Bounds){
+		
+		JViewport View = new JViewport();
+		View.setView(Tabla);
+		View.setBackground(Tabla.getBackground());
+		
+		JScrollPane Scroll = new JScrollPane();
+		Scroll.setViewport(View);
+		Scroll.setBorder(new EmptyBorder(0, 0, 0, 0));
+		Scroll.getVerticalScrollBar().setUI(new ScrollBar(Tabla.getBackground(), (Tabla.getColumn(0)!=null) ? Tabla.getColumn(0).getFocusRowBackground() : Color.GRAY));
+		Scroll.setBackground(Tabla.getBackground());
+		
+		Scroll.setBounds(Bounds[0], Bounds[1], Bounds[2], Bounds[3]);
+		
+		return Scroll;
+		
 	}
 	
 	public DefaultTableModel getDefaultTableModel(){
