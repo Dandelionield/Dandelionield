@@ -9,6 +9,7 @@ package Graphic.Component;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
+import javax.swing.JScrollBar;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
@@ -17,6 +18,7 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Component;
 import java.awt.Graphics2D;
@@ -25,17 +27,33 @@ import java.awt.RenderingHints;
 
 public class ScrollBar extends BasicScrollBarUI {
 	
-	private Color ButtonColor;
+	private Color Background;
+	private Color ThumbBackground;
 	
 	public ScrollBar(){
 		
-		this.ButtonColor = Color.WHITE;
+		this.Background = Color.WHITE;
+		this.ThumbBackground = Color.GRAY;
+		
+		innit();
 		
 	}
 	
-	public ScrollBar(Color ButtonColor){
+	public ScrollBar(Color Background){
 		
-		this.ButtonColor = ButtonColor;
+		this.Background = Background;
+		this.ThumbBackground = Color.GRAY;
+		
+		innit();
+		
+	}
+	
+	public ScrollBar(Color Background, Color ThumbBackground){
+		
+		this.Background = Background;
+		this.ThumbBackground = ThumbBackground;
+		
+		innit();
 		
 	}
 	
@@ -44,20 +62,20 @@ public class ScrollBar extends BasicScrollBarUI {
         Graphics2D g2 = (Graphics2D) g;
 		
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setPaint(new Color(150, 150, 150));
-        g2.fillRoundRect(thumbBounds.x, thumbBounds.y, thumbBounds.width, thumbBounds.height, 10, 10);
+        g2.setPaint(this.ThumbBackground);
+        g2.fillRoundRect(thumbBounds.x, thumbBounds.y, thumbBounds.width, thumbBounds.height, 5, 5);
 		
-    }//*/
+    }
 
     protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds){
 		
         Graphics2D g2 = (Graphics2D) g;
 		
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setPaint(new Color(220, 220, 220));
-        g2.fillRoundRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height, 10, 10);
+        g2.setPaint(this.Background);
+        g2.fillRoundRect(trackBounds.x, trackBounds.y, trackBounds.width, trackBounds.height, 5, 5);
 		
-    }//*/
+    }
 	
 	protected JButton createIncreaseButton(int orientation){
 		
@@ -71,16 +89,14 @@ public class ScrollBar extends BasicScrollBarUI {
 				g2d.setRenderingHints(Render);
 			
                 g2d.setColor(Color.BLACK);
-				g2d.setStroke(new BasicStroke(2));
-				g2d.drawLine(x, y, x + 5, y + 5);
-				g2d.drawLine(x + 10, y, x + 5, y + 5);
+				g2d.fillOval(x - 1, y, getIconWidth(), getIconHeight());
                 g2d.dispose();
 			
             }
 
             public int getIconWidth(){
 		
-               return 10;
+               return 5;
 				
             }
 
@@ -92,7 +108,7 @@ public class ScrollBar extends BasicScrollBarUI {
 			
         });
 		
-		Arrow.setBackground(ButtonColor);
+		Arrow.setBackground(Background);
 		Arrow.setFocusable(false);
 		Arrow.setBorderPainted(false);
 		
@@ -112,16 +128,14 @@ public class ScrollBar extends BasicScrollBarUI {
 				g2d.setRenderingHints(Render);
 			
                 g2d.setColor(Color.BLACK);
-				g2d.setStroke(new BasicStroke(2));
-				g2d.drawLine(x, y + 3, x + 5, y - 2);
-				g2d.drawLine(x + 10, y + 3, x + 5, y - 2);
+				g2d.fillOval(x - 1, y, getIconWidth(), getIconHeight());
                 g2d.dispose();
-			
+				
             }
 
             public int getIconWidth(){
 		
-               return 10;
+               return 5;
 				
             }
 
@@ -133,13 +147,33 @@ public class ScrollBar extends BasicScrollBarUI {
 			
         });
 		
-		Arrow.setBackground(ButtonColor);
+		Arrow.setBackground(Background);
 		Arrow.setFocusable(false);
 		Arrow.setBorderPainted(false);
 		
 		return Arrow;
-	
+		
     }
+	
+	private void setScrollBarWidth(JScrollBar scrollBar, int width){
+		
+        Dimension dim = new Dimension(width, Integer.MAX_VALUE);
+        scrollBar.setPreferredSize(dim);
+		
+    }
+	
+	public Dimension getPreferredSize(JComponent c){
+		
+        setScrollBarWidth((JScrollBar) c, 5);
+        return super.getPreferredSize(c);
+		
+    }
+	
+	private void innit(){
+		
+		//this.setBackground(this.Background);
+		
+	}
 	
 }
 	

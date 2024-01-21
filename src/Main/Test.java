@@ -201,6 +201,7 @@ public class Test {
 		Scroll.setViewport(View);
 		Scroll.setBorder(new MatteBorder(0, 0, 0, 0, Color.BLACK));
 		Scroll.getVerticalScrollBar().setUI(new ScrollBar(Tabla.getBackground()));
+		Scroll.setBackground(Tabla.getBackground());
 		
 		Scroll.setBounds(20, 20, 900, 300);
 		
