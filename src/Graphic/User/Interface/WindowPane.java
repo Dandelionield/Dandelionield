@@ -60,6 +60,7 @@ import javax.swing.Icon;
 import javax.swing.Box;
 
 import Graphic.Component.ComponentBuilder;
+import Graphic.Component.ScrollBar;
 
 public class WindowPane{
 	
@@ -1037,6 +1038,8 @@ public class WindowPane{
 			
 		}
 		
+		Scroll.getVerticalScrollBar().setUI(new ScrollBar(wp.Background, wp.BorderBackground, wp.BorderBackground));
+		Scroll.getHorizontalScrollBar().setUI(new ScrollBar(wp.Background, wp.BorderBackground, wp.BorderBackground));
 		Scroll.setViewportView(Text);
 		Scroll.setBorder(null);
 		
@@ -1135,6 +1138,8 @@ public class WindowPane{
 		
 		Height+= 50;
 		
+		Scroll.getVerticalScrollBar().setUI(new ScrollBar(wp.Background, wp.BorderBackground, wp.BorderBackground));
+		Scroll.getHorizontalScrollBar().setUI(new ScrollBar(wp.Background, wp.BorderBackground, wp.BorderBackground));
 		Scroll.setViewportView(Text);
 		Scroll.setBorder(null);
 		
@@ -1257,6 +1262,8 @@ public class WindowPane{
 		
 		Height+= 50;
 		
+		Scroll.getVerticalScrollBar().setUI(new ScrollBar(wp.Background, wp.BorderBackground, wp.BorderBackground));
+		Scroll.getHorizontalScrollBar().setUI(new ScrollBar(wp.Background, wp.BorderBackground, wp.BorderBackground));
 		Scroll.setViewportView(Text);
 		Scroll.setBorder(null);
 		
@@ -1317,6 +1324,25 @@ public class WindowPane{
 				return Arrow;
 				
             }
+			
+			protected ComboPopup createPopup(){
+				
+				return new BasicComboPopup(comboBox){
+					
+					protected JScrollPane createScroller(){
+						
+						JScrollPane scroller = new JScrollPane(list, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+						scroller.setBorder(null);
+						scroller.getVerticalScrollBar().setUI(new ScrollBar(wp.Background, wp.BorderBackground, wp.BorderBackground));
+						scroller.getHorizontalScrollBar().setUI(new ScrollBar(wp.Background, wp.BorderBackground, wp.BorderBackground));
+						
+						return scroller;
+						
+					}
+					
+				};
+				
+			}
 			
         });
 		
@@ -1451,6 +1477,8 @@ public class WindowPane{
 		
 		Height+= 50;
 		
+		Scroll.getVerticalScrollBar().setUI(new ScrollBar(wp.Background, wp.BorderBackground, wp.BorderBackground));
+		Scroll.getHorizontalScrollBar().setUI(new ScrollBar(wp.Background, wp.BorderBackground, wp.BorderBackground));
 		Scroll.setViewportView(Text);
 		Scroll.setBorder(null);
 		
