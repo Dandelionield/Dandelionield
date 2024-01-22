@@ -56,20 +56,7 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		String bup = "aaaaaaaaaaaa";//aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-		
-		/*bup = 
-		
-			bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+
-			bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+
-			bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+
-			bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+
-			bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+
-			bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"+bup+"\n"
-			
-		;//*/
-		
-		WindowPane.getOptionMessage(bup, new Object[] {"a", "e", "i", "o", "u", "a", "e", "i", "o", "u"}, new WindowPane(Color.PINK));
+		Graph();
 		
 		System.out.print("\n\n");
 		
