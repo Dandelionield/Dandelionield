@@ -110,6 +110,8 @@ public class Test {
 			
 		}, new String[] {"ID", "Nombre", "Cantidad", "Precio", "Total"}, false);
 		
+		Tabla.setRowCount(0);
+		
 		Tabla.setColumnEditable(2, true);
 		
 		Tabla.getColumn(3).setDefaultForeground(Fondo[2]);
