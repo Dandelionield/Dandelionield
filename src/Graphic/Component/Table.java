@@ -224,6 +224,8 @@ public class Table extends JTable{
 		
 		this.Tablita.setRowCount(RowCount);
 		
+		innit();
+		
 	}
 	
 	public void setColumnIdentifiers​(Object[] newIdentifiers){
