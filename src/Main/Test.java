@@ -65,13 +65,7 @@ public class Test {
 		//Graph();
 		
 		Digit a = new Digit(12245712354.315645);
-		/*
 		
-			12245712354.315645
-			
-			457e12
-		
-		*/
 		a.setDotDecimalNotation();
 		
 		WindowPane.showOutputMessage(a);
