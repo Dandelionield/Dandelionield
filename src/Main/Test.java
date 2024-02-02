@@ -8,16 +8,22 @@ package Main;
 
 import Taylor.Math.*;
 import Taylor.Arithmetic.*;
+
 import Geometry.Euclidean.*;
 import Geometry.Algebra.*;
+
 import Physics.Fundamental.*;
 import Physics.Measurement.*;
+
 import Graphic.R2Space.*;
 import Graphic.Component.*;
 import Graphic.User.Interface.*;
 
+import System.Numeric.*;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.math.MathContext;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -56,7 +62,19 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		Graph();
+		//Graph();
+		
+		Digit a = new Digit(12245712354.315645);
+		/*
+		
+			12245712354.315645
+			
+			457e12
+		
+		*/
+		a.setDotDecimalNotation();
+		
+		WindowPane.showOutputMessage(a);
 		
 		System.out.print("\n\n");
 		
