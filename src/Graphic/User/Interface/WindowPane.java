@@ -111,7 +111,7 @@ public class WindowPane{
 		this.BorderBackground = Color.BLACK;
 		this.Foreground = Color.BLACK;
 		this.BorderForeground = Color.WHITE;
-		this.Format = new Font("Clarendon Blk BT", Font.PLAIN, 13);
+		this.Format = new Font("Helvetica", Font.PLAIN, 14);
 		this.BorderFormat = new Font("Clarendon Blk BT", Font.BOLD, 15);
 		this.BorderLength = 4;
 		this.CornerRadio = 20;
@@ -150,7 +150,7 @@ public class WindowPane{
 		this.BorderBackground = BorderBackground;
 		this.Foreground = Foreground;
 		this.BorderForeground = BorderForeground;
-		this.Format = new Font("Clarendon Blk BT", Font.PLAIN, 13);
+		this.Format = new Font("Helvetica", Font.PLAIN, 14);
 		this.BorderFormat = new Font("Clarendon Blk BT", Font.BOLD, 15);
 		this.BorderLength = 4;
 		this.CornerRadio = 20;
@@ -163,7 +163,7 @@ public class WindowPane{
 		this.BorderBackground = BorderBackground;
 		this.Foreground = Color.BLACK;
 		this.BorderForeground = Color.WHITE;
-		this.Format = new Font("Clarendon Blk BT", Font.PLAIN, 13);
+		this.Format = new Font("Helvetica", Font.PLAIN, 14);
 		this.BorderFormat = new Font("Clarendon Blk BT", Font.BOLD, 15);
 		this.BorderLength = 4;
 		this.CornerRadio = 20;
@@ -176,7 +176,7 @@ public class WindowPane{
 		this.BorderBackground = BorderBackground;
 		this.Foreground = Color.BLACK;
 		this.BorderForeground = BorderForeground;
-		this.Format = new Font("Clarendon Blk BT", Font.PLAIN, 13);
+		this.Format = new Font("Helvetica", Font.PLAIN, 14);
 		this.BorderFormat = new Font("Clarendon Blk BT", Font.BOLD, 15);
 		this.BorderLength = 4;
 		this.CornerRadio = 20;
@@ -202,7 +202,7 @@ public class WindowPane{
 		this.BorderBackground = Color.BLACK;
 		this.Foreground = Color.BLACK;
 		this.BorderForeground = Color.WHITE;
-		this.Format = new Font("Clarendon Blk BT", Font.PLAIN, 13);
+		this.Format = new Font("Helvetica", Font.PLAIN, 14);
 		this.BorderFormat = new Font("Clarendon Blk BT", Font.BOLD, 15);
 		this.BorderLength = BorderLength;
 		this.CornerRadio = CornerRadio;

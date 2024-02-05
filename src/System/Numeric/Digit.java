@@ -177,7 +177,7 @@ public class Digit{
 		
 		DN = "";
 		
-		if (bup.contains(DecimalNotation)){//1000.2
+		if (bup.contains(DecimalNotation)){
 		
 			for (int i=bup.length()-1; i>=0; i--){
 				
