@@ -66,13 +66,21 @@ public class Test {
 		
 		Digit a = new Digit(12245712354.315645);
 		
-		a.setDotDecimalNotation();
+		//a.setDotDecimalNotation();
 		
-		WindowPane.showOutputMessage(a);
+		WindowPane.showOutputMessage(toBase(456, 2));
 		
 		System.out.print("\n\n");
 		
     }//*/
+	
+	private static String toBase(int n, int base){
+		
+        String convert = String.valueOf("0123456789abcdef".charAt(n%base));
+        
+        return (n < base) ? convert : toBase(n/base, base) + convert;
+		
+	}
 	
 	private static void Graph(){
 		

@@ -14,15 +14,17 @@ public class Digit{
 	private final double n;
 	private final long IntegerPart;
 	private final long DecimalPart;
+	private final byte Base;
 	
 	private boolean Notation = true;
 	
 	public Digit(double n){
 		
 		this.n = n;
+		this.Base = 10;
 
 		this.DPN = getNotation(true);
-		this.DDN = getNotation(false);
+		this.DDN = DPN.replace(".", "%").replace(",", ".").replace("%", ",");
 		
 		this.IntegerPart = (long) this.n;
 		this.DecimalPart = Long.parseLong(
@@ -84,6 +86,14 @@ public class Digit{
 		return Notation ? this.DPN : this.DDN;
 		
 	}
+	
+	/*private String toBase(double base){
+		
+        String convert = String.valueOf("0123456789abcdef".charAt(n%base));
+        
+        return (n < base) ? convert : toBase(n/base, base) + convert;
+		
+	}//*/
 	
 	private String getNotation(boolean b){
 		
