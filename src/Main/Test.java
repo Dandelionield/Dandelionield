@@ -62,13 +62,13 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		//Graph();
+		Graph();
 		
-		Digit a = new Digit(12245712354.315645);
+		/*Digit a = new Digit(122145712354.315645);
 		
-		//a.setDotDecimalNotation();
+		a.setDotDecimalNotation();
 		
-		WindowPane.showOutputMessage(toBase(456, 2));
+		WindowPane.showOutputMessage(a.toBase(16));//*/
 		
 		System.out.print("\n\n");
 		
@@ -129,8 +129,6 @@ public class Test {
 			{"CP13", "Cabrito", 0.5, "8.000 $", "4.000 $"}, 
 			
 		}, new String[] {"ID", "Nombre", "Cantidad", "Precio", "Total"}, false);
-		
-		Tabla.setRowCount(0);
 		
 		Tabla.setColumnEditable(2, true);
 		

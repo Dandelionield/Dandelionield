@@ -14,15 +14,13 @@ public class Digit{
 	private final double n;
 	private final long IntegerPart;
 	private final long DecimalPart;
-	private final byte Base;
 	
 	private boolean Notation = true;
 	
 	public Digit(double n){
 		
 		this.n = n;
-		this.Base = 10;
-
+		
 		this.DPN = getNotation(true);
 		this.DDN = DPN.replace(".", "%").replace(",", ".").replace("%", ",");
 		
@@ -83,17 +81,25 @@ public class Digit{
 	
 	public String toString(){
 		
-		return Notation ? this.DPN : this.DDN;
+		return this.Notation ? this.DPN : this.DDN;
 		
 	}
 	
-	/*private String toBase(double base){
+	public String toBase(int Base){
 		
-        String convert = String.valueOf("0123456789abcdef".charAt(n%base));
+        return (Base>=2 && Base<=16) ? (this.IntegerPart<0 ? "-" : "") + toBase(this.IntegerPart<0 ? -this.IntegerPart : this.IntegerPart, Base) + (this.Notation ? "." : ",") + toBase(this.DecimalPart, Base) : null;
+		
+	}
+	
+	private String toBase(long n, int Base){
+		
+		int i = (int) (((double) n)%Base);
+		
+        String convert = String.valueOf("0123456789ABCDEF".charAt(i));
         
-        return (n < base) ? convert : toBase(n/base, base) + convert;
+        return (n<Base) ? convert : toBase(n/Base, Base) + convert;
 		
-	}//*/
+	}
 	
 	private String getNotation(boolean b){
 		
@@ -231,7 +237,7 @@ public class Digit{
 			
 		}
 		
-		return new StringBuilder(DN.charAt(0)==IntegerNotation.charAt(0) ? DN.substring(1) : DN).reverse().toString().replace(IntegerNotation+DecimalNotation, DecimalNotation);
+		return new StringBuilder(DN.charAt(0)==IntegerNotation.charAt(0) ? DN.substring(1) : DN).reverse().toString().replace(IntegerNotation+DecimalNotation, DecimalNotation).replace("-"+IntegerNotation, "-");
 		
 	}
 	
