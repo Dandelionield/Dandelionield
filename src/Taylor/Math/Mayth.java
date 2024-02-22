@@ -9,6 +9,9 @@ package Taylor.Math;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.math.MathContext;
+
+import java.util.ArrayList;
+import java.util.Arrays;
  
 public class Mayth extends Hyperbolic{
 	
@@ -364,25 +367,21 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
+	private ArrayList<Double> fibonacci = new ArrayList<>(Arrays.asList(0.00, 1.00));
+	
 	public double nFibonacci(int indice){
 		
-		double[] phi= new double [indice];
-		
-		for (int i=0; i<indice; i++){
+		if (indice<=fibonacci.size()-1){
 			
-			if (i==0 || i==1){
-				
-				phi[i]=1;
-				
-			}else{
-				
-				phi[i]=phi[i-1]+phi[i-2];
-				
-			}
+			return fibonacci.get(indice);
+			
+		}else{
+			
+			fibonacci.add(nFibonacci(indice-1) + nFibonacci(indice-2));
+			
+			return fibonacci.get(fibonacci.size()-1);
 			
 		}
-		
-		return phi[indice-1];
 		
 	}
 	

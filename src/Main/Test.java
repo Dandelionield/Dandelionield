@@ -62,25 +62,17 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		Graph();
+		Mayth mth = new Mayth();
 		
-		/*Digit a = new Digit(122145712354.315645);
-		
-		a.setDotDecimalNotation();
-		
-		WindowPane.showOutputMessage(a.toBase(16));//*/
+		for (int i=0; i<=10000; i++){
+			
+			System.out.println(new Digit(mth.nFibonacci(i), false));
+			
+		}
 		
 		System.out.print("\n\n");
 		
     }//*/
-	
-	private static String toBase(int n, int base){
-		
-        String convert = String.valueOf("0123456789abcdef".charAt(n%base));
-        
-        return (n < base) ? convert : toBase(n/base, base) + convert;
-		
-	}
 	
 	private static void Graph(){
 		
@@ -265,6 +257,47 @@ public class Test {
 		System.out.print("Resultados en Kelvin\n\n");
 		System.out.print(bup1.toKelvin()+"\n\n");
 		System.out.print(bup2.toKelvin()+"\n\n");
+		
+	}
+	
+	private static void vec(){
+		
+		coordinate A = new coordinate(3, -2, -2);
+		coordinate B = new coordinate(6, 3, 1);
+		coordinate C = new coordinate(0, 2, 5);
+		
+		vector a = new vector(C, A).doRedondear(3);
+		vector b = new vector(A, B).doRedondear(3);
+		
+		WindowPane.showOutputMessage(
+		
+			" Datos vector a: "
+			+"\n Magnitud: "+a.getMagnitude()
+			+"\n Componente x: "+a.getComponentX()
+			+"\n Componente y: "+a.getComponentY()
+			+"\n Componente z: "+a.getComponentZ()
+			+"\n Direccion   : "+a.getDirection()
+			+"\n Direccion x : "+a.getDirectionX()
+			+"\n Direccion y : "+a.getDirectionY()
+			+"\n Direccion z : "+a.getDirectionZ()
+			+"\n Octante: "+a.getOctant()
+			+"\n Unidad: "+a.getUnity()+"\n\n"
+			
+			+" Datos vector b: "
+			+"\n Magnitud: "+b.getMagnitude()
+			+"\n Componente x: "+b.getComponentX()
+			+"\n Componente y: "+b.getComponentY()
+			+"\n Componente z: "+b.getComponentZ()
+			+"\n Direccion   : "+b.getDirection()
+			+"\n Direccion x : "+b.getDirectionX()
+			+"\n Direccion y : "+b.getDirectionY()
+			+"\n Direccion z : "+b.getDirectionZ()
+			+"\n Octante: "+b.getOctant()
+			+"\n Unidad: "+b.getUnity()+"\n\n"
+			
+			+" Angulo entre el vector a y b: "+a.doBetweenTwo(b).doRedondear(3)
+			
+		);
 		
 	}
 	

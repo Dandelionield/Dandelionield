@@ -10,19 +10,40 @@ public class Digit{
 	
 	private final String DPN;//Decimal Point Notation
 	private final String DDN;//Dot Decimal Notation
+	private final String CN;//Computer Notation
 	
 	private final double n;
 	private final long IntegerPart;
 	private final long DecimalPart;
 	
-	private boolean Notation = true;
+	private boolean Notation;
 	
 	public Digit(double n){
 		
 		this.n = n;
+		this.Notation = true;
 		
-		this.DPN = getNotation(true);
+		this.DPN = !Double.isNaN(n) ? (!Double.isInfinite(n) ? getNotation(true) : "Infinity") : "NaN";
 		this.DDN = DPN.replace(".", "%").replace(",", ".").replace("%", ",");
+		this.CN = DPN.replace(",", "");
+		
+		this.IntegerPart = (long) this.n;
+		this.DecimalPart = Long.parseLong(
+			
+			((this.DPN.contains(".")) ? this.DPN.substring(this.DPN.indexOf('.') + 1) : "0")
+			
+		);
+		
+	}
+	
+	public Digit(double n, boolean value){
+		
+		this.n = n;
+		this.Notation = value;
+		
+		this.DPN = !Double.isNaN(n) ? (!Double.isInfinite(n) ? getNotation(true) : "Infinity") : "NaN";
+		this.DDN = DPN.replace(".", "%").replace(",", ".").replace("%", ",");
+		this.CN = DPN.replace(",", "");
 		
 		this.IntegerPart = (long) this.n;
 		this.DecimalPart = Long.parseLong(
@@ -82,6 +103,12 @@ public class Digit{
 	public String toString(){
 		
 		return this.Notation ? this.DPN : this.DDN;
+		
+	}
+	
+	public String noNotation(){
+		
+		return this.CN;
 		
 	}
 	

@@ -606,6 +606,26 @@ public class vector{
 		
 	}
 	
+	public vector insert(int indice, double cp){
+		
+		ArrayList<Double> v = new ArrayList<>();
+		
+		for (int i=0; i<this.length; i++){
+			
+			if (i==indice){
+				
+				v.add(cp);
+				
+			}
+			
+			v.add(this.v[i]);
+			
+		}
+		
+		return new vector(v, Tail);
+		
+	}
+	
 	public void setTail(coordinate Tail){
 		
 		this.Tail = Tail;
