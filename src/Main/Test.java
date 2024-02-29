@@ -62,13 +62,9 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		Mayth mth = new Mayth();
+		vector v = new vector(new double[] {2, 3, 7, 5, 11, 13, 5});
 		
-		for (int i=0; i<=10000; i++){
-			
-			System.out.println(new Digit(mth.nFibonacci(i), false));
-			
-		}
+		WindowPane.showInformationMessage(v.shortBy(true));
 		
 		System.out.print("\n\n");
 		

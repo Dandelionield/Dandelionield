@@ -1064,6 +1064,26 @@ public class vector{
 		
 	}
 	
+	public vector shortBy(boolean b){
+		
+		ArrayList<Double> v = new ArrayList<>();
+		vector bup = this;
+		double cp = 0;
+		
+		do{
+			
+			cp = b ? bup.getLargest() : bup.getSmallest();
+			
+			v.add(cp);
+			
+			bup = bup.throwComponent(bup.get(cp));
+			
+		}while(bup!=null);
+		
+		return new vector(v);
+		
+	}
+	
 	public double getComponentX(){
 		
 		return cx;
