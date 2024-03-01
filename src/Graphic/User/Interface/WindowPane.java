@@ -719,139 +719,139 @@ public class WindowPane{
 		
 	}
 	
-	public static Object getOptionMessage(Object Message, String[] Options){
+	public static int getOptionMessage(Object Message, String[] Options){
 		
 		return getOptionMessage(null, Message, "Input", Options, null, new WindowPane());
 		
 	}
 	
-	public static Object getOptionMessage(Object Message, String[] Options, WindowPane wp){
+	public static int getOptionMessage(Object Message, String[] Options, WindowPane wp){
 		
 		return getOptionMessage(null, Message, "Input", Options, null, wp);
 		
 	}
 	
-	public static Object getOptionMessage(Object Message, String[] Options, ImageIcon icono){
+	public static int getOptionMessage(Object Message, String[] Options, ImageIcon icono){
 		
 		return getOptionMessage(null, Message, "Input", Options, icono, new WindowPane());
 		
 	}
 	
-	public static Object getOptionMessage(Object Message, String[] Options, int icono){
+	public static int getOptionMessage(Object Message, String[] Options, int icono){
 		
 		return getOptionMessage(null, Message, "Input", Options, TYPE_MESSAGE[icono], new WindowPane());
 		
 	}
 	
-	public static Object getOptionMessage(Object Message, String[] Options, ImageIcon icono, WindowPane wp){
+	public static int getOptionMessage(Object Message, String[] Options, ImageIcon icono, WindowPane wp){
 		
 		return getOptionMessage(null, Message, "Input", Options, icono, wp);
 		
 	}
 	
-	public static Object getOptionMessage(Object Message, String[] Options, int icono, WindowPane wp){
+	public static int getOptionMessage(Object Message, String[] Options, int icono, WindowPane wp){
 		
 		return getOptionMessage(null, Message, "Input", Options, TYPE_MESSAGE[icono], wp);
 		
 	}
 	
-	public static Object getOptionMessage(Object Message, Object Title, String[] Options){
+	public static int getOptionMessage(Object Message, Object Title, String[] Options){
 		
 		return getOptionMessage(null, Message, Title, Options, null, new WindowPane());
 		
 	}
 	
-	public static Object getOptionMessage(Object Message, Object Title, String[] Options, WindowPane wp){
+	public static int getOptionMessage(Object Message, Object Title, String[] Options, WindowPane wp){
 		
 		return getOptionMessage(null, Message, Title, Options, null, wp);
 		
 	}
 	
-	public static Object getOptionMessage(Object Message, Object Title, String[] Options, ImageIcon icono){
+	public static int getOptionMessage(Object Message, Object Title, String[] Options, ImageIcon icono){
 		
 		return getOptionMessage(null, Message, Title, Options, icono, new WindowPane());
 		
 	}
 	
-	public static Object getOptionMessage(Object Message, Object Title, String[] Options, int icono){
+	public static int getOptionMessage(Object Message, Object Title, String[] Options, int icono){
 		
 		return getOptionMessage(null, Message, Title, Options, TYPE_MESSAGE[icono], new WindowPane());
 		
 	}
 	
-	public static Object getOptionMessage(Object Message, Object Title, String[] Options, ImageIcon icono, WindowPane wp){
+	public static int getOptionMessage(Object Message, Object Title, String[] Options, ImageIcon icono, WindowPane wp){
 		
 		return getOptionMessage(null, Message, Title, Options, icono, wp);
 		
 	}
 	
-	public static Object getOptionMessage(Object Message, Object Title, String[] Options, int icono, WindowPane wp){
+	public static int getOptionMessage(Object Message, Object Title, String[] Options, int icono, WindowPane wp){
 		
 		return getOptionMessage(null, Message, Title, Options, TYPE_MESSAGE[icono], wp);
 		
 	}
 	
-	public static Object getOptionMessage(Component parentComponent, Object Message, String[] Options){
+	public static int getOptionMessage(Component parentComponent, Object Message, String[] Options){
 		
 		return getOptionMessage(parentComponent, Message, "Input", Options, null, new WindowPane());
 		
 	}
 	
-	public static Object getOptionMessage(Component parentComponent, Object Message, String[] Options, WindowPane wp){
+	public static int getOptionMessage(Component parentComponent, Object Message, String[] Options, WindowPane wp){
 		
 		return getOptionMessage(parentComponent, Message, "Input", Options, null, wp);
 		
 	}
 	
-	public static Object getOptionMessage(Component parentComponent, Object Message, String[] Options, ImageIcon icono){
+	public static int getOptionMessage(Component parentComponent, Object Message, String[] Options, ImageIcon icono){
 		
 		return getOptionMessage(parentComponent, Message, "Input", Options, icono, new WindowPane());
 		
 	}
 	
-	public static Object getOptionMessage(Component parentComponent, Object Message, String[] Options, int icono){
+	public static int getOptionMessage(Component parentComponent, Object Message, String[] Options, int icono){
 		
 		return getOptionMessage(parentComponent, Message, "Input", Options, TYPE_MESSAGE[icono], new WindowPane());
 		
 	}
 	
-	public static Object getOptionMessage(Component parentComponent, Object Message, String[] Options, ImageIcon icono, WindowPane wp){
+	public static int getOptionMessage(Component parentComponent, Object Message, String[] Options, ImageIcon icono, WindowPane wp){
 		
 		return getOptionMessage(parentComponent, Message, "Input", Options, icono, wp);
 		
 	}
 	
-	public static Object getOptionMessage(Component parentComponent, Object Message, String[] Options, int icono, WindowPane wp){
+	public static int getOptionMessage(Component parentComponent, Object Message, String[] Options, int icono, WindowPane wp){
 		
 		return getOptionMessage(parentComponent, Message, "Input", Options, TYPE_MESSAGE[icono], wp);
 		
 	}
 	
-	public static Object getOptionMessage(Component parentComponent, Object Message, Object Title, String[] Options){
+	public static int getOptionMessage(Component parentComponent, Object Message, Object Title, String[] Options){
 		
 		return getOptionMessage(parentComponent, Message, Title, Options, null, new WindowPane());
 		
 	}
 	
-	public static Object getOptionMessage(Component parentComponent, Object Message, Object Title, String[] Options, WindowPane wp){
+	public static int getOptionMessage(Component parentComponent, Object Message, Object Title, String[] Options, WindowPane wp){
 		
 		return getOptionMessage(parentComponent, Message, Title, Options, null, wp);
 		
 	}
 	
-	public static Object getOptionMessage(Component parentComponent, Object Message, Object Title, String[] Options, ImageIcon icono){
+	public static int getOptionMessage(Component parentComponent, Object Message, Object Title, String[] Options, ImageIcon icono){
 		
 		return getOptionMessage(parentComponent, Message, Title, Options, icono, new WindowPane());
 		
 	}
 	
-	public static Object getOptionMessage(Component parentComponent, Object Message, Object Title, String[] Options, int icono){
+	public static int getOptionMessage(Component parentComponent, Object Message, Object Title, String[] Options, int icono){
 		
 		return getOptionMessage(parentComponent, Message, Title, Options, TYPE_MESSAGE[icono], new WindowPane());
 		
 	}
 	
-	public static Object getOptionMessage(Component parentComponent, Object Message, Object Title, String[] Options, int icono, WindowPane wp){
+	public static int getOptionMessage(Component parentComponent, Object Message, Object Title, String[] Options, int icono, WindowPane wp){
 		
 		return getOptionMessage(parentComponent, Message, Title, Options, TYPE_MESSAGE[icono], wp);
 		
