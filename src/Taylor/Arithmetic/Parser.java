@@ -1224,13 +1224,13 @@ public class Parser extends Mayth{
 	
 	public static boolean isAllowed(String wd){
 		
-		if (wd.charAt(0)=='+'){
-			
-			return false;
-			
-		}
-		
 		try{
+			
+			if (wd.charAt(0)=='+'){
+			
+				return false;
+				
+			}
 			
 			new BigDecimal(wd);
 			

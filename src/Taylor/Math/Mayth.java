@@ -332,38 +332,25 @@ public class Mayth extends Hyperbolic{
 		
 		if (indice<=0){return 0;}
 		
-		long in = 0,co = 0;
-		long primo = 1;
+		long i = 0;
+		long p = 1;
 		boolean b = false;
 		
 		do{
 			
-			in++;
+			i++;
 			
 			do{
 				
-				co = 0;
-				primo++;
+				p++;
 				
-				for (long i=1; i<=primo; i++){
-					
-					if (primo%i==0){co++;}
-					
-					if (co>2){
-						
-						b = false;
-						
-						break;
-						
-					}else if (co==2){b = true;}
-					
-				}
+				b = this.isPrime(p);
 				
 			}while(b==false);
 			
-		}while(in!=indice);
+		}while(i!=indice);
 		
-		return primo;
+		return p;
 		
 	}
 	
