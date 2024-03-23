@@ -225,6 +225,36 @@ public class Matriz{
 		
 	}
 	
+	public Matriz set(int Row, int Column, double cp){
+		
+		if (State){
+			
+			return null;
+			
+		}
+		
+		try{
+			
+			vector[] v = new vector[this.m.length];
+			
+			for (int i=0; i<v.length; i++){
+				
+				v[i] = this.m[i];
+				
+			}
+			
+			v[Row] = v[Row].set(Column, cp);
+			
+			return new Matriz(v);
+			
+		}catch(Exception e){
+			
+			return this;
+			
+		}
+		
+	}
+	
 	public double[][] getMatriz(){
 		
 		double[][] mz = new double[m.length][m[0].length];
@@ -1259,6 +1289,20 @@ public class Matriz{
 		}
 	
 		return new Matriz(v);
+		
+	}
+	
+	public static Matriz getFullComponents(double cp, int f, int c){
+		
+		ArrayList<vector> mz = new ArrayList<>();
+		
+		for (int i=0; i<f; i++){
+			
+			mz.add(vector.getFullComponents(cp, c));
+			
+		}
+		
+		return new Matriz(mz);
 		
 	}
 	
