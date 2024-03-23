@@ -62,9 +62,7 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		vector v = new vector(new double[] {2, 3, 7, 5, 11, 13, 5});
-		
-		WindowPane.showInformationMessage(v.shortBy(true));
+		System.out.println(Parser.getFactors(300));
 		
 		System.out.print("\n\n");
 		

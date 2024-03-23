@@ -302,21 +302,46 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
+	public long[] getPrimeFactors(long n){
+		
+		ArrayList<Long> v = new ArrayList<>();
+		
+		long i = 0;
+		long p = 0;
+		
+		do{
+			
+			p = this.nPrime((int) i);
+			
+			do{
+				
+				if (n%p==0){
+					
+					v.add(p);
+					
+					n/= p;
+					
+				}
+				
+			}while(n%p==0);
+			
+			i++;
+			
+		}while(n!=1);
+		
+		return v.stream().mapToLong(Long::longValue).toArray();
+		
+	}
+	
 	public boolean isPrime(long n){
 		
 		if (n<=1){return false;}
 		
-		int c = 0;
+		int c = 2;
 		
-		for (int i=1; i<=n; i++){
+		for (int i=2; i<n/2; i++){
 			
 			if (n%i==0){
-				
-				c++;
-				
-			}
-			
-			if (c==3){
 				
 				return false;
 				
@@ -330,11 +355,10 @@ public class Mayth extends Hyperbolic{
 	
 	public long nPrime(int indice){
 		
-		if (indice<=0){return 0;}
+		if (indice<0){return 0;}
 		
-		long i = 0;
+		long i = -1;
 		long p = 1;
-		boolean b = false;
 		
 		do{
 			
@@ -344,9 +368,7 @@ public class Mayth extends Hyperbolic{
 				
 				p++;
 				
-				b = this.isPrime(p);
-				
-			}while(b==false);
+			}while(!this.isPrime(p));
 			
 		}while(i!=indice);
 		
@@ -439,15 +461,7 @@ public class Mayth extends Hyperbolic{
 	
 	public double abs(double x){
 		
-		if (x==-0){return 0;}
-		
-		if (x<0){
-			
-			return -x;
-			
-		}
-		
-		return x;
+		return x<0 ? -x : x;
 		
 	}
 	

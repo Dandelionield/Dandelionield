@@ -9,7 +9,9 @@ package Taylor.Arithmetic;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.math.MathContext;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import Taylor.Math.Mayth;
  
@@ -31,13 +33,15 @@ public class Parser extends Mayth{
 			
 			wdProcess = new ArrayList<>();
 			
+			wdProcess.add(wd);
+			
 			n = Parse(wd);
 			
 			op = this.getProcess();
 			
 		}catch(Exception e){
 			
-			e.printStackTrace();
+			//e.printStackTrace();
 			
 			op = "Error";
 			
@@ -60,6 +64,8 @@ public class Parser extends Mayth{
 		try{
 			
 			wdProcess = new ArrayList<>();
+			
+			wdProcess.add(wd);
 			
 			n = Parse(wd);
 			
@@ -90,6 +96,8 @@ public class Parser extends Mayth{
 		try{
 			
 			wdProcess = new ArrayList<>();
+			
+			wdProcess.add(wd);
 			
 			n = Parse(wd);
 			
@@ -1166,59 +1174,45 @@ public class Parser extends Mayth{
 		
 	}
 	
-	public static boolean Parse(int n){
+	public static Parser getFactors(long n){
 		
-		if (n==1){
+		long[] v = new Mayth().getPrimeFactors(n);
+		
+		int c = 1;
+		
+		HashMap<Long, Integer> p = new HashMap<>();
+		
+		p.put(v[0], c);
+		
+		for (int i=1; i<v.length; i++){
 			
-			return true;
-			
-		}
-		
-		return false;
-		
-	}
-	
-	public static int Parse(boolean n){
-		
-		if (n==true){
-			
-			return 1;
-			
-		}
-		
-		return 0;
-		
-	}
-	
-	public static String DeleteChar(String cadena, int indice){
-		
-		String nw="";
-		
-		for (int i=0; i<cadena.length(); i++){
-			
-			if (i==indice){continue;}
-			
-			nw+=cadena.charAt(i)+"";
+			if (v[i]==v[i-1]){
+				
+				c++;
+				
+				p.put(v[i], c);
+				
+			}else{
+				
+				c = 1;
+				
+				p.put(v[i], c);
+				
+			}
 			
 		}
 		
-		return nw;
+		String bup = "";
 		
-	}
-	
-	public static String ReplaceChar(String cadena, int indice, String replacement){
-		
-		String nw="";
-		
-		for (int i=0; i<cadena.length(); i++){
+		for (long q : p.keySet()){
 			
-			if (i==indice){nw+=replacement;continue;}
-			
-			nw+=cadena.charAt(i)+"";
+			bup+= q+"^"+p.get(q)+" * ";
 			
 		}
 		
-		return nw;
+		bup = bup.substring(0, bup.length()-3);
+		
+		return new Parser(bup, true, true);
 		
 	}
 	
@@ -1241,6 +1235,38 @@ public class Parser extends Mayth{
 			return false;
 			
 		}
+		
+	}
+	
+	private static String DeleteChar(String cadena, int indice){
+		
+		String nw="";
+		
+		for (int i=0; i<cadena.length(); i++){
+			
+			if (i==indice){continue;}
+			
+			nw+=cadena.charAt(i)+"";
+			
+		}
+		
+		return nw;
+		
+	}
+	
+	private static String ReplaceChar(String cadena, int indice, String replacement){
+		
+		String nw="";
+		
+		for (int i=0; i<cadena.length(); i++){
+			
+			if (i==indice){nw+=replacement;continue;}
+			
+			nw+=cadena.charAt(i)+"";
+			
+		}
+		
+		return nw;
 		
 	}
 	
