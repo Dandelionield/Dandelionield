@@ -19,6 +19,7 @@ import Graphic.R2Space.*;
 import Graphic.Component.*;
 import Graphic.User.Interface.*;
 
+import System.console;
 import System.Numeric.*;
 import System.Games.*;
 
@@ -61,7 +62,7 @@ public class Test {
 
 	public static void main(String[] args){
 		
-		cs();
+		console.clean();
 		
 		System.out.print("\n\n");
 		
@@ -136,58 +137,28 @@ public class Test {
 			
 		});
 		
-		Conway Game = new Conway(AmongUs);
+		Conway Game = new Conway(ShipMaker);
 		
 		System.out.print("\n\n"+Game);
-		System.out.print("\n\nGeneración: "+Game.getCurrentGeneration());//*/
+		System.out.print("\n\nGeneración: "+Game.getCurrentGeneration());
+		
+		console.pause(100);
 		
 		for (int i=0; i<=100; i++){
 			
-			cs();
+			console.pause(100);
+			console.clean();
 			
 			System.out.print("\n\n"+Game);
 			System.out.print("\n\nGeneración: "+Game.getCurrentGeneration());
 			
 			Game.play();
 			
-		}//*/
+		}
 		
 		System.out.print("\n\n");
 		
     }//*/
-	
-	public static void cs(){
-		
-		try {
-			
-			Thread.sleep(250);
-			
-		} catch (InterruptedException ev){
-			
-			ev.printStackTrace();
-			
-		}
-		
-        try{
-
-            String os = System.getProperty("os.name");
-
-            if (os.contains("Windows")){
-				
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-				
-            }else{
-				
-                new ProcessBuilder("clear").inheritIO().start().waitFor();
-				
-            }
-			
-        }catch (Exception e){
-			
-            e.printStackTrace();
-			
-        }
-    }
 	
 	private static void Graph(){
 		
