@@ -1,4 +1,4 @@
-package Main;
+package System.Games;
 
 /*
  *
@@ -6,20 +6,7 @@ package Main;
  * 
  */
 
-import Taylor.Math.*;
-import Taylor.Arithmetic.*;
-
-import Geometry.Euclidean.*;
-import Geometry.Algebra.*;
-
-import Physics.Fundamental.*;
-import Physics.Measurement.*;
-
-import Graphic.R2Space.*;
-import Graphic.Component.*;
-import Graphic.User.Interface.*;
-
-import System.Numeric.*;
+import Geometry.Euclidean.Matriz;
 
 import java.util.ArrayList;
 
@@ -37,8 +24,8 @@ public class Conway{
 	
 	public Conway(Matriz m){
 		
-		this.m.add(m);
-		width = m.getColumn(0).length;
+		this.m.add(this.fix(m));
+		width = m.length;
 		height = m.getRow(0).length;
 		
 	}
@@ -61,9 +48,43 @@ public class Conway{
 		
 	}
 	
-	public String toString(){
+	public Conway getGrind(int Rows, int Columns){
 		
-		return (this.getCurrent()+"").replace(".0", " ").replace("0", ".").replace(",", " ");
+		return new Conway(Matriz.getFullComponents(0, Rows, Columns));
+		
+	}
+	
+	public void set(int Row, int Column){
+		
+		Matriz mz = this.getCurrent();
+		
+		try{
+			
+			mz = mz.set(Row, Column, 1);
+			
+			m.set(this.getCurrentGeneration(), mz);
+			
+		}catch(Exception e){}
+		
+	}
+	
+	public void kill(int Row, int Column){
+		
+		Matriz mz = this.getCurrent();
+		
+		try{
+			
+			mz = mz.set(Row, Column, 0);
+			
+			m.set(this.getCurrentGeneration(), mz);
+			
+		}catch(Exception e){}
+		
+	}
+	
+	public String toString(){
+
+		return (this.getCurrent()+"").replace(".0", "").replace("0", ".").replace(",", "").replace("1", "■");
 		
 	}
 	
@@ -79,25 +100,9 @@ public class Conway{
 				
 				byte p = this.pValue(f, c, mz);
 				
-				if (mz.get(f, c)==1){
+				if (((p==2 || p==3) && mz.get(f, c)==1) || (p==3 && mz.get(f, c)==0)){
 					
-					if (p==2 || p==3){
-						
-						v = v.set(f, c, 1);
-						
-					}else{
-						
-						v = v.set(f, c, 0);
-						
-					}
-					
-				}else{
-					
-					if (p==3){
-						
-						v = v.set(f, c, 1);
-						
-					}
+					v = v.set(f, c, 1);
 					
 				}
 				
@@ -107,7 +112,7 @@ public class Conway{
 		
 		m.add(v);
 		
-	}//*/
+	}
 	
 	private byte pValue(int f, int c, Matriz mz){
 		
@@ -162,6 +167,30 @@ public class Conway{
 		}catch(Exception e){}
 		
 		return (byte) p;
+		
+	}
+	
+	private Matriz fix(Matriz mz){
+		
+		for (int f=0; f<mz.length; f++){
+			
+			for(int c=0; c<mz.getRow(f).length; c++){
+				
+				try{
+			
+					if (mz.get(f, c)!=1){
+						
+						mz = mz.set(f, c, 0);
+						
+					}
+					
+				}catch(Exception e){}
+				
+			}
+			
+		}
+		
+		return mz;
 		
 	}
 	
