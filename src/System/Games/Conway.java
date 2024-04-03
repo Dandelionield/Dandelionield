@@ -22,6 +22,8 @@ public class Conway{
 	private final int width;
 	private final int height;
 	
+	private boolean infinite = false;
+	
 	public Conway(Matriz m){
 		
 		this.m.add(this.fix(m));
@@ -51,6 +53,12 @@ public class Conway{
 	public Conway getGrind(int Rows, int Columns){
 		
 		return new Conway(Matriz.getFullComponents(0, Rows, Columns));
+		
+	}
+	
+	public void setInfinite(boolean value){
+		
+		this.infinite = value;
 		
 	}
 	
@@ -120,53 +128,93 @@ public class Conway{
 		
 		try{
 			
-			p+= mz.get(f-1, c-1);
+			p+= mz.get(this.fixGetRow(f-1), this.fixGetColumn(c-1));
 			
 		}catch(Exception e){}
 		
 		try{
 			
-			p+= mz.get(f-1, c);
+			p+= mz.get(this.fixGetRow(f-1), this.fixGetColumn(c));
 			
 		}catch(Exception e){}
 		
 		try{
 			
-			p+= mz.get(f-1, c+1);
+			p+= mz.get(this.fixGetRow(f-1), this.fixGetColumn(c+1));
 			
 		}catch(Exception e){}
 		
 		try{
 			
-			p+= mz.get(f, c-1);
+			p+= mz.get(this.fixGetRow(f), this.fixGetColumn(c-1));
 			
 		}catch(Exception e){}
 		
 		try{
 			
-			p+= mz.get(f, c+1);
+			p+= mz.get(this.fixGetRow(f), this.fixGetColumn(c+1));
 			
 		}catch(Exception e){}
 		
 		try{
 			
-			p+= mz.get(f+1, c-1);
+			p+= mz.get(this.fixGetRow(f+1), this.fixGetColumn(c-1));
 			
 		}catch(Exception e){}
 		
 		try{
 			
-			p+= mz.get(f+1, c);
+			p+= mz.get(this.fixGetRow(f+1), this.fixGetColumn(c));
 			
 		}catch(Exception e){}
 		
 		try{
 			
-			p+= mz.get(f+1, c+1);
+			p+= mz.get(this.fixGetRow(f+1), this.fixGetColumn(c+1));
 			
 		}catch(Exception e){}
 		
 		return (byte) p;
+		
+	}
+	
+	private int fixGetRow(int Row){
+		
+		if (infinite==true){
+
+			if (Row==-1){
+				
+				return width-1;
+				
+			}else if (Row==width){
+				
+				return 0;
+				
+			}
+			
+		}
+		
+		return Row;
+		
+	}
+	
+	private int fixGetColumn(int Column){
+		
+		if (infinite==true){
+
+			if (Column==-1){
+				
+				return height-1;
+				
+			}else if (Column==height){
+				
+				return 0;
+				
+			}
+			
+		}
+		
+		return Column;
 		
 	}
 	
