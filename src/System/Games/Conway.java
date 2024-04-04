@@ -12,12 +12,6 @@ import java.util.ArrayList;
 
 public class Conway{
 	
-	public static void main(String[] abc){
-		
-		System.out.print("Hola");
-		
-	}
-	
 	private final ArrayList<Matriz> m = new ArrayList<>();
 	private final int width;
 	private final int height;
