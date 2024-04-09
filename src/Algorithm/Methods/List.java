@@ -44,9 +44,56 @@ public class List<T>{
 		
 	}
 	
+	/*public T[] get(){
+		
+		int c = this.length();
+		
+		if (c==0){return null;}
+		
+		T[] v = new T[c];
+		
+		Node<T> n = this.firstNode;
+		
+		for(int i=0; i<c; i++){
+			
+			v[i] = n.getData();
+			
+			n = n.getReference();
+			
+		}
+		
+		return v;
+		
+	}//*/
+	
 	public String toString(){
 		
 		return "{"+this.firstNode.toString().replaceAll(";", ",")+"}";
+		
+	}
+	
+	public int length(){
+		
+		if (this.firstNode==null){
+			
+			return 0;
+			
+		}else{
+			
+			int c = 0;
+			Node<T> n = this.firstNode;
+			
+			do{
+				
+				c++;
+				
+				n = n.getReference();
+				
+			}while(n!=null);
+			
+			return c;
+			
+		}
 		
 	}
 

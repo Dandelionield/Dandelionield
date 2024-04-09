@@ -84,6 +84,12 @@ public class Conway{
 		
 	}
 	
+	public String showGen(int gen){
+		
+		return (this.get(gen)+"").replace(".0", "").replace("0", ".").replace(",", "").replace("1", "■");
+		
+	}
+	
 	public String toString(){
 
 		return (this.getCurrent()+"").replace(".0", "").replace("0", ".").replace(",", "").replace("1", "■");

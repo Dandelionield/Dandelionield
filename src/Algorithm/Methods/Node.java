@@ -9,7 +9,7 @@ package Algorithm.Methods;
 public class Node<T>{
 
 	private T Data;
-	private Node Reference;
+	private Node<T> Reference;
 	
 	public Node(T Data){
 		
@@ -18,7 +18,7 @@ public class Node<T>{
 		
 	}
 	
-	public Node(T Data, Node Reference){
+	public Node(T Data, Node<T> Reference){
 		
 		this.Data = Data;
 		this.Reference = Reference;
@@ -31,7 +31,7 @@ public class Node<T>{
 		
 	}
 	
-	public void setReference(Node Reference){
+	public void setReference(Node<T> Reference){
 		
 		this.Reference = Reference;
 		
@@ -43,7 +43,7 @@ public class Node<T>{
 		
 	}
 	
-	public Node getReference(){
+	public Node<T> getReference(){
 		
 		return this.Reference;
 		

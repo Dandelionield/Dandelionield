@@ -68,7 +68,7 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		Node<Double> n = new Node<>(8.23);
+		Node<Double> n = new Node<>(8.23, new Node<Double>(7));
 		
 		List<Double> lista = new List<>(n);
 		
