@@ -236,7 +236,7 @@ public class List<T>{
 	
 	public String toString(){
 		
-		return "{"+this.firstNode.toString().replaceAll(";", ",")+"}";
+		return "{"+ (this.firstNode!=null ? this.firstNode.toString().replaceAll(";", ",") : "") +"}";
 		
 	}
 	

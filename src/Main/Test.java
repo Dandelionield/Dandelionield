@@ -68,15 +68,6 @@ public class Test {
 		
 		List<String> lista = new List<>();
 		
-		lista.add("El Pepé");
-		lista.add("E");
-		lista.add("z");
-		lista.add("a");
-		lista.add("1");
-		lista.add("*");
-		
-		lista.sort(true);
-		
 		System.out.print(lista);
 		
 		System.out.print("\n\n");
