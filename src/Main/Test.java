@@ -64,15 +64,18 @@ public class Test {
 
 	public static void main(String[] args){
 		
-		console.clean();
-		
 		System.out.print("\n\n");
 		
-		Node<Double> n = new Node<>(8.23, new Node<Double>(7));
+		List<String> lista = new List<>();
 		
-		List<Double> lista = new List<>(n);
+		lista.add("El Pepé");
+		lista.add("E");
+		lista.add("z");
+		lista.add("a");
+		lista.add("1");
+		lista.add("*");
 		
-		lista.add(87.7);
+		lista.sort(true);
 		
 		System.out.print(lista);
 		

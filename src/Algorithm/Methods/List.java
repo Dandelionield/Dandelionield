@@ -31,9 +31,25 @@ public class List<T>{
 	}
 	
 	public void add(Node<T> Nodo){
-		
-		Nodo.setReference(this.firstNode);
-		this.firstNode = Nodo;
+
+		if (this.firstNode==null){
+			
+			this.firstNode = Nodo;
+			
+		}else if (Nodo!=null){
+			
+			Node<T> n = Nodo;
+			
+			while(n.getReference()!=null){
+				
+				n = n.getReference();
+				
+			};
+
+			n.setReference(this.firstNode);
+			this.firstNode = Nodo;
+			
+		}
 		
 	}
 	
@@ -41,6 +57,158 @@ public class List<T>{
 		
 		Node<T> Nodo = new Node<>(Data, this.firstNode);
 		this.firstNode = Nodo;
+		
+	}
+	
+	public void addAtLast(Node<T> Nodo){
+
+		if (this.firstNode==null){
+			
+			this.firstNode = Nodo;
+			
+		}else{
+			
+			Node<T> n = this.firstNode;
+			
+			while(n.getReference()!=null){
+				
+				n = n.getReference();
+				
+			};
+
+			n.setReference(Nodo);
+			
+		}
+
+	}
+	
+	public void addAtLast(T Data){
+
+		this.addAtLast(new Node<T>(Data));
+		
+	}
+	
+	public void remove(){
+
+		if (this.firstNode!=null){
+
+			this.firstNode = this.firstNode.getReference();
+			
+		}
+		
+	}
+	
+	public void removeAtLast(){
+
+		if (this.firstNode!=null){
+
+			Node<T> n = this.firstNode;
+			Node<T> BackUp = null;
+			
+			while(n.getReference()!=null){
+
+				BackUp = n;
+				n = n.getReference();
+				
+			};
+			
+			BackUp.setReference(null);
+			
+		}
+		
+	}
+	
+	public Node<T> get(T Data){
+		
+		if (this.firstNode==null){
+			
+			return null;
+			
+		}
+		
+		if (this.firstNode.getData().toString().equals(Data.toString())){
+			
+			return this.firstNode;
+			
+		}
+		
+		Node<T> n = this.firstNode;
+		
+		while(n.getReference()!=null){
+			
+			if (n.getData().toString().equals(Data.toString())){
+			
+				return n;
+				
+			}
+			
+			n = n.getReference();
+			
+		};
+		
+		return null;
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void sort(boolean b){
+		
+		if (this.firstNode!=null){
+			
+			if (this.firstNode.getData() instanceof String){
+			
+				Node<T> n = this.firstNode;
+				
+				String[] v = new String[this.length()];
+				int z = 0;
+				
+				while(n!=null){
+					
+					v[z] = n.getData().toString();
+					
+					z++;
+					
+					n = n.getReference();
+					
+				};
+				
+				String p = v[0];
+				
+				for (int f=0; f<v.length; f++){
+					
+					for (int c=1; c<v.length; c++){
+						
+						if (b ? p.compareTo(v[c])>0 : p.compareTo(v[c])<0){
+							
+							p = v[c-1];
+							v[c-1] = v[c];
+							v[c] = p;
+							
+						}else{
+							
+							p = v[c];
+							
+						}
+						
+					}
+					
+					p = v[0];
+					
+				}
+				
+				List<T> newList = new List<>();
+				
+				for (int i=v.length-1; i>=0; i--){
+					
+					newList.add((T) v[i]);
+					
+				}
+				
+				this.firstNode = newList.firstNode;
+				
+			}
+			
+		}
 		
 	}
 	
