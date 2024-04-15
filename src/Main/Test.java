@@ -66,21 +66,19 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		List<Integer> Lista = new List<>();
+		DoubleList<Integer> n = new DoubleList<>();
 		
-		Lista.add(1);
-		Lista.add(2);
-		Lista.add(3);
-		Lista.add(5);
-		Lista.add(7);
+		n.add(2);
+		n.addAtLast(1);
+		n.add(3);
+		n.addAtLast(4);
+		n.add(8);
+		n.add(9);
+		n.addAtLast(5);
 		
-		System.out.print(Lista);
+		n.remove(4);
 		
-		System.out.print("\n\n");
-		
-		Lista.remove(3);
-		
-		System.out.print(Lista);
+		System.out.print(n);
 		
 		System.out.print("\n\n");
 		

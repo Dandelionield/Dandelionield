@@ -11,6 +11,13 @@ public class Node<T>{
 	private T Data;
 	private Node<T> nextReference;
 	
+	public Node(){
+		
+		this.Data = null;
+		this.nextReference = null;
+		
+	}
+	
 	public Node(T Data){
 		
 		this.Data = Data;
@@ -51,7 +58,7 @@ public class Node<T>{
 	
 	public String toString(){
 		
-		return this.nextReference==null ? this.Data.toString() : this.Data.toString()+" --> "+this.nextReference.toString();
+		return this.nextReference==null ? (this.Data!=null ? this.Data.toString() : "") : this.Data.toString()+" --> "+this.nextReference.toString();
 		
 	}
 	

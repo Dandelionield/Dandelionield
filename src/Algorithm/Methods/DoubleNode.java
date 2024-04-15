@@ -10,6 +10,14 @@ public class DoubleNode<T> extends Node<T>{
 
 	private DoubleNode<T> previousReference;
 	
+	public DoubleNode(){
+		
+		super();
+		
+		this.previousReference = null;
+		
+	}
+	
 	public DoubleNode(T Data){
 		
 		super(Data);
@@ -40,13 +48,67 @@ public class DoubleNode<T> extends Node<T>{
 	
 	public DoubleNode<T> getNextReference(){
 		
-		return (DoubleNode<T>) super.getReference();
+		DoubleNode<T> n = (DoubleNode<T>) super.getReference();
+		
+		if (n==null){return null;}
+		
+		n.setPreviousReference(this);
+		
+		return n;
 		
 	}
 	
 	public DoubleNode<T> getPreviousReference(){
 		
-		return this.previousReference;
+		if (this.previousReference==null){return null;}
+		
+		DoubleNode<T> n = this.previousReference;
+		
+		n.setNextReference(this);
+		
+		return n;
+		
+	}
+	
+	public DoubleNode<T> switchNodes(){
+		
+		DoubleNode<T> bup = new DoubleNode<>();
+		DoubleNode<T> u = bup;
+		
+		DoubleNode<T> n = (DoubleNode<T>) super.getReference();
+		
+		while(n!=null){
+			
+			bup.setData(n.getData());
+			bup.setPreviousReference(new DoubleNode<T>());
+			
+			bup = bup.getPreviousReference();
+			n = n.getNextReference();
+			
+		}
+		
+		bup = bup.getNextReference();
+		bup.setPreviousReference(null);
+		
+		bup = new DoubleNode<>();
+		DoubleNode<T> p = bup;
+		
+		n = this.getPreviousReference();
+		
+		while(n!=null){
+			
+			bup.setData(n.getData());
+			bup.setNextReference(new DoubleNode<T>());
+			
+			bup = bup.getNextReference();
+			n = n.getPreviousReference();
+			
+		}
+		
+		bup = bup.getPreviousReference();
+		bup.setNextReference(null);
+		
+		return new DoubleNode<T>(this.getData(), u, p);
 		
 	}
 	
@@ -58,19 +120,19 @@ public class DoubleNode<T> extends Node<T>{
 		
 		while (n.getPreviousReference()!=null){
 			
-			bup.insert(0, n.getPreviousReference().getData().toString()+" <--> ");
+			bup.insert(0, n.getPreviousReference().getData()+" <--> ");
 			
 			n = n.getPreviousReference();
 			
 		}
 
-		bup.append("{"+this.getData().toString()+"}");
+		bup.append(this.getData()!=null ? "{"+this.getData().toString()+"}" : "");
 
 		n = this;
 		
 		while (n.getNextReference()!=null){
 			
-			bup.append(" <--> ").append(n.getNextReference().getData().toString());
+			bup.append(" <--> ").append(n.getNextReference().getData());
 			
 			n = n.getNextReference();
 			
@@ -82,7 +144,7 @@ public class DoubleNode<T> extends Node<T>{
 	
 	public String getID(){
 		
-		return super.toString().replace("Algorithm.Methods.Node", "");
+		return super.toString().replace("Algorithm.Methods.DoubleNode", "");
 		
 	}
 
