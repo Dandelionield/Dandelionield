@@ -66,9 +66,21 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		List<String> lista = new List<>();
+		List<Integer> Lista = new List<>();
 		
-		System.out.print(lista);
+		Lista.add(1);
+		Lista.add(2);
+		Lista.add(3);
+		Lista.add(5);
+		Lista.add(7);
+		
+		System.out.print(Lista);
+		
+		System.out.print("\n\n");
+		
+		Lista.remove(3);
+		
+		System.out.print(Lista);
 		
 		System.out.print("\n\n");
 		

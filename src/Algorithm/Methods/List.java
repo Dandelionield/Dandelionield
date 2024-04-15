@@ -98,6 +98,46 @@ public class List<T>{
 		
 	}
 	
+	public void remove(T Data){
+
+		if (this.firstNode!=null){
+
+			Node<T> n = this.firstNode;
+			Node<T> BackUp = null;
+		
+			while(n.getReference()!=null){
+				
+				if (n.getData().toString().equals(Data.toString())){
+					
+					if (BackUp!=null){
+						
+						BackUp.setReference(n.getReference());
+						
+					}else{
+						
+						this.remove();
+						
+					}
+					
+					break;
+					
+				}
+				
+				BackUp = n;
+				n = n.getReference();
+				
+			};
+			
+			if (n.getData().toString().equals(Data.toString()) && n.getReference()==null){
+				
+				this.removeAtLast();
+				
+			}
+			
+		}
+		
+	}
+	
 	public void removeAtLast(){
 
 		if (this.firstNode!=null){
@@ -212,7 +252,7 @@ public class List<T>{
 		
 	}
 	
-	/*public T[] get(){
+	/*public T[] getArray(){
 		
 		int c = this.length();
 		
@@ -224,7 +264,7 @@ public class List<T>{
 		
 		for(int i=0; i<c; i++){
 			
-			v[i] = n.getData();
+			v[i] = (T) n.getData();
 			
 			n = n.getReference();
 			
@@ -236,7 +276,7 @@ public class List<T>{
 	
 	public String toString(){
 		
-		return "{"+ (this.firstNode!=null ? this.firstNode.toString().replaceAll(";", ",") : "") +"}";
+		return "{"+ (this.firstNode!=null ? this.firstNode.toString().replaceAll(" --> ", ", ") : "") +"}";
 		
 	}
 	

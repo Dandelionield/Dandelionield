@@ -9,19 +9,19 @@ package Algorithm.Methods;
 public class Node<T>{
 
 	private T Data;
-	private Node<T> Reference;
+	private Node<T> nextReference;
 	
 	public Node(T Data){
 		
 		this.Data = Data;
-		this.Reference = null;
+		this.nextReference = null;
 		
 	}
 	
-	public Node(T Data, Node<T> Reference){
+	public Node(T Data, Node<T> nextReference){
 		
 		this.Data = Data;
-		this.Reference = Reference;
+		this.nextReference = nextReference;
 		
 	}
 	
@@ -31,9 +31,9 @@ public class Node<T>{
 		
 	}
 	
-	public void setReference(Node<T> Reference){
+	public void setReference(Node<T> nextReference){
 		
-		this.Reference = Reference;
+		this.nextReference = nextReference;
 		
 	}
 	
@@ -45,13 +45,19 @@ public class Node<T>{
 	
 	public Node<T> getReference(){
 		
-		return this.Reference;
+		return this.nextReference;
 		
 	}
 	
 	public String toString(){
 		
-		return this.Reference==null ? this.Data.toString() : this.Data.toString()+"; "+this.Reference.toString();
+		return this.nextReference==null ? this.Data.toString() : this.Data.toString()+" --> "+this.nextReference.toString();
+		
+	}
+	
+	public String getID(){
+		
+		return super.toString().replace("Algorithm.Methods.Node", "");
 		
 	}
 
