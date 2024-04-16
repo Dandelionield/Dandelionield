@@ -66,17 +66,17 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		DoubleList<Integer> n = new DoubleList<>();
+		DoubleList<String> n = new DoubleList<>();
 		
-		n.add(2);
-		n.addAtLast(1);
-		n.add(3);
-		n.addAtLast(4);
-		n.add(8);
-		n.add(9);
-		n.addAtLast(5);
+		n.add("a");
+		n.add("a4");
+		n.add("A");
+		n.add("El pepe");
+		n.add("2.3");
+		n.add("2");
+		n.add("3.1");
 		
-		n.remove(4);
+		n.sortBy(false);
 		
 		System.out.print(n);
 		

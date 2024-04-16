@@ -191,7 +191,7 @@ public class List<T>{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void sort(boolean b){
+	public void sortBy(boolean b){
 		
 		if (this.firstNode!=null){
 			
