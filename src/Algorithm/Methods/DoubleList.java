@@ -10,12 +10,31 @@ import Algorithm.Methods.DoubleNode;
 
 public class DoubleList<T>{
 	
-	private DoubleNode<T> lastNode;
 	private DoubleNode<T> firstNode;
+	private DoubleNode<T> lastNode;
 	
 	public DoubleList(){
 		
 		firstNode = lastNode = null;
+		
+	}
+	
+	public DoubleList(DoubleNode<T> Nodo){
+		
+		this.firstNode = this.fixFirst(Nodo);
+		this.lastNode = this.fixLast(Nodo);
+		
+	}
+	
+	public DoubleNode<T> getFirstNode(){
+		
+		return this.firstNode;
+		
+	}
+	
+	public DoubleNode<T> getLastNode(){
+		
+		return this.lastNode;
 		
 	}
 	
@@ -197,7 +216,7 @@ public class DoubleList<T>{
 					
 					for (int c=1; c<v.length; c++){
 						
-						if (b ? p.compareTo(v[c])>0 : p.compareTo(v[c])<0){
+						if (b ? p.compareTo(v[c])<0 : p.compareTo(v[c])>0){
 							
 							p = v[c-1];
 							v[c-1] = v[c];
@@ -272,6 +291,30 @@ public class DoubleList<T>{
 			return c;
 			
 		}
+		
+	}
+	
+	private DoubleNode<T> fixFirst(DoubleNode<T> n){
+		
+		while(n.getPreviousReference()!=null){
+			
+			n = n.getPreviousReference();
+			
+		}
+		
+		return n;
+		
+	}
+	
+	private DoubleNode<T> fixLast(DoubleNode<T> m){
+		
+		while(m.getNextReference()!=null){
+			
+			m = m.getNextReference();
+			
+		}
+		
+		return m;
 		
 	}
 	

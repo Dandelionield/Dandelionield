@@ -73,40 +73,51 @@ public class DoubleNode<T> extends Node<T>{
 	public DoubleNode<T> switchNodes(){
 		
 		DoubleNode<T> bup = new DoubleNode<>();
-		DoubleNode<T> u = bup;
+		DoubleNode<T> u = null;
+		DoubleNode<T> p = null;
 		
 		DoubleNode<T> n = (DoubleNode<T>) super.getReference();
 		
-		while(n!=null){
+		if (n!=null){
 			
-			bup.setData(n.getData());
-			bup.setPreviousReference(new DoubleNode<T>());
+			u = bup;
+		
+			while(n!=null){
+				
+				bup.setData(n.getData());
+				bup.setPreviousReference(new DoubleNode<T>());
+				
+				bup = bup.getPreviousReference();
+				n = n.getNextReference();
+				
+			}
 			
-			bup = bup.getPreviousReference();
-			n = n.getNextReference();
+			bup = bup.getNextReference();
+			bup.setPreviousReference(null);
 			
 		}
-		
-		bup = bup.getNextReference();
-		bup.setPreviousReference(null);
-		
-		bup = new DoubleNode<>();
-		DoubleNode<T> p = bup;
 		
 		n = this.getPreviousReference();
 		
-		while(n!=null){
+		if (n!=null){
+		
+			bup = new DoubleNode<>();
+			p = bup;
 			
-			bup.setData(n.getData());
-			bup.setNextReference(new DoubleNode<T>());
+			while(n!=null){
+				
+				bup.setData(n.getData());
+				bup.setNextReference(new DoubleNode<T>());
+				
+				bup = bup.getNextReference();
+				n = n.getPreviousReference();
+				
+			}
 			
-			bup = bup.getNextReference();
-			n = n.getPreviousReference();
+			bup = bup.getPreviousReference();
+			bup.setNextReference(null);
 			
 		}
-		
-		bup = bup.getPreviousReference();
-		bup.setNextReference(null);
 		
 		return new DoubleNode<T>(this.getData(), u, p);
 		

@@ -76,9 +76,8 @@ public class Test {
 		n.add("2");
 		n.add("3.1");
 		
-		n.sortBy(false);
-		
-		System.out.print(n);
+		System.out.println(n);
+		System.out.print(new DoubleList<String>(n.getFirstNode().switchNodes()));
 		
 		System.out.print("\n\n");
 		

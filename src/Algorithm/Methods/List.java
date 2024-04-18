@@ -30,6 +30,12 @@ public class List<T>{
 		
 	}
 	
+	public Node<T> getNode(){
+		
+		return this.firstNode;
+		
+	}
+	
 	public void add(Node<T> Nodo){
 
 		if (this.firstNode==null){
@@ -218,7 +224,7 @@ public class List<T>{
 					
 					for (int c=1; c<v.length; c++){
 						
-						if (b ? p.compareTo(v[c])>0 : p.compareTo(v[c])<0){
+						if (b ? p.compareTo(v[c])<0 : p.compareTo(v[c])>0){
 							
 							p = v[c-1];
 							v[c-1] = v[c];
