@@ -36,7 +36,7 @@ public class List<T>{
 		
 	}
 	
-	public void add(Node<T> Nodo){
+	protected void add(Node<T> Nodo){
 
 		if (this.firstNode==null){
 			
@@ -59,14 +59,14 @@ public class List<T>{
 		
 	}
 	
-	public void add(T Data){
+	protected void add(T Data){
 		
 		Node<T> Nodo = new Node<>(Data, this.firstNode);
 		this.firstNode = Nodo;
 		
 	}
 	
-	public void addAtLast(Node<T> Nodo){
+	protected void addAtLast(Node<T> Nodo){
 
 		if (this.firstNode==null){
 			
@@ -88,13 +88,13 @@ public class List<T>{
 
 	}
 	
-	public void addAtLast(T Data){
+	protected void addAtLast(T Data){
 
 		this.addAtLast(new Node<T>(Data));
 		
 	}
 	
-	public void remove(){
+	protected void remove(){
 
 		if (this.firstNode!=null){
 
@@ -104,7 +104,7 @@ public class List<T>{
 		
 	}
 	
-	public void remove(T Data){
+	protected void remove(T Data){
 
 		if (this.firstNode!=null){
 
@@ -144,7 +144,7 @@ public class List<T>{
 		
 	}
 	
-	public void removeAtLast(){
+	protected void removeAtLast(){
 
 		if (this.firstNode!=null){
 

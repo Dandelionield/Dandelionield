@@ -64,20 +64,17 @@ public class Test {
 
 	public static void main(String[] args){
 		
+		//console.clean();
+		
 		System.out.print("\n\n");
 		
-		DoubleList<String> n = new DoubleList<>();
+		Stack<Integer> p = new Stack<>();
 		
-		n.add("a");
-		n.add("a4");
-		n.add("A");
-		n.add("El pepe");
-		n.add("2.3");
-		n.add("2");
-		n.add("3.1");
+		p.push(1);
+		p.push(2);
+		p.push(3);
 		
-		System.out.println(n);
-		System.out.print(new DoubleList<String>(n.getFirstNode().switchNodes()));
+		System.out.print(p);
 		
 		System.out.print("\n\n");
 		
