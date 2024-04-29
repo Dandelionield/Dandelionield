@@ -68,13 +68,13 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		Stack<Integer> p = new Stack<>();
+		Digit n = new Digit(1.24656e3, false);
 		
-		p.push(1);
-		p.push(2);
-		p.push(3);
+		Digit a = new Digit(-2.5, false);
+		Digit b = new Digit(-3, false);
+		Digit c = a.add(b);
 		
-		System.out.print(p);
+		System.out.print(c+" + "+n+" = "+c.add(n));
 		
 		System.out.print("\n\n");
 		
