@@ -186,6 +186,30 @@ public class Digit{
 		
 	}
 	
+	public byte compareTo(double n){
+		
+		return this.compareTo(new Digit(n));
+		
+	}
+	
+	public Digit add(double n){
+		
+		return this.add(new Digit(n));
+		
+	}
+	
+	public Digit subtract(double n){
+		
+		return this.subtract(new Digit(n));
+		
+	}
+	
+	public Digit multiply(double n){
+		
+		return this.multiply(new Digit(n));
+		
+	}
+	
 	public byte compareTo(Digit n){
 		
 		if (this.CN.equals(n.CN)){
@@ -280,23 +304,29 @@ public class Digit{
 		
 	}
 	
-	public byte compareTo(double n){
-		
-		return this.compareTo(new Digit(n));
-		
-	}
-	
 	public Digit add(Digit n){
 		
-		if (this.compareTo(0)<0 && n.compareTo(0)<0){
+		byte n1 = n.compareTo(0);
+		byte m1 = this.compareTo(0);
+		byte v1 = this.abs().compareTo(n.abs());
+		
+		if (n1==0){
+			
+			return this;
+			
+		}else if (m1==0){
+			
+			return n;
+			
+		}else if (m1<0 && n1<0){
 			
 			return this.abs().add(n.abs()).multiply(-1);
 			
-		}else if (this.abs().compareTo(n.abs())<0 && (this.compareTo(0)<0 || n.compareTo(0)<0)){
+		}else if (v1<0 && (m1<0 || n1<0)){
 			
 			return n.multiply(-1).add(this.multiply(-1)).multiply(-1);
 			
-		}else if (this.abs().compareTo(n.abs())>0 && this.compareTo(0)<0){
+		}else if (v1>0 && m1<0){
 			
 			return this.multiply(-1).add(n.multiply(-1)).multiply(-1);
 			
@@ -372,29 +402,110 @@ public class Digit{
 			
 		}
 		
-		return new Digit(c.substring(0, c.length()-indexComma) + (indexComma!=0 ? "." : "") + c.substring(c.length()-indexComma), this.Notation);
-		
-	}//*/
-	
-	public Digit multiply(Digit n){
-		
-		if (n.compareTo(-1)==0 && this.compareTo(0)>0){
-			
-			return new Digit("-"+this.CN, this.Notation);
-			
-		}else if (n.compareTo(-1)==0 && this.compareTo(0)<0){
-			
-			return this.abs();
-			
-		}
-		
-		return null;
+		return indexComma==0 ? new Digit(c) : new Digit(c.substring(0, c.length()-indexComma)+"."+c.substring(c.length()-indexComma), this.Notation);
 		
 	}
 	
-	public Digit multiply(double n){
+	public Digit subtract(Digit n){
 		
-		return this.multiply(new Digit(n));
+		return this.add(n.multiply(-1));
+		
+	}
+	
+	public Digit multiply(Digit n){
+		
+		byte n1 = n.compareTo(0);
+		byte m1 = this.compareTo(0);
+		byte n2 = n.compareTo(-1);
+		byte m2 = this.compareTo(-1);
+		byte v1 = this.abs().compareTo(n.abs());
+		
+		if (this.compareTo(1)==0){
+			
+			return n;
+			
+		}else if (n.compareTo(1)==0){
+			
+			return this;
+			
+		}else if (m1==0 || n1==0){
+			
+			return new Digit(0);
+			
+		}else if (n2==0 && m1>0){
+			
+			return new Digit("-"+this.CN, this.Notation);
+			
+		}else if (n2==0 && m1<0){
+			
+			return this.abs();
+			
+		}else if (m2==0 && n1>0){
+			
+			return new Digit("-"+n.CN, n.Notation);
+			
+		}else if (m2==0 && n1<0){
+			
+			return n.abs();
+			
+		}
+		
+		String a = this.compareTo(0)<0 ? this.CN.substring(1) : this.CN;
+		String b = n.compareTo(0)<0 ? n.CN.substring(1) : n.CN;
+		String Zero = "";
+		
+		int ia = a.indexOf(".")!= -1 ? a.substring(a.indexOf(".")+1).length() : 0;
+		int ib = b.indexOf(".")!= -1 ? b.substring(b.indexOf(".")+1).length() : 0;
+		
+		int indexComma = ia + ib;
+		
+		a = a.replace(".", "");
+		b = b.replace(".", "");
+		
+		String[] v = new String[b.length()];
+		int r = 0;
+		
+		for (int f=b.length()-1; f>=0; f--){
+			
+			v[f] = Zero;
+			
+			r = 0;
+			
+			for (int c=a.length()-1; c>=0; c--){
+				
+				r = (a.charAt(c) - '0')*(b.charAt(f) - '0') + r;
+				
+				if (c!=0){
+					
+					v[f] = ((r+"").charAt(r>9 ? 1 : 0))+v[f];
+					
+				}else{
+					
+					v[f] = r+""+v[f];
+					
+					break;
+					
+				}
+				
+				r = r<10 ? 0 : (r+"").charAt(0) - '0';
+				
+			}
+			
+			Zero+= "0";
+			
+		}
+		
+		Digit c = new Digit(0);
+		
+		for (String p : v){
+			
+			c = c.add(new Digit(p));
+			
+		}
+		
+		c = c.multiply(this.compareTo(-1)).multiply(n.compareTo(-1));
+	
+		return indexComma==0 ? c : new Digit(c.CN.substring(0, c.CN.length()-indexComma)+"."+c.CN.substring(c.CN.length()-indexComma), this.Notation);
 		
 	}
 	

@@ -70,11 +70,11 @@ public class Test {
 		
 		Digit n = new Digit(1.24656e3, false);
 		
-		Digit a = new Digit(-2.5, false);
-		Digit b = new Digit(-3, false);
-		Digit c = a.add(b);
+		Digit a = new Digit(-82, false);
+		Digit b = new Digit(5.2, false);
+		Digit c = a.multiply(b);
 		
-		System.out.print(c+" + "+n+" = "+c.add(n));
+		System.out.print(a+" * "+b+" = "+c);
 		
 		System.out.print("\n\n");
 		
