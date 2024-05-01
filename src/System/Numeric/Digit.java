@@ -18,6 +18,10 @@ public class Digit{
 	
 	private boolean Notation;
 	
+	public static byte CEILING = 1;
+	public static byte HALF_UP = 0;
+	public static byte FLOOR = -1;
+	
 	public Digit(double n){
 		
 		this.n = n+"";
@@ -532,7 +536,7 @@ public class Digit{
 			String bup = c.CN.charAt(0)=='-' ? c.CN.substring(1) : c.CN;
 			
 			int limite = -(c.CN.replace("-", "").length()-indexComma);
-			Zero = limite!=0 ? "0." : "0.0";
+			Zero = "0.";
 			
 			for (int i=0; i<limite; i++){
 				
@@ -621,9 +625,81 @@ public class Digit{
 			
 		}
 		
-		return new Digit("0."+c, this.Notation).multiply(new Digit(n.compareTo(0))).multiply(this.multiply(new Digit(s)));
+		return new Digit("0."+c, this.Notation).multiply(new Digit(n.compareTo(0))).multiply(this.multiply(new Digit(s))).setScale(c.length()-1, Digit.HALF_UP);
 		
-	}//*/
+	}
+	
+	public Digit setScale(long limite, byte Mode){
+		
+		if (limite<0){
+			
+			return this;
+			
+		}
+		
+		int indexComma = 0;
+		
+		if (Mode==Digit.CEILING){
+			
+			indexComma = this.CN.indexOf(".");
+			
+			return indexComma==-1 ? this : new Digit(this.CN.substring(0, indexComma), this.Notation).add(1);
+			
+		}else if (Mode==Digit.HALF_UP){
+			
+			indexComma = this.CN.indexOf(".");
+			
+			String a = this.CN.substring(indexComma+1);
+			int ia = indexComma!=-1 ? a.length() : 0;
+			
+			if (indexComma==-1 || ia<=limite){
+				
+				return this;
+				
+			}
+			
+			byte r = 0;
+			ia--;
+			
+			do{
+				
+				int m = (a.charAt(ia) - '0') + r;
+				
+				r = m>=5 ? (m>9 ? (byte) 2 : (byte) 1) : 0;
+				
+				ia--;
+				
+			}while((ia+1-limite)>-1);
+			
+			r = r==2 ? 1 : r;
+			
+			if (ia==-1 && r>0){
+				
+				return this.setScale(0, Digit.CEILING);
+				
+			}
+			
+			String Zero = "0.";
+			
+			for (int i=0; i<ia-1; i++){
+				
+				Zero+= "0";
+				
+			}
+			
+			return new Digit(this.CN.substring(0, this.CN.length()-(a.length()-ia)), this.Notation).add(new Digit(Zero+""+r));
+			
+		}else if (Mode==Digit.FLOOR){
+			
+			indexComma = this.CN.indexOf(".");
+			
+			return indexComma==-1 ? this : new Digit(this.CN.substring(0, indexComma), this.Notation);
+			
+		}
+		
+		return this;
+		
+	}
 	
 	public Digit abs(){
 		
@@ -643,15 +719,41 @@ public class Digit{
 	
 	public String fix(String Number){
 		
-		for (int i=0; i<Number.length(); i++){
+		for (int f=0; f<Number.length(); f++){
 			
-			if (Number.charAt(i)!='0' && Number.charAt(i)!=','){
+			if (Number.charAt(f)!='0' && Number.charAt(f)!=','){
 				
-				return Number.substring(i);
+				if (Number.contains(".")==false){
+					
+					return Number.substring(f);
+					
+				}
 				
-			}else if (Number.indexOf(".")==(i+1)){
+				for (int c=Number.length()-1; c>=0; c--){
+					
+					if (Number.charAt(c)!='0' && Number.charAt(c)!='.'){
+						
+						return c==Number.length()-1 ? Number.substring(f) : Number.substring(f, c + 1);
+						
+					}
+					
+				}
 				
-				return Number.substring(i);
+				return Number.substring(f);
+				
+			}else if (Number.indexOf(".")==(f+1)){
+				
+				for (int c=Number.length()-1; c>=0; c--){
+					
+					if (Number.charAt(c)!='0' && Number.charAt(c)!='.'){
+						
+						return c==Number.length()-1 ? Number.substring(f) : Number.substring(f, c + 1);
+						
+					}
+					
+				}
+				
+				return Number.substring(f);
 				
 			}
 			

@@ -70,9 +70,9 @@ public class Test {
 		
 		Digit n = new Digit(1.24656e3, false);
 		
-		Digit a = new Digit(-82, false);
-		Digit b = new Digit(-5.2, false);
-		Digit c = b.divide(n, 16);
+		Digit a = new Digit(3, false);
+		Digit b = new Digit(6, false);
+		Digit c = a.divide(b, 100);
 		
 		System.out.print(c);
 		
