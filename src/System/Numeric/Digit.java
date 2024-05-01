@@ -39,7 +39,7 @@ public class Digit{
 		this.n = n;
 		this.Notation = true;
 		
-		this.DPN = !n.equals("NaN") ? (!n.equals("Infinity") ? getNotation(true) : "Infinity") : "NaN";
+		this.DPN = this.fix(!n.equals("NaN") ? (!n.equals("Infinity") ? this.getNotation(true) : "Infinity") : "NaN");
 		this.DDN = DPN.replace(".", "%").replace(",", ".").replace("%", ",");
 		this.CN = DPN.replace(",", "");
 		
@@ -71,7 +71,7 @@ public class Digit{
 		this.n = n;
 		this.Notation = value;
 		
-		this.DPN = !n.equals("NaN") ? (!n.equals("Infinity") ? getNotation(true) : "Infinity") : "NaN";
+		this.DPN = this.fix(!n.equals("NaN") ? (!n.equals("Infinity") ? this.getNotation(true) : "Infinity") : "NaN");
 		this.DDN = DPN.replace(".", "%").replace(",", ".").replace("%", ",");
 		this.CN = DPN.replace(",", "");
 		
@@ -218,6 +218,24 @@ public class Digit{
 			
 		}
 		
+		if (this.CN.length()==n.CN.length()){
+			
+			for (int i=0; i<this.CN.length(); i++){
+				
+				if (this.CN.charAt(i)>n.CN.charAt(i)){
+					
+					return 1;
+					
+				}else if (this.CN.charAt(i)<n.CN.charAt(i)){
+					
+					return -1;
+					
+				}
+				
+			}
+			
+		}
+		
 		long a = 0;
 		long b = 0;
 		long c = 0;
@@ -326,6 +344,10 @@ public class Digit{
 			
 			return n.multiply(-1).add(this.multiply(-1)).multiply(-1);
 			
+		}else if (v1<0 && (m1>0 && n1<0)){
+			
+			return n.multiply(-1).add(this.multiply(-1)).multiply(-1);
+			
 		}else if (v1>0 && m1<0){
 			
 			return this.multiply(-1).add(n.multiply(-1)).multiply(-1);
@@ -333,7 +355,7 @@ public class Digit{
 		}
 		
 		String a = this.CN;
-		String b = n.compareTo(0)<0 ? n.CN.substring(1) : n.CN;
+		String b = n1<0 ? n.CN.substring(1) : n.CN;
 		String c = "";
 		
 		int ia = a.indexOf(".")!= -1 ? a.substring(a.indexOf(".")+1).length() : 0;
@@ -450,8 +472,8 @@ public class Digit{
 			
 		}
 		
-		String a = this.compareTo(0)<0 ? this.CN.substring(1) : this.CN;
-		String b = n.compareTo(0)<0 ? n.CN.substring(1) : n.CN;
+		String a = m1<0 ? this.CN.substring(1) : this.CN;
+		String b = n1<0 ? n.CN.substring(1) : n.CN;
 		String Zero = "";
 		
 		int ia = a.indexOf(".")!= -1 ? a.substring(a.indexOf(".")+1).length() : 0;
@@ -503,11 +525,105 @@ public class Digit{
 			
 		}
 		
-		c = c.multiply(this.compareTo(-1)).multiply(n.compareTo(-1));
-	
-		return indexComma==0 ? c : new Digit(c.CN.substring(0, c.CN.length()-indexComma)+"."+c.CN.substring(c.CN.length()-indexComma), this.Notation);
+		c = c.multiply(m1).multiply(n1);
+		
+		if (c.CN.length()-indexComma<=0){
+			
+			String bup = c.CN.charAt(0)=='-' ? c.CN.substring(1) : c.CN;
+			
+			int limite = -(c.CN.replace("-", "").length()-indexComma);
+			Zero = limite!=0 ? "0." : "0.0";
+			
+			for (int i=0; i<limite; i++){
+				
+				Zero+= "0";
+				
+			}
+			
+			return new Digit((c.CN.charAt(0)=='-' ? "-"+Zero : Zero)+bup, this.Notation);
+			
+		}else{
+			
+			return indexComma==0 ? c : new Digit(c.CN.substring(0, c.CN.length()-indexComma)+"."+c.CN.substring(c.CN.length()-indexComma), this.Notation);
+			
+		}
 		
 	}
+	
+	public Digit divide(Digit n, long presicion){
+		
+		if (n.compareTo(1)==0){
+			
+			return this;
+			
+		}
+		
+		String a = n.abs().CN;
+		String s = "1";
+		String c = "";
+		
+		int indexComma = a.indexOf(".")!= -1 ? a.substring(a.indexOf(".")+1).length() : 0;
+		
+		a = a.replace(".", "");
+		
+		if (indexComma!=0){
+			
+			for (int i=1; i<=indexComma; i++){
+				
+				s+= "0";
+				
+			}
+			
+		}
+		
+		Digit Divisor = new Digit(a);
+		String m = "10";
+		long r = 0;
+		
+		for (int i=0; i<presicion; i++){
+			
+			r = 0;
+			
+			Digit v = new Digit(m);
+			int n1 = 0;
+			
+			do{
+				
+				v = v.subtract(Divisor);
+				
+				r++;
+				
+				n1 = v.compareTo(0);
+				
+				if (n1<0){r--;}
+				
+			}while(n1>0);
+			
+			if (n1!=0){
+				
+				c+= r+"";
+				
+				if (n1<0){
+					
+					v = v.add(Divisor);
+					
+				}
+				
+			}else{
+				
+				c+= r+"";
+				
+				break;
+				
+			}
+			
+			m = v.CN+"0";
+			
+		}
+		
+		return new Digit("0."+c, this.Notation).multiply(new Digit(n.compareTo(0))).multiply(this.multiply(new Digit(s)));
+		
+	}//*/
 	
 	public Digit abs(){
 		
@@ -522,6 +638,26 @@ public class Digit{
         String convert = String.valueOf("0123456789ABCDEF".charAt(i));
         
         return (n<Base) ? convert : toBase(n/Base, Base) + convert;
+		
+	}
+	
+	public String fix(String Number){
+		
+		for (int i=0; i<Number.length(); i++){
+			
+			if (Number.charAt(i)!='0' && Number.charAt(i)!=','){
+				
+				return Number.substring(i);
+				
+			}else if (Number.indexOf(".")==(i+1)){
+				
+				return Number.substring(i);
+				
+			}
+			
+		}
+		
+		return Number;
 		
 	}
 	
