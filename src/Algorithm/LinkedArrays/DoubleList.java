@@ -1,4 +1,4 @@
-package Algorithm.Methods;
+package Algorithm.LinkedArrays;
 
 /*
  *
@@ -6,7 +6,7 @@ package Algorithm.Methods;
  * 
  */
 
-import Algorithm.Methods.DoubleNode;
+import Algorithm.Nodes.DoubleNode;
 
 public class DoubleList<T>{
 	
@@ -255,11 +255,35 @@ public class DoubleList<T>{
 		
 		if (this.lastNode!=null){
 			
-			return "{"+this.lastNode.toString().replace("{", "").replace("}", "").replace(" <--> ", ", ")+"}";
+			DoubleNode<T> n = this.lastNode;
+			
+			String bup = "}";
+			
+			while(n.getPreviousReference()!=null){
+				
+				bup = ", "+n.getData()+""+bup;
+				
+				n = n.getPreviousReference();
+				
+			}
+			
+			return "{"+n.getData()+bup;
 			
 		}else if (this.firstNode!=null){
 			
-			return "{"+this.firstNode.toString().replace("{", "").replace("}", "").replace(" <--> ", ", ")+"}";
+			DoubleNode<T> n = this.firstNode;
+			
+			String bup = "{";
+			
+			while(n.getNextReference()!=null){
+				
+				bup+= n.getData()+", ";
+				
+				n = n.getNextReference();
+				
+			}
+			
+			return bup+""+n.getData()+"}";
 			
 		}else{
 			

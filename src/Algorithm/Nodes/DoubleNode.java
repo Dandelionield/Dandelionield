@@ -1,4 +1,4 @@
-package Algorithm.Methods;
+package Algorithm.Nodes;
 
 /*
  *
@@ -153,10 +153,4 @@ public class DoubleNode<T> extends Node<T>{
 		
 	}
 	
-	public String getID(){
-		
-		return super.toString().replace("Algorithm.Methods.DoubleNode", "");
-		
-	}
-
 }

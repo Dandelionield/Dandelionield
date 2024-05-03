@@ -23,7 +23,8 @@ import System.console;
 import System.Numeric.*;
 import System.Games.*;
 
-import Algorithm.Methods.*;
+import Algorithm.Nodes.*;
+import Algorithm.LinkedArrays.*;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -68,13 +69,22 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		Digit n = new Digit(1.24656e3, false);
+		Digit n = new Digit(1.24656e3);
 		
-		Digit a = new Digit(3, false);
-		Digit b = new Digit(6, false);
+		Digit a = new Digit(3);
+		Digit b = new Digit(6);
 		Digit c = a.divide(b, 100);
 		
-		System.out.print(c);
+		DoubleList<Digit> Lista = new DoubleList<>();
+		
+		Lista.add(a);
+		Lista.add(b);
+		Lista.add(c);
+		Lista.add(n);
+		
+		Queue<Digit> cola = new Queue<Digit>(Lista.getFirstNode());
+		
+		System.out.print(cola);
 		
 		System.out.print("\n\n");
 		

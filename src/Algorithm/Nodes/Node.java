@@ -1,4 +1,4 @@
-package Algorithm.Methods;
+package Algorithm.Nodes;
 
 /*
  *

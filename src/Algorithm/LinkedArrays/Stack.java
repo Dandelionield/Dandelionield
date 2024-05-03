@@ -1,4 +1,4 @@
-package Algorithm.Methods;
+package Algorithm.LinkedArrays;
 
 /*
  *
@@ -6,8 +6,8 @@ package Algorithm.Methods;
  * 
  */
 
-import Algorithm.Methods.List;
-import Algorithm.Methods.Node;
+import Algorithm.LinkedArrays.List;
+import Algorithm.Nodes.Node;
 
 public class Stack<T> extends List<T>{
 	
@@ -39,6 +39,12 @@ public class Stack<T> extends List<T>{
 		
 		Node<T> n = super.getNode();
 		
+		if (n==null){
+			
+			return null;
+			
+		}
+		
 		while(n.getReference()!=null){
 			
 			n = n.getReference();
@@ -53,7 +59,15 @@ public class Stack<T> extends List<T>{
 		
 		Node<T> n = super.getNode();
 		
+		if (n==null){
+			
+			return null;
+			
+		}
+		
 		super.remove();
+		
+		n.setReference(null);
 		
 		return n;
 		
@@ -73,7 +87,25 @@ public class Stack<T> extends List<T>{
 	
 	public String toString(){
 		
-		return super.toString().replace(",", "]").replace(" ", "\n[").replace("{", "[").replace("}", "]");
+		if (super.getNode()!=null){
+		
+			Node<T> n = super.getNode();
+			
+			String bup = "";
+			
+			while(n.getReference()!=null){
+				
+				bup+= "["+n.getData()+"]\n";
+				
+				n = n.getReference();
+				
+			}
+			
+			return bup+"["+n.getData()+"]";
+			
+		}
+		
+		return "[]";
 		
 	}
 	

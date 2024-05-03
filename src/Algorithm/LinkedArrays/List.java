@@ -1,4 +1,4 @@
-package Algorithm.Methods;
+package Algorithm.LinkedArrays;
 
 /*
  *
@@ -6,7 +6,7 @@ package Algorithm.Methods;
  * 
  */
 
-import Algorithm.Methods.Node;
+import Algorithm.Nodes.Node;
 
 public class List<T>{
 
@@ -36,7 +36,7 @@ public class List<T>{
 		
 	}
 	
-	protected void add(Node<T> Nodo){
+	public void add(Node<T> Nodo){
 
 		if (this.firstNode==null){
 			
@@ -59,14 +59,14 @@ public class List<T>{
 		
 	}
 	
-	protected void add(T Data){
+	public void add(T Data){
 		
 		Node<T> Nodo = new Node<>(Data, this.firstNode);
 		this.firstNode = Nodo;
 		
 	}
 	
-	protected void addAtLast(Node<T> Nodo){
+	public void addAtLast(Node<T> Nodo){
 
 		if (this.firstNode==null){
 			
@@ -88,13 +88,13 @@ public class List<T>{
 
 	}
 	
-	protected void addAtLast(T Data){
+	public void addAtLast(T Data){
 
 		this.addAtLast(new Node<T>(Data));
 		
 	}
 	
-	protected void remove(){
+	public void remove(){
 
 		if (this.firstNode!=null){
 
@@ -104,7 +104,7 @@ public class List<T>{
 		
 	}
 	
-	protected void remove(T Data){
+	public void remove(T Data){
 
 		if (this.firstNode!=null){
 
@@ -144,7 +144,7 @@ public class List<T>{
 		
 	}
 	
-	protected void removeAtLast(){
+	public void removeAtLast(){
 
 		if (this.firstNode!=null){
 
@@ -282,7 +282,25 @@ public class List<T>{
 	
 	public String toString(){
 		
-		return "{"+ (this.firstNode!=null ? this.firstNode.toString().replaceAll(" --> ", ", ") : "") +"}";
+		if (this.firstNode!=null){
+		
+			Node<T> n = this.firstNode;
+			
+			String bup = "{";
+			
+			while(n.getReference()!=null){
+				
+				bup+= n.getData()+", ";
+				
+				n = n.getReference();
+				
+			}
+			
+			return bup+""+n.getData()+"}";
+			
+		}
+		
+		return "{}";
 		
 	}
 	
