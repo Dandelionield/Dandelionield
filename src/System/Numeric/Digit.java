@@ -613,6 +613,8 @@ public class Digit{
 				
 			}while(n1>0);
 			
+			if (r==0){presicion++;}
+			
 			if (n1!=0){
 				
 				c+= r+"";
@@ -727,55 +729,56 @@ public class Digit{
 		
 	}
 	
-	public String fix(String Number){
+	public String fix(String wd){
 		
-		Number = Number.replace("-.", "-0.");
+		String Minus = wd.indexOf("-")!=-1 ? "-" : "";
+		boolean b = wd.contains(".");
 		
-		String Minus = Number.indexOf("-")!=-1 ? "-" : "";
+		wd = wd.substring(wd.indexOf("-")+1);
 		
-		Number = Number.substring(Number.indexOf("-")+1);
-		
-		for (int f=0; f<Number.length(); f++){
+		for (int f=0; f<wd.length(); f++){
 			
-			if (Number.charAt(f)!='0' && Number.charAt(f)!=','){
-				
-				if (Number.contains(".")==false){
+			if (wd.charAt(f)=='0' || wd.charAt(f)==','){continue;}
+			
+			if (b){
+			
+				for(int c=wd.length()-1; c>=0; c--){
 					
-					return Minus+Number.substring(f);
+					if (wd.charAt(c)=='0'){continue;}
 					
-				}
-				
-				for (int c=Number.length()-1; c>=0; c--){
-					
-					if (Number.charAt(c)!='0' && Number.charAt(c)!='.'){
+					if (wd.charAt(f)=='.' && wd.charAt(c)=='.'){
 						
-						return c==Number.length()-1 ? Minus+Number.substring(f) : Minus+Number.substring(f, c + 1);
+						return "0";
+						
+					}else if (wd.charAt(f)=='.'){
+						
+						if (c==wd.length()-1){
+							
+							return Minus+"0"+wd.substring(f);
+							
+						}else{
+							
+							return Minus+"0"+wd.substring(f, c+1);
+							
+						}
+						
+					}else{
+						
+						return Minus+wd.substring(f, c);
 						
 					}
 					
 				}
 				
-				return Minus+Number.substring(f);
+			}else{
 				
-			}else if (Number.indexOf(".")==(f+1)){
-				
-				for (int c=Number.length()-1; c>=0; c--){
-					
-					if (Number.charAt(c)!='0' && Number.charAt(c)!='.'){
-						
-						return c==Number.length()-1 ? Minus+Number.substring(f) : Minus+Number.substring(f, c + 1);
-						
-					}
-					
-				}
-				
-				return Minus+Number.substring(f);
+				return Minus+wd.substring(f);
 				
 			}
 			
 		}
 		
-		return Minus+Number;
+		return "0";
 		
 	}
 	
@@ -865,7 +868,7 @@ public class Digit{
 			
 		}else{
 			
-			DN = n.substring(0, n.indexOf("."));
+			DN = value.substring(0, value.indexOf("."));
 			
 		}
 		
@@ -918,7 +921,7 @@ public class Digit{
 			
 		}
 		
-		return new StringBuilder(DN.charAt(0)==IntegerNotation.charAt(0) ? DN.substring(1) : DN).reverse().toString().replace(IntegerNotation+DecimalNotation, DecimalNotation).replace("-"+IntegerNotation, "-");
+		return new StringBuilder(DN.charAt(0)==IntegerNotation.charAt(0) ? DN.substring(1) : DN).reverse().toString().replace(IntegerNotation+DecimalNotation, DecimalNotation).replace("-"+IntegerNotation, "-").replace("-"+DecimalNotation, "-0"+DecimalNotation);
 		
 	}
 	

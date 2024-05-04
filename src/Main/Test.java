@@ -73,19 +73,9 @@ public class Test {
 		
 		Digit a = new Digit(3, false);
 		Digit b = new Digit(0.00005458, false);
-		Digit c = a.divide(b, 16);
+		Digit c = a.divide(b, 100);
 		
-		System.out.println(c+"\n");
-		
-		BinaryNode<Digit> Right = new BinaryNode<>(a, BinaryNode.RIGHT);
-		BinaryNode<Digit> Left = new BinaryNode<>(b, BinaryNode.LEFT);
-		BinaryNode<Digit> Previous = new BinaryNode<>(c);
-		BinaryNode<Digit> Nodo = new BinaryNode<>(n, Previous, Right, Left);
-		
-		System.out.println(Nodo);//0,5|{6|(1.246,56)|3}
-		System.out.println(Nodo.getPreviousReference());//(0,5)|{6|1.246,56|3}
-		System.out.println(Nodo.getRightReference());//0,5|{6|1.246,56|(3)}
-		System.out.println(Nodo.getLeftReference());//0,5|{(6)|1.246,56|3}
+		System.out.print(a+" / "+b+" = "+c);
 		
 		System.out.print("\n\n");
 		
