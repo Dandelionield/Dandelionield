@@ -69,22 +69,23 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		Digit n = new Digit(1.24656e3);
+		Digit n = new Digit(1.24656e3, false);
 		
-		Digit a = new Digit(3);
-		Digit b = new Digit(6);
-		Digit c = a.divide(b, 100);
+		Digit a = new Digit(3, false);
+		Digit b = new Digit(0.00005458, false);
+		Digit c = a.divide(b, 16);
 		
-		DoubleList<Digit> Lista = new DoubleList<>();
+		System.out.println(c+"\n");
 		
-		Lista.add(a);
-		Lista.add(b);
-		Lista.add(c);
-		Lista.add(n);
+		BinaryNode<Digit> Right = new BinaryNode<>(a, BinaryNode.RIGHT);
+		BinaryNode<Digit> Left = new BinaryNode<>(b, BinaryNode.LEFT);
+		BinaryNode<Digit> Previous = new BinaryNode<>(c);
+		BinaryNode<Digit> Nodo = new BinaryNode<>(n, Previous, Right, Left);
 		
-		Queue<Digit> cola = new Queue<Digit>(Lista.getFirstNode());
-		
-		System.out.print(cola);
+		System.out.println(Nodo);//0,5|{6|(1.246,56)|3}
+		System.out.println(Nodo.getPreviousReference());//(0,5)|{6|1.246,56|3}
+		System.out.println(Nodo.getRightReference());//0,5|{6|1.246,56|(3)}
+		System.out.println(Nodo.getLeftReference());//0,5|{(6)|1.246,56|3}
 		
 		System.out.print("\n\n");
 		

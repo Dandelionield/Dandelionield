@@ -434,6 +434,12 @@ public class Digit{
 	
 	public Digit subtract(Digit n){
 		
+		if (this.CN.equals(n.CN)){
+			
+			return new Digit(0);
+			
+		}
+		
 		return this.add(n.multiply(-1));
 		
 	}
@@ -559,6 +565,10 @@ public class Digit{
 		if (n.compareTo(1)==0){
 			
 			return this;
+			
+		}else if (this.CN.equals(n.CN)){
+			
+			return new Digit(1);
 			
 		}
 		
@@ -719,13 +729,19 @@ public class Digit{
 	
 	public String fix(String Number){
 		
+		Number = Number.replace("-.", "-0.");
+		
+		String Minus = Number.indexOf("-")!=-1 ? "-" : "";
+		
+		Number = Number.substring(Number.indexOf("-")+1);
+		
 		for (int f=0; f<Number.length(); f++){
 			
 			if (Number.charAt(f)!='0' && Number.charAt(f)!=','){
 				
 				if (Number.contains(".")==false){
 					
-					return Number.substring(f);
+					return Minus+Number.substring(f);
 					
 				}
 				
@@ -733,13 +749,13 @@ public class Digit{
 					
 					if (Number.charAt(c)!='0' && Number.charAt(c)!='.'){
 						
-						return c==Number.length()-1 ? Number.substring(f) : Number.substring(f, c + 1);
+						return c==Number.length()-1 ? Minus+Number.substring(f) : Minus+Number.substring(f, c + 1);
 						
 					}
 					
 				}
 				
-				return Number.substring(f);
+				return Minus+Number.substring(f);
 				
 			}else if (Number.indexOf(".")==(f+1)){
 				
@@ -747,25 +763,28 @@ public class Digit{
 					
 					if (Number.charAt(c)!='0' && Number.charAt(c)!='.'){
 						
-						return c==Number.length()-1 ? Number.substring(f) : Number.substring(f, c + 1);
+						return c==Number.length()-1 ? Minus+Number.substring(f) : Minus+Number.substring(f, c + 1);
 						
 					}
 					
 				}
 				
-				return Number.substring(f);
+				return Minus+Number.substring(f);
 				
 			}
 			
 		}
 		
-		return Number;
+		return Minus+Number;
 		
 	}
 	
 	private String getNotation(boolean b){
 		
 		String value = n+"";
+		
+		if (n.equals("0") || n.equals("-0")){return "0";}
+		
 		String DecimalNotation = b ? "." : ",";
 		String IntegerNotation = b ? "," : ".";
 		String INTEGER = "";

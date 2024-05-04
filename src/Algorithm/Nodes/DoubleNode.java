@@ -60,11 +60,31 @@ public class DoubleNode<T> extends Node<T>{
 	
 	public DoubleNode<T> getPreviousReference(){
 		
-		if (this.previousReference==null){return null;}
+		DoubleNode<T> n = this.previousReference;
+		
+		if (n==null){return null;}
+		
+		n.setNextReference(this);
+		
+		return n;
+		
+	}
+	
+	protected DoubleNode<T> getNextCutReference(){
+		
+		DoubleNode<T> n = (DoubleNode<T>) super.getReference();
+		
+		if (n==null){return null;}
+		
+		return n;
+		
+	}
+	
+	protected DoubleNode<T> getPreviousCutReference(){
 		
 		DoubleNode<T> n = this.previousReference;
 		
-		n.setNextReference(this);
+		if (n==null){return null;}
 		
 		return n;
 		
