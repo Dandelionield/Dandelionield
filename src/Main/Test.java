@@ -73,7 +73,7 @@ public class Test {
 		
 		Digit a = new Digit(3, false);
 		Digit b = new Digit(0.00005458, false);
-		Digit c = a.divide(b, 100);
+		Digit c = a.divide(b, 16);
 		
 		System.out.print(a+" / "+b+" = "+c);
 		

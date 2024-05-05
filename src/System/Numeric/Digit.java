@@ -762,9 +762,21 @@ public class Digit{
 							
 						}
 						
-					}else{
+					}else if (wd.charAt(c)=='.'){
 						
 						return Minus+wd.substring(f, c);
+						
+					}else{
+						
+						if (c==wd.length()-1){
+							
+							return Minus+wd.substring(f);
+							
+						}else{
+							
+							return Minus+wd.substring(f, c+1);
+							
+						}
 						
 					}
 					
@@ -788,13 +800,16 @@ public class Digit{
 		
 		if (n.equals("0") || n.equals("-0")){return "0";}
 		
-		String DecimalNotation = b ? "." : ",";
-		String IntegerNotation = b ? "," : ".";
+		String Minus = value.charAt(0)=='-' ? "-" : "";
+		char DecimalNotation = b ? '.' : ',';
+		char IntegerNotation = b ? ',' : '.';
 		String INTEGER = "";
 		String DECIMAL = "";
 		String DN = "";
 		String bup = "";
 		long nth = 0;
+		
+		value = value.charAt(0)=='-' ? value.substring(1) : value;
 		
 		if (value.contains("E")){
 			
@@ -862,9 +877,9 @@ public class Digit{
 				
 			}
 			
-		}else if (n.substring(n.indexOf(".")+1).equals("0")==false){
+		}else if (value.substring(value.indexOf(".")+1).equals("0")==false){
 			
-			DN = value.replace(".", DecimalNotation);
+			DN = value.replace(".", DecimalNotation+"");
 			
 		}else{
 			
@@ -877,15 +892,15 @@ public class Digit{
 		
 		DN = "";
 		
-		if (bup.contains(DecimalNotation)){
+		if (bup.contains(DecimalNotation+"")){
 		
 			for (int i=bup.length()-1; i>=0; i--){
 				
-				if (bup.charAt(i)==DecimalNotation.charAt(0)){c = 2;}
+				if (bup.charAt(i)==DecimalNotation){c = 2;}
 				
 				if (c==3){
 					
-					DN+= IntegerNotation;
+					DN+= IntegerNotation+"";
 					
 					c = 0;
 					
@@ -909,7 +924,7 @@ public class Digit{
 				
 				if (c==3){
 					
-					DN+= IntegerNotation;
+					DN+= IntegerNotation+"";
 					
 					c = 0;
 					
@@ -921,7 +936,11 @@ public class Digit{
 			
 		}
 		
-		return new StringBuilder(DN.charAt(0)==IntegerNotation.charAt(0) ? DN.substring(1) : DN).reverse().toString().replace(IntegerNotation+DecimalNotation, DecimalNotation).replace("-"+IntegerNotation, "-").replace("-"+DecimalNotation, "-0"+DecimalNotation);
+		String wd = new StringBuilder(DN.charAt(0)==IntegerNotation ? DN.substring(1) : DN).reverse().toString();
+		
+		wd = (Minus+wd).replace(IntegerNotation+""+DecimalNotation, DecimalNotation+"").replace("-"+IntegerNotation, "-").replace("-"+DecimalNotation, "-0"+DecimalNotation);
+		
+		return wd;
 		
 	}
 	
