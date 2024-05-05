@@ -143,55 +143,39 @@ public class BinaryNode<T> extends DoubleNode<T>{
 		
 		return n;
 		
-	}//*/
+	}
 	
-	/*public BinaryNode<T> getRightReference(){
+	public int getLevel(){
 		
-		DoubleNode<T> m = super.getNextReference();
-		
-		if (m==null){return null;}
-		
-		if (m.getPreviousReference()!=null){
-			
-			m.getPreviousReference().setNextReference(null);
-			
-		}
-		
-		m.setPreviousReference(null);
-		
-		BinaryNode<T> n = (BinaryNode<T>) m;
-		
-		n.setPosition(BinaryNode.RIGHT);
-		
-		n.setPreviousReference(this);
-		
-		return n;
+		return previousReference==null ? 0 : 1 + this.previousReference.getLevel();
 		
 	}
 	
-	public BinaryNode<T> getLeftReference(){
+	public int getHeight(){
 		
-		DoubleNode<T> m = super.getPreviousReference();
-		
-		if (m==null){return null;}
-		
-		if (m.getNextReference()!=null){
+		if (this.getRightReference()==null && this.getLeftReference()==null){
 			
-			m.getNextReference().setPreviousReference(null);
+			return 0;
+			
+		}else if (this.getRightReference()==null){
+			
+			return this.getLeftReference().getHeight() + 1;
+			
+		}else if (this.getLeftReference()==null){
+			
+			return this.getRightReference().getHeight() + 1;
 			
 		}
 		
-		m.setNextReference(null);
+		return Math.max(this.getLeftReference().getHeight(), this.getRightReference().getHeight()) + 1;
 		
-		BinaryNode<T> n = (BinaryNode<T>) m;
+	}
+	
+	public boolean getPosition(){
 		
-		n.setPosition(BinaryNode.LEFT);
+		return this.position;
 		
-		n.setPreviousReference(this);
-		
-		return n;
-		
-	}//*/
+	}
 	
 	public String toString(){
 		

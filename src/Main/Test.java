@@ -25,6 +25,7 @@ import System.Games.*;
 
 import Algorithm.Nodes.*;
 import Algorithm.LinkedArrays.*;
+import Algorithm.Trees.*;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -75,7 +76,18 @@ public class Test {
 		Digit b = new Digit(0.00005458, false);
 		Digit c = a.divide(b, 16);
 		
-		System.out.print(a+" / "+b+" = "+c);
+		BinaryNode<Digit> Root = new BinaryNode<>(n);
+		
+		Root.setRightReference(new BinaryNode<Digit>(a));
+		Root.setLeftReference(new BinaryNode<Digit>(b));
+		
+		Root.getLeftReference().setLeftReference(new BinaryNode<Digit>(c));
+		
+		BinaryTree<Digit> Tree = new BinaryTree<>(Root);
+		
+		Tree.add(new BinaryNode<Digit>(new Digit(73)));
+		
+		System.out.print(Tree);
 		
 		System.out.print("\n\n");
 		
