@@ -64,7 +64,9 @@ public class Node<T>{
 	
 	public String getID(){
 		
-		return super.toString().replace("Algorithm.Methods.Node", "");
+		String bup = super.toString();
+		
+		return bup.substring(bup.indexOf("@"));
 		
 	}
 

@@ -189,7 +189,7 @@ public class BinaryNode<T> extends DoubleNode<T>{
 		BinaryNode<T> m = this.getRightReference();
 		BinaryNode<T> v = this.getLeftReference();
 		
-		String bup = this.getID().equals(ID) ? "("+this.getData()+")" : this.getData()+"";//(0,5)|{6|1.246,56|3}
+		String bup = this.getID().equals(ID) ? "("+this.getData()+")" : this.getData()+"";
 		
 		if (m!=null){
 			

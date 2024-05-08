@@ -46,91 +46,119 @@ public class BinaryTree<T>{
 	
 	public void add(BinaryNode<T> Nodo){
 		
-		if (this.Root!=null && Nodo!=null){
+		if (this.Root!=null && (Nodo!=null ? Nodo.getData()!=null : false)){
 			
 			Nodo = this.ClearNodo(Nodo);
 		
 			if (this.Root.getRightReference()==null){
 				
 				this.Root.setRightReference(Nodo);
-				
+
 			}else if (this.Root.getLeftReference()==null){
 				
 				this.Root.setLeftReference(Nodo);
 				
+			}else{
+			
+				boolean b = true;
+				
+				BinaryNode<T> Right = this.Root.getRightReference();
+				BinaryNode<T> Left = this.Root.getLeftReference();
+				
+				do{
+					
+					if (Right.getHeight()==0){
+						
+						if (Right.getRightReference()==null){
+							
+							Right.setRightReference(Nodo);
+							
+						}else{
+							
+							Right.setLeftReference(Nodo);
+							
+						}
+						
+						b = false;
+						
+					}else if (Left.getHeight()==0){
+						
+						if (Left.getRightReference()==null){
+							
+							Left.setRightReference(Nodo);
+							
+						}else{
+							
+							Left.setLeftReference(Nodo);
+							
+						}
+						
+						b = false;
+						
+					}else if (Right.getHeight()==1){
+						
+						if (Right.getRightReference()==null){
+							
+							Right.setRightReference(Nodo);
+							
+						}else{
+							
+							Right.setLeftReference(Nodo);
+							
+						}
+						
+						b = false;
+						
+					}else if (Left.getHeight()==1){
+						
+						if (Left.getRightReference()==null){
+							
+							Left.setRightReference(Nodo);
+							
+						}else{
+							
+							Left.setLeftReference(Nodo);
+							
+						}
+						
+						b = false;
+						
+					}
+					
+					Right = this.Root.getRightReference();
+					Left = this.Root.getLeftReference();
+					
+				}while(b);
+				
 			}
 			
-			boolean b = true;
+		}else if (this.Root==null && (Nodo!=null ? Nodo.getData()!=null : false)){
 			
-			BinaryNode<T> Right = this.Root.getRightReference();
-			BinaryNode<T> Left = this.Root.getLeftReference();
-			
-			do{
+			if (Nodo.getPreviousReference()!=null){
 				
-				if (Right.getHeight()==0){
+				if (Nodo.getPosition()){
 					
-					if (Right.getRightReference()==null){
-						
-						Right.setRightReference(Nodo);
-						
-					}else{
-						
-						Right.setLeftReference(Nodo);
-						
-					}
+					Nodo.getPreviousReference().setRightReference(null);
 					
-					b = false;
+				}else{
 					
-				}else if (Left.getHeight()==0){
-					
-					if (Left.getRightReference()==null){
-						
-						Left.setRightReference(Nodo);
-						
-					}else{
-						
-						Left.setLeftReference(Nodo);
-						
-					}
-					
-					b = false;
-					
-				}else if (Right.getHeight()==1){
-					
-					if (Right.getRightReference()==null){
-						
-						Right.setRightReference(Nodo);
-						
-					}else{
-						
-						Right.setLeftReference(Nodo);
-						
-					}
-					
-					b = false;
-					
-				}else if (Left.getHeight()==1){
-					
-					if (Left.getRightReference()==null){
-						
-						Left.setRightReference(Nodo);
-						
-					}else{
-						
-						Left.setLeftReference(Nodo);
-						
-					}
-					
-					b = false;
+					Nodo.getPreviousReference().setLeftReference(null);
 					
 				}
 				
-				Right = this.Root.getRightReference();
-				Left = this.Root.getLeftReference();
+				Nodo.setPreviousReference(null);
 				
-			}while(b);
+			}
+			
+			this.Root = Nodo;
 			
 		}
+		
+	}
+	
+	public BinaryNode<T> getRoot(){
+		
+		return this.Root;
 		
 	}
 	

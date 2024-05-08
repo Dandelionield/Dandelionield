@@ -142,6 +142,12 @@ public class Digit{
 		
 	}
 	
+	public double doubleValue(){
+		
+		return Double.parseDouble(this.CN);
+		
+	}
+	
 	public boolean getNotation(){
 		
 		return this.Notation;

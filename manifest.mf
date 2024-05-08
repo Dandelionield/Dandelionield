@@ -1,1 +1,2 @@
-Main-Class: Main.Test 
+Main-Class: Main.Test
+Class-Path: build\classes\WindowPane_Textures\ERROR_MESSAGE.png build\classes\WindowPane_Textures\INFORMATION_MESSAGE.png build\classes\WindowPane_Textures\QUESTION_MESSAGE.png build\classes\WindowPane_Textures\WARNING_MESSAGE.png

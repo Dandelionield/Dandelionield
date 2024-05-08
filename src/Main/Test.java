@@ -61,6 +61,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import java.util.Vector;
+import java.util.Scanner;
 
 public class Test {
 
@@ -76,16 +77,15 @@ public class Test {
 		Digit b = new Digit(0.00005458, false);
 		Digit c = a.divide(b, 16);
 		
-		BinaryNode<Digit> Root = new BinaryNode<>(n);
+		BinaryNode<Double> Root = new BinaryNode<>(n.doubleValue());
 		
-		Root.setRightReference(new BinaryNode<Digit>(a));
-		Root.setLeftReference(new BinaryNode<Digit>(b));
+		BinarySearchTree<Double> Tree = new BinarySearchTree<>(Root);
 		
-		Root.getLeftReference().setLeftReference(new BinaryNode<Digit>(c));
+		Tree.add(new BinaryNode<Double>(a.doubleValue()));
+		Tree.add(new BinaryNode<Double>(b.doubleValue()));
+		Tree.add(new BinaryNode<Double>(c.doubleValue()));
 		
-		BinaryTree<Digit> Tree = new BinaryTree<>(Root);
-		
-		Tree.add(new BinaryNode<Digit>(new Digit(73)));
+		Tree.add(new BinaryNode<Double>(73.00));
 		
 		System.out.print(Tree);
 		
