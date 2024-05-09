@@ -6,7 +6,7 @@ package System.Numeric;
  * 
  */
 
-public class Digit{
+public class Digit implements Comparable<Digit>{
 	
 	private final String DPN;//Decimal Point Notation
 	private final String DDN;//Dot Decimal Notation
@@ -196,7 +196,7 @@ public class Digit{
 		
 	}
 	
-	public byte compareTo(double n){
+	public int compareTo(double n){
 		
 		return this.compareTo(new Digit(n));
 		
@@ -220,7 +220,7 @@ public class Digit{
 		
 	}
 	
-	public byte compareTo(Digit n){
+	public int compareTo(Digit n){
 		
 		if (this.CN.equals(n.CN)){
 			
@@ -334,9 +334,9 @@ public class Digit{
 	
 	public Digit add(Digit n){
 		
-		byte n1 = n.compareTo(0);
-		byte m1 = this.compareTo(0);
-		byte v1 = this.abs().compareTo(n.abs());
+		byte n1 = (byte) n.compareTo(0);
+		byte m1 = (byte) this.compareTo(0);
+		byte v1 = (byte) this.abs().compareTo(n.abs());
 		
 		if (n1==0){
 			
@@ -452,11 +452,11 @@ public class Digit{
 	
 	public Digit multiply(Digit n){
 		
-		byte n1 = n.compareTo(0);
-		byte m1 = this.compareTo(0);
-		byte n2 = n.compareTo(-1);
-		byte m2 = this.compareTo(-1);
-		byte v1 = this.abs().compareTo(n.abs());
+		byte n1 = (byte) n.compareTo(0);
+		byte m1 = (byte) this.compareTo(0);
+		byte n2 = (byte) n.compareTo(-1);
+		byte m2 = (byte) this.compareTo(-1);
+		byte v1 = (byte) this.abs().compareTo(n.abs());
 		
 		if (this.compareTo(1)==0){
 			

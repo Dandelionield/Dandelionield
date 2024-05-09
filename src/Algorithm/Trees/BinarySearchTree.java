@@ -8,7 +8,7 @@ package Algorithm.Trees;
 
 import Algorithm.Nodes.BinaryNode;
 
-public class BinarySearchTree<T extends Number & Comparable<T>> extends BinaryTree<T>{
+public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T>{
 
 	public BinarySearchTree(){
 		
