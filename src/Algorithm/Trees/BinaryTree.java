@@ -18,6 +18,16 @@ public class BinaryTree<T>{
 		
 	}
 	
+	public BinaryTree(T Root){
+		
+		if (Root!=null){
+			
+			this.Root = new BinaryNode<T>(Root);
+			
+		}
+		
+	}
+	
 	public BinaryTree(BinaryNode<T> Root){
 		
 		if (Root!=null){
@@ -41,6 +51,12 @@ public class BinaryTree<T>{
 		}
 		
 		this.Root = Root;
+		
+	}
+	
+	public void add(T Data){
+		
+		this.add(new BinaryNode<T>(Data));
 		
 	}
 	

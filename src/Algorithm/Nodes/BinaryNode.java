@@ -195,13 +195,13 @@ public class BinaryNode<T> extends DoubleNode<T>{
 			
 			if (m.getLeftReference()==null && m.getRightReference()==null){
 				
-				bup+= "|"+m.getData();
+				bup+= "|>"+m.getData();
 				
 			}else{
 				
 				m.setPreviousReference(null);
 				
-				bup+= "|{"+m.toString(null)+"}";
+				bup+= "|>{"+m.toString(null)+"}";
 				
 				m.setPreviousReference(this);
 				
@@ -213,13 +213,13 @@ public class BinaryNode<T> extends DoubleNode<T>{
 			
 			if (v.getLeftReference()==null && v.getRightReference()==null){
 				
-				bup = v.getData()+"|"+bup;
+				bup = v.getData()+"<|"+bup;
 				
 			}else{
 				
 				v.setPreviousReference(null);
 				
-				bup = "{"+v.toString(null)+"}|"+bup;
+				bup = "{"+v.toString(null)+"}<|"+bup;
 				
 				v.setPreviousReference(this);
 				
@@ -245,7 +245,7 @@ public class BinaryNode<T> extends DoubleNode<T>{
 		
 		if (position==BinaryNode.LEFT){
 			
-			bup = "{"+wd+"}|"+n.getData();
+			bup = "{"+wd+"}<|"+n.getData();
 			
 			BinaryNode<T> m = n.getRightReference();
 			
@@ -253,7 +253,7 @@ public class BinaryNode<T> extends DoubleNode<T>{
 				
 				m.setPreviousReference(null);
 				
-				bup+= "|"+m.toString(null)+"";
+				bup+= "|>"+m.toString(null)+"";
 				
 				m.setPreviousReference(n);
 				
@@ -261,7 +261,7 @@ public class BinaryNode<T> extends DoubleNode<T>{
 			
 		}else{
 			
-			bup = n.getData()+"|{"+wd+"}";
+			bup = n.getData()+"|>{"+wd+"}";
 			
 			BinaryNode<T> v = n.getLeftReference();
 			
@@ -269,7 +269,7 @@ public class BinaryNode<T> extends DoubleNode<T>{
 				
 				v.setPreviousReference(null);
 				
-				bup = ""+v.toString(null)+"|"+bup;
+				bup = ""+v.toString(null)+"<|"+bup;
 				
 				v.setPreviousReference(n);
 				
@@ -287,6 +287,6 @@ public class BinaryNode<T> extends DoubleNode<T>{
 			
 		}
 		
-	}//*/
+	}
 
 }

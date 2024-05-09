@@ -16,9 +16,21 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T>{
 		
 	}
 	
+	public BinarySearchTree(T Root){
+		
+		super(Root);
+		
+	}
+	
 	public BinarySearchTree(BinaryNode<T> Root){
 		
 		super(Root);
+		
+	}
+	
+	public void add(T Data){
+		
+		this.add(new BinaryNode<T>(Data));
 		
 	}
 	
@@ -41,7 +53,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T>{
 			
 			do{
 				
-				if (!(Reference.getData().compareTo(Nodo.getData())>=0)){
+				if (Nodo.getData().compareTo(Reference.getData())>=0){
 				
 					bup = Reference.getRightReference();
 					Nodo.setPosition(BinaryNode.RIGHT);

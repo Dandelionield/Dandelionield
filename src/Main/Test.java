@@ -77,16 +77,14 @@ public class Test {
 		Digit b = new Digit(0.00005458, false);
 		Digit c = a.divide(b, 16);
 		
-		BinaryNode<Digit> Root = new BinaryNode<>(n);
+		BinarySearchTree<Digit> Tree = new BinarySearchTree<>(n);
 		
-		BinarySearchTree<Digit> Tree = new BinarySearchTree<>(Root);
+		Tree.add(a);
+		Tree.add(b);
+		Tree.add(c);
 		
-		Tree.add(new BinaryNode<Digit>(a));
-		Tree.add(new BinaryNode<Digit>(b));
-		Tree.add(new BinaryNode<Digit>(c));
-		
-		Tree.add(new BinaryNode<Digit>(new Digit(73.00)));
-		Tree.add(new BinaryNode<Digit>(n.divide(b, 16)));
+		Tree.add(new Digit(73.00));
+		Tree.add(n.divide(b, 16));
 		
 		System.out.print(Tree);
 		
