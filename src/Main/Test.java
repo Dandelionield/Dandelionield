@@ -71,27 +71,24 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		Digit n = new Digit(1.24656e3, false);
+		AVLTree<Digit> Tree = new AVLTree<>();//10, 40, 35, 25, 60, 30, 80, 50, 27, 28, 38, 55
 		
-		Digit a = new Digit(3, false);
-		Digit b = new Digit(0.00005458, false);
-		Digit c = a.divide(b, 16);
-		Digit d = new Digit(73);
-		Digit m = n.divide(b, 16);
-		
-		BinarySearchTree<Digit> Tree = new BinarySearchTree<>(n);
-		
-		Tree.add(a);
-		Tree.add(b);
-		Tree.add(c);
-		Tree.add(d);
-		Tree.add(m);
-		
-		System.out.println(Tree+"\n");
-		
-		Tree.remove(n);
+		Tree.add(new Digit(10));
+		Tree.add(new Digit(40));
+		Tree.add(new Digit(35));
+		Tree.add(new Digit(25));
+		Tree.add(new Digit(60));
+		Tree.add(new Digit(30));
+		Tree.add(new Digit(80));
+		Tree.add(new Digit(50));
+		Tree.add(new Digit(27));
+		Tree.add(new Digit(28));
+		Tree.add(new Digit(38));
+		Tree.add(new Digit(55));
 		
 		System.out.println(Tree+"\n");
+		
+		//(10)|>{{{25|>{{27|>28}<|30}}<|35|>38}<|40|>{{50|>55}<|60|>80}}
 		
 		System.out.print("\n\n");
 		

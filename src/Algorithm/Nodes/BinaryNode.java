@@ -155,7 +155,7 @@ public class BinaryNode<T> extends DoubleNode<T>{
 		
 		if (this.getRightReference()==null && this.getLeftReference()==null){
 			
-			return 0;
+			return 1;
 			
 		}else if (this.getRightReference()==null){
 			
@@ -168,6 +168,26 @@ public class BinaryNode<T> extends DoubleNode<T>{
 		}
 		
 		return Math.max(this.getLeftReference().getHeight(), this.getRightReference().getHeight()) + 1;
+		
+	}
+	
+	public int getBalancingFactor(){
+		
+		if (this.getRightReference()==null && this.getLeftReference()==null){
+			
+			return 0;
+			
+		}else if (this.getRightReference()==null){
+			
+			return -this.getLeftReference().getHeight();
+			
+		}else if (this.getLeftReference()==null){
+			
+			return this.getRightReference().getHeight();
+			
+		}
+		
+		return this.getRightReference().getHeight() - this.getLeftReference().getHeight();
 		
 	}
 	
