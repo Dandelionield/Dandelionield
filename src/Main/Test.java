@@ -76,17 +76,22 @@ public class Test {
 		Digit a = new Digit(3, false);
 		Digit b = new Digit(0.00005458, false);
 		Digit c = a.divide(b, 16);
+		Digit d = new Digit(73);
+		Digit m = n.divide(b, 16);
 		
 		BinarySearchTree<Digit> Tree = new BinarySearchTree<>(n);
 		
 		Tree.add(a);
 		Tree.add(b);
 		Tree.add(c);
+		Tree.add(d);
+		Tree.add(m);
 		
-		Tree.add(new Digit(73.00));
-		Tree.add(n.divide(b, 16));
+		System.out.println(Tree+"\n");
 		
-		System.out.print(Tree);
+		Tree.remove(n);
+		
+		System.out.println(Tree+"\n");
 		
 		System.out.print("\n\n");
 		
