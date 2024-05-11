@@ -71,24 +71,31 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		AVLTree<Digit> Tree = new AVLTree<>();//10, 40, 35, 25, 60, 30, 80, 50, 27, 28, 38, 55
+		Digit[] n = new Digit[] {
+			
+			new Digit(10), new Digit(40), new Digit(35), new Digit(25), 
+			new Digit(60), new Digit(30), new Digit(80), new Digit(50), 
+			new Digit(27), new Digit(28), new Digit(38), new Digit(55)
+		};
 		
-		Tree.add(new Digit(10));
-		Tree.add(new Digit(40));
-		Tree.add(new Digit(35));
-		Tree.add(new Digit(25));
-		Tree.add(new Digit(60));
-		Tree.add(new Digit(30));
-		Tree.add(new Digit(80));
-		Tree.add(new Digit(50));
-		Tree.add(new Digit(27));
-		Tree.add(new Digit(28));
-		Tree.add(new Digit(38));
-		Tree.add(new Digit(55));
+		AVLTree<Digit> Tree = new AVLTree<>();
+		
+		for (Digit p : n){
+			
+			Tree.add(p);
+			
+		}
 		
 		System.out.println(Tree+"\n");
 		
-		//(10)|>{{{25|>{{27|>28}<|30}}<|35|>38}<|40|>{{50|>55}<|60|>80}}
+		Tree.remove(n[4]);
+		Tree.remove(n[11]);
+		Tree.remove(n[7]);
+		Tree.remove(n[5]);
+		Tree.remove(n[8]);
+		Tree.remove(n[1]);
+		
+		System.out.print(Tree);
 		
 		System.out.print("\n\n");
 		
