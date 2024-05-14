@@ -222,83 +222,7 @@ public class BinaryTree<T>{
 		
 		if (this.Root!=null && Data!=null){
 			
-			if (this.Root.getData().toString().equals(Data.toString())){
-				
-				BinaryNode<T> n = this.Root.getRightReference();
-				
-				BinaryNode<T> b = this.Root.getLeftReference();
-				BinaryNode<T> c = this.Root.getRightReference();
-				
-				while(n.getLeftReference()!=null){
-				
-					n = n.getLeftReference();
-					
-				}
-				
-				if (n.getRightReference()!=null){
-					
-					BinaryNode<T> bup = n.getRightReference();
-					BinaryNode<T> past = n.getPreviousReference();
-					
-					bup.setPreviousReference(null);
-					
-					if (n.getPosition()){
-					
-						past.setRightReference(bup);
-						
-					}else{
-						
-						past.setLeftReference(bup);
-						
-					}
-					
-					bup.setPreviousReference(past);
-					
-					n.setPreviousReference(null);
-					
-				}else{
-					
-					if (n.getPosition()){
-					
-						n.getPreviousReference().setRightReference(null);
-						
-					}else{
-						
-						n.getPreviousReference().setLeftReference(null);
-						
-					}
-					
-					n.setPreviousReference(null);
-					
-				}
-				
-				n.setLeftReference(b);
-				
-				if (c.getID().equals(n.getID())==false){
-					
-					n.setRightReference(c);
-					
-				}
-				
-				b.setPreviousReference(n);
-				
-				if (c.getID().equals(n.getID())==false){
-					
-					c.setPreviousReference(n);
-					
-				}
-				
-				this.Root.setPreviousReference(null);
-				this.Root.setLeftReference(null);
-				this.Root.setRightReference(null);
-				
-				this.Root = n;
-				
-			}else{
-				
-				remove(this.Root, Data);
-				
-			}
+			remove(this.Root, Data);
 			
 		}
 		
@@ -332,6 +256,10 @@ public class BinaryTree<T>{
 							
 						}
 						
+					}else{
+						
+						this.setRoot(n);
+						
 					}
 					
 					Nodo.setPreviousReference(null);
@@ -359,13 +287,21 @@ public class BinaryTree<T>{
 					
 					n.setPosition(Nodo.getPosition());
 					
-					if (n.getPosition()){
-						
-						bup.setRightReference(n);
+					if (bup!=null){
+					
+						if (n.getPosition()){
+							
+							bup.setRightReference(n);
+							
+						}else{
+							
+							bup.setLeftReference(n);
+							
+						}
 						
 					}else{
 						
-						bup.setLeftReference(n);
+						this.setRoot(n);
 						
 					}
 					
@@ -431,13 +367,21 @@ public class BinaryTree<T>{
 						
 					}
 					
-					if (Nodo.getPosition()){
+					if (a!=null){
 					
-						a.setRightReference(n);
+						if (Nodo.getPosition()){
+						
+							a.setRightReference(n);
+							
+						}else{
+							
+							a.setLeftReference(n);
+							
+						}
 						
 					}else{
 						
-						a.setLeftReference(n);
+						this.setRoot(n);
 						
 					}
 					
