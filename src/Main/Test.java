@@ -71,7 +71,7 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		Digit[] n = new Digit[] {
+		/*Digit[] n = new Digit[] {
 			
 			new Digit(10), new Digit(40), new Digit(35), new Digit(25), 
 			new Digit(60), new Digit(30), new Digit(80), new Digit(50), 
@@ -95,7 +95,28 @@ public class Test {
 		Tree.remove(n[8]);
 		Tree.remove(n[1]);
 		
-		System.out.print(Tree);
+		System.out.print(Tree);//*/
+		
+		Digit[] n = new Digit[] {
+			
+			new Digit(19), new Digit(15), new Digit(20), new Digit(14), 
+			new Digit(17), new Digit(30), new Digit(13), new Digit(16), 
+			new Digit(18), new Digit(25), new Digit(26)
+		};
+		
+		BinarySearchTree<Digit> Tree = new BinarySearchTree<>();
+		
+		for (Digit p : n){
+			
+			Tree.add(p);
+			
+		}
+		
+		System.out.println("\n"+Tree+"\n");
+		
+		System.out.println("Pre: "+Tree.preOrder());
+		System.out.println("In: "+Tree.inOrder());
+		System.out.println("Post: "+Tree.postOrder());
 		
 		System.out.print("\n\n");
 		

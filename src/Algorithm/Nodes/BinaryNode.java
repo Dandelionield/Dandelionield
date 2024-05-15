@@ -197,6 +197,24 @@ public class BinaryNode<T> extends DoubleNode<T>{
 		
 	}
 	
+	public String preOrder(){
+		
+		return this.getData()+""+(this.getLeftReference()!=null ? ", "+this.getLeftReference().preOrder() : "")+""+(this.getRightReference()!=null ? ", "+this.getRightReference().preOrder() : "");
+		
+	}
+	
+	public String inOrder(){
+		
+		return (this.getLeftReference()!=null ? this.getLeftReference().inOrder()+", " : "")+""+this.getData()+""+(this.getRightReference()!=null ? ", "+this.getRightReference().inOrder() : "");
+		
+	}
+	
+	public String postOrder(){
+		
+		return (this.getLeftReference()!=null ? this.getLeftReference().postOrder()+", " : "")+""+(this.getRightReference()!=null ? this.getRightReference().postOrder()+", " : "")+""+this.getData();
+		
+	}
+	
 	public String toString(){
 		
 		return toString(this.getID());

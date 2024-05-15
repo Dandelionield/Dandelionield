@@ -90,5 +90,29 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T>{
 		}
 		
 	}
+	
+	public String preOrder(){
+		
+		if (this.getRoot()==null){return "";}
+		
+		return this.getRoot().preOrder();
+		
+	}
+	
+	public String inOrder(){
+		
+		if (this.getRoot()==null){return "";}
+		
+		return this.getRoot().inOrder();
+		
+	}
+	
+	public String postOrder(){
+		
+		if (this.getRoot()==null){return "";}
+		
+		return this.getRoot().postOrder();
+		
+	}
 
 }
