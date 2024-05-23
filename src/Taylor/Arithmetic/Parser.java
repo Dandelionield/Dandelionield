@@ -127,7 +127,9 @@ public class Parser extends Mayth{
 		
 		wdProcess = new ArrayList<>();
 		
-		n = Parse("0.0");
+		wdProcess.add("0.0");
+		
+		n = new BigDecimal("0");
 		
 		op = this.getProcess();
 		
@@ -141,7 +143,9 @@ public class Parser extends Mayth{
 		
 		wdProcess = new ArrayList<>();
 		
-		n = Parse("0.0");
+		wdProcess.add("0.0");
+		
+		n = new BigDecimal("0");
 		
 		op = this.getProcess();
 		
@@ -155,7 +159,9 @@ public class Parser extends Mayth{
 		
 		wdProcess = new ArrayList<>();
 		
-		n = Parse("0.0");
+		wdProcess.add("0.0");
+		
+		n = new BigDecimal("0");
 		
 		op = this.getProcess();
 		

@@ -238,7 +238,7 @@ public class function{
 		this.p.add(new Parser(Overwrite(n), RAD_DEG, functionType));
 		this.n = n.doubleValue();
 		
-		return this.p.get(0);
+		return this.p.get(this.p.size()-1);
 		
 	}
 	
@@ -247,7 +247,7 @@ public class function{
 		this.p.add(new Parser(Overwrite(n), RAD_DEG, functionType));
 		this.n = n;
 		
-		return this.p.get(0);
+		return this.p.get(this.p.size()-1);
 		
 	}
 	

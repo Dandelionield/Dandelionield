@@ -337,8 +337,6 @@ public class Mayth extends Hyperbolic{
 		
 		if (n<=1){return false;}
 		
-		int c = 2;
-		
 		for (int i=2; i<n/2; i++){
 			
 			if (n%i==0){
@@ -353,12 +351,20 @@ public class Mayth extends Hyperbolic{
 		
 	}
 	
+	private ArrayList<Long> prime = new ArrayList<>();
+	
 	public long nPrime(int indice){
 		
 		if (indice<0){return 0;}
 		
-		long i = -1;
-		long p = 1;
+		if (prime.size()-1>=indice){
+			
+			return prime.get(indice);
+			
+		}
+		
+		long i = prime.size()-1;
+		long p = i==-1 ? 1 : prime.get((int) i);
 		
 		do{
 			
@@ -370,9 +376,82 @@ public class Mayth extends Hyperbolic{
 				
 			}while(!this.isPrime(p));
 			
+			prime.add(p);
+			
 		}while(i!=indice);
 		
 		return p;
+		
+	}
+	
+	/*public long getLCM(long[] n){
+		
+		ArrayList<Long[]> factors = new ArrayList<>();
+		
+		for (long p : n){
+			
+			factors.add(this.getPrimeFactors(p));
+			
+		}
+		
+		return 1;
+		
+	}//*/
+	
+	public long getGCD(long[] n){
+		
+		ArrayList<Long[]> factors = new ArrayList<>();
+		
+		@SuppressWarnings("unchecked")
+		ArrayList<Long>[] r = new ArrayList[n.length];
+		
+		boolean b = true;
+		
+		int min = 0;
+		
+		for (int i=0; i<n.length; i++){
+			
+			long[] bup = this.getPrimeFactors(n[i]);
+			
+			if (i==0){min = bup.length;}
+			
+			factors.add(Arrays.stream(bup).boxed().toArray(Long[]::new));
+			
+			min = Math.min(min, bup.length);
+			
+			r[i] = new ArrayList<Long>();
+			
+		}
+		
+		for (int c=0; c<min; c++){
+			
+			long m = 0;
+		
+			for (int f=0; f<r.length; f++){
+				
+				long s = c-1<0 ? 1 : (long) factors.get(f)[c-1];
+				
+				m = s* ((long) factors.get(f)[c]);
+				
+				r[f].add(m);
+				
+			}
+			
+			for (int f=0; f<r.length; f++){
+				
+				if (m!= ((long) r[f].get(c))){
+					
+					int indice = r[f].size()-2;
+					
+					return indice<0 ? 1 : (long) r[f].get(indice);
+					
+				}
+				
+			}
+			
+		}
+		
+		return (long) r[0].get(r[0].size()-1);
 		
 	}
 	

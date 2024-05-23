@@ -22,6 +22,7 @@ import Graphic.User.Interface.*;
 import System.console;
 import System.Numeric.*;
 import System.Games.*;
+import System.Cryptosystem.*;
 
 import Algorithm.Nodes.*;
 import Algorithm.LinkedArrays.*;
@@ -71,52 +72,9 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		/*Digit[] n = new Digit[] {
-			
-			new Digit(10), new Digit(40), new Digit(35), new Digit(25), 
-			new Digit(60), new Digit(30), new Digit(80), new Digit(50), 
-			new Digit(27), new Digit(28), new Digit(38), new Digit(55)
-		};
+		mod m = new mod(19, 5);
 		
-		AVLTree<Digit> Tree = new AVLTree<>();
-		
-		for (Digit p : n){
-			
-			Tree.add(p);
-			
-		}
-		
-		System.out.println(Tree+"\n");
-		
-		Tree.remove(n[4]);
-		Tree.remove(n[11]);
-		Tree.remove(n[7]);
-		Tree.remove(n[5]);
-		Tree.remove(n[8]);
-		Tree.remove(n[1]);
-		
-		System.out.print(Tree);//*/
-		
-		Digit[] n = new Digit[] {
-			
-			new Digit(19), new Digit(15), new Digit(20), new Digit(14), 
-			new Digit(17), new Digit(30), new Digit(13), new Digit(16), 
-			new Digit(18), new Digit(25), new Digit(26)
-		};
-		
-		BinarySearchTree<Digit> Tree = new BinarySearchTree<>();
-		
-		for (Digit p : n){
-			
-			Tree.add(p);
-			
-		}
-		
-		System.out.println("\n"+Tree+"\n");
-		
-		System.out.println("Pre: "+Tree.preOrder());
-		System.out.println("In: "+Tree.inOrder());
-		System.out.println("Post: "+Tree.postOrder());
+		System.out.println(m);
 		
 		System.out.print("\n\n");
 		
@@ -346,6 +304,60 @@ public class Test {
 			+" Angulo entre el vector a y b: "+a.doBetweenTwo(b).doRedondear(3)
 			
 		);
+		
+	}
+	
+	private void Tree(){
+		
+		Digit[] n = new Digit[] {//8, 9, 11, 15, 19, 20, 21, 7, 3, 2, 1, 5, 6, 4, 13, 14, 10, 12, 17, 16, 18
+			
+			new Digit(8), new Digit(9), new Digit(11), new Digit(15), 
+			new Digit(19), new Digit(20), new Digit(21), new Digit(7), 
+			new Digit(3), new Digit(2), new Digit(1), new Digit(5), 
+			new Digit(6), new Digit(4), new Digit(13), new Digit(14), 
+			new Digit(10), new Digit(12), new Digit(17), new Digit(16),
+			new Digit(18)
+			
+		};
+		
+		AVLTree<Digit> Tree = new AVLTree<>();
+		
+		for (Digit p : n){
+			
+			Tree.add(p);
+			
+		}
+		
+		System.out.println(Tree+"\n");//10, 20,7,15,11
+		
+		Tree.remove(n[n.length-6]);
+		Tree.remove(n[4]);
+		Tree.remove(n[7]);
+		Tree.remove(n[3]);
+		Tree.remove(n[2]);
+		
+		System.out.print(Tree);//*/
+		
+		/*Digit[] n = new Digit[] {
+			
+			new Digit(19), new Digit(15), new Digit(20), new Digit(14), 
+			new Digit(17), new Digit(30), new Digit(13), new Digit(16), 
+			new Digit(18), new Digit(25), new Digit(26)
+		};
+		
+		BinarySearchTree<Digit> Tree = new BinarySearchTree<>();
+		
+		for (Digit p : n){
+			
+			Tree.add(p);
+			
+		}
+		
+		System.out.println("\n"+Tree+"\n");*/
+		
+		System.out.println("Pre: "+Tree.preOrder());
+		System.out.println("In: "+Tree.inOrder());
+		System.out.print("Post: "+Tree.postOrder());
 		
 	}
 	
