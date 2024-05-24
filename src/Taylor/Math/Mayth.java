@@ -405,21 +405,50 @@ public class Mayth extends Hyperbolic{
 		@SuppressWarnings("unchecked")
 		ArrayList<Long>[] r = new ArrayList[n.length];
 		
+		int[] minIndex = new int[n.length];
+		
 		boolean b = true;
 		
 		int min = 0;
+		int bup = 0;
 		
 		for (int i=0; i<n.length; i++){
 			
-			long[] bup = this.getPrimeFactors(n[i]);
+			long[] f = this.getPrimeFactors(n[i]);
 			
-			if (i==0){min = bup.length;}
+			if (i==0){
+				
+				min = f.length;
+				bup = (int) f[i];
+				
+			}
 			
-			factors.add(Arrays.stream(bup).boxed().toArray(Long[]::new));
+			factors.add(Arrays.stream(f).boxed().toArray(Long[]::new));
 			
-			min = Math.min(min, bup.length);
+			min = Math.min(min, f.length);
+			bup = Math.max(bup, (int) f[i]);
 			
 			r[i] = new ArrayList<Long>();
+			
+		}
+		
+		for (int f=0; f<factors.size(); f++){
+			
+			for (int c=0; c<factors.get(f).length; c++){
+				
+				long p = factors.get(f)[c];
+
+				if (p==bup){
+					
+					minIndex[f] = c;
+					
+					break;
+					
+				}
+				
+				minIndex[f] = 0;
+				
+			}
 			
 		}
 		
@@ -429,9 +458,9 @@ public class Mayth extends Hyperbolic{
 		
 			for (int f=0; f<r.length; f++){
 				
-				long s = c-1<0 ? 1 : (long) factors.get(f)[c-1];
+				long s = c-1<0 ? 1 : (long) factors.get(f)[c-1+minIndex[f]];
 				
-				m = s* ((long) factors.get(f)[c]);
+				m = s * ((long) factors.get(f)[c+minIndex[f]]);
 				
 				r[f].add(m);
 				
@@ -439,7 +468,7 @@ public class Mayth extends Hyperbolic{
 			
 			for (int f=0; f<r.length; f++){
 				
-				if (m!= ((long) r[f].get(c))){
+				if (m!=((long) r[f].get(c))){
 					
 					int indice = r[f].size()-2;
 					

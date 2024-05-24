@@ -50,6 +50,12 @@ public class mod{
 		
 	}
 	
+	public long getBase(){
+		
+		return this.b;
+		
+	}
+	
 	public void setModulus(long m){
 		
 		this.m = m;
@@ -69,7 +75,7 @@ public class mod{
 		
 	}
 	
-	public long getArc(){
+	public long arc(){
 		
 		Mayth p = new Mayth();
 		
@@ -87,9 +93,9 @@ public class mod{
 			
 			n++;
 			
-		}while(n<=this.m);
+		}while(n<this.m);
 		
-		return 0;
+		return 1;
 		
 	}
 
