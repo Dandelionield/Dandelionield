@@ -6,8 +6,6 @@ package System.Cryptosystem;
  * 
  */
 
-import java.util.HashMap;
-
 import Taylor.Math.Mayth;
 import Taylor.Arithmetic.mod;
 
@@ -23,7 +21,8 @@ public class RSA{
 	
 	private int s;
 	
-	private long[] error = {0};
+	private long[] error = {};
+	private long[] encryptValues = {};
 	
 	private String encrypt = "";
 	
@@ -39,12 +38,10 @@ public class RSA{
 		
 		
 		this.s = 0;
-		/*this.bankWord = null;
-		this.bankWordOut = null;//*/
 		
 	}
 	
-	public RSA(long p, long q, int s){//HashMap<Character, Long> bankWord){
+	public RSA(long p, long q, int s){
 		
 		this.p = p;
 		this.q = q;
@@ -55,15 +52,6 @@ public class RSA{
 		this.d = new mod(this.l, this.m).arc();
 		
 		this.s = s;
-		
-		/*this.bankWord = bankWord;
-		this.bankWordOut = new HashMap<>();
-		
-		for (char b : this.bankWord.keySet()){
-			
-			this.bankWordOut.put(this.bankWord.get(b), b);
-			
-		}//*/
 		
 	}
 	
@@ -85,6 +73,18 @@ public class RSA{
 		
 	}
 	
+	public long[] getEncryptedValues(){
+		
+		return this.encryptValues;
+		
+	}
+	
+	public long[] getError(){
+		
+		return this.error;
+		
+	}
+	
 	public String toString(){
 		
 		return this.encrypt.equals("") ? "Public Key: ("+this.n+", "+this.l+")" : this.encrypt;
@@ -96,12 +96,14 @@ public class RSA{
 		Mayth p = new Mayth();
 		
 		char[] bank = wd.toCharArray();
+		
 		this.error = new long[bank.length];
-		long bup = 0;
+		this.encryptValues = new long[bank.length];
 		
 		String encrypted = "";
 		
 		long b = 0;
+		long bup = 0;
 		
 		for (int i=0; i<bank.length; i++){
 			
@@ -122,6 +124,58 @@ public class RSA{
 			long a = (long) p.Potencia(value, this.l);
 			
 			b = new mod(a, this.n).getBase();
+			
+			this.encryptValues[i] = b;
+			
+			encrypted+= ((char) (
+			
+				(
+				
+					(int) b) + this.s
+					
+				)
+				
+			)+"";
+			
+		}
+		
+		this.encrypt = encrypted;
+		
+	}
+	
+	public void encrypt(long[] bank){
+		
+		Mayth p = new Mayth();
+		
+		this.error = new long[bank.length];
+		this.encryptValues = new long[bank.length];
+		
+		String encrypted = "";
+		
+		long b = 0;
+		long bup = 0;
+		
+		for (int i=0; i<bank.length; i++){
+			
+			error[i] = 0;
+			
+			long value = ((int) bank[i]);
+			
+			bup = value;
+			
+			while (bup>=0 ? bup>=this.n : bup<=this.n){
+				
+				error[i] = error[i] + (bup>=0 ? (bup>=this.n ? this.n : 0) : (bup<=this.n ? -this.n : 0));
+				
+				bup+= bup>=0 ? -this.n : this.n;
+				
+			}
+			
+			long a = (long) p.Potencia(value, this.l);
+			
+			b = new mod(a, this.n).getBase();
+			
+			this.encryptValues[i] = b;
 			
 			encrypted+= ((char) (
 			
@@ -155,7 +209,13 @@ public class RSA{
 			
 			long a = (long) p.Potencia(value, this.d);
 			
-			b = new mod(a, this.n).getBase() + this.error[i];
+			try{
+				
+				b = this.error[i];
+				
+			}catch(Exception e){b = 0;}
+			
+			b = new mod(a, this.n).getBase() + b;
 			
 			encrypted+= ((char) (
 			
@@ -169,9 +229,51 @@ public class RSA{
 			
 		}
 		
+		this.error = new long[] {};
+		
 		return encrypted;
 		
-	}//*/
+	}
+	
+	public String unencrypt(long[] bank){
+		
+		Mayth p = new Mayth();
+		
+		String encrypted = "";
+		
+		long b = 0;
+		
+		for (int i=0; i<bank.length; i++){
+			
+			long value = ((int) bank[i]);
+			
+			long a = (long) p.Potencia(value, this.d);
+			
+			try{
+				
+				b = this.error[i];
+				
+			}catch(Exception e){b = 0;}
+			
+			b = new mod(a, this.n).getBase() + b;
+			
+			encrypted+= ((char) (
+			
+				(
+				
+					(int) b) + this.s
+					
+				)
+				
+			)+""; 
+			
+		}
+		
+		this.error = new long[] {};
+		
+		return encrypted;
+		
+	}
 	
 	private long getLambda(){
 		
@@ -191,7 +293,7 @@ public class RSA{
 			
 		}while(r<this.m);
 		
-		return 0;
+		return this.m-1;
 		
 	}
 

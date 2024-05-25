@@ -73,62 +73,17 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		Examen();
+		RSA p = new RSA(7, 3);
+		
+		p.encrypt("Holi UuU 124");
+		
+		System.out.println(p+"\n");
+		
+		System.out.print(p.unencrypt(p.get()));
 		
 		System.out.print("\n\n");
 		
     }//*/
-	
-	private static void Examen(){
-		
-		Mayth b = new Mayth();
-		
-		long p = b.nPrime(3);
-		long q = b.nPrime(4);
-		
-		long[][] k;
-		
-		RSA r;
-		
-		do{
-		
-			r = new RSA(p, q, 55);
-			
-			k = new long[][] {r.getPublicKey(), r.getPrivateKey()};
-			
-			String key = "Llave pública: ("+k[0][0]+", "+k[0][1]+")\nLlave privada: ("+k[1][0]+", "+k[1][1]+")\n\n";
-			
-			String encrypted = "";
-			
-			String unencrypted = "";
-			
-			Object Input = null;
-			
-			do{
-				
-				Input = WindowPane.getInputMessage(key+"Digite el mensaje a incriptar");
-				
-			}while(Input==null);
-			
-			String z = Input.toString();
-			
-			r.encrypt(z);
-			
-			encrypted = r.get();
-			
-			WindowPane.showOutputMessage(key+"Mensaje Incriptado: "+encrypted);
-			
-			if (WindowPane.getYesNoMessage("¿Desea desincriptar el mensaje?")){
-				
-				unencrypted = r.unencrypt(encrypted);
-				
-				WindowPane.showOutputMessage(key+"Mensaje Desincriptado: "+unencrypted);
-				
-			}
-			
-		}while(WindowPane.getYesNoMessage("¿Desea repetir?"));
-		
-	}
 	
 	private static void Graph(){
 		

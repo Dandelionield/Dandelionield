@@ -337,7 +337,7 @@ public class Mayth extends Hyperbolic{
 		
 		if (n<=1){return false;}
 		
-		for (int i=2; i<n/2; i++){
+		for (int i=2; i<=n/2; i++){
 			
 			if (n%i==0){
 				
@@ -419,14 +419,14 @@ public class Mayth extends Hyperbolic{
 			if (i==0){
 				
 				min = f.length;
-				bup = (int) f[i];
+				bup = (int) f[0];
 				
 			}
 			
 			factors.add(Arrays.stream(f).boxed().toArray(Long[]::new));
 			
 			min = Math.min(min, f.length);
-			bup = Math.max(bup, (int) f[i]);
+			bup = Math.max(bup, (int) f[0]);
 			
 			r[i] = new ArrayList<Long>();
 			
