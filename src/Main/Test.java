@@ -73,13 +73,9 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		RSA p = new RSA(7, 3);
+		Parser p = Parser.getFactors(72);
 		
-		p.encrypt("Holi UuU 124");
-		
-		System.out.println(p+"\n");
-		
-		System.out.print(p.unencrypt(p.get()));
+		System.out.print(p);
 		
 		System.out.print("\n\n");
 		

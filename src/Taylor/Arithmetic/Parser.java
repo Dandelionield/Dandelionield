@@ -1222,6 +1222,36 @@ public class Parser extends Mayth{
 		
 	}
 	
+	public static String writeRoot(){
+		
+		return "√";
+		
+	}
+	
+	public static String writeRoot(double x){
+		
+		return Parser.writeRoot("2", x+"");
+		
+	}
+	
+	public static String writeRoot(String x){
+		
+		return Parser.writeRoot("2", x);
+		
+	}
+	
+	public static String writeRoot(double y, double x){
+		
+		return Parser.writeRoot(y+"", x+"");
+		
+	}
+	
+	public static String writeRoot(String y, String x){
+		
+		return (Parser.isAllowed(y) ? y : "("+y+")") +"√"+ (Parser.isAllowed(x) ? x : "("+x+")");
+		
+	}
+	
 	public static boolean isAllowed(String wd){
 		
 		try{

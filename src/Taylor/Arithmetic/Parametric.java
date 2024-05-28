@@ -334,7 +334,7 @@ public class Parametric{
 			
 		}
 		
-		return this.p.get(0);
+		return this.p.get(this.p.size()-1);
 		
 	}
 	
