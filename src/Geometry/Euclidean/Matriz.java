@@ -7,7 +7,10 @@ package Geometry.Euclidean;
  */
 
 import java.util.ArrayList;
+
 import Taylor.Math.Mayth;
+import Taylor.Arithmetic.Parametric;
+import Taylor.Arithmetic.Vectorial;
 
 public class Matriz{
 	
@@ -910,6 +913,46 @@ public class Matriz{
 		return new vector(v);
 		
 	}
+	
+	/*public Vectorial doInconsistentSystem(){
+		
+		if(State==false || this.Normal==false){
+			
+			return null;
+			
+		}
+		
+		double[] v = new double[m.length];
+		
+		double[][] mz = doGauss(this.getMatriz());
+		
+		for (int f=0; f<mz.length; f++){
+		
+			v[f] = mz[f][mz[f].length-1];
+			
+		}
+		
+		Parametric[] p = new Parametric[mz[0].length-1];
+		
+		String bup = "";
+		
+		for (int f=0; f<mz.length; f++){
+			
+			for (int c=0; c<p.length; c++){
+				
+				if (c==f){continue;}
+				
+				if (mz[c][f]==0){continue;}
+				
+				
+				
+			}
+			
+			//bup = v[f]+"";
+			
+		}
+		
+	}//*/
 	
 	public Matriz arcGauss(){
 		

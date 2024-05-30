@@ -73,9 +73,7 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		Parser p = Parser.getFactors(72);
-		
-		System.out.print(p);
+		Tree();
 		
 		System.out.print("\n\n");
 		
@@ -308,7 +306,7 @@ public class Test {
 		
 	}
 	
-	private void Tree(){
+	private static void Tree(){
 		
 		Digit[] n = new Digit[] {//8, 9, 11, 15, 19, 20, 21, 7, 3, 2, 1, 5, 6, 4, 13, 14, 10, 12, 17, 16, 18
 			
@@ -319,25 +317,29 @@ public class Test {
 			new Digit(10), new Digit(12), new Digit(17), new Digit(16),
 			new Digit(18)
 			
-		};
+		};//*/
 		
 		AVLTree<Digit> Tree = new AVLTree<>();
 		
 		for (Digit p : n){
 			
+			System.out.println("Se inserta el "+p);
+			
 			Tree.add(p);
+			
+			System.out.println(Tree+"\n");
 			
 		}
 		
-		System.out.println(Tree+"\n");//10, 20,7,15,11
+		//System.out.println(Tree.getHeight()+"\n");//10, 20,7,15,11
 		
-		Tree.remove(n[n.length-6]);
+		/*Tree.remove(n[n.length-6]);
 		Tree.remove(n[4]);
 		Tree.remove(n[7]);
 		Tree.remove(n[3]);
 		Tree.remove(n[2]);
 		
-		System.out.print(Tree);//*/
+		System.out.print(Tree);//*
 		
 		/*Digit[] n = new Digit[] {
 			
@@ -354,11 +356,11 @@ public class Test {
 			
 		}
 		
-		System.out.println("\n"+Tree+"\n");*/
+		System.out.println("\n"+Tree+"\n");*
 		
 		System.out.println("Pre: "+Tree.preOrder());
 		System.out.println("In: "+Tree.inOrder());
-		System.out.print("Post: "+Tree.postOrder());
+		System.out.print("Post: "+Tree.postOrder());//*/
 		
 	}
 	

@@ -57,18 +57,68 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 			boolean b = true;
 			
 			do{
-				
-				b = this.simpleBalance(this.getRoot());
-				
-			}while(b);
 			
-			do{
+				do{
+					
+					b = this.simpleBalance(this.getRoot());
+					
+				}while(b);
 				
-				b = this.complexBalance(this.getRoot());
+				do{
+					
+					b = this.complexBalance(this.getRoot());
+					
+				}while(b);
+				
+				b = this.higherBalance(this.getRoot());
 				
 			}while(b);
 			
 		}
+	}
+	
+	private boolean higherBalance(BinaryNode<T> Nodo){
+		
+		if (Nodo!=null){
+			
+			int h = Nodo.getHeight();
+			
+			if (h>4){
+				
+				int factor = Nodo.getBalancingFactor();
+				
+				if (factor<=-2){
+					
+					this.righterRotation(Nodo);
+					
+					return true;
+					
+				}else if (factor>=2){
+					
+					this.lefterRotation(Nodo);
+					
+					return true;
+					
+				}else{
+					
+					boolean b = this.higherBalance(Nodo.getRightReference());
+				
+					b = this.higherBalance(Nodo.getLeftReference()) || b;
+					
+					return b;
+					
+				}
+				
+			}else{
+				
+				return false;
+				
+			}
+			
+		}
+		
+		return false;
+		
 	}
 	
 	private boolean complexBalance(BinaryNode<T> Nodo){
@@ -281,8 +331,6 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 	
 	private void complexRightRotation(BinaryNode<T> n){
 		
-		System.out.println(n);
-		
 		BinaryNode<T> b = n.getRightReference();
 		BinaryNode<T> c = b.getLeftReference();
 		
@@ -388,6 +436,166 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 		if (a==null){
 		
 			super.setRoot(c);
+			
+		}
+		
+	}
+	
+	private void righterRotation(BinaryNode<T> n){
+		
+		BinaryNode<T> a = null;
+		BinaryNode<T> b = n.getLeftReference();
+		BinaryNode<T> c = null;
+		
+		BinaryNode<T> f = n.getPreviousReference();
+		BinaryNode<T> g = n.getLeftReference();
+		
+		while(b.getRightReference()!=null){
+			
+			b = b.getRightReference();
+			
+		}
+		
+		a = b.getPreviousReference();
+		
+		if (a!=null){
+			
+			if (b.getPosition()){
+	
+				a.setRightReference(null);
+				
+			}else{
+				
+				a.setLeftReference(null);
+				
+			}
+			
+			b.setPreviousReference(null);
+			b.setPosition(BinaryNode.RIGHT);
+			
+		}
+		
+		if (b.getLeftReference()!=null){
+			
+			c = b.getLeftReference();
+			
+			c.setPreviousReference(null);
+			b.setLeftReference(null);
+			
+			c.setPreviousReference(a);
+			a.setRightReference(c);
+			c.setPosition(BinaryNode.RIGHT);
+			
+		}
+		
+		if (f!=null){
+			
+			if (n.getPosition()){
+	
+				f.setRightReference(null);
+				
+			}else{
+				
+				f.setLeftReference(null);
+				
+			}
+			
+			n.setPreviousReference(null);
+			
+		}
+		
+		n.setLeftReference(null);
+		g.setPreviousReference(null);
+		g.setPreviousReference(b);
+		b.setRightReference(n);
+		b.setLeftReference(g);
+		
+		n.setPreviousReference(b);
+		n.setPosition(BinaryNode.RIGHT);
+		
+		if (f==null){
+		
+			super.setRoot(b);
+			
+		}
+		
+	}
+	
+	private void lefterRotation(BinaryNode<T> n){
+		
+		BinaryNode<T> a = null;
+		BinaryNode<T> b = null;
+		BinaryNode<T> c = n.getRightReference();
+		
+		BinaryNode<T> f = n.getPreviousReference();
+		BinaryNode<T> h = n.getRightReference();
+		
+		while(c.getLeftReference()!=null){
+			
+			c = c.getLeftReference();
+			
+		}
+		
+		a = c.getPreviousReference();
+		
+		if (a!=null){
+			
+			if (c.getPosition()){
+	
+				a.setRightReference(null);
+				
+			}else{
+				
+				a.setLeftReference(null);
+				
+			}
+			
+			c.setPreviousReference(null);
+			c.setPosition(BinaryNode.RIGHT);
+			
+		}
+		
+		if (c.getRightReference()!=null){
+			
+			b = c.getRightReference();
+			
+			b.setPreviousReference(null);
+			c.setRightReference(null);
+			
+			b.setPreviousReference(a);
+			a.setLeftReference(b);
+			b.setPosition(BinaryNode.LEFT);
+			
+		}
+		
+		if (f!=null){
+			
+			if (n.getPosition()){
+	
+				f.setRightReference(null);
+				
+			}else{
+				
+				f.setLeftReference(null);
+				
+			}
+			
+			n.setPreviousReference(null);
+			
+		}
+		
+		n.setLeftReference(null);
+		h.setPreviousReference(null);
+		h.setPreviousReference(c);
+		c.setLeftReference(n);
+		c.setRightReference(h);
+		
+		n.setPreviousReference(c);
+		n.setPosition(BinaryNode.LEFT);
+		
+		if (f==null){
+		
+			super.setRoot(b);
 			
 		}
 		
