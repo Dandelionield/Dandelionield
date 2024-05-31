@@ -50,7 +50,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 		
 	}
 	
-	private void balance(){
+	protected void balance(){
 		
 		if (this.getRoot()!=null){
 			
@@ -77,7 +77,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 		}
 	}
 	
-	private boolean higherBalance(BinaryNode<T> Nodo){
+	protected boolean higherBalance(BinaryNode<T> Nodo){
 		
 		if (Nodo!=null){
 			
@@ -121,7 +121,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 		
 	}
 	
-	private boolean complexBalance(BinaryNode<T> Nodo){
+	protected boolean complexBalance(BinaryNode<T> Nodo){
 		
 		if (Nodo!=null){
 			
@@ -139,6 +139,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 				
 				int factor = Nodo.getBalancingFactor();
 				int child = 0;
+				int grandChild = 0;
 				
 				BinaryNode<T> a = null;
 				BinaryNode<T> b = null;
@@ -150,9 +151,29 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 					
 					if (child==1){
 						
+						grandChild = Nodo.getRightReference().getRightReference().getBalancingFactor();
+						
+						if (grandChild==-1){
+							
+							this.switchLeft(Nodo.getRightReference().getRightReference());
+							
+						}
+						
 						this.complexRightRotation(Nodo);
 						
+					}else if (child==0){
+						
+						this.lefterRotation(Nodo);
+						
 					}else if (child==-1){
+						
+						grandChild = Nodo.getRightReference().getLeftReference().getBalancingFactor();
+						
+						if (grandChild==1){
+							
+							this.switchRight(Nodo.getRightReference().getLeftReference());
+							
+						}
 						
 						b = Nodo.getRightReference();
 						
@@ -170,13 +191,33 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 					
 					if (child==1){
 						
+						grandChild = Nodo.getLeftReference().getRightReference().getBalancingFactor();
+						
+						if (grandChild==-1){
+							
+							this.switchLeft(Nodo.getLeftReference().getRightReference());
+							
+						}
+						
 						c = Nodo.getLeftReference();
 						
 						this.simpleRightRotation(c);
 						
 						this.complexLeftRotation(Nodo);
 						
+					}else if (child==0){
+						
+						this.righterRotation(Nodo);
+						
 					}else if (child==-1){
+						
+						grandChild = Nodo.getLeftReference().getLeftReference().getBalancingFactor();
+						
+						if (grandChild==1){
+							
+							this.switchRight(Nodo.getLeftReference().getLeftReference());
+							
+						}
 						
 						this.complexLeftRotation(Nodo);
 						
@@ -202,7 +243,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 		
 	}
 	
-	private boolean simpleBalance(BinaryNode<T> Nodo){
+	protected boolean simpleBalance(BinaryNode<T> Nodo){
 		
 		if (Nodo!=null){
 			
@@ -329,7 +370,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 		
 	}
 	
-	private void complexRightRotation(BinaryNode<T> n){
+	protected void complexRightRotation(BinaryNode<T> n){
 		
 		BinaryNode<T> b = n.getRightReference();
 		BinaryNode<T> c = b.getLeftReference();
@@ -345,7 +386,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 		
 	}
 	
-	private void simpleRightRotation(BinaryNode<T> n){
+	protected void simpleRightRotation(BinaryNode<T> n){
 		
 		BinaryNode<T> a = n.getPreviousReference();
 		BinaryNode<T> b = n.getRightReference();
@@ -385,7 +426,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 		
 	}
 	
-	private void complexLeftRotation(BinaryNode<T> n){
+	protected void complexLeftRotation(BinaryNode<T> n){
 		
 		BinaryNode<T> c = n.getLeftReference();
 		BinaryNode<T> b = c.getRightReference();
@@ -401,7 +442,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 		
 	}
 	
-	private void simpleLeftRotation(BinaryNode<T> n){
+	protected void simpleLeftRotation(BinaryNode<T> n){
 		
 		BinaryNode<T> a = n.getPreviousReference();
 		BinaryNode<T> c = n.getLeftReference();
@@ -441,7 +482,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 		
 	}
 	
-	private void righterRotation(BinaryNode<T> n){
+	protected void righterRotation(BinaryNode<T> n){
 		
 		BinaryNode<T> a = null;
 		BinaryNode<T> b = n.getLeftReference();
@@ -471,7 +512,6 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 			}
 			
 			b.setPreviousReference(null);
-			b.setPosition(BinaryNode.RIGHT);
 			
 		}
 		
@@ -483,20 +523,30 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 			b.setLeftReference(null);
 			
 			c.setPreviousReference(a);
-			a.setRightReference(c);
+			
+			if (a!=null){
+				
+				a.setRightReference(c);
+				
+			}
+			
 			c.setPosition(BinaryNode.RIGHT);
 			
 		}
 		
 		if (f!=null){
 			
+			b.setPosition(n.getPosition());
+			
 			if (n.getPosition()){
 	
 				f.setRightReference(null);
+				f.setRightReference(b);
 				
 			}else{
 				
 				f.setLeftReference(null);
+				f.setLeftReference(b);
 				
 			}
 			
@@ -521,7 +571,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 		
 	}
 	
-	private void lefterRotation(BinaryNode<T> n){
+	protected void lefterRotation(BinaryNode<T> n){
 		
 		BinaryNode<T> a = null;
 		BinaryNode<T> b = null;
@@ -551,7 +601,6 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 			}
 			
 			c.setPreviousReference(null);
-			c.setPosition(BinaryNode.RIGHT);
 			
 		}
 		
@@ -563,20 +612,30 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 			c.setRightReference(null);
 			
 			b.setPreviousReference(a);
-			a.setLeftReference(b);
+			
+			if (a!=null){
+				
+				a.setLeftReference(b);
+				
+			}
+			
 			b.setPosition(BinaryNode.LEFT);
 			
 		}
 		
 		if (f!=null){
 			
+			c.setPosition(n.getPosition());
+			
 			if (n.getPosition()){
 	
 				f.setRightReference(null);
+				f.setRightReference(c);
 				
 			}else{
 				
 				f.setLeftReference(null);
+				f.setLeftReference(c);
 				
 			}
 			
@@ -598,6 +657,46 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 			super.setRoot(b);
 			
 		}
+		
+	}
+	
+	protected void switchLeft(BinaryNode<T> n){
+		
+		BinaryNode<T> a = n.getPreviousReference();
+		BinaryNode<T> b = n;
+		BinaryNode<T> c = b.getLeftReference();
+		
+		a.setRightReference(null);
+		b.setPreviousReference(null);
+		b.setLeftReference(null);
+		c.setPreviousReference(null);
+	
+		c.setPosition(BinaryNode.RIGHT);
+		c.setPreviousReference(a);
+		a.setRightReference(c);
+	
+		c.setRightReference(b);
+		b.setPreviousReference(c);
+		
+	}
+	
+	protected void switchRight(BinaryNode<T> n){
+		
+		BinaryNode<T> a = n.getPreviousReference();
+		BinaryNode<T> c = n;
+		BinaryNode<T> b = c.getRightReference();
+		
+		a.setLeftReference(null);
+		c.setPreviousReference(null);
+		c.setRightReference(null);
+		b.setPreviousReference(null);
+		
+		b.setPosition(BinaryNode.LEFT);
+		b.setPreviousReference(a);
+		a.setLeftReference(b);
+		
+		b.setLeftReference(c);
+		c.setPreviousReference(b);
 		
 	}
 

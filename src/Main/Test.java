@@ -323,40 +323,19 @@ public class Test {
 		
 		for (Digit p : n){
 			
-			System.out.println("Se inserta el "+p);
-			
 			Tree.add(p);
-			
-			System.out.println(Tree+"\n");
 			
 		}
 		
-		//System.out.println(Tree.getHeight()+"\n");//10, 20,7,15,11
+		System.out.println(Tree+"\n");
 		
-		/*Tree.remove(n[n.length-6]);
-		Tree.remove(n[4]);
+		Tree.remove(n[16]);
+		Tree.remove(n[5]);
 		Tree.remove(n[7]);
 		Tree.remove(n[3]);
 		Tree.remove(n[2]);
 		
-		System.out.print(Tree);//*
-		
-		/*Digit[] n = new Digit[] {
-			
-			new Digit(19), new Digit(15), new Digit(20), new Digit(14), 
-			new Digit(17), new Digit(30), new Digit(13), new Digit(16), 
-			new Digit(18), new Digit(25), new Digit(26)
-		};
-		
-		BinarySearchTree<Digit> Tree = new BinarySearchTree<>();
-		
-		for (Digit p : n){
-			
-			Tree.add(p);
-			
-		}
-		
-		System.out.println("\n"+Tree+"\n");*
+		System.out.println(Tree+"\n");//*/
 		
 		System.out.println("Pre: "+Tree.preOrder());
 		System.out.println("In: "+Tree.inOrder());

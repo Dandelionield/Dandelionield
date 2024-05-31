@@ -312,8 +312,8 @@ public class BinaryTree<T>{
 					BinaryNode<T> n = Nodo.getRightReference();
 					
 					BinaryNode<T> a = Nodo.getPreviousReference();
-					BinaryNode<T> b = Nodo.getLeftReference();
-					BinaryNode<T> c = Nodo.getRightReference();
+					BinaryNode<T> b = Nodo.getRightReference();
+					BinaryNode<T> c = Nodo.getLeftReference();
 					
 					while(n.getLeftReference()!=null){
 						
@@ -321,81 +321,75 @@ public class BinaryTree<T>{
 						
 					}
 					
-					if (n.getRightReference()!=null){
+					BinaryNode<T> bup = n.getRightReference();
+					BinaryNode<T> past = n.getPreviousReference();
+					
+					if (bup!=null){
 						
-						BinaryNode<T> bup = n.getRightReference();
-						BinaryNode<T> past = n.getPreviousReference();
+						n.setRightReference(null);
 						
 						bup.setPreviousReference(null);
+						bup.setPosition(BinaryNode.LEFT);
 						
-						if (n.getPosition()){
-						
-							past.setRightReference(bup);
-							
-						}else{
-							
-							past.setLeftReference(bup);
-							
-						}
-						
-						bup.setPreviousReference(past);
-						
-						n.setPreviousReference(null);
+					}
+					
+					if (n.getPosition()){
+					
+						past.setRightReference(bup);
 						
 					}else{
 						
-						if (n.getPosition()){
-						
-							n.getPreviousReference().setRightReference(null);
-							
-						}else{
-							
-							n.getPreviousReference().setLeftReference(null);
-							
-						}
-						
-						n.setPreviousReference(null);
+						past.setLeftReference(bup);
 						
 					}
 					
-					n.setPreviousReference(a);
-					n.setLeftReference(b);
-					
-					if (c.getID().equals(n.getID())==false){
-						
-						n.setRightReference(c);
-						
-					}
-					
-					if (a!=null){
-					
-						if (Nodo.getPosition()){
-						
-							a.setRightReference(n);
-							
-						}else{
-							
-							a.setLeftReference(n);
-							
-						}
-						
-					}else{
-						
-						this.setRoot(n);
-						
-					}
-					
-					b.setPreviousReference(n);
-					
-					if (c.getID().equals(n.getID())==false){
-						
-						c.setPreviousReference(n);
-						
-					}
+					n.setPreviousReference(null);
 					
 					Nodo.setPreviousReference(null);
 					Nodo.setLeftReference(null);
 					Nodo.setRightReference(null);
+					
+					c.setPreviousReference(null);
+					
+					if (n!=b){
+						
+						b.setPreviousReference(null);
+						
+					}
+					
+					if (a!=null){
+						
+						if (Nodo.getPosition()){
+						
+							a.setRightReference(null);
+							a.setRightReference(n);
+							
+						}else{
+							
+							a.setLeftReference(null);
+							a.setLeftReference(n);
+							
+						}
+						
+						n.setPreviousReference(a);
+						
+					}
+					
+					n.setLeftReference(c);
+					c.setPreviousReference(n);
+					
+					if (n!=b){
+						
+						n.setRightReference(b);
+						b.setPreviousReference(n);
+						
+					}
+					
+					if (a==null){
+						
+						this.setRoot(n);
+						
+					}
 					
 					return true;
 					
