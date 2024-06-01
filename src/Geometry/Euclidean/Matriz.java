@@ -91,7 +91,7 @@ public class Matriz{
 		
 		int f = 0;
 		
-		for (int i=0; i<length.getSmallest(); i++){
+		for (int i=0; i<length.get(false); i++){
 			
 			v.add(this.m[i].add(mz.m[i]));
 			
@@ -105,7 +105,7 @@ public class Matriz{
 			
 		}
 		
-		for (int i=f+1; i<length.getLargest(); i++){
+		for (int i=f+1; i<length.get(true); i++){
 			
 			try{
 				
@@ -316,31 +316,17 @@ public class Matriz{
 		
 	}
 	
-	public double getLargest(){
+	public double get(boolean b){
 		
 		final ArrayList<Double> v = new ArrayList<>();
 		
 		for (vector p : this.m){
 			
-			v.add(p.getLargest());
+			v.add(p.get(b));
 			
 		}
 		
-		return new vector(v).getLargest();
-		
-	}
-	
-	public double getSmallest(){
-		
-		final ArrayList<Double> v = new ArrayList<>();
-		
-		for (vector p : this.m){
-			
-			v.add(p.getSmallest());
-			
-		}
-		
-		return new vector(v).getSmallest();
+		return new vector(v).get(b);
 		
 	}
 	
@@ -1039,7 +1025,7 @@ public class Matriz{
 		
 		ArrayList<vector> v = new ArrayList<>();
 		
-		for (int i=0; i<new vector(vz).getLargest(); i++){
+		for (int i=0; i<new vector(vz).get(true); i++){
 			
 			v.add(this.getColumn(i));
 			

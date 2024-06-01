@@ -9,7 +9,7 @@ package Algorithm.LinkedArrays;
 import Algorithm.LinkedArrays.DoubleList;
 import Algorithm.Nodes.DoubleNode;
 
-public class Queue<T> extends DoubleList<T>{
+public class Queue<T extends Comparable<T>> extends DoubleList<T>{
 
 	public Queue(){
 		

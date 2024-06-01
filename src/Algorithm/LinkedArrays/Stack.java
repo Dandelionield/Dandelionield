@@ -9,7 +9,7 @@ package Algorithm.LinkedArrays;
 import Algorithm.LinkedArrays.List;
 import Algorithm.Nodes.Node;
 
-public class Stack<T> extends List<T>{
+public class Stack<T extends Comparable<T>> extends List<T>{
 	
 	public Stack(){
 		

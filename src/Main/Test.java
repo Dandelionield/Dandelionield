@@ -73,7 +73,23 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		Tree();
+		Digit a = new Digit(4);
+		Digit b = new Digit(5.6);
+		Digit c = new Digit(-1);
+		Digit d = new Digit(0);
+		
+		List<Digit> n = new List<>();
+		
+		n.add(a);
+		n.add(b);
+		n.add(c);
+		n.add(d);
+		
+		System.out.println(n);
+		
+		n.shortBy(true);
+		
+		System.out.print(n);
 		
 		System.out.print("\n\n");
 		

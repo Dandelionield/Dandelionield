@@ -8,7 +8,7 @@ package Algorithm.LinkedArrays;
 
 import Algorithm.Nodes.DoubleNode;
 
-public class DoubleList<T>{
+public class DoubleList<T extends Comparable<T>>{
 	
 	private DoubleNode<T> firstNode;
 	private DoubleNode<T> lastNode;
@@ -23,6 +23,72 @@ public class DoubleList<T>{
 		
 		this.firstNode = this.fixFirst(Nodo);
 		this.lastNode = this.fixLast(Nodo);
+		
+	}
+	
+	public DoubleNode<T> get(T Data){
+		
+		if (this.firstNode==null){
+			
+			return null;
+			
+		}
+		
+		if (this.firstNode.getData().toString().equals(Data.toString())){
+			
+			return this.firstNode;
+			
+		}
+		
+		if (this.lastNode.getData().toString().equals(Data.toString())){
+			
+			return this.lastNode;
+			
+		}
+		
+		DoubleNode<T> n = this.firstNode;
+		
+		while(n.getNextReference()!=null){
+			
+			if (n.getData().toString().equals(Data.toString())){
+			
+				return n;
+				
+			}
+			
+			n = n.getNextReference();
+			
+		};
+		
+		return null;
+		
+	}
+	
+	public T get(boolean b){
+		
+		if (this.firstNode!=null){
+		
+			T n = this.firstNode.getData();
+			
+			DoubleNode<T> p = this.firstNode;
+			
+			while(p!=null){
+				
+				if (b ? p.getData().compareTo(n)>0 : p.getData().compareTo(n)<0){
+					
+					n = p.getData();
+					
+				}
+				
+				p = p.getNextReference();
+				
+			}
+			
+			return n;
+			
+		}
+		
+		return null;
 		
 	}
 	
@@ -150,102 +216,25 @@ public class DoubleList<T>{
 		
 	}
 	
-	public DoubleNode<T> get(T Data){
-		
-		if (this.firstNode==null){
-			
-			return null;
-			
-		}
-		
-		if (this.firstNode.getData().toString().equals(Data.toString())){
-			
-			return this.firstNode;
-			
-		}
-		
-		if (this.lastNode.getData().toString().equals(Data.toString())){
-			
-			return this.lastNode;
-			
-		}
-		
-		DoubleNode<T> n = this.firstNode;
-		
-		while(n.getNextReference()!=null){
-			
-			if (n.getData().toString().equals(Data.toString())){
-			
-				return n;
-				
-			}
-			
-			n = n.getNextReference();
-			
-		};
-		
-		return null;
-		
-	}
-	
-	@SuppressWarnings("unchecked")
-	public void sortBy(boolean b){
+	public void shortBy(boolean b){
 		
 		if (this.firstNode!=null){
+		
+			DoubleList<T> n = new DoubleList<>();
+			T p = null;
 			
-			if (this.firstNode.getData() instanceof String){
+			do{
+				
+				p = this.get(b);
+				
+				n.addAtLast(p);
+				
+				this.remove(p);
+				
+			}while(this.firstNode!=null);
 			
-				DoubleNode<T> n = this.firstNode;
-				
-				String[] v = new String[this.length()];
-				int z = 0;
-				
-				while(n!=null){
-					
-					v[z] = n.getData().toString();
-					
-					z++;
-					
-					n = n.getNextReference();
-					
-				};
-				
-				String p = v[0];
-				
-				for (int f=0; f<v.length; f++){
-					
-					for (int c=1; c<v.length; c++){
-						
-						if (b ? p.compareTo(v[c])<0 : p.compareTo(v[c])>0){
-							
-							p = v[c-1];
-							v[c-1] = v[c];
-							v[c] = p;
-							
-						}else{
-							
-							p = v[c];
-							
-						}
-						
-					}
-					
-					p = v[0];
-					
-				}
-				
-				DoubleList<T> newList = new DoubleList<>();
-				
-				for (int i=v.length-1; i>=0; i--){
-					
-					newList.add((T) v[i]);
-					
-				}
-				
-				this.firstNode = newList.firstNode;
-				this.lastNode = newList.lastNode;
-				
-			}
+			this.firstNode = n.firstNode;
+			this.lastNode = n.lastNode;
 			
 		}
 		

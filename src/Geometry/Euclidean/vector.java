@@ -660,6 +660,27 @@ public class vector{
 		
 	}
 	
+	public double get(boolean b){
+		
+		double bup = 0;
+		double n = this.v[0];
+		
+		for (double p : this.v){
+			
+			bup = p;
+			
+			if (b ? bup>n : bup<n){
+				
+				n = bup;
+				
+			}
+			
+		}
+		
+		return n;
+		
+	}
+	
 	public coordinate getTail(){
 		
 		return Tail;
@@ -669,48 +690,6 @@ public class vector{
 	public coordinate getHead(){
 		
 		return Tail.doSuma(new coordinate(this.v));
-		
-	}
-	
-	public double getLargest(){
-		
-		double bup = 0;
-		double n = this.v[0];
-		
-		for (double p : this.v){
-			
-			bup = p;
-			
-			if (bup>n){
-				
-				n = bup;
-				
-			}
-			
-		}
-		
-		return n;
-		
-	}
-	
-	public double getSmallest(){
-		
-		double bup = 0;
-		double n = this.v[0];
-		
-		for (double p : this.v){
-			
-			bup = p;
-			
-			if (bup<n){
-				
-				n = bup;
-				
-			}
-			
-		}
-		
-		return n;
 		
 	}
 	
@@ -1072,7 +1051,7 @@ public class vector{
 		
 		do{
 			
-			cp = b ? bup.getLargest() : bup.getSmallest();
+			cp = bup.get(b);
 			
 			v.add(cp);
 			

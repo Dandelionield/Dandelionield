@@ -8,7 +8,7 @@ package Algorithm.LinkedArrays;
 
 import Algorithm.Nodes.Node;
 
-public class List<T>{
+public class List<T extends Comparable<T>>{
 
 	private Node<T> firstNode;
 	
@@ -27,6 +27,66 @@ public class List<T>{
 	public List(T firstData){
 		
 		this.firstNode = new Node<>(firstData);
+		
+	}
+	
+	public Node<T> get(T Data){
+		
+		if (this.firstNode==null){
+			
+			return null;
+			
+		}
+		
+		if (this.firstNode.getData().toString().equals(Data.toString())){
+			
+			return this.firstNode;
+			
+		}
+		
+		Node<T> n = this.firstNode;
+		
+		while(n.getReference()!=null){
+			
+			if (n.getData().toString().equals(Data.toString())){
+			
+				return n;
+				
+			}
+			
+			n = n.getReference();
+			
+		};
+		
+		return null;
+		
+	}
+	
+	public T get(boolean b){
+		
+		if (this.firstNode!=null){
+		
+			T n = this.firstNode.getData();
+			
+			Node<T> p = this.firstNode;
+			
+			while(p!=null){
+				
+				if (b ? p.getData().compareTo(n)>0 : p.getData().compareTo(n)<0){
+					
+					n = p.getData();
+					
+				}
+				
+				p = p.getReference();
+				
+			}
+			
+			return n;
+			
+		}
+		
+		return null;
 		
 	}
 	
@@ -147,110 +207,24 @@ public class List<T>{
 	public void removeAtLast(){
 
 		if (this.firstNode!=null){
+			
+			if (this.length()!=1){
 
-			Node<T> n = this.firstNode;
-			Node<T> BackUp = null;
-			
-			while(n.getReference()!=null){
-
-				BackUp = n;
-				n = n.getReference();
-				
-			};
-			
-			BackUp.setReference(null);
-			
-		}
-		
-	}
-	
-	public Node<T> get(T Data){
-		
-		if (this.firstNode==null){
-			
-			return null;
-			
-		}
-		
-		if (this.firstNode.getData().toString().equals(Data.toString())){
-			
-			return this.firstNode;
-			
-		}
-		
-		Node<T> n = this.firstNode;
-		
-		while(n.getReference()!=null){
-			
-			if (n.getData().toString().equals(Data.toString())){
-			
-				return n;
-				
-			}
-			
-			n = n.getReference();
-			
-		};
-		
-		return null;
-		
-	}
-	
-	@SuppressWarnings("unchecked")
-	public void sortBy(boolean b){
-		
-		if (this.firstNode!=null){
-			
-			if (this.firstNode.getData() instanceof String){
-			
 				Node<T> n = this.firstNode;
+				Node<T> BackUp = null;
 				
-				String[] v = new String[this.length()];
-				int z = 0;
-				
-				while(n!=null){
-					
-					v[z] = n.getData().toString();
-					
-					z++;
-					
+				while(n.getReference()!=null){
+
+					BackUp = n;
 					n = n.getReference();
 					
 				};
 				
-				String p = v[0];
+				BackUp.setReference(null);
 				
-				for (int f=0; f<v.length; f++){
-					
-					for (int c=1; c<v.length; c++){
-						
-						if (b ? p.compareTo(v[c])<0 : p.compareTo(v[c])>0){
-							
-							p = v[c-1];
-							v[c-1] = v[c];
-							v[c] = p;
-							
-						}else{
-							
-							p = v[c];
-							
-						}
-						
-					}
-					
-					p = v[0];
-					
-				}
+			}else{
 				
-				List<T> newList = new List<>();
-				
-				for (int i=v.length-1; i>=0; i--){
-					
-					newList.add((T) v[i]);
-					
-				}
-				
-				this.firstNode = newList.firstNode;
+				this.remove();
 				
 			}
 			
@@ -258,27 +232,28 @@ public class List<T>{
 		
 	}
 	
-	/*public T[] getArray(){
+	public void shortBy(boolean b){
 		
-		int c = this.length();
+		if (this.firstNode!=null){
 		
-		if (c==0){return null;}
-		
-		T[] v = new T[c];
-		
-		Node<T> n = this.firstNode;
-		
-		for(int i=0; i<c; i++){
+			List<T> n = new List<>();
+			T p = null;
 			
-			v[i] = (T) n.getData();
+			do{
+				
+				p = this.get(b);
+				
+				n.addAtLast(p);
+				
+				this.remove(p);
+				
+			}while(this.firstNode!=null);
 			
-			n = n.getReference();
+			this.firstNode = n.firstNode;
 			
 		}
 		
-		return v;
-		
-	}//*/
+	}
 	
 	public String toString(){
 		
