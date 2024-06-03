@@ -12,7 +12,7 @@ import java.math.MathContext;
 
 import Taylor.Math.Mayth;
 
-public class mass{
+public class mass implements Comparable<mass>{
 	
 	private final double Scalar;
 	private String Unity;
@@ -72,6 +72,22 @@ public class mass{
 		this.Unity = t.Unity;
 		this.nth = t.nth;
 		this.equivalent = t.equivalent;
+		
+	}
+	
+	public int compareTo(mass b){
+		
+		if (this.Scalar>b.Scalar){
+			
+			return 1;
+			
+		}else if (this.Scalar<b.Scalar){
+			
+			return -1;
+			
+		}
+		
+		return 0;
 		
 	}
 	

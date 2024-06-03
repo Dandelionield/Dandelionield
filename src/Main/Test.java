@@ -73,23 +73,17 @@ public class Test {
 		
 		System.out.print("\n\n");
 		
-		Digit a = new Digit(4);
-		Digit b = new Digit(5.6);
-		Digit c = new Digit(-1);
-		Digit d = new Digit(0);
+		vector a = new vector(7, 8);
+		vector b = new vector(3, 9, 1);
+		vector c = new vector(-1, 5, -9);
 		
-		List<Digit> n = new List<>();
+		AVLTree<vector> Tree = new AVLTree<>();
 		
-		n.add(a);
-		n.add(b);
-		n.add(c);
-		n.add(d);
+		Tree.add(a);
+		Tree.add(b);
+		Tree.add(c);
 		
-		System.out.println(n);
-		
-		n.shortBy(true);
-		
-		System.out.print(n);
+		System.out.print(Tree);
 		
 		System.out.print("\n\n");
 		

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import Taylor.Math.Mayth;
 import Geometry.Algebra.bivector;
 
-public class vector{
+public class vector implements Comparable<vector>{
 	
 	private final double[] v;
 	public final int length;
@@ -498,7 +498,7 @@ public class vector{
 		
 	}
 	
-	private vector(vector a, int limite){
+	protected vector(vector a, int limite){
 		
 		cx = Mayth.Redondear(a.cx, limite);
 		cy = Mayth.Redondear(a.cy, limite);
@@ -522,6 +522,22 @@ public class vector{
 		v = bup;
 		Tail = a.Tail.doRedondear(limite);
 		length = v.length;
+		
+	}
+	
+	public int compareTo(vector b){
+		
+		if (this.Magnitude>b.Magnitude){
+			
+			return 1;
+			
+		}else if (this.Magnitude<b.Magnitude){
+			
+			return -1;
+			
+		}
+		
+		return 0;
 		
 	}
 	

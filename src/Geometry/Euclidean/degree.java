@@ -8,7 +8,7 @@ package Geometry.Euclidean;
 
 import Taylor.Math.Mayth;
 
-public class degree{
+public class degree implements Comparable<degree>{
 	
 	private final double Pi = Mayth.PI.doubleValue();
 	
@@ -159,6 +159,22 @@ public class degree{
 		Csc = Mayth.Redondear(Alpha.Csc, limite);
 		Sec = Mayth.Redondear(Alpha.Sec, limite);
 		Cot = Mayth.Redondear(Alpha.Cot, limite);
+		
+	}
+	
+	public int compareTo(degree beta){
+		
+		if (this.Degree>beta.Degree){
+			
+			return 1;
+			
+		}else if (this.Degree<beta.Degree){
+			
+			return -1;
+			
+		}
+		
+		return 0;
 		
 	}
 	

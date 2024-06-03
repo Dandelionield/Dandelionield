@@ -12,7 +12,7 @@ import java.math.MathContext;
 
 import Taylor.Math.Mayth;
 
-public class distance{
+public class distance implements Comparable<distance>{
 	
 	private final double Scalar;
 	private String Unity;
@@ -72,6 +72,22 @@ public class distance{
 		this.Unity = x.Unity;
 		this.nth = x.nth;
 		this.equivalent = x.equivalent;
+		
+	}
+	
+	public int compareTo(distance b){
+		
+		if (this.Scalar>b.Scalar){
+			
+			return 1;
+			
+		}else if (this.Scalar<b.Scalar){
+			
+			return -1;
+			
+		}
+		
+		return 0;
 		
 	}
 	

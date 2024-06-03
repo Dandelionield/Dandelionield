@@ -14,7 +14,7 @@ import Taylor.Math.Mayth;
 import Taylor.Arithmetic.Parser;
 import Taylor.Arithmetic.function;
 
-public class temperature{
+public class temperature implements Comparable<temperature>{
 
 	private final double Scalar;
 	private String Unity;
@@ -71,6 +71,22 @@ public class temperature{
 		this.nth = t.nth;
 		this.toKelvin = t.toKelvin;
 		this.fromKelvin = t.fromKelvin;
+		
+	}
+	
+	public int compareTo(temperature b){
+		
+		if (this.Scalar>b.Scalar){
+			
+			return 1;
+			
+		}else if (this.Scalar<b.Scalar){
+			
+			return -1;
+			
+		}
+		
+		return 0;
 		
 	}
 	

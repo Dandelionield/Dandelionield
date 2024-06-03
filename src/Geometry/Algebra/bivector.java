@@ -10,7 +10,7 @@ import Geometry.Euclidean.vector;
 import Geometry.Euclidean.degree;
 import Taylor.Math.Mayth;
 
-public class bivector{
+public class bivector implements Comparable<bivector>{
 	
 	private final double Magnitude;
 	private final vector a;
@@ -56,6 +56,22 @@ public class bivector{
 		this.b = B.b;
 		Theta = a.doBetweenTwo(b);
 		Magnitude = B.Magnitude;
+		
+	}
+	
+	public int compareTo(bivector b){
+		
+		if (this.Magnitude>b.Magnitude){
+			
+			return 1;
+			
+		}else if (this.Magnitude<b.Magnitude){
+			
+			return -1;
+			
+		}
+		
+		return 0;
 		
 	}
 	

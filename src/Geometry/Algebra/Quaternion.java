@@ -11,9 +11,8 @@ import Geometry.Euclidean.vector;
 import Geometry.Euclidean.degree;
 import Taylor.Math.Mayth;
 
-public class Quaternion{
+public class Quaternion extends vector{
 
-	private final vector v;
 	private final double a;
 	
 	private final double Magnitude;
@@ -24,9 +23,10 @@ public class Quaternion{
 	
 	public Quaternion(double a, vector v){
 		
+		super(v.get());
+		
 		this.a = a;
-		this.v = v;
-		this.Magnitude = Math.sqrt(a*a+Mth.Potencia(v.getMagnitude()));
+		this.Magnitude = Math.sqrt(a*a+Mth.Potencia(super.getMagnitude()));
 		this.Phi = new degree(Math.acos(a/Magnitude), true);
 		this.Conjugated = false;
 		
@@ -34,8 +34,9 @@ public class Quaternion{
 	
 	private Quaternion(Quaternion q, int limite){
 		
+		super(q, limite);
+		
 		this.a = Mayth.Redondear(q.a, limite);
-		this.v = q.v.doRedondear(limite);
 		this.Magnitude = Mayth.Redondear(q.Magnitude, limite);
 		this.Phi = q.Phi.doRedondear(limite);
 		this.Conjugated = q.Conjugated;
@@ -44,18 +45,35 @@ public class Quaternion{
 	
 	private Quaternion(Quaternion q, boolean value){
 		
+		super(q.doScalar(-1).get());
+		
 		this.Conjugated = value;
 		
 		this.a = q.a;
-		this.v = q.v.doScalar(-1);
 		this.Magnitude = q.Magnitude;
 		this.Phi = q.Phi;
 		
 	}
 	
+	public int compareTo(Quaternion b){
+		
+		if (this.Magnitude>b.Magnitude){
+			
+			return 1;
+			
+		}else if (this.Magnitude<b.Magnitude){
+			
+			return -1;
+			
+		}
+		
+		return 0;
+		
+	}
+	
 	public vector getVector(){
 		
-		return this.v;
+		return this;
 		
 	}
 	
@@ -87,11 +105,11 @@ public class Quaternion{
 		
 		if (this.Conjugated==false){
 			
-			return "{"+a+" + "+v+"}";
+			return "{"+a+" + "+super.toString()+"}";
 			
 		}else{
 			
-			return "{"+a+" - "+v.doScalar(-1)+"}";
+			return "{"+a+" - "+super.doScalar(-1).toString()+"}";
 			
 		}
 		
@@ -99,37 +117,37 @@ public class Quaternion{
 	
 	public double doScalar(Quaternion p){
 		
-		return this.a*p.a+this.v.doScalar(p.v);
+		return this.a*p.a + super.doScalar(p);
 		
 	}
 	
 	public Quaternion doScalar(double s){
 		
-		return new Quaternion(a*s, v.doScalar(s));
+		return new Quaternion(a*s, super.doScalar(s));
 		
 	}
 	
 	public Quaternion doSuma(Quaternion p){
 		
-		return new Quaternion(this.a+p.a, this.v.doSuma(p.v));
+		return new Quaternion(this.a+p.a, super.doSuma(p));
 		
 	}
 	
 	public Quaternion doResta(Quaternion p){
 		
-		return new Quaternion(this.a-p.a, this.v.doResta(p.v));
+		return new Quaternion(this.a-p.a, super.doResta(p));
 		
 	}
 	
 	public vector doCross(Quaternion p){
 		
-		return (this.doHamilton(p).doResta(p.doHamilton(this))).doScalar(1.00/2.00).v;
+		return (this.doHamilton(p).doResta(p.doHamilton(this))).doScalar(1.00/2.00);
 		
 	}
 	
 	public Quaternion doHamilton(Quaternion p){
 		
-		return new Quaternion(this.a*p.a-this.v.doScalar(p.v), p.v.doScalar(this.a).doSuma(this.v.doScalar(p.a)).doSuma(this.v.doCross(p.v)));
+		return new Quaternion(this.a*p.a - super.doScalar(p), p.getVector().doScalar(this.a).doSuma(super.doScalar(p.a)).doSuma(super.doCross(p)));
 		
 	}
 	
@@ -149,13 +167,13 @@ public class Quaternion{
 		
 		double p = Mth.Potencia(this.Magnitude, x);
 		
-		return new Quaternion(p*Phi.doScalar(x).getCos(), this.v.getUnitary().doScalar(p*Phi.doScalar(x).getSen()));
+		return new Quaternion(p*Phi.doScalar(x).getCos(), super.getUnitary().doScalar(p*Phi.doScalar(x).getSen()));
 		
 	}
 	
 	public Quaternion doRaiz(){
 		
-		return new Quaternion(Math.sqrt((this.Magnitude+a)/2), this.v.getUnitary().doScalar(Math.sqrt((this.Magnitude-a)/2)));
+		return new Quaternion(Math.sqrt((this.Magnitude+a)/2), super.getUnitary().doScalar(Math.sqrt((this.Magnitude-a)/2)));
 		
 	}
 	
@@ -163,7 +181,7 @@ public class Quaternion{
 		
 		double e = Mth.Euler(this.a); 
 		
-		return new Quaternion(e*Mth.Cos(this.v.getMagnitude()), this.v.getUnitary().doScalar(e*Mth.Sen(this.v.getMagnitude())));
+		return new Quaternion(e*Mth.Cos(super.getMagnitude()), super.getUnitary().doScalar(e*Mth.Sen(super.getMagnitude())));
 		
 	}
 	
@@ -171,10 +189,10 @@ public class Quaternion{
 		
 		return new Matriz(new double[][] {
 			
-			{a, -v.getComponentX(), -v.getComponentY(), -v.getComponentZ()},
-			{v.getComponentX(), a, -v.getComponentZ(), v.getComponentY()},
-			{v.getComponentY(), v.getComponentZ(), a, -v.getComponentX()},
-			{v.getComponentZ(), -v.getComponentY(), v.getComponentX(), a}
+			{a, -this.getComponentX(), -this.getComponentY(), -this.getComponentZ()},
+			{this.getComponentX(), a, -this.getComponentZ(), this.getComponentY()},
+			{this.getComponentY(), this.getComponentZ(), a, -this.getComponentX()},
+			{this.getComponentZ(), -this.getComponentY(), this.getComponentX(), a}
 			
 		});
 		

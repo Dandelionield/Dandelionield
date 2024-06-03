@@ -12,7 +12,7 @@ import java.math.MathContext;
 
 import Taylor.Math.Mayth;
 
-public class substance{
+public class substance implements Comparable<substance>{
 	
 	private final double Scalar;
 	private String Unity;
@@ -72,6 +72,22 @@ public class substance{
 		this.Unity = s.Unity;
 		this.nth = s.nth;
 		this.equivalent = s.equivalent;
+		
+	}
+	
+	public int compareTo(substance b){
+		
+		if (this.Scalar>b.Scalar){
+			
+			return 1;
+			
+		}else if (this.Scalar<b.Scalar){
+			
+			return -1;
+			
+		}
+		
+		return 0;
 		
 	}
 	

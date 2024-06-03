@@ -15,7 +15,7 @@ import java.util.HashMap;
 
 import Taylor.Math.Mayth;
  
-public class Parser extends Mayth{
+public class Parser extends Mayth implements Comparable<Parser>{
 
 	private ArrayList<String> wdProcess;
 	private BigDecimal n;
@@ -164,6 +164,12 @@ public class Parser extends Mayth{
 		n = new BigDecimal("0");
 		
 		op = this.getProcess();
+		
+	}
+	
+	public int compareTo(Parser p){
+		
+		return this.get().compareTo(p.get());
 		
 	}
 	

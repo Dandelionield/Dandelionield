@@ -220,6 +220,12 @@ public class Digit implements Comparable<Digit>{
 		
 	}
 	
+	public Digit divide(double n, long limite){
+		
+		return this.divide(new Digit(n), limite);
+		
+	}
+	
 	public int compareTo(Digit n){
 		
 		if (this.CN.equals(n.CN)){

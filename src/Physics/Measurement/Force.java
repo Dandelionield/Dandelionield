@@ -17,7 +17,7 @@ import Physics.Fundamental.mass;
 import Physics.Fundamental.distance;
 import Physics.Fundamental.time;
 
-public class Force{
+public class Force implements Comparable<Force>{
 	
 	private final vector F;
 	private mass m;
@@ -143,6 +143,12 @@ public class Force{
 		
 		this.nth = F.nth;
 		this.equivalent = F.equivalent;
+		
+	}
+	
+	public int compareTo(Force b){
+		
+		return this.F.compareTo(b.F);
 		
 	}
 	
